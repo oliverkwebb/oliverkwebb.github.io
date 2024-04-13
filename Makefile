@@ -1,6 +1,6 @@
 .POSIX:
 .SUFFIXES:
-DIST=dist
+DIST=docs
 TEMPLATES=templ
 MD=lowdown
 ARTICLES=$(wildcard articles/*.md)
