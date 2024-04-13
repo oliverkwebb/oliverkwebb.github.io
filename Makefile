@@ -1,6 +1,6 @@
 .POSIX:
 .SUFFIXES:
-DIST=docs
+DIST=dist
 TEMPLATES=templ
 MD=lowdown
 ARTICLES=$(wildcard articles/*.md)
@@ -12,7 +12,7 @@ blog: $(DIST)/blog.html
 articles: ${ADEST}
 index: $(DIST)/index.html
 
-$(DIST)/%.html: %.md
+$(DIST)/%.html: %.md $(TEMPLATES)/begin.html $(TEMPLATES)/end.html
 	cat $(TEMPLATES)/begin.html > $@
-	$(MD) $^ >> $@
+	$(MD) $< >> $@
 	cat $(TEMPLATES)/end.html >> $@
