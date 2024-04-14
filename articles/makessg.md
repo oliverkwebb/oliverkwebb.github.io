@@ -1,3 +1,6 @@
+---
+Title: A basic guide on `make`, and how to make a static site generator using it
+---
 <title>A basic guide on make, and how to make a static site generator using it</title>
 ## A basic guide on `make`, and how to make a static site generator using it
 
