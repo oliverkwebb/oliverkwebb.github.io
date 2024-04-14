@@ -1,7 +1,7 @@
 DIST=dist
 TEMPLATES=templ
 MD=lowdown
-MDFLAGS= --html-no-skiphtml --html-no-escapehtml
+MDFLAGS= --html-no-skiphtml --html-no-escapehtml --html-no-owasp --out-no-smarty
 ARTICLES=$(wildcard articles/*.md)
 ADEST=$(addprefix $(DIST)/, $(patsubst %.md, %.html, $(ARTICLES)))
 

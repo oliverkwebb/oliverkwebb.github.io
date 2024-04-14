@@ -62,7 +62,9 @@ in the build commands. But this is not where the true magic of make is.
 A rule is not just a name for a macro that you type in on the command line,
 it is a pattern. And more importantly, it is a filename unless said otherwise.
 You can also specify prerequisites for running a rule. So you can say `a: b c`,
-which means that rule b and c have to run before a.
+which means that rule b and c have to run before a. You can specify that a
+rule is not a filename by putting a line that says `.PHONY: [rule1] [rule2]`.
+This means that `rule1` and `rule2` will always run when called.
 
 Finally, if a rule is
 
@@ -72,7 +74,7 @@ Finally, if a rule is
 
 The rule is considered completed, and any commands from it are not ran.
 
-This makes ahead of time compilation with object much faster. Since you can
+This makes ahead of time compilation with object files much faster. Since you can
 change one file, and it will detect that all the other "object files" are newer
 then their respective source files *except* the one you have changed. And it
 will automatically build only that changed file. This reduces the build time.
@@ -82,9 +84,10 @@ patterns come into play. The character `%` means "anything" and is analogous to
 `*` in shell globbing, this allows us to create a rule for all `.c` files
 
 But how will we refer to the source file in the build command? This is where
-special variables come into play. You can use `$<` to refer to the list
-of prerequisites, and `$@` to refer to your rule name. Note this is not the
-pattern that the specified rule matched, it is the rule that matched the pattern.
+special variables come into play. You can use `$<` to refer to your first item in
+the list of prerequisites, and `$@` to refer to your rule name. Note this is
+not the pattern that the specified rule matched, it is the rule that matched
+the pattern.
 
 ```
 %.o: %.c
@@ -100,15 +103,17 @@ will run the build command, refereeing to the variable CC (By default "c99"),
 passing in the flags CFLAGS, and running this on the prerequisite files name
 "main.c" outputting to our rule name, the file "main.o".
 
-This is the essence of makes functionality, and most of the useful stuff POSIX
+This is the essence of `make`'s functionality, and most of the useful stuff POSIX
 specifies. But there are other things in GNU make, like the ability to add a
 prefix to all items in a list with the addprefix function, or the wildcard
-function to get all items and put them in a list.
+function to get all items and put them in a list. Functions are specified in
+variable definitions and arguments are separated by commas. So that evaluating
+`$(addprefix 123, a b c)` will return "123a 123b 123c".
 
 We can use this knowledge already to do some pretty cool things, but with our
 newly gained skills lets use this to make a static site generator. Since
-the problem of turning markdown files into html files isn't very different
-from the problem of turning C source files into object files, we can create a
+the problem of turning markdown files into html files is similar to the
+problem of turning source files into object files, we can create a
 simple rule that does 99% of our work.
 
 ```
@@ -117,9 +122,9 @@ simple rule that does 99% of our work.
 ```
 
 But markdown compilers don't usally generate HTML boilerplate, and we might
-want to import a stylesheet, and maybe save to a "dist" directory. This is no
-issue for us, so that if we have a "index.md" file, it will compile to
-$(DIST)/index.html
+want to import a stylesheet, and maybe save to a "dist" directory. So that
+if we have a "index.md" file, it will compile to `$(DIST)/index.html`, this
+is no issue for us.
 
 ```
 $(DIST)/%.html: %.md
@@ -128,7 +133,14 @@ $(DIST)/%.html: %.md
     cat $(TEMPLATES)/end.html >> $@
 ```
 
-We have our workhorse rule, but, "how do we put this together?"
+Notice how % goes after the `$(DIST)` prefix, which means that referencing
+it in our prerequisite list will not add it as a prefix.
+
+We have our workhorse rule, but, "how do we put this together?",
+we can specify variables for our markdown compiler (in this example, I used
+`lowdown`), and scan for files in a source directory using
+the wildcard command. Making them valid rule names by substituting .md prefixes
+with .html ones, and adding the prefix `$(DIST)`
 
 ```
 DIST=dist
