@@ -28,7 +28,7 @@ makerss () {
     printf "<link>%s</link>\n" "https://oliverkwebb.github.io/$NEWFILE"
     printf "<pubDate>%s</pubDate>\n" "$(date -Rd @$UNIXDATE)"
     echo "<description>"
-    $MD $OLDFILE
+    $MD $OLDFILE | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g'
     echo "</description>"
     echo "</item>"
   done

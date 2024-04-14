@@ -5,30 +5,30 @@
 <item>
 <title> A basic guide on `make`, and how to make a static site generator using it</title>
 <link>https://oliverkwebb.github.io/articles/makessg.html</link>
-<pubDate>Sun, 14 Apr 2024 10:37:15 -0500</pubDate>
+<pubDate>Sun, 14 Apr 2024 11:25:30 -0500</pubDate>
 <description>
-<p>A basic guide on make, and how to make a static site generator using it</p>
-<h2 id="a-basic-guide-on-and-how-to-make-a-static-site-generator-using-it">A basic guide on <code>make</code>, and how to make a static site generator using it</h2>
-<p>When making my website, generating static webpages for
+&lt;p&gt;A basic guide on make, and how to make a static site generator using it&lt;/p&gt;
+&lt;h2 id=&quot;a-basic-guide-on-and-how-to-make-a-static-site-generator-using-it&quot;&gt;A basic guide on &lt;code&gt;make&lt;/code&gt;, and how to make a static site generator using it&lt;/h2&gt;
+&lt;p&gt;When making my website, generating static webpages for
 my blogs and articles was a big concern. I want to be able
 to manipulate templates and sytlesheets easily and have that
 translate to my articles and content. HTML, to put it simply,
-sucks for this type of work.</p>
-<p>The solution is static site generation, which is analogous to ahead of time compilation. 
-There are a variety of tools that can be used for this. <a href="https://jekyllrb.com/">Jekyll</a>
+sucks for this type of work.&lt;/p&gt;
+&lt;p&gt;The solution is static site generation, which is analogous to ahead of time compilation. 
+There are a variety of tools that can be used for this. &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;
 is the one GitHub endorses, the problem I have with that is that it is
-written in Ruby, which means that I&#8217;d have to pull in megabytes of extra
+written in Ruby, which means that I&amp;#8217;d have to pull in megabytes of extra
 dependencies and slow the building process down for something that ultimately
-takes away control from me.</p>
-<p>What I need is something that is efficient, customizable, and fast. And above all,
-simplistic. This is where <code>make</code> comes into the picture.</p>
-<p>In case you don&#8217;t already know what <code>make</code> does or how it works; <code>make</code>
-takes a &#8220;makefile&#8221; with a list of rules. Each rule has a list of commands
-to run. And you can do <code>make rule</code> to run the commands in that rule. If you
+takes away control from me.&lt;/p&gt;
+&lt;p&gt;What I need is something that is efficient, customizable, and fast. And above all,
+simplistic. This is where &lt;code&gt;make&lt;/code&gt; comes into the picture.&lt;/p&gt;
+&lt;p&gt;In case you don&amp;#8217;t already know what &lt;code&gt;make&lt;/code&gt; does or how it works; &lt;code&gt;make&lt;/code&gt;
+takes a &amp;#8220;makefile&amp;#8221; with a list of rules. Each rule has a list of commands
+to run. And you can do &lt;code&gt;make rule&lt;/code&gt; to run the commands in that rule. If you
 specify a list of rules, it will run all those rules, if you specify no rules,
 it will run the first rule specified in the makefile (commonly, this rule is
-called &#8220;all&#8221;)</p>
-<pre><code>$ cat Makefile
+called &amp;#8220;all&amp;#8221;)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ cat Makefile
 foo:
     echo bar
 baz:
@@ -38,14 +38,14 @@ echo bar
 bar
 echo foo
 foo
-</code></pre>
-<p>Make will list the commands it runs as it runs them, and will abort if
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Make will list the commands it runs as it runs them, and will abort if
 a command returns non-zero. Printing the command it runs can be disabled
-by placing <code>@</code> at the start of the command. And aborting on failure of a
-command can be disabled by placing <code>-</code> at the start of the command</p>
-<p>Additionally, you can refer to variables in your makefile, and assign them
-on the command line or in your makefile.</p>
-<pre><code>$ cat Makefile
+by placing &lt;code&gt;@&lt;/code&gt; at the start of the command. And aborting on failure of a
+command can be disabled by placing &lt;code&gt;-&lt;/code&gt; at the start of the command&lt;/p&gt;
+&lt;p&gt;Additionally, you can refer to variables in your makefile, and assign them
+on the command line or in your makefile.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ cat Makefile
 BAZ=123
 foo:
     @echo $(BAR) $(BAZ)
@@ -53,98 +53,98 @@ baz:
     -false
 $ make baz foo BAR=abc
 abc 123
-</code></pre>
-<p>This allows for macros and the quick running of commands without manually typing
-in the build commands. But this is not where the true magic of make is.</p>
-<p>A rule is not just a name for a macro that you type in on the command line,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This allows for macros and the quick running of commands without manually typing
+in the build commands. But this is not where the true magic of make is.&lt;/p&gt;
+&lt;p&gt;A rule is not just a name for a macro that you type in on the command line,
 it is a pattern. And more importantly, it is a filename unless said otherwise.
-You can also specify prerequisites for running a rule. So you can say <code>a: b c</code>,
+You can also specify prerequisites for running a rule. So you can say &lt;code&gt;a: b c&lt;/code&gt;,
 which means that rule b and c have to run before a. You can specify that a
-rule is not a filename by putting a line that says <code>.PHONY: [rule1] [rule2]</code>.
-This means that <code>rule1</code> and <code>rule2</code> will always run when called.</p>
-<p>Finally, if a rule is</p>
-<ol>
-<li>A file, which exists</li>
-<li>All the prerequisite rules are files</li>
-<li>All prerequisite files &#8220;last changed&#8221; date are older than the main file&#8217;s</li>
-</ol>
-<p>The rule is considered completed, and any commands from it are not ran.</p>
-<p>This makes ahead of time compilation with object files much faster. Since you can
-change one file, and it will detect that all the other &#8220;object files&#8221; are newer
-then their respective source files <em>except</em> the one you have changed. And it
-will automatically build only that changed file. This reduces the build time.</p>
-<p>But having a rule for each source file seems excessive, right? This is where
-patterns come into play. The character <code>%</code> means &#8220;anything&#8221; and is analogous to
-<code>*</code> in shell globbing, this allows us to create a rule for all <code>.c</code> files</p>
-<p>But how will we refer to the source file in the build command? This is where
-special variables come into play. You can use <code>$&#60;</code> to refer to your first item in
-the list of prerequisites, and <code>$@</code> to refer to your rule name. Note this is
+rule is not a filename by putting a line that says &lt;code&gt;.PHONY: [rule1] [rule2]&lt;/code&gt;.
+This means that &lt;code&gt;rule1&lt;/code&gt; and &lt;code&gt;rule2&lt;/code&gt; will always run when called.&lt;/p&gt;
+&lt;p&gt;Finally, if a rule is&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A file, which exists&lt;/li&gt;
+&lt;li&gt;All the prerequisite rules are files&lt;/li&gt;
+&lt;li&gt;All prerequisite files &amp;#8220;last changed&amp;#8221; date are older than the main file&amp;#8217;s&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The rule is considered completed, and any commands from it are not ran.&lt;/p&gt;
+&lt;p&gt;This makes ahead of time compilation with object files much faster. Since you can
+change one file, and it will detect that all the other &amp;#8220;object files&amp;#8221; are newer
+then their respective source files &lt;em&gt;except&lt;/em&gt; the one you have changed. And it
+will automatically build only that changed file. This reduces the build time.&lt;/p&gt;
+&lt;p&gt;But having a rule for each source file seems excessive, right? This is where
+patterns come into play. The character &lt;code&gt;%&lt;/code&gt; means &amp;#8220;anything&amp;#8221; and is analogous to
+&lt;code&gt;*&lt;/code&gt; in shell globbing, this allows us to create a rule for all &lt;code&gt;.c&lt;/code&gt; files&lt;/p&gt;
+&lt;p&gt;But how will we refer to the source file in the build command? This is where
+special variables come into play. You can use &lt;code&gt;$&amp;#60;&lt;/code&gt; to refer to your first item in
+the list of prerequisites, and &lt;code&gt;$@&lt;/code&gt; to refer to your rule name. Note this is
 not the pattern that the specified rule matched, it is the rule that matched
-the pattern.</p>
-<pre><code>%.o: %.c
-    $(CC) $(CFLAGS) $&#60; -o $@
-</code></pre>
-<p>If you run <code>make main.o</code>, it will detect that &#8220;main.o&#8221; matches the pattern 
-rule &#8220;%.o&#8221;, next it will check if the file &#8220;main.c&#8221; is there. If it is not and
-there is no rule that matches &#8220;main.c&#8221;, it will not know what to do and fail.
-Otherwise, if the file &#8220;main.c&#8221; is older than the file &#8220;main.o&#8221;, it will assume
+the pattern.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;%.o: %.c
+    $(CC) $(CFLAGS) $&amp;#60; -o $@
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you run &lt;code&gt;make main.o&lt;/code&gt;, it will detect that &amp;#8220;main.o&amp;#8221; matches the pattern 
+rule &amp;#8220;%.o&amp;#8221;, next it will check if the file &amp;#8220;main.c&amp;#8221; is there. If it is not and
+there is no rule that matches &amp;#8220;main.c&amp;#8221;, it will not know what to do and fail.
+Otherwise, if the file &amp;#8220;main.c&amp;#8221; is older than the file &amp;#8220;main.o&amp;#8221;, it will assume
 no changes have been made and there is therefore nothing to be done. Then, it
-will run the build command, refereeing to the variable CC (By default &#8220;c99&#8221;),
+will run the build command, refereeing to the variable CC (By default &amp;#8220;c99&amp;#8221;),
 passing in the flags CFLAGS, and running this on the prerequisite files name
-&#8220;main.c&#8221; outputting to our rule name, the file &#8220;main.o&#8221;.</p>
-<p>This is the essence of <code>make</code>&#8217;s functionality, and most of the useful stuff POSIX
+&amp;#8220;main.c&amp;#8221; outputting to our rule name, the file &amp;#8220;main.o&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;This is the essence of &lt;code&gt;make&lt;/code&gt;&amp;#8217;s functionality, and most of the useful stuff POSIX
 specifies. But there are other things in GNU make, like the ability to add a
 prefix to all items in a list with the addprefix function, or the wildcard
 function to get all items and put them in a list. Functions are specified in
 variable definitions and arguments are separated by commas. So that evaluating
-<code>$(addprefix 123, a b c)</code> will return &#8220;123a 123b 123c&#8221;.</p>
-<p>We can use this knowledge already to do some pretty cool things, but with our
+&lt;code&gt;$(addprefix 123, a b c)&lt;/code&gt; will return &amp;#8220;123a 123b 123c&amp;#8221;.&lt;/p&gt;
+&lt;p&gt;We can use this knowledge already to do some pretty cool things, but with our
 newly gained skills lets use this to make a static site generator. Since
 the problem of turning markdown files into html files is similar to the
 problem of turning source files into object files, we can create a
-simple rule that does 99% of our work.</p>
-<pre><code>%.html: %.md
-    $(MARKDOWN) $(MDFLAGS) $&#60; &#62;&#62; $@
-</code></pre>
-<p>But markdown compilers don&#8217;t usally generate HTML boilerplate, and we might
-want to import a stylesheet, and maybe save to a &#8220;dist&#8221; directory. So that
-if we have a &#8220;index.md&#8221; file, it will compile to <code>$(DIST)&#47;index.html</code>, this
-is no issue for us.</p>
-<pre><code>$(DIST)&#47;%.html: %.md
-    cat $(TEMPLATES)&#47;begin.html &#62; $@
-    $(MARKDOWN) $(MDFLAGS) $&#60; &#62;&#62; $@
-    cat $(TEMPLATES)&#47;end.html &#62;&#62; $@
-</code></pre>
-<p>Notice how % goes after the <code>$(DIST)</code> prefix, which means that referencing
-it in our prerequisite list will not add it as a prefix.</p>
-<p>We have our workhorse rule, but, &#8220;how do we put this together?&#8221;,
+simple rule that does 99% of our work.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;%.html: %.md
+    $(MARKDOWN) $(MDFLAGS) $&amp;#60; &amp;#62;&amp;#62; $@
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But markdown compilers don&amp;#8217;t usally generate HTML boilerplate, and we might
+want to import a stylesheet, and maybe save to a &amp;#8220;dist&amp;#8221; directory. So that
+if we have a &amp;#8220;index.md&amp;#8221; file, it will compile to &lt;code&gt;$(DIST)&amp;#47;index.html&lt;/code&gt;, this
+is no issue for us.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$(DIST)&amp;#47;%.html: %.md
+    cat $(TEMPLATES)&amp;#47;begin.html &amp;#62; $@
+    $(MARKDOWN) $(MDFLAGS) $&amp;#60; &amp;#62;&amp;#62; $@
+    cat $(TEMPLATES)&amp;#47;end.html &amp;#62;&amp;#62; $@
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice how % goes after the &lt;code&gt;$(DIST)&lt;/code&gt; prefix, which means that referencing
+it in our prerequisite list will not add it as a prefix.&lt;/p&gt;
+&lt;p&gt;We have our workhorse rule, but, &amp;#8220;how do we put this together?&amp;#8221;,
 we can specify variables for our markdown compiler (in this example, I used
-<code>lowdown</code>), and scan for files in a source directory using
+&lt;code&gt;lowdown&lt;/code&gt;), and scan for files in a source directory using
 the wildcard command. Making them valid rule names by substituting .md prefixes
-with .html ones, and adding the prefix <code>$(DIST)</code></p>
-<pre><code>DIST=dist
+with .html ones, and adding the prefix &lt;code&gt;$(DIST)&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DIST=dist
 TEMPLATES=templ
 MARKDOWN=lowdown
 
-PAGES=$(wildcard pages&#47;*.md)
-PDEST=$(addprefix $(DIST)&#47;, $(patsubst %.md, %.html, $(PAGES)))
+PAGES=$(wildcard pages&amp;#47;*.md)
+PDEST=$(addprefix $(DIST)&amp;#47;, $(patsubst %.md, %.html, $(PAGES)))
 
 # ${VAR} breaks down VAR into a list of rules
 all: ${PDEST}
 
-$(DIST)&#47;%.html: pages&#47;%.md
-    cat $(TEMPLATES)&#47;begin.html &#62; $@
-    $(MARKDOWN) $(MDFLAGS) $&#60; &#62;&#62; $@
-    cat $(TEMPLATES)&#47;end.html &#62;&#62; $@
-</code></pre>
-<p>If you want to add a conditional generation step for the index, you
-can put a <code>if [ $@ = $(DIST)&#47;index.html ]; then .&#47;gen &#62;&#62; $@; fi</code> rule in
+$(DIST)&amp;#47;%.html: pages&amp;#47;%.md
+    cat $(TEMPLATES)&amp;#47;begin.html &amp;#62; $@
+    $(MARKDOWN) $(MDFLAGS) $&amp;#60; &amp;#62;&amp;#62; $@
+    cat $(TEMPLATES)&amp;#47;end.html &amp;#62;&amp;#62; $@
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you want to add a conditional generation step for the index, you
+can put a &lt;code&gt;if [ $@ = $(DIST)&amp;#47;index.html ]; then .&amp;#47;gen &amp;#62;&amp;#62; $@; fi&lt;/code&gt; rule in
 your main rule. You can add almost infinite customization to this with
-conditionals or extra rules.</p>
-<p>If you want more info on this, I&#8217;d suggest you look at the
-<a href="https://www.gnu.org/software/make/manual/make.pdf">GNU make manual</a>,
-and <a href="https://github.com/oliverkwebb/oliverkwebb.github.io/blob/main/Makefile">my Makefile</a>
-that actually does this and is building the page you are reading right now.</p>
+conditionals or extra rules.&lt;/p&gt;
+&lt;p&gt;If you want more info on this, I&amp;#8217;d suggest you look at the
+&lt;a href=&quot;https://www.gnu.org/software/make/manual/make.pdf&quot;&gt;GNU make manual&lt;/a&gt;,
+and &lt;a href=&quot;https://github.com/oliverkwebb/oliverkwebb.github.io/blob/main/Makefile&quot;&gt;my Makefile&lt;/a&gt;
+that actually does this and is building the page you are reading right now.&lt;/p&gt;
 </description>
 </item>
 </channel></rss>
