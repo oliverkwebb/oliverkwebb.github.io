@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <style>
+      body {
+        font-family:Ubuntu, Helvetica, sans-serif;
+        margin:auto;
+        width:66%;
+      }
+      @media screen and (max-device-width:480px) {
+        body { width:80%; }
+      }
+      p {
+        text-align:justify;
+      } p, li, table {
+        line-height:1.5;
+      } pre {
+        border:2px solid grey;
+        line-height:1.25;
+      } pre, code {
+        background-color: #111;
+        padding: 3px 4px;
+        color:white;
+        border-radius: 6px;
+      } td, th {
+        padding:6px;
+        border-bottom:2px solid white;
+      } table {
+        border-collapse: collapse;
+        width:100%;
+        border:2px solid white;
+      } th {background-color:#CCC;}
+      h2 {font-size:1.5em;}
+      nav a {
+        float:right;
+        padding:3px;
+        font-size:1.1em;
+      } nav .title {
+        font-size:1.2em;
+        font-weight:bold;
+      }
+      footer p {text-align:center;}
+      footer img {
+        height:22px!important;
+        margin-left:3px;
+        vertical-align:text-bottom;
+      }
+    </style>
+  </head>
+<body>
+  <nav>
+    <span class="title">Oliver Webb's Webspace Thingy</span>
+    <a href="/articles.xml">RSS Feed</a>
+    <a href="/aboutme.html">About Me/Contact</a>
+    <a href="/">Home</a>
+  </nav>
+  <hr/>
+<main>
+<p><title>Lua Library Quick Reference</title></p>
+<h1 id="lua-library-quick-reference">Lua library quick reference</h1>
+<p>As someone learning lua, a quick reference for what the standard library
+contains would be nice, what's unfortunate is that most documentation I
+can find will describe a module rather than whats inside it. I've yet
+to find a site that provides a list of all the methods the lua libraries
+provide.</p>
+<p>So without further a-do, here is mine:</p>
+<p>Note: This is <em>not</em> complete, but documents most functions</p>
+<h2 id="io-module">I/O Module</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Purpose</th>
+<th>C analog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>close</td>
+<td>File</td>
+<td>Bool</td>
+<td>Close a file</td>
+<td>fclose()</td>
+</tr>
+<tr>
+<td>flush</td>
+<td>File</td>
+<td>Bool</td>
+<td>Flush file buffer</td>
+<td>fflush()</td>
+</tr>
+<tr>
+<td>input</td>
+<td>[File]</td>
+<td>File</td>
+<td>Set/Get default input</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>lines</td>
+<td>String</td>
+<td>Function</td>
+<td>Make Func that iterates over file</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>open</td>
+<td>String</td>
+<td>File</td>
+<td>Open a file</td>
+<td>open()</td>
+</tr>
+<tr>
+<td>output</td>
+<td>[File]</td>
+<td>File</td>
+<td>Set/Get default output</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>popen</td>
+<td>String</td>
+<td>File</td>
+<td>Run command and use output as file</td>
+<td>popen()</td>
+</tr>
+<tr>
+<td>read</td>
+<td>File, Type</td>
+<td>String</td>
+<td>Get bytes from file</td>
+<td>read()</td>
+</tr>
+<tr>
+<td>stderr</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>File for standard error</td>
+<td>stderr</td>
+</tr>
+<tr>
+<td>stdin</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>File for standard input</td>
+<td>stdin</td>
+</tr>
+<tr>
+<td>stdout</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>File for standard output</td>
+<td>stdout</td>
+</tr>
+<tr>
+<td>tmpfile</td>
+<td>N/A</td>
+<td>File</td>
+<td>Opens a auto-removed tmp file</td>
+<td>tmpfile()</td>
+</tr>
+<tr>
+<td>type</td>
+<td>File</td>
+<td>String/Nil</td>
+<td>Check if file is valid</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>write</td>
+<td>File, String</td>
+<td>String</td>
+<td>Send bytes to file</td>
+<td>write()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="math-module">Math Module</h2>
+<p>All trig functions work in radians</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Purpose</th>
+<th>Analog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abs</td>
+<td>Number</td>
+<td>Number</td>
+<td>Absolute Value</td>
+<td>abs()</td>
+</tr>
+<tr>
+<td>acos</td>
+<td>Number</td>
+<td>Number</td>
+<td>Arcosine</td>
+<td>acos()</td>
+</tr>
+<tr>
+<td>asin</td>
+<td>Number</td>
+<td>Number</td>
+<td>Arcsine</td>
+<td>asin()</td>
+</tr>
+<tr>
+<td>atan</td>
+<td>Number [, Number]</td>
+<td>Number</td>
+<td>Arctangent</td>
+<td>atan[2]()</td>
+</tr>
+<tr>
+<td>ceil</td>
+<td>Number</td>
+<td>Number</td>
+<td>Round Up to int</td>
+<td>ceil()</td>
+</tr>
+<tr>
+<td>cos</td>
+<td>Number</td>
+<td>Number</td>
+<td>Cosine</td>
+<td>cos()</td>
+</tr>
+<tr>
+<td>deg</td>
+<td>Number</td>
+<td>Number</td>
+<td>Radians -&#62; Degrees</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>exp</td>
+<td>Number</td>
+<td>Number</td>
+<td>Base E exponent</td>
+<td>exp()</td>
+</tr>
+<tr>
+<td>floor</td>
+<td>Number</td>
+<td>Number</td>
+<td>Round Down to int</td>
+<td>floor()</td>
+</tr>
+<tr>
+<td>max</td>
+<td>Number [,Number...]</td>
+<td>Number</td>
+<td>Return Max Number</td>
+<td>MAX()</td>
+</tr>
+<tr>
+<td>min</td>
+<td>Number [,Number...]</td>
+<td>Number</td>
+<td>Return Min Number</td>
+<td>MIN()</td>
+</tr>
+<tr>
+<td>log</td>
+<td>Number [,Number]</td>
+<td>Number</td>
+<td>Base Logarithm</td>
+<td>log()</td>
+</tr>
+<tr>
+<td>randomseed</td>
+<td>Number</td>
+<td>Number</td>
+<td>Seed RNG</td>
+<td>srandom()</td>
+</tr>
+<tr>
+<td>sin</td>
+<td>Number</td>
+<td>Number</td>
+<td>Sine</td>
+<td>sin()</td>
+</tr>
+<tr>
+<td>sqrt</td>
+<td>Number</td>
+<td>Number</td>
+<td>Square Root</td>
+<td>sqrt()</td>
+</tr>
+<tr>
+<td>tan</td>
+<td>Number</td>
+<td>Number</td>
+<td>Tangent</td>
+<td>tan()</td>
+</tr>
+<tr>
+<td>tointeger</td>
+<td>Number</td>
+<td>Number</td>
+<td>Round to near int</td>
+<td>round()</td>
+</tr>
+<tr>
+<td>fmod</td>
+<td>Number, Number</td>
+<td>Number</td>
+<td>Decimal Remainder</td>
+<td>fmod()</td>
+</tr>
+<tr>
+<td>huge</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Biggest Number</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>maxinteger</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Max Integer</td>
+<td>INT_MAX</td>
+</tr>
+<tr>
+<td>mininteger</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Min Integer</td>
+<td>INT_MIN</td>
+</tr>
+<tr>
+<td>modf</td>
+<td>Number, Number</td>
+<td>Number</td>
+<td>Floored Decimal %</td>
+<td>fmod()</td>
+</tr>
+<tr>
+<td>pi</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Pi</td>
+<td>M_PI</td>
+</tr>
+<tr>
+<td>rad</td>
+<td>Number</td>
+<td>Number</td>
+<td>Degrees -&#62; Radians</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>random</td>
+<td>Number [, Number]</td>
+<td>Number</td>
+<td>Psuedo RNG</td>
+<td>random()</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Number</td>
+<td>String</td>
+<td>Return Number type</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>ult</td>
+<td>Number, Number</td>
+<td>Number</td>
+<td>Unsigned &#60;</td>
+<td>Typecast</td>
+</tr>
+</tbody>
+</table>
+<h2 id="table-module">Table Module</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>concat</td>
+<td>Table [,String[,Number[,Number]]]</td>
+<td>String</td>
+<td>Concatenate Items of table</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>Table [,Function]</td>
+<td>N/A</td>
+<td>Sort a table, compare with function</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>Table, [Number,] Number</td>
+<td>N/A</td>
+<td>Push or insert value into table</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>Table [,Number]</td>
+<td>N/A</td>
+<td>Pop or remove array value</td>
+</tr>
+<tr>
+<td>pack</td>
+<td>...</td>
+<td>Table</td>
+<td>Create A Table out of a element list</td>
+</tr>
+<tr>
+<td>unpack</td>
+<td>list [,Number[,Number]]</td>
+<td>Elements</td>
+<td>Return Multiple Elements from table</td>
+</tr>
+<tr>
+<td>move</td>
+<td>Table,Number,Number,Number[,Table]</td>
+<td>Table</td>
+<td>Move elements between tables</td>
+</tr>
+</tbody>
+</table>
+<h2 id="os-module">OS Module</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Purpose</th>
+<th>C Analog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clock</td>
+<td>N/A</td>
+<td>Number</td>
+<td>Get CPU clock time for timing</td>
+<td>clock()</td>
+</tr>
+<tr>
+<td>date</td>
+<td>String [, Time-Table]</td>
+<td>String</td>
+<td>Format time</td>
+<td>strftime()</td>
+</tr>
+<tr>
+<td>difftime</td>
+<td>Table Table</td>
+<td>Number</td>
+<td>Diff in seconds between times</td>
+<td>difftime()</td>
+</tr>
+<tr>
+<td>execute</td>
+<td>String</td>
+<td>Number</td>
+<td>Execute Command</td>
+<td>execvp()</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>[Number]</td>
+<td>N/A</td>
+<td>Exit</td>
+<td>exit()</td>
+</tr>
+<tr>
+<td>getenv</td>
+<td>String</td>
+<td>String</td>
+<td>Get environment variable</td>
+<td>getenv()</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>String</td>
+<td>Bool</td>
+<td>Remove a file or empty dir</td>
+<td>remove()</td>
+</tr>
+<tr>
+<td>setlocale</td>
+<td>String [,String]</td>
+<td>String</td>
+<td>Set the locale</td>
+<td>setlocale()</td>
+</tr>
+<tr>
+<td>time</td>
+<td>[Table]</td>
+<td>Number</td>
+<td>Return Time</td>
+<td>[mk]time()</td>
+</tr>
+<tr>
+<td>tmpname</td>
+<td>N/A</td>
+<td>String</td>
+<td>Get a temporary name</td>
+<td>tempnam()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="string-module">String Module</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Purpose</th>
+<th>C Analog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>Number [, Number [, Number]]</td>
+<td>Numbers</td>
+<td>Get Byte Number</td>
+<td>Indexing</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Number...</td>
+<td>String</td>
+<td>Concat Bytes into string</td>
+<td>Assignment</td>
+</tr>
+<tr>
+<td>dump</td>
+<td>Function</td>
+<td>String</td>
+<td>Dump String</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>find</td>
+<td>String, String[,Number[,Bool]</td>
+<td>Number, Number</td>
+<td>Index String</td>
+<td>strstr()</td>
+</tr>
+<tr>
+<td>format</td>
+<td>String, ...</td>
+<td>String</td>
+<td>Format String</td>
+<td>sprintf()</td>
+</tr>
+<tr>
+<td>gmatch</td>
+<td>String, String [, Number]</td>
+<td>Function</td>
+<td>Iterate over str matches</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>gsub</td>
+<td>String, String, String, [Number]</td>
+<td>String</td>
+<td>Global Substitution</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>len</td>
+<td>String</td>
+<td>Number</td>
+<td>String Length</td>
+<td>strlen()</td>
+</tr>
+<tr>
+<td>lower</td>
+<td>String</td>
+<td>String</td>
+<td>Convert to lower</td>
+<td>tolower()</td>
+</tr>
+<tr>
+<td>match</td>
+<td>String, String [, Number]</td>
+<td>String</td>
+<td>Return String Match</td>
+<td>regexec()</td>
+</tr>
+<tr>
+<td>pack</td>
+<td>String, ...</td>
+<td>String</td>
+<td>Format Binary String</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>packsize</td>
+<td>String</td>
+<td>Number</td>
+<td>Return Format Size</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>rep</td>
+<td>String, Number [, String]</td>
+<td>String</td>
+<td>Concat String Repeatedly</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>reverse</td>
+<td>String</td>
+<td>String</td>
+<td>Reverse String</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>sub</td>
+<td>String, Number [, Number]</td>
+<td>String</td>
+<td>Substring</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>unpack</td>
+<td>String, String [, Number]</td>
+<td>...</td>
+<td>Unpack packed string</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>upper</td>
+<td>String</td>
+<td>String</td>
+<td>Convert String to Upper</td>
+<td>toupper()</td>
+</tr>
+</tbody>
+</table>
+</main>
+<hr/>
+<footer>
+  <p>You can Subscribe via <a href="/articles.xml">RSS</a> to get updates.</p>
+  <p>The content of this site by &#xa9; 2024 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+</body>
+<!-- The Default Title if no other is Specified -->
+<title>Oliver Webb's Webspace Thingy</title>
+</html>

@@ -15,7 +15,7 @@
       }
       p {
         text-align:justify;
-      } p, li {
+      } p, li, table {
         line-height:1.5;
       } pre {
         border:2px solid grey;
@@ -25,7 +25,14 @@
         padding: 3px 4px;
         color:white;
         border-radius: 6px;
-      }
+      } td, th {
+        padding:6px;
+        border-bottom:2px solid white;
+      } table {
+        border-collapse: collapse;
+        width:100%;
+        border:2px solid white;
+      } th {background-color:#CCC;}
       h2 {font-size:1.5em;}
       nav a {
         float:right;
@@ -65,6 +72,8 @@ emails I wrote engaging in technical discussion.</p>
 page.</p>
 <p>With that being said here's the article listing:</p>
 <ul>
+<li><a href="articles/luaref.html">Lua Library Cheat Sheet</a> (April 20, 2024)</li>
+<li><a href="articles/vis.html">Replacing Neovim with vis (Part 1)</a> (April 17, 2024)</li>
 <li><a href="articles/makessg.html">A basic guide on `make`, and how to make a static site generator using it</a> (April 13, 2024)</li>
 </ul>
 </main>

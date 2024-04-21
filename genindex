@@ -34,7 +34,8 @@ rssfeed () {
     echo "<link>$WEBSURL$NEWFILE</link>" 
     echo "<pubDate>$(date -d @$UNIXDATE "+%a, %d %b %Y %T %z")</pubDate>"
     echo "<description>"
-    ${MD:-lowdown} $OLDFILE | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g'
+    ${MD:-lowdown} --html-no-{escape,skip}html $OLDFILE |\
+      sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g'
     echo "</description></item>"
   done
   echo "</channel></rss>"
