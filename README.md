@@ -1,12 +1,13 @@
 My website, bare HTML/CSS/MD (No Ruby/Jekyll) and a "Static Site Generator"
-written in 20 lines of Makefile
+written in ~30 lines of Makefile
 
 Look at the makefile to see how it works more extensively, but generally:
 
 - `make all` - builds everything
-- `make blog` - builds the blog
-- `make articles` - builds articles
+- `make rss` - builds the rss feed
 - `make path/to/file.md` - builds that file
+
+All generated fies are placed in dist/, the rss feed is in dist/articles.xml
 
 There's no "make clean" yet
 

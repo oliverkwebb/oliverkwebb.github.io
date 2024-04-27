@@ -32,7 +32,7 @@ Note: This is _not_ complete, but documents most functions
 | stdout  | N/A          | N/A        | File for standard output           | stdout    |
 | tmpfile | N/A          | File       | Opens a auto-removed tmp file      | tmpfile() |
 | type    | File         | String/Nil | Check if file is valid             | N/A       |
-| write   | File, String | String     | Send bytes to file                 | write()   |
+| write   | File, String | File       | Send bytes to file                 | write()   |
 
 ## Math Module
 

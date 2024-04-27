@@ -2,6 +2,73 @@
 <title>Oliver Webb's Webspace Thingy</title>
 <link>https://oliverkwebb.github.io</link>
 <language>en</language>
+<item><title>How to write a UTF-8 safe AWK</title>
+<link>https://oliverkwebb.github.ioarticles/utfawk.html</link>
+<pubDate>Fri, 26 Apr 2024 00:00:00 -0500</pubDate>
+<description>
+&lt;p&gt;&lt;title&gt;A guide on writing a UTF-8 safe awk&lt;/title&gt;&lt;/p&gt;
+&lt;h2 id=&quot;a-guide-on-writing-a-utf-8-safe-awk&quot;&gt;A guide on writing a UTF-8 safe awk&lt;/h2&gt;
+&lt;p&gt;One of the things toybox prioritizes is unicode handling for it&amp;#8217;s
+applications.  This has kept things like &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html&quot;&gt;the fully GNU compatible
+tr&lt;/a&gt;
+from being promoted from the pending&amp;#47; directory for years because they
+wish to break compatibility by making tr unicode safe. Toybox&amp;#8217;s plans for awk
+are &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2021-June/012453.html&quot;&gt;no different story&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Fortunately for any &lt;a href=&quot;https://www.github.com/raygard/wak&quot;&gt;awk implementation&lt;/a&gt;
+attempting to get into toybox; Awk works with strings, while tr works with
+characters. Awk does not regularly index into the strings it works with, and
+when it does it only happens in a few functions. This means that if we want
+to handle UTF-8, we can divide and conquer.&lt;/p&gt;
+&lt;h3 id=&quot;what-a-utf-8-safe-awk-needs&quot;&gt;What a UTF-8 Safe awk needs&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&quot;https://man7.org/linux/man-pages/man1/gawk.1.html&quot;&gt;gawk(1) man page&lt;/a&gt; says
+these 4 functions work on &amp;#8220;characters, not bytes&amp;#8221;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;substr()&lt;/li&gt;
+&lt;li&gt;length()&lt;/li&gt;
+&lt;li&gt;match()&lt;/li&gt;
+&lt;li&gt;index()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The second addition awk book also mentions these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;printf %c [STRING]&lt;/li&gt;
+&lt;li&gt;printf %c [CODEPOINT]&lt;/li&gt;
+&lt;li&gt;\u[CODEPOINT]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And finally, these work internally by indexing the string:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;toupper()&lt;/li&gt;
+&lt;li&gt;tolower()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&amp;#8217;s &amp;#8220;divide&amp;#8221; out of the way, now lets conquer.&lt;/p&gt;
+&lt;h3 id=&quot;implementing-a-utf-8-awk&quot;&gt;Implementing a UTF-8 Awk&lt;/h3&gt;
+&lt;p&gt;A reminder that we are trying to add in UTF-8 support to a existing awk, not
+make a new one with UTF-8 support.&lt;/p&gt;
+&lt;p&gt;In a awk that is UTF-8 safe, all strings are indexed by a number of UTF-8
+characters. While in C, all strings are indexed based off of bytes. This
+means that for substr(), length(), match(), and index(). We need a way to convert
+between the two. This can be done by two functions, one which counts the bytes
+in a utf8 string, and another that counts the characters in a C byte string.
+This work was &lt;a href=&quot;https://github.com/raygard/wak/commit/2e94cd3de8fb4d091ca19bb429cb4b2cb9d6a80e&quot;&gt;originally done by me&lt;/a&gt;
+with 2 functions that acted as analogs to &lt;code&gt;mbrtowc()&lt;/code&gt; and &lt;code&gt;wcstombs()&lt;/code&gt; from libc.
+And &lt;a href=&quot;https://github.com/raygard/wak/commit/2e94cd3de8fb4d091ca19bb429cb4b2cb9d6a80e&quot;&gt;Ray Gardner de-over-engineered&lt;/a&gt; these functions.&lt;/p&gt;
+&lt;p&gt;As long as you have the ability to turn unicode codepoints back into strings,
+\u[CODEPOINT] is a easy fix too. While the current digit you are reading is a
+valid hexidecimal character, read that digit into a buffer. Then &lt;code&gt;strtol()&lt;/code&gt; to
+turn that buffer into a codepoint, then convert that codepoint back into a string.
+There are printf format escapes that print 1 utf8 character of a string.
+Which in practice makes the printf %c stuff easier. The tolower() and toupper()
+problem is more complex, but fundamentally involves taking a string, running
+though it and running &lt;code&gt;towlower&amp;#47;upper()&lt;/code&gt; on it, expanding it when needed.
+You might wanna look at &lt;a href=&quot;https://github.com/raygard/wak/commit/2e94cd3de8fb4d091ca19bb429cb4b2cb9d6a80e&quot;&gt;the actual code which does this&lt;/a&gt;, as that might explain it better than I could.&lt;/p&gt;
+&lt;p&gt;FS&amp;#47;split() say that if the field separator is more than one character, it will be
+treated as a regex. This in practice does not matter, since a multi-byte unicode
+FS will never contain any special regexp syntax character.&lt;/p&gt;
+&lt;p&gt;Writing in UTF-8 support into a already existing awk is a lot simpler than it seems.
+wak needed less than 100 lines to make itself UTF-8 safe. Most of the hard part
+is figuring out &lt;em&gt;what&lt;/em&gt; needs unicode handling. So here is a guide on not only
+what needs unicode handling in a unicode safe awk, but a general guide on how
+to implement handling for it too.&lt;/p&gt;
+</description></item>
 <item><title>Lua Library Cheat Sheet</title>
 <link>https://oliverkwebb.github.ioarticles/luaref.html</link>
 <pubDate>Sat, 20 Apr 2024 00:00:00 -0500</pubDate>
@@ -121,7 +188,7 @@ provide.&lt;/p&gt;
 &lt;tr&gt;
 &lt;td&gt;write&lt;/td&gt;
 &lt;td&gt;File, String&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;File&lt;/td&gt;
 &lt;td&gt;Send bytes to file&lt;/td&gt;
 &lt;td&gt;write()&lt;/td&gt;
 &lt;/tr&gt;
