@@ -60,14 +60,14 @@
   <hr/>
 <main>
 <p>My website, bare HTML/CSS/MD (No Ruby/Jekyll) and a "Static Site Generator"
-written in 20 lines of Makefile</p>
+written in ~30 lines of Makefile</p>
 <p>Look at the makefile to see how it works more extensively, but generally:</p>
 <ul>
 <li><code>make all</code> - builds everything</li>
-<li><code>make blog</code> - builds the blog</li>
-<li><code>make articles</code> - builds articles</li>
+<li><code>make rss</code> - builds the rss feed</li>
 <li><code>make path/to/file.md</code> - builds that file</li>
 </ul>
+<p>All generated fies are placed in dist/, the rss feed is in dist/articles.xml</p>
 <p>There's no "make clean" yet</p>
 <p>You will need <code>lowdown</code> to compile the markdown, alternately, you
 can change the variable "MD" to specify a markdown compiler.</p>
