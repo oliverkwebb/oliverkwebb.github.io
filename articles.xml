@@ -2,6 +2,240 @@
 <title>Oliver Webb's Webspace Thingy</title>
 <link>https://oliverkwebb.github.io</link>
 <language>en</language>
+<item><title>The Decline and Fall of my contributions to the Toybox mailing list: My side of the story</title>
+<link>https://oliverkwebb.github.ioarticles/decfalltb.html</link>
+<pubDate>Wed, 01 May 2024 00:00:00 -0500</pubDate>
+<description>
+&lt;h1 id=&quot;the-decline-and-fall-of-my-contributions-to-the-toybox-mailing-list-my-side-of-the-story&quot;&gt;The Decline and Fall of my contributions to the Toybox mailing list: My side of the story&lt;/h1&gt;
+&lt;h4 id=&quot;warning-this-article-is-interpersonal-drama-that-doesnt-really-matter&quot;&gt;Warning: This article is interpersonal drama that doesn&amp;#8217;t really matter&lt;/h4&gt;
+&lt;p&gt;So, I&amp;#8217;ve just been banned from the toybox mailing list. I made another account
+that I&amp;#8217;m planing to use for read-only updates, but I see a decent chance of that
+being deleted too.&lt;/p&gt;
+&lt;p&gt;&amp;#8220;Why?&amp;#8221;: Behind every story, there are 2 sides, I&amp;#8217;ve tried the best on my end to
+acknowledge both in this article. Rob is already extensively and dramatically,
+giving his side on &lt;a href=&quot;https://www.landley.net/notes.html&quot;&gt;his blog&lt;/a&gt;. But he omits
+important background info, which makes me seem less reasonable.&lt;/p&gt;
+&lt;p&gt;This article will go into what happened, why I believe it happened, and what it
+meant in the grand scheme of things&lt;/p&gt;
+&lt;h2 id=&quot;how-things-were&quot;&gt;How things were&lt;/h2&gt;
+&lt;p&gt;I returned to toybox development a competent programmer in &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-February/030029.html&quot;&gt;February&lt;/a&gt;.
+And I spent most of that month doing various janitorial work on things like &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-February/030077.html&quot;&gt;xzcat&lt;/a&gt; and &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-February/030067.html&quot;&gt;bc&lt;/a&gt;.
+This was the start of my momentum, things were building up from here.&lt;/p&gt;
+&lt;p&gt;The true show of my
+efforts towards the project were in &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-March/thread.html&quot;&gt;March&lt;/a&gt;, which included more technical discussion than I care to name,
+ causing things like the &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-March/030103.html&quot;&gt;promotion of a command&lt;/a&gt;,
+the debugging of &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-March/030111.html&quot;&gt;long lost errors last addressed in October&lt;/a&gt;,
+Discussion on what &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-March/030120.html&quot;&gt;standards we would conform too&lt;/a&gt;,
+mkroot packages that could finally &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-March/030196.html&quot;&gt;test toybox&lt;/a&gt;,
+among other things.
+The fact that I was a hobbyist trying to help is hard to dispute from these messages.
+I encourage you to remember this time and compare it to my later activity.&lt;/p&gt;
+&lt;h2 id=&quot;the-start-of-robs-egotism&quot;&gt;The start of Rob&amp;#8217;s egotism&lt;/h2&gt;
+&lt;p&gt;Me becoming a competent programmer also meant that I could start to look at code and
+constructively criticize it. Finding issues and suggesting work arounds, forming opinions
+based on my experiences with other peoples code.&lt;/p&gt;
+&lt;p&gt;Enter &lt;a href=&quot;https://www.landley.net&quot;&gt;Rob Landley&lt;/a&gt;, the founder and maintainer of Toybox. I have
+nothing against his opinions and technical know-how. But to put it simply, He is very
+&lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2020-June/027956.html&quot;&gt;egotistical and defensive&lt;/a&gt; of his code.&lt;/p&gt;
+&lt;h2 id=&quot;case-study-andy-chus-advice&quot;&gt;Case Study: Andy Chu&amp;#8217;s Advice&lt;/h2&gt;
+&lt;p&gt;Toybox has a non-functional bash replacement called &lt;a href=&quot;https://www.github.com/landley/toybox/blob/master/toys/pending/sh.c&quot;&gt;toysh&lt;/a&gt;.
+It has had about 15 years of work on it to make it functional.&lt;/p&gt;
+&lt;p&gt;The reason why a minimal set of utilities is trying to replicate the 84,000 lines of bash
+is that Rob Landley &lt;a href=&quot;https://landley.net/toybox/roadmap.html#goals&quot;&gt;disagrees with&lt;/a&gt; a
+technical decision that is older than me and every modern operating system complies to.
+With the only argument I&amp;#8217;ve seen to it being a &lt;a href=&quot;https://github.com/landley/toybox/pull/332#issuecomment-2065460832&quot;&gt;appeal to tradition&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Enter &lt;a href=&quot;https://www.oilshell.org&quot;&gt;Andy Chu&lt;/a&gt;, a former contributor to toybox and the main
+maintainer of the Oil Shell, a functional bash replacement. Andy saw Rob&amp;#8217;s effort and attempted
+to &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2020-June/019909.html&quot;&gt;give advice&lt;/a&gt;.
+Recommending that Rob work with things like BNF grammar. Telling Rob that with his current model
+that he would never finish the shell.&lt;/p&gt;
+&lt;p&gt;Rob responded to this as a personal attack, not as genuine technical advice. But instead as a
+attempt to try and prove that Andy was better than Rob. And responded to it as such:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Heck, I&amp;#8217;ll go so far as &amp;#8220;not actually very good at this, just persistent&amp;#8221;. You
+want to demonstrate you&amp;#8217;re better than me, go for it. I&amp;#8217;m unlikely to object.
+(Also unlikely to care.)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is one fairly minor example, let&amp;#8217;s look at another that I was involved in. Which
+was also a signal of the beginning of the end.&lt;/p&gt;
+&lt;h2 id=&quot;case-study-the-toysh-variable-naming-thread&quot;&gt;Case Study: the toysh variable naming thread&lt;/h2&gt;
+&lt;p&gt;Toysh is around 4,500 lines of very terse, cryptic C code. When Rob took a short break
+from the project in March. I attempted to navigate through this code to add in features
+needed to run the toybox test suite. This, to put it simply, did not go well. Most variables
+in toysh have single or double (in the spirit of single) letter variable names, this combined
+with functions that are hundreds of lines long.&lt;/p&gt;
+&lt;p&gt;I sent out a &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-March/030148.html&quot;&gt;email to the list&lt;/a&gt;
+addressing this, talking about how this made the code significantly harder to audit through.
+I offered my help in adding in better variable names and refactoring code. Rob&amp;#8217;s response to this was&amp;#8230;
+I&amp;#8217;ll let you read the email and decide for yourself:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The problem isn&amp;#8217;t the length as I said, the problem is that there is no convention for the naming
+of these.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Maybe I should move the file to &amp;#8220;pending&amp;#8221;?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;No pattern that you can follow, you usually have to go to the start of the function
+(which can be hundreds of lines up, depending on what you are looking through) and see how it gets
+assigned (And interacts with other variables that have the exact same problem)&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;d try to replace a lot of these names in a patch (I have already done so for sh_main in a patch
+that I didn&amp;#8217;t send because getting the compiler to shut up was more important, will send the patch
+when I&amp;#8217;m sure it won&amp;#8217;t conflict with anything)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And as I said: if I were to I apply an aesthetic patch which does nothing but
+make the code smell like you, toysh would be all yours and I would never touch
+it again.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;but to be accurate in renaming I have to understand
+what they are, (The problem I&amp;#8217;m trying to fix) which requires either better names to begin with or
+extensive auditing and debug printf-ing of the code that takes up a lot of time.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Clearly I have been too slow to finish this, and it&amp;#8217;s time for you to take over.
+Your aesthetic sense is empirically superior to mine, I stand chastized.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;adressing-the-counterargument-rob-being-tired&quot;&gt;Adressing the counterargument: Rob being tired&lt;/h2&gt;
+&lt;p&gt;I recognize the fact that Rob Landley is often over exhausted. And justify
+some of his actions with it. It is the reason why I see his side as reasonable.
+But there are problems with using this argument to justify all of Rob&amp;#8217;s actions
+that need to be addressed to show that my side is reasonable.&lt;/p&gt;
+&lt;p&gt;The main source of Rob&amp;#8217;s abrasiveness is not the fact he&amp;#8217;s tired, it is the
+fact that he&amp;#8217;s egotistical. The fact that he is tired only serves to amplify this.
+If he was merely tired, I would not act in the way I do. But Rob uses this as a
+excuse to take out any anger from having his ego hurt on people.&lt;/p&gt;
+&lt;p&gt;Me &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-April/030309.html&quot;&gt;pointing out&lt;/a&gt;
+that Rob could take a break at any time has been misrepresented on &lt;a href=&quot;https://landley.net/notes.html#16-04-2024&quot;&gt;his blog&lt;/a&gt;
+to something akin to me trying to usurp the project. What he doesn&amp;#8217;t mention is the
+difference between reading and responding. Where he has already stated that responding
+takes &lt;a href=&quot;https://landley.net/notes.html#06-04-2024&quot;&gt;significantly more effort&lt;/a&gt;.
+This is one of many instances of Rob Landley massively exaggerating what I state
+to the point of it being barely distinguishable from lying. It is the reason I do
+not trust him by himself to give a accurate description of events, and instead provide
+links to both and let you decide which side you agree with.&lt;/p&gt;
+&lt;h2 id=&quot;adressing-a-counterargument-time-useage&quot;&gt;Adressing a counterargument: Time useage&lt;/h2&gt;
+&lt;p&gt;I understand that Rob is busy and does not want to spend all his time responding to
+my emails. But there is a middle ground between a complete embargo of all patches,
+even bug fixes and patches that respond to people on github. And responding to every
+message. Rob very easily could&amp;#8217;ve balanced this is a reasonable manner, but instead
+chose to completely ignore my work and let it pile up. And as a result of his choice,
+work piled and piled up until I don&amp;#8217;t even know how to start categorizing it.&lt;/p&gt;
+&lt;h2 id=&quot;most-of-what-i-learned-i-learned-from-toybox&quot;&gt;Most of what I learned, I learned from toybox&lt;/h2&gt;
+&lt;p&gt;Beyond this point, to properly see my side of the situation; You need to understand the fact
+that most of what I learned, I learned from Rob and toybox. When I came to toybox in September,
+I was a beginner C programmer that couldn&amp;#8217;t code their way out of a wet paper bag. And I slowly
+improved through months of hard work and research until I reached the level where I could genuinely
+improve projects.&lt;/p&gt;
+&lt;p&gt;I took a &amp;#8220;When in Rome&amp;#8221; approach initially, following what others did, taking advice and style
+of speech from them. And when I became good enough to look at people not as all knowing, but
+instead as knowledgeable people who&amp;#8217;s ideas should be listened to as much as they should be
+challenged and criticized constructively. The following went and the style of talking remained.
+Let&amp;#8217;s look at 2 cases&lt;/p&gt;
+&lt;h2 id=&quot;case-study-robs-reply-to-rich-felker-on-the-settimeofday-deprecation&quot;&gt;Case Study: Rob&amp;#8217;s reply to Rich Felker on the settimeofday() deprecation&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://musl.libc.org&quot;&gt;Rich Felker&lt;/a&gt;, maintainer of the musl standard C library. Has
+deprecated and removed the system call settimeofday(), which is the only way to change
+the kernel time zone. This is because of conflicts with kernel timezone&amp;#8217;s and various filesystem
+timestamping. This &lt;a href=&quot;https://github.com/landley/toybox/pull/479&quot;&gt;came up&lt;/a&gt; in relation to
+the hwclock command. And Rich chimed in to give an explanation, lets see how Rob responds:&lt;/p&gt;
+&lt;p&gt;The initial explanation:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The right solution here is to always set hardware clock to UTC and tell Windows you did that if
+you use Windows. Storing local time in the hardware clock across boots is always, inherently,
+subject to corruption of the system time if you reboot near the start&amp;#47;end of daylight time. [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;The &amp;#8220;kernel timezone&amp;#8221; thing done by settimeofday is a historical GNU&amp;#47;Linux misfeature that musl
+intentionally did not copy, not only because of the above, but because of a much more insideous
+thing Linux does if it&amp;#8217;s been set. Aside from using kernel timezone for hardware clock purposes,
+it&amp;#8217;s also used to apply an offset to FAT-based filesystem timestamps; AFAIK there is no way to
+disable this. This means that file timestamps get corrupted on removable USB media, and breaks
+older-than relationships between files if you move the media between devices with different
+timezones.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Robs response which ignores that:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Once again you don&amp;#8217;t like code that the kernel has, intentionally break it, and demand users change their behavior. Got it.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ll wrap the system call.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A repeated explanation to Rob&amp;#8217;s belittlement and portrayal of Rich as irrational:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;musl is not a lite glibc clone. It does not attempt to mimic the GNU&amp;#47;Linux system. What it
+does attempt to do is provide a POSIX-conforming platform with a reasonable set of extensions [&amp;#8230;]
+not that facilitate setting up your system exactly the same way you might be familiar
+with setting it up using GNU&amp;#47;Linux.&lt;/p&gt;
+&lt;p&gt;If you want your version of the hwclock utility to use this functionality via raw syscall, that&amp;#8217;s
+probably possible, [&amp;#8230;]&lt;/p&gt;
+&lt;p&gt;BTW, per the man page:
+   No doubt it is a bad idea to use this feature.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And repeated not listening to rational explanation, execpt phrashed different&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Rich removed the _&lt;em&gt;NR&lt;/em&gt;settimeofday constant from musl in commit 5a105f19b5aa because he believes
+people shouldn&amp;#8217;t have the choice to use kernel features he disapproves of.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And finally, one last vain attempt to provide valid explanation that Rob isn&amp;#8217;t listening to
+or evidently cares about:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;No I did not. If you bothered to read the text of the commit, all of the syscalls that take
+time32 arguments were renamed to have a _time32 suffix so that you can continue using them, [&amp;#8230;]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is ignoring a repeated no with valid technical explanation to portray the other as incompetent.
+Lets look at a case where Rob &lt;em&gt;thinks&lt;/em&gt; this is happening merely because he refused to read into
+the technical explanation, and as a consequence turns a unfortunate situation into a downright un-salvageable
+one&lt;/p&gt;
+&lt;h2 id=&quot;case-study-the-utf8towc-thread&quot;&gt;Case Study: The utf8towc() thread&lt;/h2&gt;
+&lt;p&gt;I was doing UTF-8 work for a project related to toybox. And stumbled upon undocumented behavior in
+the function utf8towc() (Which is meant to be a replica for &lt;a href=&quot;https://www.man7.org/linux/man-pages/man3/mbrtowc.3.html&quot;&gt;mbrtowc()&lt;/a&gt;
+from libc). Where if you passed in a NULL byte, it would return 0 instead of 1. This makes converting memory
+with null bytes to wide characters more annoying. I submitted a patch for this on the &lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-April/030272.html&quot;&gt;mailing list&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is admittedly a situation where I probably acted a bit too abrasive, which was my honest mistake.
+In a reply email to Rob&amp;#8217;s initial reply I suggested multiple times that the comment above the function
+could just be changed to document this behavior, Rob did not read these threads. And assumed I was being
+irrational:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Still, U+0000 is a valid code point, and having a special case especially for it
+that isn’t mentioned but you have to watch out for is either a bug or a
+documentation error.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I say it&amp;#8217;s intentional, you reassert that I&amp;#8217;m wrong.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ll leave you to your opinion&amp;#8230;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;rob-boycotting-my-patches-and-me-contributing-to-github-issues&quot;&gt;Rob Boycotting my patches, and me contributing to github issues&lt;/h2&gt;
+&lt;p&gt;After this, Rob started to &lt;a href=&quot;https://www.landley.net/notes.html#08-04-2024&quot;&gt;ignore my messages&lt;/a&gt;, whether
+they were minor fixes, technical questions, or pokes about the large amount of patches piling up. To the
+point where I posted twice as much as him in the month of April. Naturally, not being able to make progress
+on anything encourages me to find other stuff to do to keep momentum.&lt;/p&gt;
+&lt;p&gt;This is where the incoming github issues came into play, working with literally anyone else is better than
+working with Rob a large fraction of the time. And I &lt;em&gt;knew&lt;/em&gt; how to fix most of the bugs that were coming in.
+Or at least give my 2c in a way that I knew Rob would agree with. So I did, naturally, Rob saw this as a
+attempt to &lt;a href=&quot;https://landley.net/notes.html#15-04-2024&quot;&gt;usurp him&lt;/a&gt;, because the model he has of open source
+contributions doesn&amp;#8217;t make room for people trying to help others.&lt;/p&gt;
+&lt;p&gt;The sad part of this is that these people will likely have to wait considerably longer then they normally
+would if I didn&amp;#8217;t hurt Rob&amp;#8217;s ego one too many times because the code is already on the list. But Rob will
+not look at it since it was written by me.&lt;/p&gt;
+&lt;h2 id=&quot;rob-driving-away-hobbyists-is-normal&quot;&gt;Rob driving away hobbyists is normal&lt;/h2&gt;
+&lt;p&gt;The toybox &amp;#8220;community&amp;#8221; is comprised with Rob, enh, a few paid android devs here and there, a occasional hobbyist
+who does not work directly with the project but still is associated with them. And that&amp;#8217;s pretty much it, &amp;#8220;The reason why?&amp;#8221;:
+Rob alienated everyone that would want to work with his code. I&amp;#8217;ve personally seen this happen multiple times with multiple
+people. Maybe later I will write a case study, but a good example is a Rob responding to a (admittedly snarky, but still valid)
+&lt;a href=&quot;https://github.com/landley/toybox/issues/490&quot;&gt;question about modernizing his website&lt;/a&gt; not with the actual answer (&amp;#8220;Servers too slow&amp;#8221;),
+but with a non-answer of &amp;#8220;I&amp;#8217;m sorry your browser can&amp;#8217;t render plain HTML&amp;#8221;, which he continued into other issues (If a honest question
+you asked was treated like that, would you come back? The guy asking them didn&amp;#8217;t).&lt;/p&gt;
+&lt;h2 id=&quot;end-of-the-line&quot;&gt;End of the line&lt;/h2&gt;
+&lt;p&gt;After Rob published his 4&amp;#47;8 and 4&amp;#47;6 blog posts about how he was starting to boycott my patches, I
+&lt;a href=&quot;http://lists.landley.net/pipermail/toybox-landley.net/2024-April/030337.html&quot;&gt;pointed out to him&lt;/a&gt;
+that he alienated everyone that would wanna work with toybox, and I only acted the way I did because
+I was responding to &amp;#8220;ruthless pragmatism (&amp;#8220;pragmatism&amp;#8221;)&amp;#8221; with ruthless pragmatism. This to him was
+unacceptable, and he force-unsubscribed me from the mailing list.&lt;/p&gt;
+&lt;h2 id=&quot;what-this-means-for-the-future&quot;&gt;What this means for the future&lt;/h2&gt;
+&lt;p&gt;I literally can&amp;#8217;t direct any more development effort into making toybox better. But that doesn&amp;#8217;t mean
+I&amp;#8217;m not gonna contribute to projects adjacent to toybox or try to pry the menuconfig fork from the infrastructure
+the same way I did the test suite. I am also doing minimal system bootstrapping and the knowledge from mkroot
+will help me.&lt;/p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Toybox was a excellent project to get a bearing on software development, low level C code, working
+with libc and the linux API, and many, many other things on. The technical knowledge I gained from
+it was priceless. But the person behind it&amp;#8217;s repeated egotistical behavior, derision, and belittlement
+ruined it not just for me, but for other hobbyists. And now, it&amp;#8217;s time to move on to other, different
+things.&lt;/p&gt;
+</description></item>
 <item><title>How to write a UTF-8 safe AWK</title>
 <link>https://oliverkwebb.github.ioarticles/utfawk.html</link>
 <pubDate>Fri, 26 Apr 2024 00:00:00 -0500</pubDate>
