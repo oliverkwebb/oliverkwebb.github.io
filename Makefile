@@ -18,7 +18,7 @@ $(DIST)/%.html: %.md $(TEMPLATES)/begin.html $(TEMPLATES)/end.html
 	@echo $<
 	$(Q)mkdir -p $(@D)
 	$(Q)cat $(TEMPLATES)/begin.html > $@
-	$(Q)if [ $(@D) = "dist/articles" ]; then ./articleheader $< >> $@; fi
+	$(Q)if [ $(@D) = "$(DIST)/articles" ]; then ./articleheader $< >> $@; fi
 	$(Q)$(MD) $(MDFLAGS) $< >> $@
 	$(Q)if [ "$@" = "$(DIST)/index.html" ]; then ./genindex htmllist >> $@; fi
 	$(Q)cat $(TEMPLATES)/end.html >> $@
