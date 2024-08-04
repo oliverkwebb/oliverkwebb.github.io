@@ -1,4 +1,4 @@
-DIST=dist
+DIST=docs
 TEMPLATES=templ
 
 MD=lowdown
