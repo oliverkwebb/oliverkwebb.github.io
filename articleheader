@@ -1,0 +1,10 @@
+#!/bin/sh
+
+TITLE="$(lowdown -X title $1)"
+DATE="$(lowdown -X date $1)"
+
+cat << EOF
+<title>$TITLE</title>
+<h1>$TITLE</h1>
+<span class="subheading">$(date -d $DATE "+%B %d, %Y")</span>
+EOF

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <style>
+      body {
+        font-family:Ubuntu, Helvetica, sans-serif;
+        margin:auto;
+        width:66%;
+      }
+      @media screen and (max-device-width:480px) {
+        body { width:80%; }
+      }
+      p {
+        text-align:justify;
+      } p, li, table {
+        line-height:1.5;
+      } pre {
+        border:2px solid grey;
+        line-height:1.25;
+      } pre, code {
+        background-color: #111;
+        padding: 3px 4px;
+        color:white;
+        border-radius: 6px;
+      } td, th {
+        padding:6px;
+        border-bottom:2px solid white;
+      } table {
+        border-collapse: collapse;
+        width:100%;
+        border:2px solid white;
+      } th {background-color:#CCC;}
+      h2 {font-size:1.5em;}
+      nav a {
+        float:right;
+        padding:3px;
+        font-size:1.1em;
+      } nav .title {
+        font-size:1.2em;
+        font-weight:bold;
+      }
+      footer p {text-align:center;}
+      footer img {
+        height:22px!important;
+        margin-left:3px;
+        vertical-align:text-bottom;
+      }
+      .subheading {
+      	font-size:1.25em;
+      	color:grey;
+      }
+    </style>
+  </head>
+<body>
+  <nav>
+    <span class="title">Oliver Webb's Website</span>
+    <a href="/articles.xml">RSS Feed</a>
+    <a href="/aboutme.html">About Me/Contact</a>
+    <a href="/">Home</a>
+  </nav>
+  <hr/>
+<main>
+<title>Replacing Neovim with vis</title>
+<h1>Replacing Neovim with vis</h1>
+<span class="subheading">April 17, 2024</span>
+<p>Lately, I've been unhappy with neovim and it's bloat. vi is a simple and beautiful tool by
+itself, but it's most popular deviation vim has been bloated to the point of being unmanageable
+the same way perl took the design of awk or C++ took the design of C and destroyed it.</p>
+<p>Neovim remedies this, but not by much. And in place it adds more bloat. And it's decision
+on removing build configuration means that it can't be de-bloated in the spirit of tiny vim
+builds.</p>
+<p>And the worst part of this, some of the bloat is actually useful. Bloated software has the
+problem of "Everyone only uses 20%, but it's always a different 20%". This makes the minimal
+vi implementations hard to use. I <em>want</em> syntax highlighting and colorization, I <em>want</em> the
+ability to batch process data with ex commands.  I <em>want</em> the ability to select things with
+visual mode. This disqualifies implementations like nextvi, nvi, and busybox vi.</p>
+<p><a href="https://kakoune.org/">Kakoune</a> seems like a good alternative, with two massive problems:
+- It's written in C++
+- Constant compatibility breaks, this is a vi clone only in name</p>
+<p>I generally <a href="https://harmful.cat-v.org/software/c++/">don't trust C++ coders</a> with writing minimal software.
+And the willingness to break everything is probably a way of venting the fact that C++'s selling point is
+the fact that it's C compatible, and that restricts the language massively.</p>
+<p>What does this leave? There is apparently one editor called <a href="https://github.com/martanne/vis">vis</a>
+that's minimal, has a large amount of vim-isms, and is written in pure C with configuration able to
+be done in lua. It only takes up a couple megabytes of space, while vim takes up 60 and neovim takes
+up 40. It lacks things like the s, g, and v ex commands in favor of multi-cursor editing.</p>
+<p>vis also has inbuilt syntax highlighting, with a <a href="https://github.com/martanne/vis/wiki/Themes">selection of themes to use</a>.
+vis has inbuilt options for line numbering (including relative line numbering), tab to space conversion
+And autoindenting (Although, Not very good autoindenting). It also has a semi-customize-able
+status and keybindings bar via the lua API.</p>
+<p>Here are some features that aren't in vis <em>by default</em>:</p>
+<ul>
+<li>"gf" motion</li>
+<li>Leading whitespace detection</li>
+<li>Some way to spellcheck/auto-complete</li>
+</ul>
+<p>Let's look at these individually and see what vis can achieve.</p>
+<p>There are <a href="https://github.com/martanne/vis/wiki/Plugins">a lot of plugins</a> to do these things:
+- <a href="https://repo.or.cz/vis-goto-file.git">vis-goto-file</a>: for the "gf" motion,
+- <a href="https://github.com/erf/vis-highlight">vis-highlight</a>: for leading white-space detection.
+- <a href="https://gitlab.com/muhq/vis-spellcheck">vis-spellcheck</a>: for spellchecking.</p>
+<p>There are also lua plugins I didn't even know I wanted until now, like the ability to auto-format
+and edit markdown tables with <a href="https://www.thyssentishman.com/git/vis-tables/log.html">vis-tables</a>.
+And backups that are stored in a reasonable place with <a href="https://github.com/roguh/vis-backup">vis-backup</a>.</p>
+<p>That is not to say, vis is not without problems. For example, it is convenient to have the
+cursor show up as a bar on insert mode, but show as a block on normal mode, so that you can
+tell what mode you are in without looking at the status bar. This would normally be a simple
+print statement on changing of modes. But for whatever reason (I think due to the fact that
+there is multiple cursor support in vis). This does not change anything.</p>
+<p>If you do not like how bloated and large vim and it's forks are. But find the features that
+vim provides useful, Vis includes many but not all vim-isms while still being elegant and
+versatile.</p>
+</main>
+<hr/>
+<footer>
+  <p>You can Subscribe via <a href="/articles.xml">RSS</a> to get updates.</p>
+  <p>The content of this site by &#xa9; 2024 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+</body>
+<!-- The Default Title if no other is Specified -->
+<title>Oliver Webb's Webspace Thingy</title>
+</html>
