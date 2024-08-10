@@ -1,0 +1,65 @@
+body {
+font-family:Ubuntu,Helvetica,sans-serif;
+width:66%;
+margin:auto;
+}
+
+p,li,table,dl { line-height:1.5 }
+
+td,th {
+border-bottom:2px solid #fff;
+padding:6px;
+}
+
+pre {
+line-height:1.25;
+text-indent:1em;
+}
+pre, code {
+padding: 3px 4px;
+border-radius:4px;
+}
+p code {
+color:#fff;
+background-color:#111;
+}
+
+
+table {
+border-collapse:collapse;
+width:100%;
+border:2px solid #fff;
+}
+
+th { background-color:#CCC }
+
+h2 { font-size:1.5em }
+
+nav a {
+float:right;
+font-size:1.1em;
+padding:3px;
+}
+
+nav .title {
+font-size:1.2em;
+font-weight:700;
+}
+
+footer {
+clear:both
+}
+
+footer p { text-align:center }
+
+.subheading {
+font-size:1.25em;
+color:grey;
+}
+
+@media screen and (max-device-width:480px) { body { width:80% } }
+
+#nextprev {width:100%}
+.next {float:right}
+.prev {float:left}
+

@@ -1,0 +1,264 @@
+<rss version="2.0"><channel>
+	<title>Oliver Webb&#39;s Website</title>
+	<link>http://localhost:1313/categories/</link>
+	<language>en-us</language>
+	
+	<item><title>Writing a UTF-8 safe AWK</title>
+		<link>http://localhost:1313/articles/utfawk/</link>
+		<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
+		<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for it&amp;rsquo;s
+applications. This has kept things like &lt;a href=&#34;http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html&#34;&gt;the fully GNU compatible tr&lt;/a&gt;
+from being promoted from the pending/ directory for years because they
+wish to break compatibility by making tr unicode safe. Toybox&amp;rsquo;s plans for awk
+are &lt;a href=&#34;http://lists.landley.net/pipermail/toybox-landley.net/2021-June/012453.html&#34;&gt;no different story&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Fortunately for any &lt;a href=&#34;https://www.github.com/raygard/wak&#34;&gt;awk implementation&lt;/a&gt;
+attempting to get into toybox; Awk works with strings, while tr works with
+characters. Awk does not regularly index into the strings it works with, and
+when it does it only happens in a few functions. This means that if we want
+to handle UTF-8, we can divide and conquer.&lt;/p&gt;
+&lt;h3 id=&#34;what-a-utf-8-safe-awk-needs&#34;&gt;What a UTF-8 Safe awk needs&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;https://man7.org/linux/man-pages/man1/gawk.1.html&#34;&gt;gawk(1) man page&lt;/a&gt; says
+these 4 functions work on &amp;ldquo;characters, not bytes&amp;rdquo;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;substr()&lt;/li&gt;
+&lt;li&gt;length()&lt;/li&gt;
+&lt;li&gt;match()&lt;/li&gt;
+&lt;li&gt;index()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The second addition awk book also mentions these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;printf %c [STRING]&lt;/li&gt;
+&lt;li&gt;printf %c [CODEPOINT]&lt;/li&gt;
+&lt;li&gt;\u[CODEPOINT]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And finally, these work internally by indexing the string:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;toupper()&lt;/li&gt;
+&lt;li&gt;tolower()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&amp;rsquo;s &amp;ldquo;divide&amp;rdquo; out of the way, now lets conquer.&lt;/p&gt;
+&lt;h3 id=&#34;implementing-a-utf-8-awk&#34;&gt;Implementing a UTF-8 Awk&lt;/h3&gt;
+&lt;p&gt;A reminder that we are trying to add in UTF-8 support to a existing awk, not
+make a new one with UTF-8 support.&lt;/p&gt;
+&lt;p&gt;In a awk that is UTF-8 safe, all strings are indexed by a number of UTF-8
+characters. While in C, all strings are indexed based off of bytes. This
+means that for substr(), length(), match(), and index(). We need a way to
+convert between the two. This can be done by two functions, one which counts
+the bytes in a utf8 string, and another that counts the characters in a C byte
+string. This work was &lt;a href=&#34;https://github.com/raygard/wak/commit/2e94cd3de8fb4d091ca19bb429cb4b2cb9d6a80e&#34;&gt;originally done by me&lt;/a&gt;
+with 2 functions that acted as analogs to &lt;code&gt;mbrtowc()&lt;/code&gt; and &lt;code&gt;wcstombs()&lt;/code&gt; from libc.
+And &lt;a href=&#34;https://github.com/raygard/wak/commit/2e94cd3de8fb4d091ca19bb429cb4b2cb9d6a80e&#34;&gt;Ray Gardner de-over-engineered&lt;/a&gt; these functions.&lt;/p&gt;
+&lt;p&gt;As long as you have the ability to turn unicode codepoints back into strings,
+\u[CODEPOINT] is a easy fix too. While the current digit you are reading is a
+valid hexidecimal character, read that digit into a buffer. Then &lt;code&gt;strtol()&lt;/code&gt; to
+turn that buffer into a codepoint, then convert that codepoint back into a string.
+There are printf format escapes that print 1 utf8 character of a string.
+Which in practice makes printf %c easier. The tolower() and toupper()
+problem is more complex, but fundamentally involves taking a string, running
+though it and running &lt;code&gt;towlower/upper()&lt;/code&gt; on it, expanding it when needed.
+You can look at &lt;a href=&#34;https://github.com/raygard/wak/commit/2e94cd3de8fb4d091ca19bb429cb4b2cb9d6a80e&#34;&gt;the actual code which does this&lt;/a&gt;,
+as that will explain it better than I could.&lt;/p&gt;
+&lt;p&gt;FS/split() say that if the field separator is more than one character, it will be
+treated as a regex. This in practice does not matter, since a multi-byte unicode
+FS will never contain any special regexp syntax character.&lt;/p&gt;
+&lt;p&gt;Writing in UTF-8 support into a already existing awk is a lot simpler than it seems.
+wak needed less than 100 lines to make itself UTF-8 safe. Most of the hard part
+is figuring out &lt;em&gt;what&lt;/em&gt; needs unicode handling.&lt;/p&gt;
+</description></item>
+	
+	<item><title>Replacing Neovim with vis</title>
+		<link>http://localhost:1313/articles/vis/</link>
+		<pubDate>Wed, 17 Apr 2024 00:00:00 &#43;0000</pubDate>
+		<description>&lt;p&gt;Lately, I&amp;rsquo;ve been unhappy with neovim and it&amp;rsquo;s bloat. vi is a simple and beautiful tool by
+itself, but it&amp;rsquo;s most popular deviation vim has been bloated to the point of being unmanageable
+the same way perl took the design of awk or C++ took the design of C and destroyed it.&lt;/p&gt;
+&lt;p&gt;Neovim remedies this, but not by much. And in place it adds more bloat. And it&amp;rsquo;s decision
+on removing build configuration means that it can&amp;rsquo;t be de-bloated in the spirit of tiny vim
+builds.&lt;/p&gt;
+&lt;p&gt;And the worst part of this, some of the bloat is actually useful. Bloated software has the
+problem of &amp;ldquo;Everyone only uses 20%, but it&amp;rsquo;s always a different 20%&amp;rdquo;. This makes the minimal
+vi implementations hard to use. I &lt;em&gt;want&lt;/em&gt; syntax highlighting and colorization, I &lt;em&gt;want&lt;/em&gt; the
+ability to batch process data with ex commands.  I &lt;em&gt;want&lt;/em&gt; the ability to select things with
+visual mode. This disqualifies implementations like nextvi, nvi, and busybox vi.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kakoune.org/&#34;&gt;Kakoune&lt;/a&gt; seems like a good alternative, with two massive problems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It&amp;rsquo;s written in C++&lt;/li&gt;
+&lt;li&gt;Constant compatibility breaks, this is a vi clone only in name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I generally &lt;a href=&#34;https://harmful.cat-v.org/software/c++/&#34;&gt;don&amp;rsquo;t trust C++ coders&lt;/a&gt; with writing minimal software.
+And the willingness to break everything is probably a way of venting the fact that C++&amp;rsquo;s selling point is
+the fact that it&amp;rsquo;s C compatible, and that restricts the language massively.&lt;/p&gt;
+&lt;p&gt;What does this leave? There is apparently one editor called &lt;a href=&#34;https://github.com/martanne/vis&#34;&gt;vis&lt;/a&gt;
+that&amp;rsquo;s minimal, has a large amount of vim-isms, and is written in pure C with configuration able to
+be done in lua. It only takes up a couple megabytes of space, while vim takes up 60 and neovim takes
+up 40. It lacks things like the s, g, and v ex commands in favor of multi-cursor editing.&lt;/p&gt;
+&lt;p&gt;vis also has inbuilt syntax highlighting, with a &lt;a href=&#34;https://github.com/martanne/vis/wiki/Themes&#34;&gt;selection of themes to use&lt;/a&gt;.
+vis has inbuilt options for line numbering (including relative line numbering), tab to space conversion
+And autoindenting (Although, Not very good autoindenting). It also has a semi-customize-able
+status and keybindings bar via the lua API.&lt;/p&gt;
+&lt;p&gt;Here are some features that aren&amp;rsquo;t in vis &lt;em&gt;by default&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;gf&amp;rdquo; motion&lt;/li&gt;
+&lt;li&gt;Leading whitespace detection&lt;/li&gt;
+&lt;li&gt;Some way to spellcheck/auto-complete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s look at these individually and see what vis can achieve.&lt;/p&gt;
+&lt;p&gt;There are &lt;a href=&#34;https://github.com/martanne/vis/wiki/Plugins&#34;&gt;a lot of plugins&lt;/a&gt; to do these things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://repo.or.cz/vis-goto-file.git&#34;&gt;vis-goto-file&lt;/a&gt;: for the &amp;ldquo;gf&amp;rdquo; motion,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/erf/vis-highlight&#34;&gt;vis-highlight&lt;/a&gt;: for leading white-space detection.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitlab.com/muhq/vis-spellcheck&#34;&gt;vis-spellcheck&lt;/a&gt;: for spellchecking.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are also lua plugins I didn&amp;rsquo;t even know I wanted until now, like the ability to auto-format
+and edit markdown tables with &lt;a href=&#34;https://www.thyssentishman.com/git/vis-tables/log.html&#34;&gt;vis-tables&lt;/a&gt;.
+And backups that are stored in a reasonable place with &lt;a href=&#34;https://github.com/roguh/vis-backup&#34;&gt;vis-backup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That is not to say, vis is not without problems. For example, it is convenient to have the
+cursor show up as a bar on insert mode, but show as a block on normal mode, so that you can
+tell what mode you are in without looking at the status bar. This would normally be a simple
+print statement on changing of modes. But for whatever reason (I think due to the fact that
+there is multiple cursor support in vis). This does not change anything.&lt;/p&gt;
+&lt;p&gt;If you do not like how bloated and large vim and it&amp;rsquo;s forks are. But find the features that
+vim provides useful, Vis includes many but not all vim-isms while still being elegant and
+versatile.&lt;/p&gt;
+</description></item>
+	
+	<item><title>Making A static site generator with `make`</title>
+		<link>http://localhost:1313/articles/makessg/</link>
+		<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
+		<description>&lt;p&gt;When making my website, generating static webpages for
+my blogs and articles was a big concern. I want to be able
+to manipulate templates and sytlesheets easily and have that
+translate to my articles and content. HTML, to put it simply,
+sucks for this work.&lt;/p&gt;
+&lt;p&gt;The solution is static site generation, which is analogous to
+ahead of time compilation. There are a variety of tools that
+can be used for this. &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; is the one GitHub endorses,
+the problem I have with that is that it is written in Ruby,
+which means that I&amp;rsquo;d have to pull in megabytes of extra
+dependencies and slow the building process down for something
+that ultimately takes away control from me.&lt;/p&gt;
+&lt;p&gt;What I need is something that is efficient, customizable, and
+fast. And above all, simplistic. This is where &lt;code&gt;make&lt;/code&gt; comes into
+the picture.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;make&lt;/code&gt; takes a &amp;ldquo;makefile&amp;rdquo; with a list of rules. Each rule has a
+list of commands to run. And you can do &lt;code&gt;make rule&lt;/code&gt; to run the
+commands in that rule. If you specify a list of rules, it will
+run all those rules, if you specify no rules, it will run the
+first rule specified in the makefile (commonly, this rule is
+called &amp;ldquo;all&amp;rdquo;)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo bar
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;baz:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo foo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ make foo baz
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo bar
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bar
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo foo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Make will list the commands it runs as it runs them, and will
+abort if a command returns non-zero. Printing the command it
+runs can be disabled by placing &lt;code&gt;@&lt;/code&gt; at the start of the command.
+And aborting on failure of a command can be disabled by placing &lt;code&gt;-&lt;/code&gt;
+at the start of the command&lt;/p&gt;
+&lt;p&gt;Additionally, you can refer to &lt;a href=&#34;https://man7.org/linux/man-pages/man7/environ.7.html&#34;&gt;environment variables&lt;/a&gt; in your makefile,
+and assign them on the command line or in your makefile.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;BAZ=123
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    @echo $(BAR) $(BAZ)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;baz:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -false
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ make baz foo BAR=abc
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;abc 123
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This allows for macros and the quick running of commands without manually typing
+in the build commands. But this is not where the true magic of make is.&lt;/p&gt;
+&lt;p&gt;A rule is not just a name for a macro that you type in on the command line,
+it is a pattern. And more importantly, it is a filename unless said otherwise.
+You can also specify prerequisites for running a rule. So you can say &lt;code&gt;a: b c&lt;/code&gt;,
+which means that rule b and c have to run before a. You can specify that a
+rule is not a filename by putting a line that says &lt;code&gt;.PHONY: [rule1] [rule2]&lt;/code&gt;.
+This means that &lt;code&gt;rule1&lt;/code&gt; and &lt;code&gt;rule2&lt;/code&gt; will always run when called.&lt;/p&gt;
+&lt;p&gt;Finally, if a rule:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Is an existing file&lt;/li&gt;
+&lt;li&gt;Has prerequisite rules that are all files&lt;/li&gt;
+&lt;li&gt;All prerequisite files &amp;ldquo;last changed&amp;rdquo; date are older than the main file&amp;rsquo;s&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The rule is considered completed, and any commands from it are not ran.&lt;/p&gt;
+&lt;p&gt;This makes AOT compilation with object files much faster. Since you can
+change one file, and it will detect that all the other &amp;ldquo;object files&amp;rdquo; are newer
+then their respective source files &lt;em&gt;except&lt;/em&gt; the one you have changed. And it
+will automatically build only that changed file.&lt;/p&gt;
+&lt;p&gt;But having a rule for each source file seems excessive, right? This is why rules
+are patterns. The character &lt;code&gt;%&lt;/code&gt; means &amp;ldquo;anything&amp;rdquo; and is analogous to
+&lt;code&gt;*&lt;/code&gt; in shell &lt;a href=&#34;https://man7.org/linux/man-pages/man3/glob.3.html&#34;&gt;globbing&lt;/a&gt;, this allows us to create a rule for all &lt;code&gt;.c&lt;/code&gt; files&lt;/p&gt;
+&lt;p&gt;But how will we refer to the source file in the build command? This is why there
+are special variables in make; You can use &lt;code&gt;$&amp;lt;&lt;/code&gt; to refer to your first item in
+the list of prerequisites, and &lt;code&gt;$@&lt;/code&gt; to refer to your rule name. Note this is
+not the pattern that the specified rule matched, it is the rule that matched
+the pattern.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.o&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.c
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;CFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; -o &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you run &lt;code&gt;make main.o&lt;/code&gt;, it will detect that &amp;ldquo;main.o&amp;rdquo; matches the pattern
+rule &amp;ldquo;%.o&amp;rdquo;, next it will check if the file &amp;ldquo;main.c&amp;rdquo; is there. If it is not and
+there is no rule that matches &amp;ldquo;main.c&amp;rdquo;, it will not know what to do and fail.
+Otherwise, if the file &amp;ldquo;main.c&amp;rdquo; is older than the file &amp;ldquo;main.o&amp;rdquo;, it will assume
+no changes have been made and there is therefore nothing to be done. Then, it
+will run the build command, refereeing to the variable CC (By default &amp;ldquo;c99&amp;rdquo;),
+passing in the flags CFLAGS, and running this on the prerequisite files name
+&amp;ldquo;main.c&amp;rdquo; outputting to our rule name, the file &amp;ldquo;main.o&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;This is the essence of &lt;code&gt;make&lt;/code&gt;&amp;rsquo;s functionality, and is the useful stuff POSIX
+specifies. But there are other things in GNU make, like the ability to add a
+prefix to all items in a list with the addprefix function, or the wildcard
+function to get all items and put them in a list. Functions are specified in
+variable definitions and arguments are separated by commas. So that evaluating
+&lt;code&gt;$(addprefix 123, a b c)&lt;/code&gt; will return &amp;ldquo;123a 123b 123c&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Since the problem of turning markdown files into html files is similar to the
+problem of turning source files into object files, we can create a simple rule
+that does 99% of our work.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MARKDOWN&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MDFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But markdown compilers don&amp;rsquo;t usally generate HTML boilerplate, and we might
+want to import a stylesheet, and maybe save to a &amp;ldquo;dist&amp;rdquo; directory. So that
+if we have a &amp;ldquo;index.md&amp;rdquo; file, it will compile to &lt;code&gt;$(DIST)/index.html&lt;/code&gt;, this
+is no issue for us.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;$(DIST)/%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/begin.html &amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MARKDOWN&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MDFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/end.html &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Notice how % goes after the &lt;code&gt;$(DIST)&lt;/code&gt; prefix, which means that referencing
+it in our prerequisite list will not add it as a prefix.&lt;/p&gt;
+&lt;p&gt;We have our workhorse rule, but, &amp;ldquo;how do we put this together?&amp;rdquo;,
+we can specify variables for our markdown compiler (in this example, I used
+&lt;code&gt;lowdown&lt;/code&gt;), and scan for files in a source directory using
+the wildcard command. Making them valid rule names by substituting .md prefixes
+with .html ones, and adding the prefix &lt;code&gt;$(DIST)&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;DIST&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;dist
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;TEMPLATES&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;templ
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;MARKDOWN&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;lowdown
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;PAGES&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;wildcard pages/*.md&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;PDEST&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;addprefix &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;DIST&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/, &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;patsubst %.md, %.html, &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;PAGES&lt;span style=&#34;color:#ff7b72&#34;&gt;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ${VAR} breaks down VAR into a list of rules
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;all&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; ${PDEST}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;$(DIST)/%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; pages/%.md
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/begin.html &amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MARKDOWN&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MDFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/end.html &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you want to add a conditional generation step for the index, you
+can put a &lt;code&gt;if [ $@ = $(DIST)/index.html ]; then ./gen &amp;gt;&amp;gt; $@; fi&lt;/code&gt; rule in
+your main rule. You can add almost infinite customization to this with
+conditionals or extra rules.&lt;/p&gt;
+&lt;p&gt;Additional Resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.gnu.org/software/make/manual/make.pdf&#34;&gt;GNU make manual&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/oliverkwebb/oliverkwebb.github.io/blob/main/Makefile&#34;&gt;The makefile that use to do this for my website&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://pedantic.software/git/blogit&#34;&gt;blogit, another makefile based SSG&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description></item>
+	
+	</channel>
+</rss>

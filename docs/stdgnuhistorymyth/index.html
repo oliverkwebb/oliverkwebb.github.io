@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<title>The Standard GNU History Myth | My New Hugo Site</title>
+	<link rel="canonical" href="http://localhost:1313/">
+	<link rel='alternate' type='application/rss+xml' title="My New Hugo Site RSS" href='/index.xml'>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.ico"><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+  <nav>
+    <span class="title">Oliver Webb's Website</span>
+    <a href="/index.xml">RSS Feed</a>
+    <a href="/aboutme">About Me/Contact</a>
+    <a href="/">Home</a>
+  </nav>
+  <hr/>
+<main>
+<header><h1 id="tag_The standard GNU history myth">The standard GNU history myth</h1></header>
+<article>
+
+<p>All too often, I see people espouse a heavily warped view of Linux history which
+gives a too-large amount of credit to the FSF for the development and takeoff of
+Linux. This view of history is the most available, most widely spread, and most
+believed.</p>
+<p>This version of history hides the work of BSD, MIT, and Minix developers.
+Attributing decades of work by thousands of people to a single organization.
+This is not to say that the FSF did nothing, Utilities like the GCC compiler,
+glibc, the coreutils, etc. were certainly useful to the linux community. But
+in a world where these didn&rsquo;t exist; Minix or BSD utilities would&rsquo;ve almost
+certainly taken their place.</p>
+<h2 id="myth-the-gnu-project-inventedpoinerred-free-software">Myth: &ldquo;The GNU project invented/poinerred free software&rdquo;</h2>
+<p>Before the creation of the FSF, Source code being available to the users of
+software was commonplace. Version 6 AT&amp;T UNIX&rsquo;s source code was being spread
+for years by the <a href="https://archive.org/details/CommentarySixthEditionUNIX">Lions Book</a>. BSD&rsquo;s code was both open and free to distribute,
+leading to a lawsuit between AT&amp;T and BSD.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/TeX#License">public domain TeX</a> typesetting system predates the FSF by half a decade.
+The creation of the <a href="https://opensource.com/article/19/4/history-mit-license">MIT License</a> was almost certainly independent from the FSF.
+<a href="https://en.wikipedia.org/wiki/Vi_(text_editor)">The original vi</a> and near-any application that has its roots in BSD was open
+source. The C, Korn, and Bourne Shell&rsquo;s (Which all predate the FSF) were under
+permissive licensing.</p>
+<p>These are <em>some</em> examples of &ldquo;open source&rdquo; software before the FSF. In reality,
+the FSF did not even popularize the idea of source code being free to distribute.</p>
+<h2 id="myth-the-creation-of-linux-relied-on-the-gnu-project">Myth: &ldquo;The creation of Linux relied on the GNU project&rdquo;</h2>
+<p>The GNU project did not contribute development effort to the Linux kernel until
+well after it took off. That would be the Minix community, which the early
+development of linux happened in. Even as Linux 1.0 and the rise of the internet
+happened, the GNU project was focused on the Hurd kernel.</p>
+<p><strong>The FSF was still advising people to use Hurd until the late &rsquo;90s</strong><br>
+From &ldquo;<a href="https://web.archive.org/web/19980126191050/http://www.gnu.org/software/hurd/hurd-and-linux.html">The Hurd and Linux (1997)</a>&rdquo;:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="what-_did_-the-fsf-contribute">What <em>did</em> the FSF contribute</h3>
+<p>The two irreplaceable contributions by the FSF to Linux were the GCC compiler and the
+GPL. While these were certainly useful in the creation and development of Linux.
+For example, In a world without GCC, BSD&rsquo;s <a href="https://en.wikipedia.org/wiki/Portable_C_Compiler">PCC compiler</a> or the Minix C compiler
+would&rsquo;ve taken it&rsquo;s place.</p>
+<p><strong>&ldquo;Then why did GCC outpace other compilers?&rdquo;</strong>:<br>
+Sun developers flocked to GCC
+(A compiler which already supported SunOS) after Sun removed the compiler from
+the base set of utilities and started charging for it.
+(<a href="http://www.groklaw.net/article.php?story=20050525231654621">See the &ldquo;gcc&rdquo; section of this article</a>)</p>
+<h3 id="the-fsf-was-barely-holding-on-to-these-projects">The FSF was barely holding on to these projects</h3>
+<p>For several years in the &rsquo;90s and &rsquo;00s, GCC, Binutils, GDB, and other
+FSF projects were being maintained by a external company called <a href="https://en.wikipedia.org/wiki/Cygnus_Solutions">Cygnus</a>.
+The GCC compiler died and forked into <a href="https://en.wikipedia.org/wiki/GNU_Compiler_Collection#EGCS_fork">EGCS</a>, which then reunited into GCC
+and is now controlled via committee. And the de-facto libc on linux for
+years was a fork of glibc, called <a href="https://www.man7.org/linux/man-pages/man7/libc.7.html">Linux libc</a>
+(more commonly refereed to as libc5/libc4).</p>
+<p>These forks can be attributed to existing GNU software often being unmaintained and
+incomplete. The FSF is a movement that prioritizes philosophy over cleanliness of code</p>
+<p><strong>The FSF intentionally makes code less modular to spread itself</strong><br>
+From <a href="https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html">https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html</a>:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Anything that makes it easier to use GCC back ends without GCC front
+ends&ndash;or simply brings GCC a big step closer to a form that would make
+such usage easy&ndash;would endanger our leverage for causing new front
+ends to be free.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+
+</article>
+</main>
+<hr/>
+<footer>
+  
+<div id="nextprev">
+<a href="/aboutme/"><div id="prevart">Previous:<br></div></a>
+<a href="/articles/hugo/"><div id="nextart">Next:<br>Migrating to Hugo</div></a>
+</div>
+<br/>
+  <p>You can Subscribe via <a href="/articles.xml">RSS</a> to get updates.</p>
+  <p>The content of this site by &#xa9; 2024 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+
+</body>
+</html>

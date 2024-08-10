@@ -1,0 +1,30 @@
+baseURL = 'https://oliverkwebb.github.io'
+languageCode = 'en-us'
+title = "Oliver Webb's Website"
+theme = 'okw'
+publishDir = 'docs/'
+enableEmoji = true
+
+[markup]
+  [markup.highlight]
+  	style = 'github-dark'
+  	guessSyntax = true
+  	# THEMES I LIKE: github-dark, average, modus-vivendi, onedark, swapoff, vulcan
+  	# See https://xyproto.github.io/splash/docs
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.extras]
+        [markup.goldmark.extensions.extras.delete]
+          enable = true
+        [markup.goldmark.extensions.extras.insert]
+          enable = true
+        [markup.goldmark.extensions.extras.mark]
+          enable = true
+        [markup.goldmark.extensions.extras.subscript]
+          enable = true
+        [markup.goldmark.extensions.extras.superscript]
+          enable = true
+    [markup.goldmark.renderer]
+      unsafe = true
+
+
