@@ -1,8 +1,11 @@
 ## About Me
 Heya, If what you wanted is contact information, here is some:
 
-- Email: aquahobbyist@proton.me
-- GitHub: [oliverkwebb](https://www.github.com/oliverkwebb)
+Email
+: aquahobbyist@proton.me
+
+GitHub
+: [oliverkwebb](https://www.github.com/oliverkwebb)
 
 I am at the time of writing (August 2024) 15 and a high school student.
 And have been programming and learning about how computers work for a

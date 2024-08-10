@@ -2,6 +2,77 @@
 <title>Oliver Webb's Webspace Thingy</title>
 <link>https://oliverkwebb.github.io</link>
 <language>en</language>
+<item><title>The standard GNU history myth</title>
+<link>https://oliverkwebb.github.ioarticles/stdgnuhistorymyth.html</link>
+<pubDate>Sun, 04 Aug 2024 00:00:00 -0500</pubDate>
+<description>
+&lt;p&gt;All too often, I see people espouse a heavily warped view of Linux history which
+gives a too-large amount of credit to the FSF for the development and takeoff of
+Linux. This view of history is the most available, most widely spread, and most
+believed.&lt;/p&gt;
+&lt;p&gt;This version of history hides the work of BSD, MIT, and Minix developers.
+Attributing decades of work by thousands of people to a single organization.
+This is not to say that the FSF did nothing, Utilities like the GCC compiler,
+glibc, the coreutils, etc. were certainly useful to the linux community. But
+in a world where these didn&amp;#8217;t exist; Minix or BSD utilities would&amp;#8217;ve almost
+certainly taken their place.&lt;/p&gt;
+&lt;h2 id=&quot;myth-the-gnu-project-inventedpoinerred-free-software&quot;&gt;Myth: &amp;#8220;The GNU project invented&amp;#47;poinerred free software&amp;#8221;&lt;/h2&gt;
+&lt;p&gt;Before the creation of the FSF, Source code being available to the users of
+software was commonplace. Version 6 AT&amp;#38;T UNIX&amp;#8217;s source code was being spread
+for years by the &lt;a href=&quot;https://archive.org/details/CommentarySixthEditionUNIX&quot;&gt;Lions Book&lt;/a&gt;. BSD&amp;#8217;s code was both open and free to distribute,
+leading to a lawsuit between AT&amp;#38;T and BSD.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/TeX#License&quot;&gt;public domain TeX&lt;/a&gt; typesetting system predates the FSF by half a decade.
+The creation of the &lt;a href=&quot;https://opensource.com/article/19/4/history-mit-license&quot;&gt;MIT License&lt;/a&gt; was almost certainly independent from the FSF.
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Vi_(text_editor)&quot;&gt;The original vi&lt;/a&gt; and near-any application that has its roots in BSD was open
+source. The C, Korn, and Bourne Shell&amp;#8217;s (Which all predate the FSF) were under
+permissive licensing.&lt;/p&gt;
+&lt;p&gt;These are &lt;em&gt;some&lt;/em&gt; examples of &amp;#8220;open source&amp;#8221; software before the FSF. In reality,
+the FSF did not even popularize the idea of source code being free to distribute.&lt;/p&gt;
+&lt;h2 id=&quot;myth-the-creation-of-linux-relied-on-the-gnu-project&quot;&gt;Myth: &amp;#8220;The creation of Linux relied on the GNU project&amp;#8221;&lt;/h2&gt;
+&lt;p&gt;The GNU project did not contribute development effort to the Linux kernel until
+well after it took off. That would be the Minix community, which the early
+development of linux happened in. Even as Linux 1.0 and the rise of the internet
+happened, the GNU project was focused on the Hurd kernel.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The FSF was still advising people to use Hurd until the late &amp;#8216;90s&lt;/strong&gt;&lt;br/&gt;
+From &amp;#8220;&lt;a href=&quot;https://web.archive.org/web/19980126191050/http://www.gnu.org/software/hurd/hurd-and-linux.html&quot;&gt;The Hurd and Linux (1997)&lt;/a&gt;&amp;#8221;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;what-did-the-fsf-contribute&quot;&gt;What &lt;em&gt;did&lt;/em&gt; the FSF contribute&lt;/h3&gt;
+&lt;p&gt;The two irreplaceable contributions by the FSF to Linux were the GCC compiler and the
+GPL. While these were certainly useful in the creation and development of Linux.
+For example, In a world without GCC, BSD&amp;#8217;s &lt;a href=&quot;https://en.wikipedia.org/wiki/Portable_C_Compiler&quot;&gt;PCC compiler&lt;/a&gt; or the Minix C compiler
+would&amp;#8217;ve taken it&amp;#8217;s place.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;#8220;Then why did GCC outpace other compilers?&amp;#8221;&lt;/strong&gt;:&lt;br/&gt;
+Sun developers flocked to GCC
+(A compiler which already supported SunOS) after Sun removed the compiler from
+the base set of utilities and started charging for it.
+(&lt;a href=&quot;http://www.groklaw.net/article.php?story=20050525231654621&quot;&gt;See the &amp;#8220;gcc&amp;#8221; section of this article&lt;/a&gt;)&lt;/p&gt;
+&lt;h3 id=&quot;the-fsf-was-barely-holding-on-to-these-projects&quot;&gt;The FSF was barely holding on to these projects&lt;/h3&gt;
+&lt;p&gt;For several years in the &amp;#8216;90s and &amp;#8216;00s, GCC, Binutils, GDB, and other
+FSF projects were being maintained by a external company called &lt;a href=&quot;https://en.wikipedia.org/wiki/Cygnus_Solutions&quot;&gt;Cygnus&lt;/a&gt;.
+The GCC compiler died and forked into &lt;a href=&quot;https://en.wikipedia.org/wiki/GNU_Compiler_Collection#EGCS_fork&quot;&gt;EGCS&lt;/a&gt;, which then reunited into GCC
+and is now controlled via committee. And the de-facto libc on linux for
+years was a fork of glibc, called &lt;a href=&quot;more%20commonly%20refereed%20to%20as%20libc5/libc4&quot;&gt;Linux libc&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These forks can be attributed to existing GNU software often being unmaintained and
+incomplete. The FSF is a movement that prioritizes philosophy over cleanliness of code&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The FSF intentionally makes code less modular to spread itself&lt;/strong&gt;&lt;br/&gt;
+From &lt;a href=&quot;https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html&quot;&gt;https:&amp;#47;&amp;#47;gcc.gnu.org&amp;#47;legacy-ml&amp;#47;gcc&amp;#47;2000-01&amp;#47;msg00572.html&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Anything that makes it easier to use GCC back ends without GCC front
+ends&amp;#8211;or simply brings GCC a big step closer to a form that would make
+such usage easy&amp;#8211;would endanger our leverage for causing new front
+ends to be free.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+</description></item>
 <item><title>Writing a UTF-8 safe AWK</title>
 <link>https://oliverkwebb.github.ioarticles/utfawk.html</link>
 <pubDate>Fri, 26 Apr 2024 00:00:00 -0500</pubDate>
