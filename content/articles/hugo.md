@@ -1,6 +1,7 @@
 ---
 title: "Migrating to Hugo"
 date: 2024-08-18T12:00:34-05:00
+draft: true
 ---
 
 This website now runs on [hugo](https://gohugo.io). I migrated the infrastructure off the old static
