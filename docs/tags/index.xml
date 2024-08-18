@@ -3,6 +3,234 @@
 	<link>http://localhost:1313/tags/</link>
 	<language>en-us</language>
 	
+	<item><title>Migrating to Hugo</title>
+		<link>http://localhost:1313/articles/hugo/</link>
+		<pubDate>Sun, 18 Aug 2024 12:00:34 -0500</pubDate>
+		<description>&lt;p&gt;This website now runs on &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. I migrated the infrastructure off the old static
+site generator that was written in Makefile.&lt;/p&gt;
+&lt;h2 id=&#34;why&#34;&gt;Why?&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;My static site generator isn&amp;rsquo;t that unique, &lt;a href=&#34;https://pedantic.software/git/blogit&#34;&gt;blogit&lt;/a&gt; already exists.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You can do cool things with hugo that you can&amp;rsquo;t with other SSG&amp;rsquo;s (Better markdown compiler, templating, etc)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hugo isn&amp;rsquo;t &lt;em&gt;that&lt;/em&gt; large compared to other web frameworks&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;what-i-dont-like&#34;&gt;What I don&amp;rsquo;t like.&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Isn&amp;rsquo;t generalized enough&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mystified language to make it&amp;rsquo;s features sound cooler&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;dl&gt;
+&lt;dt&gt;&lt;code&gt;archetype&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;code&gt;hugo new content&lt;/code&gt; template&lt;/dd&gt;
+&lt;dt&gt;&lt;code&gt;shortcode&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;Macro&lt;/dd&gt;
+&lt;dt&gt;&lt;code&gt;partial&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;Template that isn&amp;rsquo;t a whole webpage&lt;/dd&gt;
+&lt;dt&gt;_default&lt;/dt&gt;
+&lt;dd&gt;Base templates&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;h2 id=&#34;markdown-playground&#34;&gt;Markdown playground&lt;/h2&gt;
+&lt;p&gt;Insert emojis: &amp;#x1f44b;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;mark&gt;highlighted text&lt;/mark&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;super&lt;sup&gt;scripts&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;Strike-through&lt;/del&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;ins&gt;Underlined&lt;/ins&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Referring&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Checkboxes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Checkboxes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;f&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34; display highlighted code&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;View github gists:
+&lt;script src=&#34;https://gist.github.com/oliverkwebb/8b05751e685a01c6a2c71c2a8de69052.js&#34;&gt;&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/about/features/&#34;&gt;And many more&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;To footnotes&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description></item>
+	
+	<item><title>GNU considered harmful (By me, here&#39;s why)</title>
+		<link>http://localhost:1313/articles/gnulist/</link>
+		<pubDate>Sat, 17 Aug 2024 00:00:00 &#43;0000</pubDate>
+		<description>&lt;p&gt;This list does not mention the [Richard Stallman controversy]&amp;lt;Link to Drew DeVault article here&amp;gt;.
+Nor his squabbles related to &lt;a href=&#34;https://sourceware.org/legacy-ml/libc-hacker/2000-06/msg00233.html&#34;&gt;glibc&lt;/a&gt;
+because:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Most-everybody knows about it&lt;/li&gt;
+&lt;li&gt;These are related to RMS &lt;em&gt;specificly&lt;/em&gt;, not his broader actions to influence the GNU project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;1-the-linux-was-developed-for-the-gnu-tools-narritive-propogated-by-the-fsf-is-false&#34;&gt;1. The &amp;ldquo;Linux was developed for the GNU tools&amp;rdquo; narritive propogated by the FSF is false&lt;/h2&gt;
+&lt;p&gt;From &lt;a href=&#34;https://www.gnu.org/gnu/linux-and-gnu.html&#34;&gt;https://www.gnu.org/gnu/linux-and-gnu.html&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
+What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In Linus&amp;rsquo;s book &lt;em&gt;&lt;a href=&#34;https://books.google.com/books/about/Just_for_Fun.html?id=Q3aIPwAACAAJ&#34;&gt;Just For Fun&lt;/a&gt;&lt;/em&gt;, the GNU project plays little to no role in the creation of Linux.
+Linux grew out of comp.os.minix, not anything related to the FSF or GNU project. Additionally, The FSF was
+still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
+&lt;p&gt;From &lt;em&gt;&lt;a href=&#34;https://web.archive.org/web/19980126191050/http://www.gnu.org/software/hurd/hurd-and-linux.html&#34;&gt;The Hurd and Linux (1997)&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The FSF&amp;rsquo;s push for hurd died out sometime in the early 2000&amp;rsquo;s, when Linux was commonplace and Hurd was completely abandoned.&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&#34;https://karmak.org/archive/2003/01/12-14-99.epl.html&#34;&gt;A interview with RMS in 99&amp;rsquo;&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;2. For years, the GNU project was not directly maintaining most of their popular projects&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For several years in the &amp;rsquo;90s and &amp;rsquo;00s, GCC, Binutils, GDB, and other FSF projects were being maintained by a external company called &lt;a href=&#34;https://en.wikipedia.org/wiki/Cygnus_Solutions&#34;&gt;Cygnus&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The GCC compiler died and forked into EGCS, which then reunited into GCC and is now controlled via committee.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The de-facto libc on linux for years was a fork of glibc, called &lt;a href=&#34;https://www.man7.org/linux/man-pages/man7/libc.7.html&#34;&gt;Linux libc&lt;/a&gt; (more commonly refereed to as libc5/libc4).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The FSF, to this day, still does not have direct authoritative control over the GCC compiler.&lt;/p&gt;
+&lt;h2 id=&#34;3-the-fsf-intentionally-makes-code-less-modular-to-spread-itself&#34;&gt;3. The FSF intentionally makes code less modular to spread itself&lt;/h2&gt;
+&lt;p&gt;The reason why GCC didn&amp;rsquo;t become a platform for compiler development like LLVM or qbe is because &lt;strong&gt;the FSF
+intentionally kept it back from being so.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&#34;https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html&#34;&gt;https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Anything that makes it easier to use GCC back ends without GCC front
+ends&amp;ndash;or simply brings GCC a big step closer to a form that would make
+such usage easy&amp;ndash;would endanger our leverage for causing new front
+ends to be free.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The FSF is a political movement that engages in intentional obfuscation to spread itself.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;4. glibc&amp;rsquo;s feature test macros are designed so that people would mark their code with the GNU projects name&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.man7.org/linux/man-pages/man7/feature_test_macros.7.html&#34;&gt;feature_test_macros&lt;/a&gt; are a opt-out, functionality removing, non-portable feature that was largely pioneered
+by glibc.&lt;/p&gt;
+&lt;p&gt;glibc gives you a few test macros by default (which most of the base functions are under).
+But If you wanna include something like &lt;code&gt;strptime()&lt;/code&gt; you need to &lt;code&gt;#define _XOPEN_SOURCE&lt;/code&gt;
+(which is &lt;a href=&#34;https://pubs.opengroup.org/onlinepubs/9799919799/&#34;&gt;against POSIX&lt;/a&gt;), except if you do that it &lt;strong&gt;turns the default ones off.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;However, if &lt;code&gt;#define _GNU_SOURCE&lt;/code&gt;, all feature test macros are implicitly defined.
+So &lt;em&gt;the most convenient way to deal with this opt-out &amp;ldquo;feature&amp;rdquo;&lt;/em&gt; is to mark your code with the
+GNU projects name.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;dup3()&lt;/code&gt; system call is neither written by GNU or even in the &amp;ldquo;GNU Operating System&amp;rsquo;s&amp;rdquo;
+Hurd kernel. And even though this is not GNU you still have to &lt;code&gt;#define _GNU_SOURCE&lt;/code&gt; to get it.&lt;/p&gt;
+&lt;h2 id=&#34;5-gnu-code-sucks&#34;&gt;5. GNU code &lt;em&gt;sucks&lt;/em&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;true&lt;/code&gt; command (which is only supposed to return 0) in most other utility implementations is 1 line of
+code (i.e. &lt;code&gt;int main(){}&lt;/code&gt;), GNU true is &lt;a href=&#34;https://github.com/coreutils/coreutils/blob/master/src/true.c&#34;&gt;80 lines&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Note: the &amp;ndash;help text support is actually a bug and possible security issue, because &lt;code&gt;/bin/true --help &amp;gt; /dev/full&lt;/code&gt; returns 1 instead of 0)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;GNU cat is &lt;a href=&#34;https://github.com/coreutils/coreutils/blob/master/src/cat.c&#34;&gt;813 lines of code&lt;/a&gt;, Busybox cat is
+&lt;a href=&#34;https://git.busybox.net/busybox/tree/coreutils/cat.c&#34;&gt;217 lines&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;glibc can take up to &lt;a href=&#34;https://linuxfromscratch.org/lfs/downloads/11.0/LFS-BOOK-11.0.pdf&#34;&gt;3 days (See end of pg. 34)&lt;/a&gt; to build on low-end hardware&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Many GNU libraries such as &lt;a href=&#34;https://stackoverflow.com/questions/57476533/why-is-statically-linking-glibc-discouraged&#34;&gt;glibc&lt;/a&gt; and &lt;a href=&#34;https://bugzilla.gnome.org/show_bug.cgi?id=768215#c16&#34;&gt;glib&lt;/a&gt; do not support static linking for no good reason&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I could point out more examples, but the message is conveyed that where a programmer might need 10 lines of code to do a job, a GNU programmer would need 100. I have yet to find someone who favors the GNU syntax style. And GNU code is filled with ifdefs, unneeded indirection and complexity, etc (read some yourself, pick a GNU project, any GNU project).&lt;/p&gt;
+&lt;h2 id=&#34;6-gnus-obsession-with-portability-adds-copius-amounts-of-complexity-and-helps-no-one&#34;&gt;6. GNUs obsession with portability adds copius amounts of complexity and helps no one&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;a href=&#34;https://invisible-island.net/ncurses/ncurses.faq.html#which_terminfo&#34;&gt;terminfo/termcap&lt;/a&gt; databases
+contain support for thousands of different terminals and terminal emulators no one uses (You can try this
+out now, set &lt;code&gt;TERM=vt100&lt;/code&gt; and run some ncurses programs). Terminal escape protocols have been more or less
+standardized since ANSI escape codes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The &lt;code&gt;reset&lt;/code&gt; command waits one second to support &lt;a href=&#34;https://unix.stackexchange.com/questions/335648/why-does-the-reset-command-include-a-delay&#34;&gt;physical terminals&lt;/a&gt; that fell out of favor for emulated ones in the early 90&amp;rsquo;s. It does not contain a check for whether or not the terminal is emulated, and will sleep regardless.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Portability concerns for &amp;ldquo;old versions of csh on System V&amp;rdquo; are &lt;a href=&#34;https://www.gnu.org/software/bash/manual/bash.html#Installing-Bash&#34;&gt;still included in the bash manual&lt;/a&gt;, and the autotools still check for portability concerns from the &amp;rsquo;80s and &amp;rsquo;90s&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more examples of this, lets look at the configure scripts for some of the GNU programs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The 23,000 line bash configure script contains portability checks for a bash version released in 1997 within &lt;a href=&#34;https://github.com/bminor/bash/blob/master/configure#L67C29-L67C38&#34;&gt;the first 100 lines.&lt;/a&gt;, further down it has checks for a &lt;a href=&#34;https://github.com/bminor/bash/blob/master/configure#L596C29-L596C35&#34;&gt;version of System V released in 1988&lt;/a&gt;, and &lt;a href=&#34;https://github.com/bminor/bash/blob/master/configure#L22254&#34;&gt;&amp;ldquo;pre-3.0 UWIN ksh&amp;rdquo;&lt;/a&gt; which from my searching became outdated in 2002.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The 13,000 line gawk configure script (Along with containing about half the portability checks from bash) contains checks for Solaris 7 (released in 1997) &lt;a href=&#34;https://github.com/forkmirror/gawk/blob/master/configure&#34;&gt;in the first 50 lines&lt;/a&gt;, &lt;a href=&#34;https://github.com/forkmirror/gawk/blob/master/configure#L39C34-L39C43&#34;&gt;Someone running a 386/AT Machine apparently had a issue&lt;/a&gt;. Oh no! &lt;a href=&#34;https://github.com/forkmirror/gawk/blob/master/configure#L11088&#34;&gt;IRIX 5.2 (1993) doesn&amp;rsquo;t support -lsocket&lt;/a&gt;. &lt;a href=&#34;https://github.com/forkmirror/gawk/blob/master/configure#L2651&#34;&gt;This entire comment block&lt;/a&gt; needs no introduction.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This matters in the modern world of software how?&lt;/p&gt;
+&lt;p&gt;I note that I picked these 2 at random and I&amp;rsquo;m not searching hard. These are everywhere and I&amp;rsquo;m sure I could
+find many more, No one is building modern versions of bash or the version of gawk from 2021 that Github
+mirror provides on System V machines, nor IRIX, Solaris, 386, AIX or even Hurd.&lt;/p&gt;
+&lt;h2 id=&#34;7-the-fsf-fractured-the-open-source-world-for-no-good-reason&#34;&gt;7. The FSF fractured the Open Source world for no good reason&lt;/h2&gt;
+&lt;p&gt;Nothing is &lt;em&gt;wrong&lt;/em&gt; with the GPLv2, there aren&amp;rsquo;t any loopholes in it. And most of the people I see using it
+(including myself for a while) just used it because &amp;ldquo;The number is bigger therefore it must be even more free than last time&amp;rdquo; and/or they want compatibility with other GPLv3 code.&lt;/p&gt;
+&lt;p&gt;If you ask someone to explain the general tenants of the GPLv2 and GPLv3, 90% of the time they come up
+with identical answers (&amp;ldquo;Permitted source code distribution with no non-GPL forks&amp;rdquo;). Yes there are reasons
+why GPLv3 was created such as DRM and Torrenting, but there wasn&amp;rsquo;t large spread exploitation of the GPLv2 to
+spread proprietary software in the same way that MINIX became the infrastructure for spyware with the IME.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;However&lt;/strong&gt;, The split between the GPLv2 and GPLv3 was infinitely more harmful to the FOSS world than anything it was
+conceptually supposed to prevent. The days of codesharing between open-source code without checking the license to make sure it isn&amp;rsquo;t illegal to do so are gone.&lt;/p&gt;
+&lt;p&gt;A benefit of open source over proprietary software is &lt;a href=&#34;https://www.catb.org/~esr/writings/taoup/html/ch16s01.html&#34;&gt;code-sharing between projects&lt;/a&gt;. And this isn&amp;rsquo;t as effective when there are multiple incompatible open
+source licenses that can&amp;rsquo;t legally share code.&lt;/p&gt;
+&lt;h2 id=&#34;8-gnu-pushes-incecently-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;8. GNU pushes incecently for texinfo, a format no one likes or uses.&lt;/h2&gt;
+&lt;p&gt;GNU info was designed to solve a problem nobody had, and in their push for it they made man pages &lt;a href=&#34;https://www.youtube.com/watch?v=rGSZFmQuQrU&#34;&gt;worse&lt;/a&gt;, which did create a problem, and when people who didn&amp;rsquo;t wanna use GNU info, they created their &lt;a href=&#34;https://cheat.sh&#34;&gt;own solutions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s documentation, not a website. I don&amp;rsquo;t need hyperlinks more than I need the ability to search the whole
+thing for a specific phrase. If you really need to split your man page up into multiple blocks there are
+so many features, it&amp;rsquo;s more useful to everyone involved to go the &lt;a href=&#34;https://linux.die.net/man/1/zsh&#34;&gt;zsh or ffmpeg rout&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;GNU info is not portable to other operating systems like man pages, nor well used even by most GNU projects,
+nor is the browser you need to get a benefit out of its format pleasant to use. Nor is it liked even within the GNU project.
+This does not change the fact GNU help2man by default refers to info pages in it&amp;rsquo;s output.&lt;/p&gt;
+&lt;p&gt;The reason why most man pages don&amp;rsquo;t contain examples is because the GNU project insisted on putting them only in
+texinfo pages and not converting them to man pages. And the normalization of this makes man pages worse for
+everyone.&lt;/p&gt;
+</description></item>
+	
 	<item><title>Writing a UTF-8 safe AWK</title>
 		<link>http://localhost:1313/articles/utfawk/</link>
 		<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
@@ -255,7 +483,6 @@ conditionals or extra rules.&lt;/p&gt;
 &lt;p&gt;Additional Resources:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.gnu.org/software/make/manual/make.pdf&#34;&gt;GNU make manual&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/oliverkwebb/oliverkwebb.github.io/blob/main/Makefile&#34;&gt;The makefile that use to do this for my website&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://pedantic.software/git/blogit&#34;&gt;blogit, another makefile based SSG&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description></item>

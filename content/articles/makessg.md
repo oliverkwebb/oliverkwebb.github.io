@@ -168,7 +168,6 @@ conditionals or extra rules.
 
 Additional Resources:
 * [GNU make manual](https://www.gnu.org/software/make/manual/make.pdf)
-* [The makefile that use to do this for my website](https://github.com/oliverkwebb/oliverkwebb.github.io/blob/main/Makefile)
 * [blogit, another makefile based SSG](https://pedantic.software/git/blogit)
 
 [1]: https://jekyllrb.com/

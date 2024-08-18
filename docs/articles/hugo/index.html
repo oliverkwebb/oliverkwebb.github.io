@@ -4,7 +4,7 @@
 	<title>Migrating to Hugo | Oliver Webb&#39;s Website</title>
 	<link rel="canonical" href="http://localhost:1313/">
 	<link rel='stylesheet' type='text/css' href='/style.css'>
-	<link rel="icon" href="/favicon.ico">
+	<link rel="icon" href="/favicon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 </head>
@@ -17,37 +17,80 @@
   </nav>
   <hr/>
 <main>
-<header><h1 id="tag_Migrating to Hugo">Migrating to Hugo</h1></header>
+<header><h1 id="tag_Migrating to Hugo">Migrating to Hugo
+<div class="subheading">August 18 2024</div></h1></header>
 <article>
 
-<h2 id="demystified-language">Demystified language</h2>
+<p>This website now runs on <a href="https://gohugo.io">hugo</a>. I migrated the infrastructure off the old static
+site generator that was written in Makefile.</p>
+<h2 id="why">Why?</h2>
+<ol>
+<li>
+<p>My static site generator isn&rsquo;t that unique, <a href="https://pedantic.software/git/blogit">blogit</a> already exists.</p>
+</li>
+<li>
+<p>You can do cool things with hugo that you can&rsquo;t with other SSG&rsquo;s (Better markdown compiler, templating, etc)</p>
+</li>
+<li>
+<p>Hugo isn&rsquo;t <em>that</em> large compared to other web frameworks</p>
+</li>
+</ol>
+<h2 id="what-i-dont-like">What I don&rsquo;t like.</h2>
+<ol>
+<li>
+<p>Isn&rsquo;t generalized enough</p>
+</li>
+<li>
+<p>Mystified language to make it&rsquo;s features sound cooler</p>
+</li>
+</ol>
 <dl>
 <dt><code>archetype</code></dt>
-<dd>&ldquo;hugo new content&rdquo; template</dd>
+<dd><code>hugo new content</code> template</dd>
 <dt><code>shortcode</code></dt>
 <dd>Macro</dd>
 <dt><code>partial</code></dt>
-<dd><code>Partial template</code></dd>
+<dd>Template that isn&rsquo;t a whole webpage</dd>
 <dt>_default</dt>
-<dd><code>Base templates</code></dd>
+<dd>Base templates</dd>
 </dl>
-<p>Hello! &#x1f44b;</p>
-<p>SUS</p>
-<h2 id="why-switch1">&ldquo;Why Switch?&rdquo;<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></h2>
-<p>You can <mark>do</mark> (H<del>2</del>0 1<sup>2</sup>)cool <del>things</del> <ins>like</ins>&hellip;</p>
-<p>[ ] Checkbox</p>
-<p>[X] Checkbox</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>a) {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;display highlighted code&#34;</span>;
+<h2 id="markdown-playground">Markdown playground</h2>
+<p>Insert emojis: &#x1f44b;</p>
+<ul>
+<li>
+<p><mark>highlighted text</mark></p>
+</li>
+<li>
+<p>super<sup>scripts</sup></p>
+</li>
+<li>
+<p><del>Strike-through</del></p>
+</li>
+<li>
+<p><ins>Underlined</ins></p>
+</li>
+<li>
+<p>Referring<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Checkboxes</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> Checkboxes</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">static</span> <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#d2a8ff;font-weight:bold">f</span>(<span style="color:#ff7b72">void</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">&#34; display highlighted code&#34;</span><span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">1</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>View github gists:
 <script src="https://gist.github.com/oliverkwebb/8b05751e685a01c6a2c71c2a8de69052.js"></script>
 </p>
+<p><a href="https://gohugo.io/about/features/">And many more</a></p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1">
-<p>nasadsd&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>To footnotes&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
@@ -58,7 +101,7 @@
 <hr/>
 <footer>
   <div id="nextprev">
-		<a href="/articles/stdgnuhistorymyth/" class="prev">&lt;&ndash; The standard GNU history myth</a>
+		<a href="/articles/gnulist/" class="prev">&lt;&ndash; GNU considered harmful (By me, here&#39;s why)</a>
 	</div>
 	<br/>
 <p>You can Subscribe via <a href="/articles.xml">RSS</a> to get updates.</p>
