@@ -1,10 +1,10 @@
 <rss version="2.0"><channel>
 	<title>Oliver Webb&#39;s Website</title>
-	<link>http://localhost:1313/articles/</link>
+	<link>https://oliverkwebb.github.io/articles/</link>
 	<language>en-us</language>
 	
 	<item><title>Migrating to Hugo</title>
-		<link>http://localhost:1313/articles/hugo/</link>
+		<link>https://oliverkwebb.github.io/articles/hugo/</link>
 		<pubDate>Sun, 18 Aug 2024 12:00:34 -0500</pubDate>
 		<description>&lt;p&gt;This website now runs on &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. I migrated the infrastructure off the old static
 site generator that was written in Makefile.&lt;/p&gt;
@@ -82,7 +82,7 @@ site generator that was written in Makefile.&lt;/p&gt;
 </description></item>
 	
 	<item><title>GNU considered harmful (By me, here&#39;s why)</title>
-		<link>http://localhost:1313/articles/gnulist/</link>
+		<link>https://oliverkwebb.github.io/articles/gnulist/</link>
 		<pubDate>Sat, 17 Aug 2024 00:00:00 &#43;0000</pubDate>
 		<description>&lt;p&gt;This list does not mention the [Richard Stallman controversy]&amp;lt;Link to Drew DeVault article here&amp;gt;.
 Nor his squabbles related to &lt;a href=&#34;https://sourceware.org/legacy-ml/libc-hacker/2000-06/msg00233.html&#34;&gt;glibc&lt;/a&gt;
@@ -232,7 +232,7 @@ everyone.&lt;/p&gt;
 </description></item>
 	
 	<item><title>Writing a UTF-8 safe AWK</title>
-		<link>http://localhost:1313/articles/utfawk/</link>
+		<link>https://oliverkwebb.github.io/articles/utfawk/</link>
 		<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
 		<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for it&amp;rsquo;s
 applications. This has kept things like &lt;a href=&#34;http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html&#34;&gt;the fully GNU compatible tr&lt;/a&gt;
@@ -295,7 +295,7 @@ is figuring out &lt;em&gt;what&lt;/em&gt; needs unicode handling.&lt;/p&gt;
 </description></item>
 	
 	<item><title>Replacing Neovim with vis</title>
-		<link>http://localhost:1313/articles/vis/</link>
+		<link>https://oliverkwebb.github.io/articles/vis/</link>
 		<pubDate>Wed, 17 Apr 2024 00:00:00 &#43;0000</pubDate>
 		<description>&lt;p&gt;Lately, I&amp;rsquo;ve been unhappy with neovim and it&amp;rsquo;s bloat. vi is a simple and beautiful tool by
 itself, but it&amp;rsquo;s most popular deviation vim has been bloated to the point of being unmanageable
@@ -351,7 +351,7 @@ versatile.&lt;/p&gt;
 </description></item>
 	
 	<item><title>Making A static site generator with `make`</title>
-		<link>http://localhost:1313/articles/makessg/</link>
+		<link>https://oliverkwebb.github.io/articles/makessg/</link>
 		<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
 		<description>&lt;p&gt;When making my website, generating static webpages for
 my blogs and articles was a big concern. I want to be able
