@@ -15,6 +15,7 @@ Projects I've made:
 - [cheat](https://github.com/oliverkwebb/cheat): An offline analog for [cheat.sh](https://cheat.sh)
 - [moontool](https://github.com/oliverkwebb/moontool): A collection of C programs that work with moon phases
 - [ytmpv](https://github.com/oliverkwebb/ytmpv): A shell script that provides quick accses to proxies to counter anti-ad-block
+- [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and complient with C89
 
 Other projects I've contributed significantly to:
 

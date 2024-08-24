@@ -1,10 +1,19 @@
-body {
-font-family:Ubuntu,Helvetica,sans-serif;
-width:66%;
-margin:auto;
+html {
+background-color:#E0E0EA;
 }
 
-p,li,table,dl { line-height:1.5 }
+body {
+width:66%;
+margin:auto;
+font-family:"Roboto Slab", Dotum, "Noto Sans", Helvetica, sans-serif;
+}
+
+p,li,table,dl {
+line-height:1.5;
+color:#111;
+font-family:"Noto Sans", Helvetica, sans-serif;
+font-size:1.1em;
+}
 
 td,th {
 border-bottom:2px solid #fff;
@@ -21,9 +30,8 @@ border-radius:4px;
 }
 p code {
 color:#fff;
-background-color:#111;
+background-color:#444;
 }
-
 
 table {
 border-collapse:collapse;
@@ -42,7 +50,7 @@ padding:3px;
 }
 
 nav .title {
-font-size:1.2em;
+font-size:1.5em;
 font-weight:700;
 }
 
