@@ -27,5 +27,4 @@ commands to it's vi. Among other things, such as `tr -t`.
 
 - [wak](https://www.github.com/raygard/wak): POSIX compliment Awk implementation in 4500 Lines of C, used in toybox.
 
-I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`,
-and `rshift()`) and [UTF8 handling support](/articles/utfawk)
+I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`, and `rshift()`) and [UTF8 handling support](/articles/utfawk)
