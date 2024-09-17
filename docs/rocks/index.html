@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Oliver Webb&#39;s Website</title>
+	<link rel="canonical" href="https://oliverkwebb.github.io/">
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+  <nav>
+    <span class="title">Oliver Webb's Website</span>
+    <a href="/index.xml">RSS</a>
+    <a href="https://www.github.com/oliverkwebb">GitHub</a>
+    <a href="/aboutme">About Me and Contact</a>
+    <a href="/">Home</a>
+  </nav>
+  <hr/>
+<main>
+<header><h1 id="tag_"></h1></header>
+<article>
+
+<h1 id="software-i-use-and-recommend">Software I Use and Recommend</h1>
+<h3 id="distros">Distros</h3>
+<ul>
+<li><a href="https://archlinux.org/">Arch Linux</a> - Modern, minimal, a good package manager, well supported, and ran by hobbyists.</li>
+<li><a href="https://artixlinux.org/">Artix Linux</a> - Arch without SystemD.</li>
+<li><a href="https://www.alpinelinux.org/">Alpine Linux</a> - As small and simplistic as it gets.</li>
+</ul>
+<h3 id="base-software">Base Software</h3>
+<ul>
+<li><a href="https://www.busybox.net">busybox</a> - The Swiss Army Knife of Embedded Linux.</li>
+<li><a href="https://landley.net/toybox/">toybox</a> - A rewrite of busybox with a focus on clean code.</li>
+<li><a href="https://github.com/MirBSD/mksh">mksh</a> - Small portable version of the Korn Shell.</li>
+</ul>
+<h3 id="libraries">Libraries</h3>
+<ul>
+<li><a href="https://musl.libc.org">musl</a> - A minimal standard C library implementation that&rsquo;s much more flexible than glibc.</li>
+<li><a href="https://github.com/sabotage-linux/netbsd-curses">netbsd-curses</a> - A implementation of ncurses that&rsquo;s much smaller and less bloated.</li>
+</ul>
+<h3 id="other-command-line-software">Other Command Line Software</h3>
+<ul>
+<li><a href="https://github.com/martanne/vis">vis</a> - Minimal yet extensible vi clone based on structural regex&rsquo;s.</li>
+<li><a href="https://github.com/tmux/tmux">tmux</a> - Terminal Multiplexer, provides tabbing and session management inside the terminal.</li>
+<li><a href="https://www.ivarch.com/programs/pv.shtml">pv</a> - Pipe viewer, view the data output of a pipe.</li>
+<li><a href="https://www.gohugo.io">hugo</a> - Extensible static site generator based on templates.</li>
+<li><a href="https://www.gnu.org/software/groff/manual/groff.html">groff</a> - A implementation of troff macros for making papers and such without LaTeX (or even worse; LibreOffice).</li>
+<li><a href="https://graphviz.org/">graphviz</a> - A simple graphing software that can be used for making UML diagrams, dependency chain maps, etc.]</li>
+<li><a href="https://github.com/andmarti1424/sc-im">sc-im</a> - A simple spreadsheet and CSV editor.</li>
+<li><a href="https://www.passwordstore.org/">pass</a> - A simple password manager written in bash.</li>
+<li><a href="https://iamb.chat/">iamb</a> - Vim Like matrix client with sixel image support.</li>
+</ul>
+<h3 id="xorg-programs">Xorg Programs</h3>
+<ul>
+<li><a href="https://github.com/stoeckmann/xwallpaper">xwallpaper</a> - Simple wallpaper setter.</li>
+<li><a href="https://dwm.suckless.org">dwm</a> - Dynamic Widow Manager.</li>
+<li><a href="https://i3wm.org/">i3wm</a> - Small window manager with different layouts and customization ability.</li>
+<li><a href="https://codeberg.org/nsxiv/nsxiv/">nsxiv</a> - Image viewer with gifs, scripting, and grid mode support.</li>
+<li><a href="https://st.suckless.org">st</a> - Simple terminal, does its job with as small a footprint as possible.</li>
+<li><a href="https://tools.suckless.org/dmenu/">dmenu</a> - General purpose select menu.</li>
+<li><a href="https://vivien.github.io/i3blocks/">i3blocks</a> - Shell script based bar generator for i3wm&rsquo;s bar.</li>
+</ul>
+<h3 id="wayland-programs">Wayland Programs</h3>
+<ul>
+<li><a href="https://swaywm.org/">sway</a> - A fork of i3wm for wayland, integrates tasks that xrandr and xwallpaper would normally do into the window manager.</li>
+<li><a href="https://codeberg.org/dnkl/foot/">foot</a> - Foo Terminal, Minimal Wayland Terminal.</li>
+<li><a href="https://github.com/ShaqeelAhmad/swiv">swiv</a> - A fork of SXIV for wayland.</li>
+<li><a href="https://github.com/Alexays/Waybar">Waybar</a> - A highly extensible wayland bar.</li>
+</ul>
+<h3 id="general-purpose-gui-programs">General Purpose GUI Programs</h3>
+<ul>
+<li><a href="https://github.com/dunst-project/dunst">dunst</a> - Minimal notification manager and daemon.</li>
+<li><a href="https://maoschanz.github.io/drawing/">drawing</a> - Image editor with a simple UI, the MS paint of Linux.</li>
+<li><a href="https://mpv.io/">mpv</a> - Minimal extensible media player.</li>
+<li><a href="https://pwmt.org/projects/zathura/">zathura</a> - Vim-like document reader for PDF and other formats.</li>
+</ul>
+<h3 id="why-systemd-sucks">Why systemd sucks</h3>
+<p>SystemD is actively harmful to the world of open source. An init system&rsquo;s only job is to
+get out of someones way and to start up some background daemons. Before SystemD, no one <em>had to care</em>
+if a machine was running OpenRC, runit, sinit, or SysVinit. Those systems recognized their <strong>one and only</strong>
+job was to boot the system into a usable environment and handle shutdown cleanup, reap orphan processes, and
+start, stop, and track the dependency chain of daemons (whilst ideally taking advantage of SMP).</p>
+<p>SystemD however, besides being a order of magnitude larger than other init systems, tries to invade userspace
+constantly by embracing and extending userspace-level APIs. A recent case study on this is their <a href="https://mastodon.social/@pid_eins/112353324518585654">sudo replacement</a>,
+run0, which exists because sudo is 250,000 lines of code, and instead of using the fairly simple and easy to understand
+API that is setuid. They rely on the systemd exclusive API (configured with <strong>javascript</strong>) polkit. Also see dbus, udev,
+and <a href="https://github.com/tmux/tmux/issues/428">trying to shove systemd into other applications</a>.</p>
+<p>Microsoft made office open XML so complex because Microsoft <a href="http://noooxml.wikidot.com/">doesn&rsquo;t want you to have a choice</a>, and now
+they&rsquo;re dumping money into SystemD because SystemD <a href="https://www.redhat.com/archives/fedora-devel-list/2008-January/msg00861.html">doesn&rsquo;t want you to have a choice</a>.
+GCC mangled their project structure because the FSF <a href="https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html">doesn&rsquo;t want you to have a choice</a>.</p>
+<p>There&rsquo;s a widely accepted name for this. &ldquo;Vendor lock-in&rdquo;</p>
+<p>Lets contrast this with other linux software. There are multiple implementations of the UNIX utilities in wide use,
+and I&rsquo;m able to swap out them for each other to my hearts desire if I don&rsquo;t like the fact GNU <code>true</code> can return 1
+(<code>/bin/true --help &gt; /dev/full</code>) or busybox dd doesn&rsquo;t do <code>status=progress</code>. If I don&rsquo;t like the fact glibc produces
+massive static binaries due to no <a href="https://elinux.org/images/2/2d/ELC2010-gc-sections_Denys_Vlasenko.pdf">-ffunction-sections</a> I can use musl. There are multiple <a href="https://github.com/sabotage-linux/netbsd-curses">ncurses implementations</a>.
+There <em>were</em> multiple <a href="https://en.wikipedia.org/wiki/XFree86">X Implementations</a> and that didn&rsquo;t stop because of
+the vendor lock in policies that RedHat and GNU engage in. And on the other side, wlroots is far from being the dominant
+force in wayland (which is just a standard). Vi and Emacs both have more implementations than I care to name. As do HTTP
+daemons, POSIX compatible shells, and C library implementations. This prevents the type of monoculture and frog boiling
+we see in most enterprise software.</p>
+
+
+</article>
+</main>
+<hr/>
+<footer>
+  <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
+  <p>The content of this site by &#xa9; 2024 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+
+</body>
+</html>

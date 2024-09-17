@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<title>The C Time API, Rethought | Oliver Webb&#39;s Website</title>
+	<link rel="canonical" href="http://localhost:1313/">
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+  <nav>
+    <span class="title">Oliver Webb's Website</span>
+    <a href="/index.xml">RSS</a>
+    <a href="https://www.github.com/oliverkwebb">GitHub</a>
+    <a href="/aboutme">About Me and Contact</a>
+    <a href="/">Home</a>
+  </nav>
+  <hr/>
+<main>
+<header><h1 id="tag_The C Time API, Rethought">The C Time API, Rethought</h1></header>
+<article>
+
+<p>Out of all the components of C, it&rsquo;s time API is probably the one most plagued with legacy cruft.
+To the point almost every regularly used element of it has some design decision that&rsquo;s been obsolete for
+decades.</p>
+<p>As a example, here is some code I use to print the current time for my status bar</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;time.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;unistd.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic"></span><span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">main</span>(<span style="color:#ff7b72">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#ff7b72">char</span> buf[<span style="color:#a5d6ff">40</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#ff7b72">time_t</span> now <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">time</span>(<span style="color:#a5d6ff">0</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff7b72">while</span> (<span style="color:#a5d6ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">strftime</span>(buf, <span style="color:#a5d6ff">40</span>, <span style="color:#a5d6ff">&#34;%a %b %d %T&#34;</span>, <span style="color:#d2a8ff;font-weight:bold">localtime</span>(<span style="color:#ff7b72;font-weight:bold">&amp;</span>now));
+</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">puts</span>(buf);
+</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">fflush</span>(stdout);
+</span></span><span style="display:flex;"><span>    <span style="color:#d2a8ff;font-weight:bold">sleep</span>(<span style="color:#a5d6ff">1</span>);
+</span></span><span style="display:flex;"><span>    now <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">time</span>(<span style="color:#a5d6ff">0</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>time()</code> unnecessarily takes a pointer argument to write to</li>
+<li><code>strftime()</code> has to write to a string of a <em>fixed length</em> it <em>can not dynamically allocate</em> (This is less legacy than it is bad design)</li>
+<li><code>localtime()</code> needs the pointer to a time_t value <em>even though it does not change it</em> because of register size concerns on PDP-11&rsquo;s</li>
+<li><code>sleep()</code> cannot sleep for sub-second amounts of time, <code>usleep()</code> is deprecated and it&rsquo;s alternative <code>nanosleep()</code> requires you to define variables</li>
+</ul>
+<p>This is possibly the simplest real-world use of the C time API. And even then the legacy cruft and bad design makes this code significantly less organic.</p>
+<p>For comparison, here is the corresponding lua code</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#ff7b72">while</span> <span style="color:#79c0ff">true</span> <span style="color:#ff7b72">do</span>
+</span></span><span style="display:flex;"><span>	print(os.date(<span style="color:#a5d6ff">&#34;%a %b %d %T&#34;</span>))
+</span></span><span style="display:flex;"><span>	io.stdout:flush();
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">if</span> <span style="color:#ff7b72;font-weight:bold">not</span> os.execute(<span style="color:#a5d6ff">&#34;sleep 1&#34;</span>) <span style="color:#ff7b72">then</span> <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">1</span>; <span style="color:#ff7b72">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">end</span>
+</span></span></code></pre></div><p>I&rsquo;m making my own C time API not because I expect it to have widespread use. But as a proof of concept of what could&rsquo;ve been.
+And to illustrate some of the subtler design flaws of the time library.</p>
+<h2 id="scope">Scope</h2>
+<p>I will be using the functions described in Eric S. Raymond&rsquo;s <em><a href="https://www.catb.org/~esr/time-programming/index.asc">Time, Clock, and Calendar Programming In C</a></em>
+as a boundary for the C time API. These 40 something functions can be classified as:</p>
+<ul>
+<li>Alarm/Timer (<code>alarm()</code>, <code>ualarm()</code>, the <code>timer_</code> group)</li>
+<li>Getting the current time (<code>time()</code>, <code>clock_gettime()</code>, <code>getttimeofday()</code>, <code>ftime()</code>, <code>timespec_get()</code>)</li>
+<li>Setting the current time (<code>settimeofday()</code>, <code>clock_settime()</code>)</li>
+<li>NTP correction (<code>adjtime()</code>/<code>adjtimex()</code>)</li>
+<li>Converting system time to calendar format (<code>localtime()</code>, <code>gmtime()</code>, and their variants)</li>
+<li>Convertint calendar time to system format (<code>mktime()</code>, <code>timegm()</code>, <code>timelocal()</code>, and their variants)</li>
+<li>Sleeping (<code>sleep()</code>, <code>usleep()</code>, <code>nanosleep()</code>)</li>
+<li>Converting a time to a string (<code>asctime()</code>, <code>ctime()</code>, and their variants, as well as <code>strftime()</code>)</li>
+<li>Converting a string to a time (<code>getdate()</code> and <code>strptime()</code>)</li>
+<li>Timezone handling (<code>tzset()</code>, and the Berkeley timezone API)</li>
+<li>Clock handling (<code>clock()</code>, <code>clock_getres()</code>)</li>
+</ul>
+<p>The only function that doesn&rsquo;t fit here is <code>difftime()</code>, which swears it isn&rsquo;t just a subtraction.
+Although in libc&rsquo;s such as musl. <a href="https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c">It&rsquo;s actually just a subtraction</a></p>
+<p>Out of these, clock handling, system level APIs for setting the time, Alarm/Timer handling (which has as much to do with signals as it does time),
+And NTP correction are probably out of scope. This leaves:</p>
+<ul>
+<li>Getting the current time</li>
+<li>Converting system time to calendar format</li>
+<li>Convertint calendar time to system format</li>
+<li>Converting a time to a string</li>
+<li>Converting a string to a time</li>
+<li>Timezone handling</li>
+<li>Sleeping</li>
+</ul>
+<p>The main types of the C time API (that matter to us) are:</p>
+<ul>
+<li><code>time_t</code>, which in practice is a 64 bit signed integer of seconds since 1/1/1970 00:00:00 UTC.</li>
+<li><code>struct tm</code>, a broken down (both literally and figuratively) representation of calendar time.</li>
+<li><code>struct timespec</code>, a representation of fractional time in seconds and nanoseconds.</li>
+<li><code>timezone_t</code>, a BSD exclusive opaque timezone type.</li>
+</ul>
+<p><code>time_t</code> and <code>struct timespec</code> are used almost exclusively in kernel-level functions. Whilst <code>struct tm</code> is used
+almost exclusively with conversion of time to and from strings.</p>
+<h2 id="nanoseconds-floating-point-percision-and-the-y2262-problem">Nanoseconds, Floating Point Percision, and the Y2262 problem</h2>
+<p>It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
+It&rsquo;d give strftime and strptime the ability to print mili/micro/nanoseconds. And it&rsquo;d remove the need for
+the timespec struct used in a lot of system-level time functions.</p>
+<p>Because of this, in my time library, the base time type (<code>date_t</code>) should contain the number of nanoseconds since the Unix Epoch.</p>
+<p>A floating point number is able to store values up to 2<sup>mantissa_length</sup> with integral precision. Actually, calculating floating
+point precision loss is surprisingly easy. For a number n; Any number below 2<sup>n</sup> will have at least 2<sup>n-mantissa_length</sup> precision.
+Which means for any resolution, we will lose precision at 2<sup>mantissa_length</sup> <em>units of that resolution</em> regardless of base resolution.</p>
+<p>For a quick proof of this. Lets consider a long double base resolution of 1 second. We lose nanosecond level precision when 2<sup>n-63</sup> is 2^-30^
+(around 10^-9^). Which means we lose precision at ~2<sup>33</sup> seconds.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ date -d &#34;@$((2**33))&#34;
+</span></span><span style="display:flex;"><span>Wed Mar 16 07:56:32 AM CDT 2242
+</span></span></code></pre></div><p>If this were to have nanosecond level precision, we&rsquo;d lose precision at 2<sup>63</sup> nanoseconds (Around 2262 (The 20 year difference is due to the fact
+that 10^-9^ is actually around 2^-29.8^)).</p>
+<p>Using <a href="https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4">some go code</a> I was able to generate the following table:</p>
+
+<table>
+<thead>
+    <tr>
+       <td>Type/Resolution</td>  <td> float</td>  <td> int</td>  <td> double</td>  <td> long/x87 long double</td> 
+    </tr>
+</thead>
+<tbody>
+  
+    <tr>
+       <td>Width</td>  <td> 23</td>  <td> 31</td>  <td> 52</td>  <td> 63</td> 
+    </tr>
+  
+    <tr>
+       <td>1 ns</td>  <td> 1970-01-01T00:00</td>  <td> 1970-01-01T00:00</td>  <td> 1970-02-22T02:59</td>  <td> 2262-04-11T23:47</td> 
+    </tr>
+  
+    <tr>
+       <td>-1 ns</td>  <td> 1969-12-31T23:59</td>  <td> 1969-12-31T23:59</td>  <td> 1969-11-09T21:00</td>  <td> 1677-09-21T00:12</td> 
+    </tr>
+  
+    <tr>
+       <td>10 ns</td>  <td> 1970-01-01T00:00</td>  <td> 1970-01-01T00:00</td>  <td> 1971-06-06T05:59</td>  <td> 4892-10-07T21:52</td> 
+    </tr>
+  
+    <tr>
+       <td>-10 ns</td>  <td> 1969-12-31T23:59</td>  <td> 1969-12-31T23:59</td>  <td> 1968-07-28T18:00</td>  <td> -0953-03-26T02:07</td> 
+    </tr>
+  
+    <tr>
+       <td>1 us</td>  <td> 1970-01-01T00:00</td>  <td> 1970-01-01T00:35</td>  <td> 2112-09-17T23:53</td>  <td> 294247-01-10T04:00</td> 
+    </tr>
+  
+    <tr>
+       <td>-1 us</td>  <td> 1969-12-31T23:59</td>  <td> 1969-12-31T23:24</td>  <td> 1827-04-16T00:06</td>  <td> -290308-12-21T19:59</td> 
+    </tr>
+  
+    <tr>
+       <td>1 ms</td>  <td> 1970-01-01T02:19</td>  <td> 1970-01-25T20:31</td>  <td> 144683-05-23T16:29</td>  <td> 292278994-08-17T07:12</td> 
+    </tr>
+  
+    <tr>
+       <td>-1 ms</td>  <td> 1969-12-31T21:40</td>  <td> 1969-12-07T03:28</td>  <td> -140744-08-10T07:30</td>  <td> -292275055-05-16T16:47</td> 
+    </tr>
+  
+    <tr>
+       <td>1 s</td>  <td> 1970-04-08T02:10</td>  <td> 2038-01-19T03:14</td>  <td> 142715360-12-06T03:48</td>  <td> 292277026596-12-04T15:30</td> 
+    </tr>
+  
+    <tr>
+       <td>-1 s</td>  <td> 1969-09-25T21:49</td>  <td> 1901-12-13T20:45</td>  <td> -142711421-01-25T20:11</td>  <td> 292277026596-12-04T15:30</td> 
+    </tr>
+  
+</tbody>
+</table>
+
+
+<p>Looking at this chart alone, 64 bit integers don&rsquo;t seem much better than long doubles, but keep in mind that
+Integers support <em>One percision</em>, Floating point values support <em>all percisions to the same extent regardless</em></p>
+<p>For this reason, <code>date_t</code> is a long double floating point value of seconds since the epoch.</p>
+<h2 id="timezones-matter">Timezones matter</h2>
+
+
+</article>
+</main>
+<hr/>
+<footer>
+  <div id="nextprev">
+		<a href="/articles/gnulist/" class="prev">&lt;&ndash; GNU considered harmful (By me, here&#39;s why)</a>
+	</div>
+	<br/>
+<p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
+  <p>The content of this site by &#xa9; 2024 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+
+</body>
+</html>

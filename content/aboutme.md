@@ -10,14 +10,16 @@ I am at the time of writing (August 2024) 15 and a high school student.
 And have been programming and learning about how computers work for a
 couple years. I know how to work C, Lua, Bash, and Linux, extensively.
 
-Projects I've made:
+I have a page describing the software I use [here](/rocks)
+
+## Projects I've made
 
 - [cheat](https://github.com/oliverkwebb/cheat): An offline analog for [cheat.sh](https://cheat.sh)
 - [moontool](https://github.com/oliverkwebb/moontool): A collection of C programs that work with moon phases
 - [ytmpv](https://github.com/oliverkwebb/ytmpv): A shell script that provides quick accses to proxies to counter anti-ad-block
 - [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and complient with C89
 
-Other projects I've contributed significantly to:
+## Other projects I've contributed significantly to
 
 - [toybox](https://www.landley.net/toybox): Over 200 Linux command line utilities in a single (500KB) executable
 

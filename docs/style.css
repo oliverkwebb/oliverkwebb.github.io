@@ -15,8 +15,13 @@ font-family:"Noto Sans", Helvetica, sans-serif;
 font-size:1.1em;
 }
 
+table {
+  border-collapse: collapse;
+  width:100%;
+  border:2px solid white;
+}
 td,th {
-border-bottom:2px solid #fff;
+border-bottom:2px solid;
 padding:6px;
 }
 
