@@ -1,7 +1,7 @@
 ---
 title: "The C Time API, Rethought"
-date: 2024-09-07T10:25:12-05:00
 draft: true
+date: 2024-09-07T10:25:12-05:00
 ---
 
 Out of all the components of C, it's time API is probably the one most plagued with legacy cruft.

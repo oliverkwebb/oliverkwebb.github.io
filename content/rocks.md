@@ -5,15 +5,25 @@ date: 2024-09-14T11:13:15-05:00
 
 ### Distros
 
-* [Arch Linux] - Modern, minimal, a good package manager, well supported, and ran by hobbyists.
-* [Artix Linux](https://artixlinux.org/) - Arch without SystemD.
 * [Alpine Linux](https://www.alpinelinux.org/) - As small and simplistic as it gets.
+* [Arch Linux](https://archlinux.org/) - Modern, minimal, a good package manager, well supported, and ran by hobbyists.
+* [Artix Linux](https://artixlinux.org/) - Arch without SystemD.
 
 ### Base Software
 
 * [busybox](https://www.busybox.net) - The Swiss Army Knife of Embedded Linux.
 * [toybox](https://landley.net/toybox/) - A rewrite of busybox with a focus on clean code.
-* [mksh](https://github.com/MirBSD/mksh) - Small portable version of the Korn Shell.
+* [yash](https://github.com/magicant/yash) - A easy to customize, fast, yet minimal shell.
+
+### Compilers/Languages
+
+* [tcc](https://bellard.org/tcc/) - A small fast C compiler that later became QEMU.
+* [lua](https://www.lua.org/) - The most portable, embeddable, small, flexible, principled, 30K lines of C I've seen.
+* [kdl](https://kdl.dev/) - A human friendly documentation language.
+* [groff](https://www.gnu.org/software/groff/manual/groff.html) - A implementation of troff macros for making papers and such without LaTeX (or even worse; LibreOffice).
+* [graphviz](https://graphviz.org/) - A simple graphing software that can be used for making UML diagrams, dependency chain maps, etc.]
+* [howard-bc](https://github.com/gavinhoward/bc) - A fully GNU compatible bc implementation, with an inbuilt bignum library.
+* [wak](https://github.com/raygard/wak) - A awk implementation in 4500 SLOC of no dependency C.
 
 ### Libraries
 
@@ -22,32 +32,31 @@ date: 2024-09-14T11:13:15-05:00
 
 ### Other Command Line Software
 
-* [vis](https://github.com/martanne/vis) - Minimal yet extensible vi clone based on structural regex's.
-* [tmux](https://github.com/tmux/tmux) - Terminal Multiplexer, provides tabbing and session management inside the terminal.
-* [pv](https://www.ivarch.com/programs/pv.shtml) - Pipe viewer, view the data output of a pipe.
 * [hugo](https://www.gohugo.io) - Extensible static site generator based on templates.
-* [groff](https://www.gnu.org/software/groff/manual/groff.html) - A implementation of troff macros for making papers and such without LaTeX (or even worse; LibreOffice).
-* [graphviz](https://graphviz.org/) - A simple graphing software that can be used for making UML diagrams, dependency chain maps, etc.]
-* [sc-im](https://github.com/andmarti1424/sc-im) - A simple spreadsheet and CSV editor.
-* [pass](https://www.passwordstore.org/) - A simple password manager written in bash.
 * [iamb](https://iamb.chat/) - Vim Like matrix client with sixel image support.
+* [pass](https://www.passwordstore.org/) - A simple password manager written in bash.
+* [pv](https://www.ivarch.com/programs/pv.shtml) - Pipe viewer, view the data output of a pipe.
+* [sc-im](https://github.com/andmarti1424/sc-im) - A simple spreadsheet and CSV editor.
+* [sunwait](https://github.com/risacher/sunwait) - Get the Sunrise and Sunset times
+* [tmux](https://github.com/tmux/tmux) - Terminal Multiplexer, provides tabbing and session management inside the terminal.
+* [vis](https://github.com/martanne/vis) - Minimal yet extensible vi clone based on structural regex's.
+* [earlyoom](https://github.com/rfjakob/earlyoom) - Since the kernel can't do its own job.
 
 ### Xorg Programs
 
-* [xwallpaper](https://github.com/stoeckmann/xwallpaper) - Simple wallpaper setter.
+* [dmenu](https://tools.suckless.org/dmenu/) - General purpose select menu.
 * [dwm](https://dwm.suckless.org) - Dynamic Widow Manager.
 * [i3wm](https://i3wm.org/) - Small window manager with different layouts and customization ability.
 * [nsxiv](https://codeberg.org/nsxiv/nsxiv/) - Image viewer with gifs, scripting, and grid mode support.
 * [st](https://st.suckless.org) - Simple terminal, does its job with as small a footprint as possible.
-* [dmenu](https://tools.suckless.org/dmenu/) - General purpose select menu.
-* [i3blocks](https://vivien.github.io/i3blocks/) - Shell script based bar generator for i3wm's bar.
+* [xwallpaper](https://github.com/stoeckmann/xwallpaper) - Simple wallpaper setter.
 
 ### Wayland Programs
 
 * [sway](https://swaywm.org/) - A fork of i3wm for wayland, integrates tasks that xrandr and xwallpaper would normally do into the window manager.
 * [foot](https://codeberg.org/dnkl/foot/) - Foo Terminal, Minimal Wayland Terminal.
 * [swiv](https://github.com/ShaqeelAhmad/swiv) - A fork of SXIV for wayland.
-* [Waybar](https://github.com/Alexays/Waybar) - A highly extensible wayland bar.
+* [waybar](https://github.com/Alexays/Waybar) - A highly extensible wayland bar.
 
 ### General Purpose GUI Programs
 
@@ -55,6 +64,9 @@ date: 2024-09-14T11:13:15-05:00
 * [drawing](https://maoschanz.github.io/drawing/) - Image editor with a simple UI, the MS paint of Linux.
 * [mpv](https://mpv.io/) - Minimal extensible media player.
 * [zathura](https://pwmt.org/projects/zathura/) - Vim-like document reader for PDF and other formats.
+* [dillo](https://dillo-browser.github.io/) - A retro-style low footprint, although less than functional, browser with gemini and gopher support.
+* [ludo](https://github.com/libretro/ludos) - A minimalist, sleek, painless retroarch alternative.
+* [i3blocks](https://vivien.github.io/i3blocks/) - Shell script based bar generator for i3wm's bar.
 
 ### Why systemd sucks
 
@@ -88,7 +100,6 @@ we see in most enterprise software.
 
 [^1]: btw
 
-[Arch Linux]: https://archlinux.org/
 [OOXML]: http://noooxml.wikidot.com/
 [SystemD-RedHat]: https://www.redhat.com/archives/fedora-devel-list/2008-January/msg00861.html
 [sudo replacement]: https://mastodon.social/@pid_eins/112353324518585654
