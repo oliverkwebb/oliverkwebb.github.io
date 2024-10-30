@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
 	<title>The C Time API, Rethought | Oliver Webb&#39;s Website</title>
-	<link rel="canonical" href="http://localhost:1313/">
+	<link rel="canonical" href="https://oliverkwebb.github.io/">
 	<link rel='stylesheet' type='text/css' href='/style.css'>
 	<link rel="icon" href="/favicon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,7 @@
 <header><h1 id="tag_The C Time API, Rethought">The C Time API, Rethought</h1></header>
 <article>
 
-<p>Out of all the components of C, it&rsquo;s time API is probably the one most plagued with legacy cruft.
+<p>Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
 To the point almost every regularly used element of it has some design decision that&rsquo;s been obsolete for
 decades.</p>
 <p>As a example, here is some code I use to print the current time for my status bar</p>
@@ -49,11 +49,10 @@ decades.</p>
 </span></span><span style="display:flex;"><span>	io.stdout:flush();
 </span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">if</span> <span style="color:#ff7b72;font-weight:bold">not</span> os.execute(<span style="color:#a5d6ff">&#34;sleep 1&#34;</span>) <span style="color:#ff7b72">then</span> <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">1</span>; <span style="color:#ff7b72">end</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">end</span>
-</span></span></code></pre></div><p>I&rsquo;m making my own C time API not because I expect it to have widespread use. But as a proof of concept of what could&rsquo;ve been.
-And to illustrate some of the subtler design flaws of the time library.</p>
+</span></span></code></pre></div><p>I&rsquo;m making my own C time API not because I expect it to have widespread use. But as a proof of concept of what could&rsquo;ve been, and to illustrate some of the subtler design flaws of the time library.</p>
 <h2 id="scope">Scope</h2>
 <p>I will be using the functions described in Eric S. Raymond&rsquo;s <em><a href="https://www.catb.org/~esr/time-programming/index.asc">Time, Clock, and Calendar Programming In C</a></em>
-as a boundary for the C time API. These 40 something functions can be classified as:</p>
+as a boundary for the C time API. These forty-something functions can be classified as:</p>
 <ul>
 <li>Alarm/Timer (<code>alarm()</code>, <code>ualarm()</code>, the <code>timer_</code> group)</li>
 <li>Getting the current time (<code>time()</code>, <code>clock_gettime()</code>, <code>getttimeofday()</code>, <code>ftime()</code>, <code>timespec_get()</code>)</li>
@@ -68,7 +67,7 @@ as a boundary for the C time API. These 40 something functions can be classified
 <li>Clock handling (<code>clock()</code>, <code>clock_getres()</code>)</li>
 </ul>
 <p>The only function that doesn&rsquo;t fit here is <code>difftime()</code>, which swears it isn&rsquo;t just a subtraction.
-Although in libc&rsquo;s such as musl. <a href="https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c">It&rsquo;s actually just a subtraction</a></p>
+Although in libc&rsquo;s such as musl, <a href="https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c">it&rsquo;s actually just a subtraction</a>.</p>
 <p>Out of these, clock handling, system level APIs for setting the time, Alarm/Timer handling (which has as much to do with signals as it does time),
 And NTP correction are probably out of scope. This leaves:</p>
 <ul>
@@ -97,13 +96,14 @@ the timespec struct used in a lot of system-level time functions.</p>
 <p>A floating point number is able to store values up to 2<sup>mantissa_length</sup> with integral precision. Actually, calculating floating
 point precision loss is surprisingly easy. For a number n; Any number below 2<sup>n</sup> will have at least 2<sup>n-mantissa_length</sup> precision.
 Which means for any resolution, we will lose precision at 2<sup>mantissa_length</sup> <em>units of that resolution</em> regardless of base resolution.</p>
-<p>For a quick proof of this. Lets consider a long double base resolution of 1 second. We lose nanosecond level precision when 2<sup>n-63</sup> is 2^-30^
-(around 10^-9^). Which means we lose precision at ~2<sup>33</sup> seconds.</p>
+<p>For a quick proof of this, lets consider a long double base resolution of 1 second.
+We lose nanosecond level precision when 2<sup>n-63</sup> is 10^-9^.
+Which means we lose precision at around ~2<sup>33</sup> seconds.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ date -d &#34;@$((2**33))&#34;
 </span></span><span style="display:flex;"><span>Wed Mar 16 07:56:32 AM CDT 2242
 </span></span></code></pre></div><p>If this were to have nanosecond level precision, we&rsquo;d lose precision at 2<sup>63</sup> nanoseconds (Around 2262 (The 20 year difference is due to the fact
 that 10^-9^ is actually around 2^-29.8^)).</p>
-<p>Using <a href="https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4">some go code</a> I was able to generate the following table:</p>
+<p>Using <a href="https://gist.github.com/oliverkwebb/87e841fe8cb0ad4d3eebc99c38b91a4">some go code</a> I was able to generate the following table:</p>
 
 <table>
 <thead>
@@ -162,8 +162,128 @@ that 10^-9^ is actually around 2^-29.8^)).</p>
 
 
 <p>Looking at this chart alone, 64 bit integers don&rsquo;t seem much better than long doubles, but keep in mind that
-Integers support <em>One percision</em>, Floating point values support <em>all percisions to the same extent regardless</em></p>
+Integers support <em>One percision</em>, and there&rsquo;s a tradeoff between resolution and the bounds of your epoch,
+Floating point values support <em>all percisions</em>, there is no such tradeoff.</p>
 <p>For this reason, <code>date_t</code> is a long double floating point value of seconds since the epoch.</p>
+<h2 id="broken-down-time">&ldquo;Broken Down Time&rdquo;</h2>
+<p>Now that we have a base time type, there needs to be some way to convert between
+human friendly to machine friendly values. I.e. getting the year, month and day.
+In the spirit of &ldquo;100 functions for 10 datastructures vs. 10 functions for 1 datastructure&rdquo;,
+Unless a functions <em>job</em> is to handle human-friendly time values, it will use <code>date_t</code>.</p>
+<p>The way this is done in C is with <code>struct tm</code> , which has many problems.</p>
+<ul>
+<li>almost always handled in statically allocated pointers that get overwritten (gmtime())</li>
+<li>No way to represent sub-second time.</li>
+<li>tm_mday is based off one for no reason.</li>
+<li>tm_wday and tm_yday make it harder to construct completely-valid timezones</li>
+<li>mktime(), being the main way to convert back into <code>time_t</code>, changes the struct that is passed in.</li>
+</ul>
+<p>Creating our own calendar structure to fix these problems:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">struct</span> cal {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">uint32_t</span> nsec; <span style="color:#8b949e;font-style:italic">// 0..1E9
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>        <span style="color:#ff7b72">uint8_t</span>   sec; <span style="color:#8b949e;font-style:italic">// 0..60
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>        <span style="color:#ff7b72">uint8_t</span>   min; <span style="color:#8b949e;font-style:italic">// 0..59
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>        <span style="color:#ff7b72">uint8_t</span>  hour; <span style="color:#8b949e;font-style:italic">// 0..23
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>        <span style="color:#ff7b72">uint8_t</span>   day; <span style="color:#8b949e;font-style:italic">// 0..30
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>        <span style="color:#ff7b72">uint8_t</span> month; <span style="color:#8b949e;font-style:italic">// 0..11
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>        <span style="color:#ff7b72">date_t</span>   year; <span style="color:#8b949e;font-style:italic">// Since Epoch
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span>};
+</span></span></code></pre></div><p>With 4 functions to handle them:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">struct</span> cal <span style="color:#d2a8ff;font-weight:bold">tocal</span>(<span style="color:#ff7b72">date_t</span> d);
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">wdayof</span>(<span style="color:#ff7b72">date_t</span> d);
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">ydayof</span>(<span style="color:#ff7b72">date_t</span> d);
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">date_t</span>   <span style="color:#d2a8ff;font-weight:bold">fromcal</span>(<span style="color:#ff7b72">struct</span> cal cal);
+</span></span></code></pre></div><p>This fixes several problems with the existing <code>struct tm</code>:</p>
+<ul>
+<li>Fractional Time</li>
+<li>Day of month starts with 0 instead of 1</li>
+<li>Years over INT_MAX possible</li>
+<li>Smaller than the <code>struct tm</code></li>
+<li>Any value where the fields are within range corresponds to a unique valid time.</li>
+</ul>
+<dl>
+<dt><strong>&ldquo;Why no timezones in the struct?&rdquo;</strong></dt>
+<dd>The date passed into <code>tocal()</code> is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with <code>date_t</code>, not calendars on matter of principle and practicality.</dd>
+</dl>
+<h2 id="the-tragedy-of-tzset">The tragedy of tzset()</h2>
+<p>Out of all the components of the</p>
+<h2 id="an-illustration-of-the-problem-weekdays-in-time-structures-creates">An illustration of the problem weekdays in time structures creates</h2>
+<p><code>strptime()</code> is special because it uses uncertainty as a tool. It wont touch anything in the calendar
+structure that isn&rsquo;t directly correlated with a formatting specification. This is as much of a
+asset as it is a liability, it&rsquo;s useful because you can read time with a set of presumptions
+(i.e. read mm/dd as the current year and not 1970). But it&rsquo;s a liability because you can
+<em>unintentionally</em> read time with a set of presumptions (i.e. read mm/dd and then
+print a wrong weekday because <code>strptime()</code> did not correct the weekday).</p>
+
+<table>
+<thead>
+    <tr>
+       <td>Date String</td>  <td> Makes Sense?</td>  <td> strptime result?</td> 
+    </tr>
+</thead>
+<tbody>
+  
+    <tr>
+       <td>Febuary 16 1978</td>  <td> Yes</td>  <td> ?? 2/16/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Febuary 1978</td>  <td> Yes</td>  <td> ?? 2/??/78)</td> 
+    </tr>
+  
+    <tr>
+       <td>Thursday February 16 1978</td>  <td> Yes</td>  <td> Thur. 2/16/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Thursday February 1978</td>  <td> No</td>  <td> Thur. 2/??/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Monday February 30</td>  <td> No</td>  <td> Mon. 2/30/??</td> 
+    </tr>
+  
+</tbody>
+</table>
+
+
+<p>The alternative I provide in my time library is <code>readdate()</code>, reading time with a configurable set of base
+presumptions (i.e. &ldquo;the year is 2024&rdquo;) is too valuable not to pass up. For this reason, <code>readdate()</code> takes
+a base date argument, converts it to a calendar, then changes values in that, before converting it back into a date and returning it.</p>
+<p>This has multiple benefits over <code>strptime()</code>, the first one is that you are conc</p>
+
+<table>
+<thead>
+    <tr>
+       <td>Date String</td>  <td> Makes Sense?</td>  <td> readdate result?</td> 
+    </tr>
+</thead>
+<tbody>
+  
+    <tr>
+       <td>Febuary 16 1978</td>  <td> Yes</td>  <td> 2/16/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Febuary 1978</td>  <td> Yes</td>  <td> 2/??/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Thursday February 16 1978</td>  <td> Yes</td>  <td> 2/16/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Thursday February 1978</td>  <td> No</td>  <td> Yes 2/??/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Monday February 16</td>  <td> No</td>  <td> 2/16/??</td> 
+    </tr>
+  
+</tbody>
+</table>
+
+
 
 
 </article>
@@ -172,7 +292,7 @@ Integers support <em>One percision</em>, Floating point values support <em>all p
 <footer>
   <div id="nextprev">
 		<a href="/articles/hugo/" class="prev">&lt;&ndash; Migrating to Hugo</a>
-	<a href="/articles/oldbin/" class="next">The Oldest Binary on a Mint System &ndash;&gt;</a>
+	<a href="/articles/nongnuext/" class="next">Nongnuext &ndash;&gt;</a>
 	</div>
 	<br/>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>

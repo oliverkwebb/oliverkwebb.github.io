@@ -1,5 +1,5 @@
 ---
-title: "GNU considered harmful (By me, here's why)"
+title: "Why I don't like GNU"
 date: 2024-08-17
 ---
 This list does not mention the \[Richard Stallman controversy\]\<Link to Drew DeVault article here\>. 

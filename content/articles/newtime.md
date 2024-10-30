@@ -4,7 +4,7 @@ draft: true
 date: 2024-09-07T10:25:12-05:00
 ---
 
-Out of all the components of C, it's time API is probably the one most plagued with legacy cruft.
+Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
 To the point almost every regularly used element of it has some design decision that's been obsolete for
 decades.
 
@@ -45,13 +45,12 @@ while true do
 end
 ```
 
-I'm making my own C time API not because I expect it to have widespread use. But as a proof of concept of what could've been.
-And to illustrate some of the subtler design flaws of the time library.
+I'm making my own C time API not because I expect it to have widespread use. But as a proof of concept of what could've been, and to illustrate some of the subtler design flaws of the time library.
 
 ## Scope
 
 I will be using the functions described in Eric S. Raymond's *[Time, Clock, and Calendar Programming In C][Time Programming Guide]*
-as a boundary for the C time API. These 40 something functions can be classified as:
+as a boundary for the C time API. These forty-something functions can be classified as:
 
 - Alarm/Timer (`alarm()`, `ualarm()`, the `timer_` group)
 - Getting the current time (`time()`, `clock_gettime()`, `getttimeofday()`, `ftime()`, `timespec_get()`)
@@ -66,7 +65,7 @@ as a boundary for the C time API. These 40 something functions can be classified
 - Clock handling (`clock()`, `clock_getres()`)
 
 The only function that doesn't fit here is `difftime()`, which swears it isn't just a subtraction.
-Although in libc's such as musl. [It's actually just a subtraction](https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c)
+Although in libc's such as musl, [it's actually just a subtraction](https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c).
 
 Out of these, clock handling, system level APIs for setting the time, Alarm/Timer handling (which has as much to do with signals as it does time),
 And NTP correction are probably out of scope. This leaves:
@@ -101,8 +100,9 @@ A floating point number is able to store values up to 2^mantissa_length^ with in
 point precision loss is surprisingly easy. For a number n; Any number below 2^n^ will have at least 2^n-mantissa_length^ precision.
 Which means for any resolution, we will lose precision at 2^mantissa_length^ *units of that resolution* regardless of base resolution.
 
-For a quick proof of this. Lets consider a long double base resolution of 1 second. We lose nanosecond level precision when 2^n-63^ is 2^-30^
-(around 10^-9^). Which means we lose precision at ~2^33^ seconds.
+For a quick proof of this, lets consider a long double base resolution of 1 second.
+We lose nanosecond level precision when 2^n-63^ is 10^-9^.
+Which means we lose precision at around ~2^33^ seconds.
 
 ```
 $ date -d "@$((2**33))"
@@ -130,9 +130,95 @@ Width, 23, 31, 52, 63
 {{< /csvtbl >}}
 
 Looking at this chart alone, 64 bit integers don't seem much better than long doubles, but keep in mind that
-Integers support *One percision*, Floating point values support *all percisions to the same extent regardless*
+Integers support *One percision*, and there's a tradeoff between resolution and the bounds of your epoch,
+Floating point values support *all percisions*, there is no such tradeoff.
 
 For this reason, `date_t` is a long double floating point value of seconds since the epoch.
 
+## "Broken Down Time"
+
+Now that we have a base time type, there needs to be some way to convert between
+human friendly to machine friendly values. I.e. getting the year, month and day.
+In the spirit of "100 functions for 10 datastructures vs. 10 functions for 1 datastructure",
+Unless a functions _job_ is to handle human-friendly time values, it will use `date_t`.
+
+The way this is done in C is with `struct tm` , which has many problems.
+
+* almost always handled in statically allocated pointers that get overwritten (gmtime())
+* No way to represent sub-second time.
+* tm_mday is based off one for no reason.
+* tm_wday and tm_yday make it harder to construct completely-valid timezones
+* mktime(), being the main way to convert back into `time_t`, changes the struct that is passed in.
+
+Creating our own calendar structure to fix these problems:
+
+```c
+struct cal {
+        uint32_t nsec; // 0..1E9
+        uint8_t   sec; // 0..60
+        uint8_t   min; // 0..59
+        uint8_t  hour; // 0..23
+        uint8_t   day; // 0..30
+        uint8_t month; // 0..11
+        date_t   year; // Since Epoch
+};
+```
+
+With 4 functions to handle them:
+```c
+extern struct cal tocal(date_t d);
+extern int wdayof(date_t d);
+extern int ydayof(date_t d);
+extern date_t   fromcal(struct cal cal);
+```
+
+This fixes several problems with the existing `struct tm`:
+
+* Fractional Time
+* Day of month starts with 0 instead of 1
+* Years over INT_MAX possible
+* Smaller than the `struct tm`
+* Any value where the fields are within range corresponds to a unique valid time.
+
+**"Why no timezones in the struct?"**
+: The date passed into `tocal()` is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with `date_t`, not calendars on matter of principle and practicality.
+
+## The tragedy of tzset()
+
+Out of all the components of the 
+
+## An illustration of the problem weekdays in time structures creates
+
+`strptime()` is special because it uses uncertainty as a tool. It wont touch anything in the calendar
+structure that isn't directly correlated with a formatting specification. This is as much of a
+asset as it is a liability, it's useful because you can read time with a set of presumptions
+(i.e. read mm/dd as the current year and not 1970). But it's a liability because you can
+_unintentionally_ read time with a set of presumptions (i.e. read mm/dd and then
+print a wrong weekday because `strptime()` did not correct the weekday).
+
+{{< csvtbl >}}
+Date String, Makes Sense?, strptime result?
+Febuary 16 1978, Yes, ?? 2/16/78
+Febuary 1978, Yes, ?? 2/??/78)
+Thursday February 16 1978, Yes, Thur. 2/16/78
+Thursday February 1978, No, Thur. 2/??/78
+Monday February 30, No, Mon. 2/30/??
+{{< /csvtbl >}}
+
+The alternative I provide in my time library is `readdate()`, reading time with a configurable set of base
+presumptions (i.e. "the year is 2024") is too valuable not to pass up. For this reason, `readdate()` takes
+a base date argument, converts it to a calendar, then changes values in that, before converting it back into a date and returning it.
+
+This has multiple benefits over `strptime()`, the first one is that you are conc
+
+{{< csvtbl >}}
+Date String, Makes Sense?, readdate result?
+Febuary 16 1978, Yes, 2/16/78
+Febuary 1978, Yes, 2/??/78
+Thursday February 16 1978, Yes, 2/16/78
+Thursday February 1978, No, Yes 2/??/78
+Monday February 16, No, 2/16/??
+{{< /csvtbl >}}
+
 [Time Programming Guide]: https://www.catb.org/~esr/time-programming/index.asc
-[some go code]: https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4
+[some go code]: https://gist.github.com/oliverkwebb/87e841fe8cb0ad4d3eebc99c38b91a4
