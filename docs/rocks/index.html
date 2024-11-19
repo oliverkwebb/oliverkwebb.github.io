@@ -39,6 +39,7 @@
 <li><a href="https://graphviz.org/">graphviz</a> - A simple graphing software that can be used for making UML diagrams, dependency chain maps, etc.]</li>
 <li><a href="https://github.com/gavinhoward/bc">howard-bc</a> - A fully GNU compatible bc implementation, with an inbuilt bignum library.</li>
 <li><a href="https://github.com/raygard/wak">wak</a> - A awk implementation in 4500 SLOC of no dependency C.</li>
+<li><a href="https://pandoc.org/">pandoc</a> - An universal document converter</li>
 </ul>
 <h3 id="libraries">Libraries</h3>
 <ul>
@@ -83,30 +84,11 @@
 <li><a href="https://github.com/libretro/ludos">ludo</a> - A minimalist, sleek, painless retroarch alternative.</li>
 <li><a href="https://vivien.github.io/i3blocks/">i3blocks</a> - Shell script based bar generator for i3wm&rsquo;s bar.</li>
 </ul>
-<h3 id="why-systemd-sucks">Why systemd sucks</h3>
-<p>SystemD is actively harmful to the world of open source. An init system&rsquo;s only job is to
-get out of someones way and to start up some background daemons. Before SystemD, no one <em>had to care</em>
-if a machine was running OpenRC, runit, sinit, or SysVinit. Those systems recognized their <strong>one and only</strong>
-job was to boot the system into a usable environment and handle shutdown cleanup, reap orphan processes, and
-start, stop, and track the dependency chain of daemons (whilst ideally taking advantage of SMP).</p>
-<p>SystemD however, besides being a order of magnitude larger than other init systems, tries to invade userspace
-constantly by embracing and extending userspace-level APIs. A recent case study on this is their <a href="https://mastodon.social/@pid_eins/112353324518585654">sudo replacement</a>,
-run0, which exists because sudo is 250,000 lines of code, and instead of using the fairly simple and easy to understand
-API that is setuid. They rely on the systemd exclusive API (configured with <strong>javascript</strong>) polkit. Also see dbus, udev,
-and <a href="https://github.com/tmux/tmux/issues/428">trying to shove systemd into other applications</a>.</p>
-<p>Microsoft made office open XML so complex because Microsoft <a href="http://noooxml.wikidot.com/">doesn&rsquo;t want you to have a choice</a>, and now
-they&rsquo;re dumping money into SystemD because SystemD <a href="https://www.redhat.com/archives/fedora-devel-list/2008-January/msg00861.html">doesn&rsquo;t want you to have a choice</a>.
-GCC mangled their project structure because the FSF <a href="https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html">doesn&rsquo;t want you to have a choice</a>.</p>
-<p>There&rsquo;s a widely accepted name for this. &ldquo;Vendor lock-in&rdquo;</p>
-<p>Lets contrast this with other linux software. There are multiple implementations of the UNIX utilities in wide use,
-and I&rsquo;m able to swap out them for each other to my hearts desire if I don&rsquo;t like the fact GNU <code>true</code> can return 1
-(<code>/bin/true --help &gt; /dev/full</code>) or busybox dd doesn&rsquo;t do <code>status=progress</code>. If I don&rsquo;t like the fact glibc produces
-massive static binaries due to no <a href="https://elinux.org/images/2/2d/ELC2010-gc-sections_Denys_Vlasenko.pdf">-ffunction-sections</a> I can use musl. There are multiple <a href="https://github.com/sabotage-linux/netbsd-curses">ncurses implementations</a>.
-There <em>were</em> multiple <a href="https://en.wikipedia.org/wiki/XFree86">X Implementations</a> and that didn&rsquo;t stop because of
-the vendor lock in policies that RedHat and GNU engage in. And on the other side, wlroots is far from being the dominant
-force in wayland (which is just a standard). Vi and Emacs both have more implementations than I care to name. As do HTTP
-daemons, POSIX compatible shells, and C library implementations. This prevents the type of monoculture and frog boiling
-we see in most enterprise software.</p>
+<h3 id="web-apps">Web Apps</h3>
+<ul>
+<li><a href="https://github.com/ironcalc/ironcalc">ironcalc</a> - An open source alternative to google docs</li>
+<li><a href="https://www.openstreetmap.org/">OpenStreetMap</a> - An open source alternative to google maps</li>
+</ul>
 
 
 </article>

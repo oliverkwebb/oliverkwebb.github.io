@@ -24,6 +24,7 @@ date: 2024-09-14T11:13:15-05:00
 * [graphviz](https://graphviz.org/) - A simple graphing software that can be used for making UML diagrams, dependency chain maps, etc.]
 * [howard-bc](https://github.com/gavinhoward/bc) - A fully GNU compatible bc implementation, with an inbuilt bignum library.
 * [wak](https://github.com/raygard/wak) - A awk implementation in 4500 SLOC of no dependency C.
+* [pandoc](https://pandoc.org/) - An universal document converter
 
 ### Libraries
 
@@ -68,35 +69,10 @@ date: 2024-09-14T11:13:15-05:00
 * [ludo](https://github.com/libretro/ludos) - A minimalist, sleek, painless retroarch alternative.
 * [i3blocks](https://vivien.github.io/i3blocks/) - Shell script based bar generator for i3wm's bar.
 
-### Why systemd sucks
+### Web Apps
 
-SystemD is actively harmful to the world of open source. An init system's only job is to
-get out of someones way and to start up some background daemons. Before SystemD, no one *had to care*
-if a machine was running OpenRC, runit, sinit, or SysVinit. Those systems recognized their **one and only**
-job was to boot the system into a usable environment and handle shutdown cleanup, reap orphan processes, and
-start, stop, and track the dependency chain of daemons (whilst ideally taking advantage of SMP).
-
-SystemD however, besides being a order of magnitude larger than other init systems, tries to invade userspace
-constantly by embracing and extending userspace-level APIs. A recent case study on this is their [sudo replacement],
-run0, which exists because sudo is 250,000 lines of code, and instead of using the fairly simple and easy to understand
-API that is setuid. They rely on the systemd exclusive API (configured with **javascript**) polkit. Also see dbus, udev,
-and [trying to shove systemd into other applications][tmuxissue].
-
-Microsoft made office open XML so complex because Microsoft [doesn't want you to have a choice][OOXML], and now
-they're dumping money into SystemD because SystemD [doesn't want you to have a choice][SystemD-RedHat].
-GCC mangled their project structure because the FSF [doesn't want you to have a choice][RMSEML].
-
-There's a widely accepted name for this. "Vendor lock-in"
-
-Lets contrast this with other linux software. There are multiple implementations of the UNIX utilities in wide use,
-and I'm able to swap out them for each other to my hearts desire if I don't like the fact GNU `true` can return 1
-(`/bin/true --help > /dev/full`) or busybox dd doesn't do `status=progress`. If I don't like the fact glibc produces
-massive static binaries due to no [-ffunction-sections] I can use musl. There are multiple [ncurses implementations].
-There _were_ multiple [X Implementations](https://en.wikipedia.org/wiki/XFree86) and that didn't stop because of
-the vendor lock in policies that RedHat and GNU engage in. And on the other side, wlroots is far from being the dominant
-force in wayland (which is just a standard). Vi and Emacs both have more implementations than I care to name. As do HTTP
-daemons, POSIX compatible shells, and C library implementations. This prevents the type of monoculture and frog boiling
-we see in most enterprise software.
+* [ironcalc](https://github.com/ironcalc/ironcalc) - An open source alternative to google docs
+* [OpenStreetMap](https://www.openstreetmap.org/) - An open source alternative to google maps
 
 [^1]: btw
 
