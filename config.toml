@@ -13,6 +13,7 @@ enableEmoji = true
   	# See https://xyproto.github.io/splash/docs
   [markup.goldmark]
     [markup.goldmark.extensions]
+    table = true
       [markup.goldmark.extensions.extras]
         [markup.goldmark.extensions.extras.delete]
           enable = true

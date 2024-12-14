@@ -3,6 +3,93 @@
 	<link>https://oliverkwebb.github.io/categories/</link>
 	<language>en-us</language>
 	
+	<item><title>List of classic UNIX utils re-designed in rust</title>
+		<link>https://oliverkwebb.github.io/articles/rustunixnew/</link>
+		<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>
+		<description>&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;Influenced from&amp;hellip;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Text Processing and Scripting&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/bat&#34;&gt;bat&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;cat&lt;/code&gt;,      &lt;code&gt;less&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://printfn.github.io/fend/documentation/&#34;&gt;fend&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;bc&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/dandavison/delta&#34;&gt;delta&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;diff&lt;/code&gt;, &lt;code&gt;git diff&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/sstadick/hck&#34;&gt;hck&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;cut&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/BurntSushi/ripgrep&#34;&gt;ripgrep&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/chmln/sd&#34;&gt;sd&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;sd&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Process Management&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/ClementTsang/bottom&#34;&gt;bottom&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;top&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/orf/gping&#34;&gt;gping&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;ping&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/nushell/nushell&#34;&gt;nushell&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;sh&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/dalance/procs&#34;&gt;procs&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;ps&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/polyverse/rmesg/&#34;&gt;rmesg&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;dmesg&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;File Management&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/bootandy/dust&#34;&gt;dust&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;du&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/eza-community/eza&#34;&gt;eza&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/fd&#34;&gt;fd&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;find&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/ajeetdsouza/zoxide&#34;&gt;zoxide&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;cd&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description></item>
+	
 	<item><title>The Oldest Binary on a Mint System</title>
 		<link>https://oliverkwebb.github.io/articles/oldbin/</link>
 		<pubDate>Thu, 19 Sep 2024 21:59:45 -0500</pubDate>
