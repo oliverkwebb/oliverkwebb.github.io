@@ -11,7 +11,7 @@ date: 2024-12-14T09:12:08-06:00
 | [delta](https://github.com/dandavison/delta)           |  `diff`, `git diff` |
 | [hck](https://github.com/sstadick/hck)                 |  `cut`              |
 | [ripgrep](https://github.com/BurntSushi/ripgrep)       |  `grep`             |
-| [sd](https://github.com/chmln/sd)                      |  `sd`               |
+| [sd](https://github.com/chmln/sd)                      |  `sed`              |
 | **Process Management**                                 |                     |
 | [bottom](https://github.com/ClementTsang/bottom)       |  `top`              |
 | [gping](https://github.com/orf/gping)                  |  `ping`             |
