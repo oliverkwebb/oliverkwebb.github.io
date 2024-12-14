@@ -15,7 +15,6 @@ date: 2024-12-14T09:12:08-06:00
 | **Process Management**                                 |                     |
 | [bottom](https://github.com/ClementTsang/bottom)       |  `top`              |
 | [gping](https://github.com/orf/gping)                  |  `ping`             |
-| [nushell](https://github.com/nushell/nushell)          |  `sh`               |
 | [procs](https://github.com/dalance/procs)              |  `ps`               |
 | [rmesg](https://github.com/polyverse/rmesg/)           |  `dmesg`            |
 | **File Management**                                    |                     |
