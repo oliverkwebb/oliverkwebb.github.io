@@ -6,7 +6,7 @@ Email
 GitHub
 : [oliverkwebb](https://www.github.com/oliverkwebb)
 
-I am at the time of writing (August 2024) 15 and a high school student.
+I am at the time of writing (January 2025) 16 and a high school student.
 And have been programming and learning about how computers work for a
 couple years. I know how to work C, Lua, Bash, and Linux, extensively.
 
