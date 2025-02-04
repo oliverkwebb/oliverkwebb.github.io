@@ -184,8 +184,7 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34; display highlighted code&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;View github gists:
-&lt;script src=&#34;https://gist.github.com/oliverkwebb/8b05751e685a01c6a2c71c2a8de69052.js&#34;&gt;&lt;/script&gt;
-&lt;/p&gt;
+&lt;script src=&#34;https://gist.github.com/oliverkwebb/8b05751e685a01c6a2c71c2a8de69052.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://gohugo.io/about/features/&#34;&gt;And many more&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
@@ -213,10 +212,7 @@ because:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
-What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;In Linus&amp;rsquo;s book &lt;em&gt;&lt;a href=&#34;https://books.google.com/books/about/Just_for_Fun.html?id=Q3aIPwAACAAJ&#34;&gt;Just For Fun&lt;/a&gt;&lt;/em&gt;, the GNU project plays little to no role in the creation of Linux.
 Linux grew out of comp.os.minix, not anything related to the FSF or GNU project. Additionally, The FSF was
 still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
@@ -224,19 +220,13 @@ still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;The FSF&amp;rsquo;s push for hurd died out sometime in the early 2000&amp;rsquo;s, when Linux was commonplace and Hurd was completely abandoned.&lt;/p&gt;
 &lt;p&gt;From &lt;a href=&#34;https://karmak.org/archive/2003/01/12-14-99.epl.html&#34;&gt;A interview with RMS in 99&amp;rsquo;&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;2. For years, the GNU project was not directly maintaining most of their popular projects&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -260,10 +250,7 @@ intentionally kept it back from being so.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Anything that makes it easier to use GCC back ends without GCC front
 ends&amp;ndash;or simply brings GCC a big step closer to a form that would make
 such usage easy&amp;ndash;would endanger our leverage for causing new front
-ends to be free.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+ends to be free.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;The FSF is a political movement that engages in intentional obfuscation to spread itself.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;4. glibc&amp;rsquo;s feature test macros are designed so that people would mark their code with the GNU projects name&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.man7.org/linux/man-pages/man7/feature_test_macros.7.html&#34;&gt;feature_test_macros&lt;/a&gt; are a opt-out, functionality removing, non-portable feature that was largely pioneered

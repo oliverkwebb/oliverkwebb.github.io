@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+<head>
+	<title>{{ with .Title }}{{ . | title }} | {{ end }}{{ .Site.Title }}</title>
+	<link rel="canonical" href="{{ .Site.BaseURL }}">
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+{{ partial "nav.html" . -}}
+<main>
+<header><h1 id="tag_{{ .Title }}">{{ block "title" . }}{{ end }}</h1></header>
+<article>
+{{ block "main" . }}
+{{ .Content }}
+{{ end }}
+</article>
+</main>
+{{ partial "footer.html" . }}
+</body>
+</html>

@@ -6,6 +6,12 @@ Email
 GitHub
 : [oliverkwebb](https://www.github.com/oliverkwebb)
 
+Mastodon
+: [@oliverkwebb@hachyderm.io](https://hachyderm.io/@oliverkwebb)
+
+Pronouns
+: Any/All
+
 I am at the time of writing (January 2025) 16 and a high school student.
 And have been programming and learning about how computers work for a
 couple years. I know how to work C, Lua, Bash, and Linux, extensively.
