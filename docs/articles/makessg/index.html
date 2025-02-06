@@ -9,9 +9,9 @@
 	<meta charset="utf-8">
 </head>
 <body>
-  <nav>
-    <a href="/">Oliver Webb's Website</a>
-  </nav>
+<nav>
+	<a href="/">Oliver Webb's Website</a>
+</nav>
 <main>
 <header><h1 id="tag_Making A static site generator with `make`">Making A static site generator with `make`</h1></header>
 <article>
@@ -110,7 +110,7 @@ problem of turning source files into object files, we can create a simple rule
 that does 99% of our work.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">%.html</span><span style="color:#ff7b72;font-weight:bold">:</span> %.md
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">$(</span>MARKDOWN<span style="color:#ff7b72">)</span> <span style="color:#ff7b72">$(</span>MDFLAGS<span style="color:#ff7b72">)</span> $&lt; &gt;&gt; <span style="color:#79c0ff">$@</span>
-</span></span></code></pre></div><p>But markdown compilers don&rsquo;t usally generate HTML boilerplate, and we might
+</span></span></code></pre></div><p>But markdown compilers don&rsquo;t usually generate HTML boilerplate, and we might
 want to import a stylesheet, and maybe save to a &ldquo;dist&rdquo; directory. So that
 if we have a &ldquo;index.md&rdquo; file, it will compile to <code>$(DIST)/index.html</code>, this
 is no issue for us.</p>

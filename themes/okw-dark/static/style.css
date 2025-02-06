@@ -42,6 +42,10 @@ pre, code, time {
 font-family: "APL386", monospace;
 }
 
+header {
+text-align:center;
+}
+
 nav {
 text-align:center;
 font-size:1.5em;
@@ -52,6 +56,29 @@ nav a {
 color:var(--bg);
 background-color: var(--blue);
 font-family: "APL386", Helvetica, sans-serif;
+}
+
+.intro {
+text-align:center;
+}
+
+.linkbox a {
+display:block;
+text-align:center;
+width: 80%;
+margin: 15px auto 15px auto;
+padding: 10px 0 10px 0;
+color: black;
+border: 2px solid var(--blue);
+box-shadow:11px 5px black;
+background-color: var(--red);
+font-size: 1.2rem;
+font-family: "APL386", monospace;
+}
+.linkbox a:hover {
+color: white;
+box-shadow:0px 0px;
+transform: translate(11px, 5px);
 }
 
 a {
@@ -67,7 +94,7 @@ color: var(--purple);
 
 p,li,table,dl {
 line-height:1.5;
-font-size:1.1em;
+font-size:1.1rem;
 }
 
 table {

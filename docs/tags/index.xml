@@ -1,12 +1,12 @@
 <rss version="2.0"><channel>
-	<title>Oliver Webb&#39;s Website</title>
-	<link>https://oliverkwebb.github.io/tags/</link>
-	<language>en-us</language>
-	
+<title>Oliver Webb&#39;s Website</title>
+<link>https://oliverkwebb.github.io/tags/</link>
+<language>en-us</language>
+
 	<item><title>List of classic UNIX utils re-designed in rust</title>
-		<link>https://oliverkwebb.github.io/articles/rustunixnew/</link>
-		<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>
-		<description>&lt;table&gt;
+	<link>https://oliverkwebb.github.io/articles/rustunixnew/</link>
+	<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>
+	<description>&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
           &lt;th&gt;Name&lt;/th&gt;
@@ -85,11 +85,11 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 </description></item>
-	
+
 	<item><title>The Oldest Binary on a Mint System</title>
-		<link>https://oliverkwebb.github.io/articles/oldbin/</link>
-		<pubDate>Thu, 19 Sep 2024 21:59:45 -0500</pubDate>
-		<description>&lt;p&gt;Simple question with a simple answer: What is the oldest binary on a Linux mint ISO (modification time)? I was playing around with the stat command more than a year ago when I asked this to myself.
+	<link>https://oliverkwebb.github.io/articles/oldbin/</link>
+	<pubDate>Thu, 19 Sep 2024 21:59:45 -0500</pubDate>
+	<description>&lt;p&gt;Simple question with a simple answer: What is the oldest binary on a Linux mint ISO (modification time)? I was playing around with the stat command more than a year ago when I asked this to myself.
 Running a quick shell pipeline &lt;code&gt;stat -c &amp;quot;%Z %z %n&amp;quot; /bin/* | sort -rn&lt;/code&gt;. The oldest 5 binaries you get are all older than 2011, these are (from oldest -&amp;gt; newest):&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;dirsplit - A perl script with little online documentation and unknown use within the distro.&lt;/li&gt;
@@ -100,15 +100,15 @@ Running a quick shell pipeline &lt;code&gt;stat -c &amp;quot;%Z %z %n&amp;quot; 
 &lt;/ul&gt;
 &lt;p&gt;While that does answer the question, it also brings up a much greater question; Why are these scripts and wrappers installed on my system when they probably aren&amp;rsquo;t used anywhere anymore?&lt;/p&gt;
 &lt;h2 id=&#34;lets-compare&#34;&gt;Lets compare&lt;/h2&gt;
-&lt;p&gt;Comparing this with the GUI version of the gentoo livecd (Which contains a full KDE-plasma environment), the 5 oldest binaries are all from after 2020, and the 5th oldest one is from 2024, these are:&lt;/p&gt;
+&lt;p&gt;Comparing this with the GUI version of the Gentoo livecd (Which contains a full KDE-plasma environment), the 5 oldest binaries are all from after 2020, and the 5th oldest one is from 2024, these are:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;pram - A tool for managing github PR&amp;rsquo;s.&lt;/li&gt;
+&lt;li&gt;pram - A tool for managing GitHub PR&amp;rsquo;s.&lt;/li&gt;
 &lt;li&gt;symtree - A simple tool for tracking symbol information.&lt;/li&gt;
 &lt;li&gt;g-lensfun-update-data - A half-dozen line shellscript for a program about photography.&lt;/li&gt;
 &lt;li&gt;could-init-per - A shell script wrapper for a python utility.&lt;/li&gt;
 &lt;li&gt;pa-info - A bash script for pulseaudio.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;It also should be noted that the gentoo GUI livecd provides a much fuller environment than the mint livecd ISO.&lt;/p&gt;
+&lt;p&gt;It also should be noted that the Gentoo GUI livecd provides a much more extensive environment than the mint livecd ISO.&lt;/p&gt;
 &lt;h2 id=&#34;replication&#34;&gt;Replication&lt;/h2&gt;
 &lt;p&gt;The real answer to the question of why &amp;ldquo;search4files&amp;rdquo; is on the mint livecd is that some Debian or Ubuntu or Mint developer in the mid 2000s put it
 on there to manage another GUI application. And it was forgotten about and left on years after it ceased its usefulness. And that Mint, or Ubuntu
@@ -118,11 +118,11 @@ arch users have pacstrap and know the core packages they need. debian has deboot
 tools to create my own bootstrapped for those distros, then I could modify it to truly customize my distribution.&lt;/p&gt;
 &lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;
 </description></item>
-	
+
 	<item><title>Migrating to Hugo</title>
-		<link>https://oliverkwebb.github.io/articles/hugo/</link>
-		<pubDate>Sun, 18 Aug 2024 12:00:34 -0500</pubDate>
-		<description>&lt;p&gt;This website now runs on &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. I migrated the infrastructure off the old static
+	<link>https://oliverkwebb.github.io/articles/hugo/</link>
+	<pubDate>Sun, 18 Aug 2024 12:00:34 -0500</pubDate>
+	<description>&lt;p&gt;This website now runs on &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. I migrated the infrastructure off the old static
 site generator that was written in Makefile.&lt;/p&gt;
 &lt;h2 id=&#34;why&#34;&gt;Why?&lt;/h2&gt;
 &lt;ol&gt;
@@ -195,11 +195,11 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description></item>
-	
+
 	<item><title>Why I don&#39;t like GNU</title>
-		<link>https://oliverkwebb.github.io/articles/gnulist/</link>
-		<pubDate>Sat, 17 Aug 2024 00:00:00 &#43;0000</pubDate>
-		<description>&lt;p&gt;This list does not mention the [Richard Stallman controversy]&amp;lt;Link to Drew DeVault article here&amp;gt;.
+	<link>https://oliverkwebb.github.io/articles/gnulist/</link>
+	<pubDate>Sat, 17 Aug 2024 00:00:00 &#43;0000</pubDate>
+	<description>&lt;p&gt;This list does not mention the [Richard Stallman controversy]&amp;lt;Link to Drew DeVault article here&amp;gt;.
 Nor his squabbles related to &lt;a href=&#34;https://sourceware.org/legacy-ml/libc-hacker/2000-06/msg00233.html&#34;&gt;glibc&lt;/a&gt;
 because:&lt;/p&gt;
 &lt;ul&gt;
@@ -311,7 +311,7 @@ standardized since ANSI escape codes.&lt;/p&gt;
 find many more, No one is building modern versions of bash or the version of gawk from 2021 that Github
 mirror provides on System V machines, nor IRIX, Solaris, 386, AIX or even Hurd.&lt;/p&gt;
 &lt;h2 id=&#34;7-the-fsf-fractured-the-open-source-world-for-no-good-reason&#34;&gt;7. The FSF fractured the Open Source world for no good reason&lt;/h2&gt;
-&lt;p&gt;Nothing is &lt;em&gt;wrong&lt;/em&gt; with the GPLv2, there aren&amp;rsquo;t any loopholes in it. And most of the people I see using it
+&lt;p&gt;Nothing is &lt;em&gt;wrong&lt;/em&gt; with the GPLv2, there aren&amp;rsquo;t any loopholes in it. And most of the people I see using the GPLv3
 (including myself for a while) just used it because &amp;ldquo;The number is bigger therefore it must be even more free than last time&amp;rdquo; and/or they want compatibility with other GPLv3 code.&lt;/p&gt;
 &lt;p&gt;If you ask someone to explain the general tenants of the GPLv2 and GPLv3, 90% of the time they come up
 with identical answers (&amp;ldquo;Permitted source code distribution with no non-GPL forks&amp;rdquo;). Yes there are reasons
@@ -323,9 +323,6 @@ conceptually supposed to prevent. The days of codesharing between open-source co
 source licenses that can&amp;rsquo;t legally share code.&lt;/p&gt;
 &lt;h2 id=&#34;8-gnu-pushes-incecently-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;8. GNU pushes incecently for texinfo, a format no one likes or uses.&lt;/h2&gt;
 &lt;p&gt;GNU info was designed to solve a problem nobody had, and in their push for it they made man pages &lt;a href=&#34;https://www.youtube.com/watch?v=rGSZFmQuQrU&#34;&gt;worse&lt;/a&gt;, which did create a problem, and when people who didn&amp;rsquo;t wanna use GNU info, they created their &lt;a href=&#34;https://cheat.sh&#34;&gt;own solutions&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It&amp;rsquo;s documentation, not a website. I don&amp;rsquo;t need hyperlinks more than I need the ability to search the whole
-thing for a specific phrase. If you really need to split your man page up into multiple blocks there are
-so many features, it&amp;rsquo;s more useful to everyone involved to go the &lt;a href=&#34;https://linux.die.net/man/1/zsh&#34;&gt;zsh or ffmpeg rout&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;GNU info is not portable to other operating systems like man pages, nor well used even by most GNU projects,
 nor is the browser you need to get a benefit out of its format pleasant to use. Nor is it liked even within the GNU project.
 This does not change the fact GNU help2man by default refers to info pages in it&amp;rsquo;s output.&lt;/p&gt;
@@ -333,11 +330,11 @@ This does not change the fact GNU help2man by default refers to info pages in it
 texinfo pages and not converting them to man pages. And the normalization of this makes man pages worse for
 everyone.&lt;/p&gt;
 </description></item>
-	
+
 	<item><title>Writing a UTF-8 safe AWK</title>
-		<link>https://oliverkwebb.github.io/articles/utfawk/</link>
-		<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
-		<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for it&amp;rsquo;s
+	<link>https://oliverkwebb.github.io/articles/utfawk/</link>
+	<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
+	<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for it&amp;rsquo;s
 applications. This has kept things like &lt;a href=&#34;http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html&#34;&gt;the fully GNU compatible tr&lt;/a&gt;
 from being promoted from the pending/ directory for years because they
 wish to break compatibility by making tr unicode safe. Toybox&amp;rsquo;s plans for awk
@@ -396,11 +393,11 @@ FS will never contain any special regexp syntax character.&lt;/p&gt;
 wak needed less than 100 lines to make itself UTF-8 safe. Most of the hard part
 is figuring out &lt;em&gt;what&lt;/em&gt; needs unicode handling.&lt;/p&gt;
 </description></item>
-	
+
 	<item><title>Replacing Neovim with vis</title>
-		<link>https://oliverkwebb.github.io/articles/vis/</link>
-		<pubDate>Wed, 17 Apr 2024 00:00:00 &#43;0000</pubDate>
-		<description>&lt;p&gt;Lately, I&amp;rsquo;ve been unhappy with neovim and it&amp;rsquo;s bloat. vi is a simple and beautiful tool by
+	<link>https://oliverkwebb.github.io/articles/vis/</link>
+	<pubDate>Wed, 17 Apr 2024 00:00:00 &#43;0000</pubDate>
+	<description>&lt;p&gt;Lately, I&amp;rsquo;ve been unhappy with neovim and it&amp;rsquo;s bloat. vi is a simple and beautiful tool by
 itself, but it&amp;rsquo;s most popular deviation vim has been bloated to the point of being unmanageable
 the same way perl took the design of awk or C++ took the design of C and destroyed it.&lt;/p&gt;
 &lt;p&gt;Neovim remedies this, but not by much. And in place it adds more bloat. And it&amp;rsquo;s decision
@@ -411,14 +408,6 @@ problem of &amp;ldquo;Everyone only uses 20%, but it&amp;rsquo;s always a differ
 vi implementations hard to use. I &lt;em&gt;want&lt;/em&gt; syntax highlighting and colorization, I &lt;em&gt;want&lt;/em&gt; the
 ability to batch process data with ex commands.  I &lt;em&gt;want&lt;/em&gt; the ability to select things with
 visual mode. This disqualifies implementations like nextvi, nvi, and busybox vi.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://kakoune.org/&#34;&gt;Kakoune&lt;/a&gt; seems like a good alternative, with two massive problems:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It&amp;rsquo;s written in C++&lt;/li&gt;
-&lt;li&gt;Constant compatibility breaks, this is a vi clone only in name&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I generally &lt;a href=&#34;https://harmful.cat-v.org/software/c++/&#34;&gt;don&amp;rsquo;t trust C++ coders&lt;/a&gt; with writing minimal software.
-And the willingness to break everything is probably a way of venting the fact that C++&amp;rsquo;s selling point is
-the fact that it&amp;rsquo;s C compatible, and that restricts the language massively.&lt;/p&gt;
 &lt;p&gt;What does this leave? There is apparently one editor called &lt;a href=&#34;https://github.com/martanne/vis&#34;&gt;vis&lt;/a&gt;
 that&amp;rsquo;s minimal, has a large amount of vim-isms, and is written in pure C with configuration able to
 be done in lua. It only takes up a couple megabytes of space, while vim takes up 60 and neovim takes
@@ -452,11 +441,11 @@ there is multiple cursor support in vis). This does not change anything.&lt;/p&g
 vim provides useful, Vis includes many but not all vim-isms while still being elegant and
 versatile.&lt;/p&gt;
 </description></item>
-	
+
 	<item><title>Making A static site generator with `make`</title>
-		<link>https://oliverkwebb.github.io/articles/makessg/</link>
-		<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
-		<description>&lt;p&gt;When making my website, generating static webpages for
+	<link>https://oliverkwebb.github.io/articles/makessg/</link>
+	<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
+	<description>&lt;p&gt;When making my website, generating static webpages for
 my blogs and articles was a big concern. I want to be able
 to manipulate templates and sytlesheets easily and have that
 translate to my articles and content. HTML, to put it simply,
@@ -550,7 +539,7 @@ problem of turning source files into object files, we can create a simple rule
 that does 99% of our work.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MARKDOWN&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MDFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But markdown compilers don&amp;rsquo;t usally generate HTML boilerplate, and we might
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But markdown compilers don&amp;rsquo;t usually generate HTML boilerplate, and we might
 want to import a stylesheet, and maybe save to a &amp;ldquo;dist&amp;rdquo; directory. So that
 if we have a &amp;ldquo;index.md&amp;rdquo; file, it will compile to &lt;code&gt;$(DIST)/index.html&lt;/code&gt;, this
 is no issue for us.&lt;/p&gt;
@@ -589,6 +578,6 @@ conditionals or extra rules.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://pedantic.software/git/blogit&#34;&gt;blogit, another makefile based SSG&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description></item>
-	
-	</channel>
+
+</channel>
 </rss>

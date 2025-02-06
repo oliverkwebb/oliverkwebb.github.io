@@ -9,9 +9,9 @@
 	<meta charset="utf-8">
 </head>
 <body>
-  <nav>
-    <a href="/">Oliver Webb's Website</a>
-  </nav>
+<nav>
+	<a href="/">Oliver Webb's Website</a>
+</nav>
 <main>
 <header><h1 id="tag_Replacing Neovim with vis">Replacing Neovim with vis</h1></header>
 <article>
@@ -27,14 +27,6 @@ problem of &ldquo;Everyone only uses 20%, but it&rsquo;s always a different 20%&
 vi implementations hard to use. I <em>want</em> syntax highlighting and colorization, I <em>want</em> the
 ability to batch process data with ex commands.  I <em>want</em> the ability to select things with
 visual mode. This disqualifies implementations like nextvi, nvi, and busybox vi.</p>
-<p><a href="https://kakoune.org/">Kakoune</a> seems like a good alternative, with two massive problems:</p>
-<ul>
-<li>It&rsquo;s written in C++</li>
-<li>Constant compatibility breaks, this is a vi clone only in name</li>
-</ul>
-<p>I generally <a href="https://harmful.cat-v.org/software/c++/">don&rsquo;t trust C++ coders</a> with writing minimal software.
-And the willingness to break everything is probably a way of venting the fact that C++&rsquo;s selling point is
-the fact that it&rsquo;s C compatible, and that restricts the language massively.</p>
 <p>What does this leave? There is apparently one editor called <a href="https://github.com/martanne/vis">vis</a>
 that&rsquo;s minimal, has a large amount of vim-isms, and is written in pure C with configuration able to
 be done in lua. It only takes up a couple megabytes of space, while vim takes up 60 and neovim takes

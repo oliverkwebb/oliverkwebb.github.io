@@ -2,6 +2,10 @@
 {{ .Title | title }}
 {{- end }}
 {{ define "main" -}}
+<div class="intro">
+<img src="8831.png" alt="An 88x31 userbox with my name and pfp"/>
+<p>Linux Developer | 16 y/o | Any/All</p>
+</div>
 {{ .Content }}
 <ul>
 {{- range where .Site.RegularPages "Section" "articles" }}

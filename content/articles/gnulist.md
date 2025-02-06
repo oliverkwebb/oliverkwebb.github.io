@@ -107,7 +107,7 @@ mirror provides on System V machines, nor IRIX, Solaris, 386, AIX or even Hurd.
 
 ## 7. The FSF fractured the Open Source world for no good reason
 
-Nothing is _wrong_ with the GPLv2, there aren't any loopholes in it. And most of the people I see using it
+Nothing is _wrong_ with the GPLv2, there aren't any loopholes in it. And most of the people I see using the GPLv3
 (including myself for a while) just used it because "The number is bigger therefore it must be even more free than last time" and/or they want compatibility with other GPLv3 code.
 
 If you ask someone to explain the general tenants of the GPLv2 and GPLv3, 90% of the time they come up
@@ -124,10 +124,6 @@ source licenses that can't legally share code.
 ## 8. GNU pushes incecently for texinfo, a format no one likes or uses.
 
 GNU info was designed to solve a problem nobody had, and in their push for it they made man pages [worse](https://www.youtube.com/watch?v=rGSZFmQuQrU), which did create a problem, and when people who didn't wanna use GNU info, they created their [own solutions](https://cheat.sh).
-
-It's documentation, not a website. I don't need hyperlinks more than I need the ability to search the whole
-thing for a specific phrase. If you really need to split your man page up into multiple blocks there are
-so many features, it's more useful to everyone involved to go the [zsh or ffmpeg rout](https://linux.die.net/man/1/zsh).
 
 GNU info is not portable to other operating systems like man pages, nor well used even by most GNU projects,
 nor is the browser you need to get a benefit out of its format pleasant to use. Nor is it liked even within the GNU project.

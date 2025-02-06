@@ -123,7 +123,7 @@ that does 99% of our work.
     $(MARKDOWN) $(MDFLAGS) $< >> $@
 ```
 
-But markdown compilers don't usally generate HTML boilerplate, and we might
+But markdown compilers don't usually generate HTML boilerplate, and we might
 want to import a stylesheet, and maybe save to a "dist" directory. So that
 if we have a "index.md" file, it will compile to `$(DIST)/index.html`, this
 is no issue for us.

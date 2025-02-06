@@ -15,15 +15,15 @@ While that does answer the question, it also brings up a much greater question; 
 
 ## Lets compare
 
-Comparing this with the GUI version of the gentoo livecd (Which contains a full KDE-plasma environment), the 5 oldest binaries are all from after 2020, and the 5th oldest one is from 2024, these are:
+Comparing this with the GUI version of the Gentoo livecd (Which contains a full KDE-plasma environment), the 5 oldest binaries are all from after 2020, and the 5th oldest one is from 2024, these are:
 
-* pram - A tool for managing github PR's.
+* pram - A tool for managing GitHub PR's.
 * symtree - A simple tool for tracking symbol information.
 * g-lensfun-update-data - A half-dozen line shellscript for a program about photography.
 * could-init-per - A shell script wrapper for a python utility.
 * pa-info - A bash script for pulseaudio.
 
-It also should be noted that the gentoo GUI livecd provides a much fuller environment than the mint livecd ISO.
+It also should be noted that the Gentoo GUI livecd provides a much more extensive environment than the mint livecd ISO.
 
 ## Replication
 

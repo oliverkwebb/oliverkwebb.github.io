@@ -1,7 +1,7 @@
 ## About Me
 
 Email
-: aquahobbyist@proton.me
+: oliverwebb8192@gmail.com
 
 GitHub
 : [oliverkwebb](https://www.github.com/oliverkwebb)
@@ -22,15 +22,18 @@ I have a page describing the software I use [here](/rocks)
 
 - [cheat](https://github.com/oliverkwebb/cheat): An offline analog for [cheat.sh](https://cheat.sh)
 - [moontool](https://github.com/oliverkwebb/moontool): A collection of C programs that work with moon phases
-- [ytmpv](https://github.com/oliverkwebb/ytmpv): A shell script that provides quick accses to proxies to counter anti-ad-block
-- [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and complient with C89
+- [ytmpv](https://github.com/oliverkwebb/ytmpv): A shell script that provides quick access to proxies to counter anti-ad-block
+- [calfact](https://github.com/oliverkwebb/calfact) A xkcd 1930 generator
+- [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and compliment with C89
+- [luaed](https://codeberg.org/oliverkwebb/luaed): An ed implementation with syntax highlighting
+- [newtime](https://github.com/oliverkwebb/newtime): A redesign of the C time library with an emphasis on cleanliness and completeness.
 
 ## Other projects I've contributed significantly to
 
 - [toybox](https://www.landley.net/toybox): Over 200 Linux command line utilities in a single (500KB) executable
 
 I've implemented a couple of commands to toybox, did cleanup work on the xz
-decompressor, `getopt`, and the bc implementation. Added the 'g' and 'd'
+decompresser, `getopt`, and the bc implementation. Added the 'g' and 'd'
 commands to it's vi. Among other things, such as `tr -t`.
 
 - [wak](https://www.github.com/raygard/wak): POSIX compliment Awk implementation in 4500 Lines of C, used in toybox.

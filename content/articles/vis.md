@@ -16,14 +16,6 @@ vi implementations hard to use. I _want_ syntax highlighting and colorization, I
 ability to batch process data with ex commands.  I _want_ the ability to select things with
 visual mode. This disqualifies implementations like nextvi, nvi, and busybox vi.
 
-[Kakoune](https://kakoune.org/) seems like a good alternative, with two massive problems:
-- It's written in C++
-- Constant compatibility breaks, this is a vi clone only in name
-
-I generally [don't trust C++ coders](https://harmful.cat-v.org/software/c++/) with writing minimal software.
-And the willingness to break everything is probably a way of venting the fact that C++'s selling point is
-the fact that it's C compatible, and that restricts the language massively.
-
 What does this leave? There is apparently one editor called [vis](https://github.com/martanne/vis)
 that's minimal, has a large amount of vim-isms, and is written in pure C with configuration able to
 be done in lua. It only takes up a couple megabytes of space, while vim takes up 60 and neovim takes

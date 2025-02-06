@@ -57,7 +57,7 @@ as a boundary for the C time API. These forty-something functions can be classif
 - Setting the current time (`settimeofday()`, `clock_settime()`)
 - NTP correction (`adjtime()`/`adjtimex()`)
 - Converting system time to calendar format (`localtime()`, `gmtime()`, and their variants)
-- Convertint calendar time to system format (`mktime()`, `timegm()`, `timelocal()`, and their variants)
+- Converting calendar time to system format (`mktime()`, `timegm()`, `timelocal()`, and their variants)
 - Sleeping (`sleep()`, `usleep()`, `nanosleep()`)
 - Converting a time to a string (`asctime()`, `ctime()`, and their variants, as well as `strftime()`)
 - Converting a string to a time (`getdate()` and `strptime()`)
@@ -72,7 +72,7 @@ And NTP correction are probably out of scope. This leaves:
 
 - Getting the current time
 - Converting system time to calendar format
-- Convertint calendar time to system format
+- Converting calendar time to system format
 - Converting a time to a string
 - Converting a string to a time
 - Timezone handling
