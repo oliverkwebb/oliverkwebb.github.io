@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>The C Time API, Rethought | Oliver Webb&#39;s Website</title>
+	<title>Rethinking the C Time API | Oliver Webb&#39;s Website</title>
 	<link rel="canonical" href="https://oliverkwebb.github.io/">
 	<link rel='stylesheet' type='text/css' href='/style.css'>
 	<link rel="icon" href="/favicon.png">
@@ -9,12 +9,11 @@
 	<meta charset="utf-8">
 </head>
 <body>
-  <nav>
-    <a href="/">Oliver Webb's Website</a>
-  </nav>
-  <hr/>
+<nav>
+	<a href="/">Oliver Webb's Website</a>
+</nav>
 <main>
-<header><h1 id="tag_The C Time API, Rethought">The C Time API, Rethought</h1></header>
+<header><h1 id="tag_Rethinking The C Time API">Rethinking The C Time API</h1></header>
 <article>
 
 <p>Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
@@ -43,13 +42,13 @@ decades.</p>
 <li><code>sleep()</code> cannot sleep for sub-second amounts of time, <code>usleep()</code> is deprecated and it&rsquo;s alternative <code>nanosleep()</code> requires you to define variables</li>
 </ul>
 <p>This is possibly the simplest real-world use of the C time API. And even then the legacy cruft and bad design makes this code significantly less organic.</p>
-<p>For comparison, here is the corresponding lua code</p>
+<p>For comparison, here is the corresponding Lua code</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#ff7b72">while</span> <span style="color:#79c0ff">true</span> <span style="color:#ff7b72">do</span>
 </span></span><span style="display:flex;"><span>	print(os.date(<span style="color:#a5d6ff">&#34;%a %b %d %T&#34;</span>))
 </span></span><span style="display:flex;"><span>	io.stdout:flush();
 </span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">if</span> <span style="color:#ff7b72;font-weight:bold">not</span> os.execute(<span style="color:#a5d6ff">&#34;sleep 1&#34;</span>) <span style="color:#ff7b72">then</span> <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">1</span>; <span style="color:#ff7b72">end</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">end</span>
-</span></span></code></pre></div><p>I&rsquo;m making my own C time API not because I expect it to have widespread use. But as a proof of concept of what could&rsquo;ve been, and to illustrate some of the subtler design flaws of the time library.</p>
+</span></span></code></pre></div><p>The library I describe in this article was not made because I expect it to have widespread use. But as a proof of concept of what could&rsquo;ve been, and to illustrate some of the subtler design flaws of the time library.</p>
 <h2 id="scope">Scope</h2>
 <p>I will be using the functions described in Eric S. Raymond&rsquo;s <em><a href="https://www.catb.org/~esr/time-programming/index.asc">Time, Clock, and Calendar Programming In C</a></em>
 as a boundary for the C time API. These forty-something functions can be classified as:</p>
@@ -59,21 +58,20 @@ as a boundary for the C time API. These forty-something functions can be classif
 <li>Setting the current time (<code>settimeofday()</code>, <code>clock_settime()</code>)</li>
 <li>NTP correction (<code>adjtime()</code>/<code>adjtimex()</code>)</li>
 <li>Converting system time to calendar format (<code>localtime()</code>, <code>gmtime()</code>, and their variants)</li>
-<li>Convertint calendar time to system format (<code>mktime()</code>, <code>timegm()</code>, <code>timelocal()</code>, and their variants)</li>
+<li>Converting calendar time to system format (<code>mktime()</code>, <code>timegm()</code>, <code>timelocal()</code>, and their variants)</li>
 <li>Sleeping (<code>sleep()</code>, <code>usleep()</code>, <code>nanosleep()</code>)</li>
 <li>Converting a time to a string (<code>asctime()</code>, <code>ctime()</code>, and their variants, as well as <code>strftime()</code>)</li>
 <li>Converting a string to a time (<code>getdate()</code> and <code>strptime()</code>)</li>
 <li>Timezone handling (<code>tzset()</code>, and the Berkeley timezone API)</li>
 <li>Clock handling (<code>clock()</code>, <code>clock_getres()</code>)</li>
 </ul>
-<p>The only function that doesn&rsquo;t fit here is <code>difftime()</code>, which swears it isn&rsquo;t just a subtraction.
-Although in libc&rsquo;s such as musl, <a href="https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c">it&rsquo;s actually just a subtraction</a>.</p>
+<p>The only function that doesn&rsquo;t fit here is <code>difftime()</code>, which is <a href="https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c">just a subtraction</a>.</p>
 <p>Out of these, clock handling, system level APIs for setting the time, Alarm/Timer handling (which has as much to do with signals as it does time),
-And NTP correction are probably out of scope. This leaves:</p>
+And NTP correction are out of scope. This leaves:</p>
 <ul>
 <li>Getting the current time</li>
 <li>Converting system time to calendar format</li>
-<li>Convertint calendar time to system format</li>
+<li>Converting calendar time to system format</li>
 <li>Converting a time to a string</li>
 <li>Converting a string to a time</li>
 <li>Timezone handling</li>
@@ -90,9 +88,8 @@ And NTP correction are probably out of scope. This leaves:</p>
 almost exclusively with conversion of time to and from strings.</p>
 <h2 id="nanoseconds-floating-point-percision-and-the-y2262-problem">Nanoseconds, Floating Point Percision, and the Y2262 problem</h2>
 <p>It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
-It&rsquo;d give strftime and strptime the ability to print mili/micro/nanoseconds. And it&rsquo;d remove the need for
-the timespec struct used in a lot of system-level time functions.</p>
-<p>Because of this, in my time library, the base time type (<code>date_t</code>) should contain the number of nanoseconds since the Unix Epoch.</p>
+It&rsquo;d give <code>strftime</code> and <code>strptime</code> the ability to print milli/micro/nanoseconds. And it&rsquo;d remove the need for
+the <code>timespec</code> struct used in a lot of system-level time functions.</p>
 <p>A floating point number is able to store values up to 2<sup>mantissa_length</sup> with integral precision. Actually, calculating floating
 point precision loss is surprisingly easy. For a number n; Any number below 2<sup>n</sup> will have at least 2<sup>n-mantissa_length</sup> precision.
 Which means for any resolution, we will lose precision at 2<sup>mantissa_length</sup> <em>units of that resolution</em> regardless of base resolution.</p>
@@ -103,19 +100,15 @@ Which means we lose precision at around ~2<sup>33</sup> seconds.</p>
 </span></span><span style="display:flex;"><span>Wed Mar 16 07:56:32 AM CDT 2242
 </span></span></code></pre></div><p>If this were to have nanosecond level precision, we&rsquo;d lose precision at 2<sup>63</sup> nanoseconds (Around 2262 (The 20 year difference is due to the fact
 that 10^-9^ is actually around 2^-29.8^)).</p>
-<p>Using <a href="https://gist.github.com/oliverkwebb/87e841fe8cb0ad4d3eebc99c38b91a4">some go code</a> I was able to generate the following table:</p>
+<p>Using <a href="https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4">some go code</a> I was able to generate the following table:</p>
 
 <table>
 <thead>
     <tr>
-       <td>Type/Resolution</td>  <td> float</td>  <td> int</td>  <td> double</td>  <td> long/x87 long double</td> 
+       <td>Type/Resolution</td>  <td> float (23)</td>  <td> int (31)</td>  <td> double (52)</td>  <td> long/x87 long double (63)</td> 
     </tr>
 </thead>
 <tbody>
-  
-    <tr>
-       <td>Width</td>  <td> 23</td>  <td> 31</td>  <td> 52</td>  <td> 63</td> 
-    </tr>
   
     <tr>
        <td>1 ns</td>  <td> 1970-01-01T00:00</td>  <td> 1970-01-01T00:00</td>  <td> 1970-02-22T02:59</td>  <td> 2262-04-11T23:47</td> 
@@ -172,10 +165,10 @@ In the spirit of &ldquo;100 functions for 10 datastructures vs. 10 functions for
 Unless a functions <em>job</em> is to handle human-friendly time values, it will use <code>date_t</code>.</p>
 <p>The way this is done in C is with <code>struct tm</code> , which has many problems.</p>
 <ul>
-<li>almost always handled in statically allocated pointers that get overwritten (gmtime())</li>
+<li>almost always handled in statically allocated pointers that get overwritten (<code>gmtime()</code>)</li>
 <li>No way to represent sub-second time.</li>
-<li>tm_mday is based off one for no reason.</li>
-<li>tm_wday and tm_yday make it harder to construct completely-valid timezones</li>
+<li>tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.</li>
+<li>tm_wday and tm_yday make it harder to construct completely valid structs</li>
 <li>mktime(), being the main way to convert back into <code>time_t</code>, changes the struct that is passed in.</li>
 </ul>
 <p>Creating our own calendar structure to fix these problems:</p>
@@ -205,9 +198,7 @@ Unless a functions <em>job</em> is to handle human-friendly time values, it will
 <dt><strong>&ldquo;Why no timezones in the struct?&rdquo;</strong></dt>
 <dd>The date passed into <code>tocal()</code> is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with <code>date_t</code>, not calendars on matter of principle and practicality.</dd>
 </dl>
-<h2 id="the-tragedy-of-tzset">The tragedy of tzset()</h2>
-<p>Out of all the components of the</p>
-<h2 id="an-illustration-of-the-problem-weekdays-in-time-structures-creates">An illustration of the problem weekdays in time structures creates</h2>
+<h2 id="why-weekdays-in-the-time-structure-are-bad">Why weekdays in the time structure are bad</h2>
 <p><code>strptime()</code> is special because it uses uncertainty as a tool. It wont touch anything in the calendar
 structure that isn&rsquo;t directly correlated with a formatting specification. This is as much of a
 asset as it is a liability, it&rsquo;s useful because you can read time with a set of presumptions
@@ -247,52 +238,41 @@ print a wrong weekday because <code>strptime()</code> did not correct the weekda
 </table>
 
 
-<p>The alternative I provide in my time library is <code>readdate()</code>, reading time with a configurable set of base
-presumptions (i.e. &ldquo;the year is 2024&rdquo;) is too valuable not to pass up. For this reason, <code>readdate()</code> takes
-a base date argument, converts it to a calendar, then changes values in that, before converting it back into a date and returning it.</p>
-<p>This has multiple benefits over <code>strptime()</code>, the first one is that you are conc</p>
-
-<table>
-<thead>
-    <tr>
-       <td>Date String</td>  <td> Makes Sense?</td>  <td> readdate result?</td> 
-    </tr>
-</thead>
-<tbody>
-  
-    <tr>
-       <td>Febuary 16 1978</td>  <td> Yes</td>  <td> 2/16/78</td> 
-    </tr>
-  
-    <tr>
-       <td>Febuary 1978</td>  <td> Yes</td>  <td> 2/??/78</td> 
-    </tr>
-  
-    <tr>
-       <td>Thursday February 16 1978</td>  <td> Yes</td>  <td> 2/16/78</td> 
-    </tr>
-  
-    <tr>
-       <td>Thursday February 1978</td>  <td> No</td>  <td> Yes 2/??/78</td> 
-    </tr>
-  
-    <tr>
-       <td>Monday February 16</td>  <td> No</td>  <td> 2/16/??</td> 
-    </tr>
-  
-</tbody>
-</table>
-
-
-
+<h2 id="the-tragedy-of-tzset">The tragedy of tzset()</h2>
+<p>The timezone handling code in libc isn&rsquo;t outdated, that would imply it was once sufficient for timezone handling.
+<code>tzset()</code> and <code>localtime()</code> are the <em>only</em> ways to handle timezones in libc, and both of them have a insane relationship
+with each other and the process environment:</p>
+<p><img src="/tzset.svg" alt="tzset, environ, and localtime relationship"></p>
+<p>A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
+name you would use to load the timezone. I.e. <code>America/New_York</code> vs. <code>EST</code>). <strong>Neither of these things are constant</strong>, with daylight savings
+time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Yes, even with DST
+variants)</p>
+<p><code>localtime()</code> respects this. And gives one zone name and one offset in a <code>tm</code> struct (the struct variables that store this
+are non-portable, but it&rsquo;s the only way to properly handle timezones without parsing tzdb files).</p>
+<p>Thus, get a proper timezone offset and name, we have to:</p>
+<ul>
+<li>Set <code>TZ</code> to the timezone name</li>
+<li>Call <code>tzset()</code> (which secretly provides good data to <code>localtime</code>)</li>
+<li>Give the <code>time_t</code> form of the time to <code>localtime_r</code> (so the global variable localtime keeps doesn&rsquo;t get overwritten)</li>
+<li>Get <code>tm_gmtoff</code> and <code>tm_zone</code> (On musl, tm_zone is overwritten whenever a new timezone is loaded, which means the string has to be duplicated and
+therefore it must be the users job to free it)</li>
+<li>Set <code>TZ</code> back to whatever it was</li>
+</ul>
+<p>Creating three base functions and two convenience functions to work with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">int</span>      <span style="color:#d2a8ff;font-weight:bold">tzoffat</span>(<span style="color:#ff7b72">date_t</span> d, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>tz); <span style="color:#8b949e;font-style:italic">// Seconds east of UTC
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">char</span>   <span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#d2a8ff;font-weight:bold">tznameat</span>(<span style="color:#ff7b72">date_t</span> d, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>tz);
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">const</span> <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#d2a8ff;font-weight:bold">mytz</span>(<span style="color:#ff7b72">void</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">date_t</span>      <span style="color:#d2a8ff;font-weight:bold">intz</span>(<span style="color:#ff7b72">date_t</span> d, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>tz); <span style="color:#8b949e;font-style:italic">// d+tzoffat(d, tz)
+</span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">date_t</span>    <span style="color:#d2a8ff;font-weight:bold">inmytz</span>(<span style="color:#ff7b72">date_t</span> d);           <span style="color:#8b949e;font-style:italic">// intz(d, mytz())
+</span></span></span></code></pre></div>
 
 </article>
 </main>
 <hr/>
 <footer>
   <div id="nextprev">
-		<a href="/articles/hugo/" class="prev">&lt;&ndash; Migrating to Hugo</a>
-	<a href="/articles/nongnuext/" class="next">Nongnuext &ndash;&gt;</a>
+		<a href="/articles/rustunixnew/" class="prev">&lt;&ndash; List of classic UNIX utils re-designed in rust</a>
 	</div>
 	<br/>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>

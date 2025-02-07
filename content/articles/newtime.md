@@ -1,7 +1,7 @@
 ---
-title: "The C Time API, Rethought"
+title: "Rethinking The C Time API"
 draft: true
-date: 2024-09-07T10:25:12-05:00
+date: 2025-02-05T10:25:12-05:00
 ---
 
 Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
@@ -35,7 +35,7 @@ int main(void)
 
 This is possibly the simplest real-world use of the C time API. And even then the legacy cruft and bad design makes this code significantly less organic.
 
-For comparison, here is the corresponding lua code
+For comparison, here is the corresponding Lua code
 
 ```lua
 while true do
@@ -45,7 +45,7 @@ while true do
 end
 ```
 
-I'm making my own C time API not because I expect it to have widespread use. But as a proof of concept of what could've been, and to illustrate some of the subtler design flaws of the time library.
+The library I describe in this article was not made because I expect it to have widespread use. But as a proof of concept of what could've been, and to illustrate some of the subtler design flaws of the time library.
 
 ## Scope
 
@@ -64,11 +64,10 @@ as a boundary for the C time API. These forty-something functions can be classif
 - Timezone handling (`tzset()`, and the Berkeley timezone API)
 - Clock handling (`clock()`, `clock_getres()`)
 
-The only function that doesn't fit here is `difftime()`, which swears it isn't just a subtraction.
-Although in libc's such as musl, [it's actually just a subtraction](https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c).
+The only function that doesn't fit here is `difftime()`, which is [just a subtraction](https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c).
 
 Out of these, clock handling, system level APIs for setting the time, Alarm/Timer handling (which has as much to do with signals as it does time),
-And NTP correction are probably out of scope. This leaves:
+And NTP correction are out of scope. This leaves:
 
 - Getting the current time
 - Converting system time to calendar format
@@ -91,10 +90,8 @@ almost exclusively with conversion of time to and from strings.
 ## Nanoseconds, Floating Point Percision, and the Y2262 problem
 
 It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
-It'd give strftime and strptime the ability to print mili/micro/nanoseconds. And it'd remove the need for
-the timespec struct used in a lot of system-level time functions.
-
-Because of this, in my time library, the base time type (`date_t`) should contain the number of nanoseconds since the Unix Epoch.
+It'd give `strftime` and `strptime` the ability to print milli/micro/nanoseconds. And it'd remove the need for
+the `timespec` struct used in a lot of system-level time functions.
 
 A floating point number is able to store values up to 2^mantissa_length^ with integral precision. Actually, calculating floating
 point precision loss is surprisingly easy. For a number n; Any number below 2^n^ will have at least 2^n-mantissa_length^ precision.
@@ -115,8 +112,7 @@ that 10^-9^ is actually around 2^-29.8^)).
 Using [some go code] I was able to generate the following table:
 
 {{< csvtbl >}}
-Type/Resolution, float, int, double, long/x87 long double
-Width, 23, 31, 52, 63
+Type/Resolution, float (23), int (31), double (52), long/x87 long double (63)
 1 ns, 1970-01-01T00:00, 1970-01-01T00:00, 1970-02-22T02:59, 2262-04-11T23:47
 -1 ns, 1969-12-31T23:59, 1969-12-31T23:59, 1969-11-09T21:00, 1677-09-21T00:12
 10 ns, 1970-01-01T00:00, 1970-01-01T00:00, 1971-06-06T05:59, 4892-10-07T21:52
@@ -144,10 +140,10 @@ Unless a functions _job_ is to handle human-friendly time values, it will use `d
 
 The way this is done in C is with `struct tm` , which has many problems.
 
-* almost always handled in statically allocated pointers that get overwritten (gmtime())
+* almost always handled in statically allocated pointers that get overwritten (`gmtime()`)
 * No way to represent sub-second time.
-* tm_mday is based off one for no reason.
-* tm_wday and tm_yday make it harder to construct completely-valid timezones
+* tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.
+* tm_wday and tm_yday make it harder to construct completely valid structs
 * mktime(), being the main way to convert back into `time_t`, changes the struct that is passed in.
 
 Creating our own calendar structure to fix these problems:
@@ -183,11 +179,7 @@ This fixes several problems with the existing `struct tm`:
 **"Why no timezones in the struct?"**
 : The date passed into `tocal()` is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with `date_t`, not calendars on matter of principle and practicality.
 
-## The tragedy of tzset()
-
-Out of all the components of the 
-
-## An illustration of the problem weekdays in time structures creates
+## Why weekdays in the time structure are bad
 
 `strptime()` is special because it uses uncertainty as a tool. It wont touch anything in the calendar
 structure that isn't directly correlated with a formatting specification. This is as much of a
@@ -205,20 +197,41 @@ Thursday February 1978, No, Thur. 2/??/78
 Monday February 30, No, Mon. 2/30/??
 {{< /csvtbl >}}
 
-The alternative I provide in my time library is `readdate()`, reading time with a configurable set of base
-presumptions (i.e. "the year is 2024") is too valuable not to pass up. For this reason, `readdate()` takes
-a base date argument, converts it to a calendar, then changes values in that, before converting it back into a date and returning it.
+## The tragedy of tzset()
 
-This has multiple benefits over `strptime()`, the first one is that you are conc
+The timezone handling code in libc isn't outdated, that would imply it was once sufficient for timezone handling.
+`tzset()` and `localtime()` are the *only* ways to handle timezones in libc, and both of them have a insane relationship
+with each other and the process environment:
 
-{{< csvtbl >}}
-Date String, Makes Sense?, readdate result?
-Febuary 16 1978, Yes, 2/16/78
-Febuary 1978, Yes, 2/??/78
-Thursday February 16 1978, Yes, 2/16/78
-Thursday February 1978, No, Yes 2/??/78
-Monday February 16, No, 2/16/??
-{{< /csvtbl >}}
+![tzset, environ, and localtime relationship](/tzset.svg)
+
+A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
+name you would use to load the timezone. I.e. `America/New_York` vs. `EST`). **Neither of these things are constant**, with daylight savings
+time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Yes, even with DST
+variants)
+
+`localtime()` respects this. And gives one zone name and one offset in a `tm` struct (the struct variables that store this
+are non-portable, but it's the only way to properly handle timezones without parsing tzdb files).
+
+Thus, get a proper timezone offset and name, we have to:
+* Set `TZ` to the timezone name
+* Call `tzset()` (which secretly provides good data to `localtime`)
+* Give the `time_t` form of the time to `localtime_r` (so the global variable localtime keeps doesn't get overwritten)
+* Get `tm_gmtoff` and `tm_zone` (On musl, tm_zone is overwritten whenever a new timezone is loaded, which means the string has to be duplicated and
+therefore it must be the users job to free it)
+* Set `TZ` back to whatever it was
+
+Creating three base functions and two convenience functions to work with:
+
+```c
+int      tzoffat(date_t d, char *tz); // Seconds east of UTC
+char   *tznameat(date_t d, char *tz);
+const char *mytz(void);
+
+date_t      intz(date_t d, char *tz); // d+tzoffat(d, tz)
+date_t    inmytz(date_t d);           // intz(d, mytz())
+```
+
 
 [Time Programming Guide]: https://www.catb.org/~esr/time-programming/index.asc
-[some go code]: https://gist.github.com/oliverkwebb/87e841fe8cb0ad4d3eebc99c38b91a4
+[some go code]: https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4
