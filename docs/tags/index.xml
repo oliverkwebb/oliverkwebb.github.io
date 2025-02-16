@@ -3,6 +3,321 @@
 <link>https://oliverkwebb.github.io/tags/</link>
 <language>en-us</language>
 
+	<item><title>Rethinking The C Time API</title>
+	<link>https://oliverkwebb.github.io/articles/newtime/</link>
+	<pubDate>Wed, 05 Feb 2025 10:25:12 -0500</pubDate>
+	<description>&lt;p&gt;Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
+To the point almost every regularly used element of it has some design decision that&amp;rsquo;s been obsolete for
+decades.&lt;/p&gt;
+&lt;p&gt;As a example, here is some code I use to print the current time for my status bar:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;time.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; buf[&lt;span style=&#34;color:#a5d6ff&#34;&gt;40&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ff7b72&#34;&gt;time_t&lt;/span&gt; now &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;time&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ff7b72&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;strftime&lt;/span&gt;(buf, &lt;span style=&#34;color:#a5d6ff&#34;&gt;40&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%a %b %d %T&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;localtime&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;amp;&lt;/span&gt;now));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;puts&lt;/span&gt;(buf);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;fflush&lt;/span&gt;(stdout);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;sleep&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    now &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;time&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;time()&lt;/code&gt; unnecessarily takes a pointer argument to write to&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;strftime()&lt;/code&gt; has to write to a string of a &lt;em&gt;fixed length&lt;/em&gt; it &lt;em&gt;can not dynamically allocate&lt;/em&gt; (This is less legacy than it is bad design)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;localtime()&lt;/code&gt; needs the pointer to a time_t value &lt;em&gt;even though it does not change it&lt;/em&gt; because of register size concerns on PDP-11&amp;rsquo;s&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sleep()&lt;/code&gt; cannot sleep for sub-second amounts of time, &lt;code&gt;usleep()&lt;/code&gt; is deprecated and it&amp;rsquo;s alternative &lt;code&gt;nanosleep()&lt;/code&gt; requires you to define variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is possibly the simplest real-world use of the C time API. And even then the legacy cruft and bad design makes this code significantly less organic.&lt;/p&gt;
+&lt;p&gt;For comparison, here is the corresponding Lua code&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;while&lt;/span&gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;true&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	print(os.date(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%a %b %d %T&amp;#34;&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	io.stdout:flush();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;not&lt;/span&gt; os.execute(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;sleep 1&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#ff7b72&#34;&gt;then&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#ff7b72&#34;&gt;end&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;end&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The library I describe in this article was not made because I expect it to have widespread use. But as a proof of concept of what could&amp;rsquo;ve been, and to illustrate some of the subtler design flaws of the time library.&lt;/p&gt;
+&lt;h2 id=&#34;scope&#34;&gt;Scope&lt;/h2&gt;
+&lt;p&gt;I will be using the functions described in Eric S. Raymond&amp;rsquo;s &lt;em&gt;&lt;a href=&#34;https://www.catb.org/~esr/time-programming/index.asc&#34;&gt;Time, Clock, and Calendar Programming In C&lt;/a&gt;&lt;/em&gt;
+as a boundary for the C time API. These forty-something functions can be classified as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Alarm/Timer (&lt;code&gt;alarm()&lt;/code&gt;, &lt;code&gt;ualarm()&lt;/code&gt;, the &lt;code&gt;timer_&lt;/code&gt; group)&lt;/li&gt;
+&lt;li&gt;Getting the current time (&lt;code&gt;time()&lt;/code&gt;, &lt;code&gt;clock_gettime()&lt;/code&gt;, &lt;code&gt;getttimeofday()&lt;/code&gt;, &lt;code&gt;ftime()&lt;/code&gt;, &lt;code&gt;timespec_get()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Setting the current time (&lt;code&gt;settimeofday()&lt;/code&gt;, &lt;code&gt;clock_settime()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;NTP correction (&lt;code&gt;adjtime()&lt;/code&gt;/&lt;code&gt;adjtimex()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Converting system time to calendar format (&lt;code&gt;localtime()&lt;/code&gt;, &lt;code&gt;gmtime()&lt;/code&gt;, and their variants)&lt;/li&gt;
+&lt;li&gt;Converting calendar time to system format (&lt;code&gt;mktime()&lt;/code&gt;, &lt;code&gt;timegm()&lt;/code&gt;, &lt;code&gt;timelocal()&lt;/code&gt;, and their variants)&lt;/li&gt;
+&lt;li&gt;Sleeping (&lt;code&gt;sleep()&lt;/code&gt;, &lt;code&gt;usleep()&lt;/code&gt;, &lt;code&gt;nanosleep()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Converting a time to a string (&lt;code&gt;asctime()&lt;/code&gt;, &lt;code&gt;ctime()&lt;/code&gt;, and their variants, as well as &lt;code&gt;strftime()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Converting a string to a time (&lt;code&gt;getdate()&lt;/code&gt; and &lt;code&gt;strptime()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Timezone handling (&lt;code&gt;tzset()&lt;/code&gt;, and the Berkeley timezone API)&lt;/li&gt;
+&lt;li&gt;Clock handling (&lt;code&gt;clock()&lt;/code&gt;, &lt;code&gt;clock_getres()&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The only function that doesn&amp;rsquo;t fit here is &lt;code&gt;difftime()&lt;/code&gt;, which is &lt;a href=&#34;https://git.musl-libc.org/cgit/musl/tree/src/time/difftime.c&#34;&gt;just a subtraction&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Out of these, clock handling, system level APIs for setting the time, Alarm/Timer handling (which has as much to do with signals as it does time),
+And NTP correction are out of scope. This leaves:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Getting the current time&lt;/li&gt;
+&lt;li&gt;Converting system time to calendar format&lt;/li&gt;
+&lt;li&gt;Converting calendar time to system format&lt;/li&gt;
+&lt;li&gt;Converting a time to a string&lt;/li&gt;
+&lt;li&gt;Converting a string to a time&lt;/li&gt;
+&lt;li&gt;Timezone handling&lt;/li&gt;
+&lt;li&gt;Sleeping&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The main types of the C time API (that matter to us) are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;time_t&lt;/code&gt;, which in practice is a 64 bit signed integer of seconds since 1/1/1970 00:00:00 UTC.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;struct tm&lt;/code&gt;, a broken down (both literally and figuratively) representation of calendar time.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;struct timespec&lt;/code&gt;, a representation of fractional time in seconds and nanoseconds.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;timezone_t&lt;/code&gt;, a BSD exclusive opaque timezone type.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;time_t&lt;/code&gt; and &lt;code&gt;struct timespec&lt;/code&gt; are used almost exclusively in kernel-level functions. Whilst &lt;code&gt;struct tm&lt;/code&gt; is used
+almost exclusively with conversion of time to and from strings.&lt;/p&gt;
+&lt;h2 id=&#34;nanoseconds-floating-point-percision-and-the-y2262-problem&#34;&gt;Nanoseconds, Floating Point Percision, and the Y2262 problem&lt;/h2&gt;
+&lt;p&gt;It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
+It&amp;rsquo;d give &lt;code&gt;strftime&lt;/code&gt; and &lt;code&gt;strptime&lt;/code&gt; the ability to print milli/micro/nanoseconds. And it&amp;rsquo;d remove the need for
+the &lt;code&gt;timespec&lt;/code&gt; struct used in a lot of system-level time functions.&lt;/p&gt;
+&lt;p&gt;A floating point number is able to store values up to 2&lt;sup&gt;mantissa_length&lt;/sup&gt; with integral precision. Actually, calculating floating
+point precision loss is surprisingly easy. For a number n; Any number below 2&lt;sup&gt;n&lt;/sup&gt; will have at least 2&lt;sup&gt;n-mantissa_length&lt;/sup&gt; precision.&lt;/p&gt;
+&lt;p&gt;As an example, Lets consider a long double that represents seconds.
+We lose nanosecond level precision when 2&lt;sup&gt;n-63&lt;/sup&gt; is 10^-9^. Which means we lose precision at around ~2&lt;sup&gt;33&lt;/sup&gt; seconds.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ date -d &amp;#34;@$((2**33))&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Wed Mar 16 07:56:32 AM CDT 2242
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If this long double were to represent nanoseconds, we&amp;rsquo;d lose precision at
+2&lt;sup&gt;63&lt;/sup&gt; nanoseconds (Around 2262 (The 20 year difference is due to the fact
+that 10^-9^ is actually around 2^-29.8^)).&lt;/p&gt;
+&lt;p&gt;Using &lt;a href=&#34;https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4&#34;&gt;some go code&lt;/a&gt; I was able to generate the following table:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Type/Resolution&lt;/td&gt;  &lt;td&gt; float (23)&lt;/td&gt;  &lt;td&gt; int (31)&lt;/td&gt;  &lt;td&gt; double (52)&lt;/td&gt;  &lt;td&gt; long/x87 long double (63)&lt;/td&gt; 
+    &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;1 ns&lt;/td&gt;  &lt;td&gt; 1970-01-01T00:00&lt;/td&gt;  &lt;td&gt; 1970-01-01T00:00&lt;/td&gt;  &lt;td&gt; 1970-02-22T02:59&lt;/td&gt;  &lt;td&gt; 2262-04-11T23:47&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;-1 ns&lt;/td&gt;  &lt;td&gt; 1969-12-31T23:59&lt;/td&gt;  &lt;td&gt; 1969-12-31T23:59&lt;/td&gt;  &lt;td&gt; 1969-11-09T21:00&lt;/td&gt;  &lt;td&gt; 1677-09-21T00:12&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;10 ns&lt;/td&gt;  &lt;td&gt; 1970-01-01T00:00&lt;/td&gt;  &lt;td&gt; 1970-01-01T00:00&lt;/td&gt;  &lt;td&gt; 1971-06-06T05:59&lt;/td&gt;  &lt;td&gt; 4892-10-07T21:52&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;-10 ns&lt;/td&gt;  &lt;td&gt; 1969-12-31T23:59&lt;/td&gt;  &lt;td&gt; 1969-12-31T23:59&lt;/td&gt;  &lt;td&gt; 1968-07-28T18:00&lt;/td&gt;  &lt;td&gt; -0953-03-26T02:07&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;1 us&lt;/td&gt;  &lt;td&gt; 1970-01-01T00:00&lt;/td&gt;  &lt;td&gt; 1970-01-01T00:35&lt;/td&gt;  &lt;td&gt; 2112-09-17T23:53&lt;/td&gt;  &lt;td&gt; 294247-01-10T04:00&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;-1 us&lt;/td&gt;  &lt;td&gt; 1969-12-31T23:59&lt;/td&gt;  &lt;td&gt; 1969-12-31T23:24&lt;/td&gt;  &lt;td&gt; 1827-04-16T00:06&lt;/td&gt;  &lt;td&gt; -290308-12-21T19:59&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;1 ms&lt;/td&gt;  &lt;td&gt; 1970-01-01T02:19&lt;/td&gt;  &lt;td&gt; 1970-01-25T20:31&lt;/td&gt;  &lt;td&gt; 144683-05-23T16:29&lt;/td&gt;  &lt;td&gt; 292278994-08-17T07:12&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;-1 ms&lt;/td&gt;  &lt;td&gt; 1969-12-31T21:40&lt;/td&gt;  &lt;td&gt; 1969-12-07T03:28&lt;/td&gt;  &lt;td&gt; -140744-08-10T07:30&lt;/td&gt;  &lt;td&gt; -292275055-05-16T16:47&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;1 s&lt;/td&gt;  &lt;td&gt; 1970-04-08T02:10&lt;/td&gt;  &lt;td&gt; 2038-01-19T03:14&lt;/td&gt;  &lt;td&gt; 142715360-12-06T03:48&lt;/td&gt;  &lt;td&gt; 292277026596-12-04T15:30&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;-1 s&lt;/td&gt;  &lt;td&gt; 1969-09-25T21:49&lt;/td&gt;  &lt;td&gt; 1901-12-13T20:45&lt;/td&gt;  &lt;td&gt; -142711421-01-25T20:11&lt;/td&gt;  &lt;td&gt; 292277026596-12-04T15:30&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;Looking at this chart alone, 64 bit integers don&amp;rsquo;t seem much worse than long doubles, but keep in mind that
+Integers support &lt;em&gt;One percision&lt;/em&gt;, and there&amp;rsquo;s a trade off between resolution and the bounds of your epoch,
+Floating point values support &lt;em&gt;all percisions&lt;/em&gt;, there is no such trade off.&lt;/p&gt;
+&lt;p&gt;For this reason, &lt;code&gt;date_t&lt;/code&gt; is a long double floating point value of seconds since the epoch.&lt;/p&gt;
+&lt;h2 id=&#34;broken-down-time&#34;&gt;&amp;ldquo;Broken Down Time&amp;rdquo;&lt;/h2&gt;
+&lt;p&gt;Now that we have a base time type, there needs to be some way to convert between
+human friendly to machine friendly values. I.e. getting the year, month and day.
+In the spirit of &amp;ldquo;100 functions for 10 datastructures vs. 10 functions for 1 datastructure&amp;rdquo;,
+Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time values, it will use &lt;code&gt;date_t&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The way this is done in C is with &lt;code&gt;struct tm&lt;/code&gt; , which has many problems.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;almost always handled in statically allocated pointers that get overwritten (&lt;code&gt;gmtime()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;No way to represent sub-second time.&lt;/li&gt;
+&lt;li&gt;tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.&lt;/li&gt;
+&lt;li&gt;tm_wday and tm_yday make it harder to construct completely valid structs&lt;/li&gt;
+&lt;li&gt;mktime(), being the main way to convert back into &lt;code&gt;time_t&lt;/code&gt;, changes the struct that is passed in.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Creating our own calendar structure to fix these problems:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint32_t&lt;/span&gt; nsec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..1E9
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   sec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..60
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   min; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..59
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;  hour; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..23
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   day; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..30
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt; month; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..11
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;   year; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Since Epoch
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With 4 functions to handle them:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tocal&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;wdayof&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;ydayof&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;   &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;fromcal&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal cal);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This fixes several problems with the existing &lt;code&gt;struct tm&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fractional Time&lt;/li&gt;
+&lt;li&gt;Day of month starts with 0 instead of 1&lt;/li&gt;
+&lt;li&gt;Years over INT_MAX possible&lt;/li&gt;
+&lt;li&gt;Smaller than the &lt;code&gt;struct tm&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Any value where the fields are within range corresponds to a unique valid time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;dl&gt;
+&lt;dt&gt;&lt;strong&gt;&amp;ldquo;Why no timezones in the struct?&amp;rdquo;&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;The date passed into &lt;code&gt;tocal()&lt;/code&gt; is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with &lt;code&gt;date_t&lt;/code&gt;, not calendars on matter of principle and practicality.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;h2 id=&#34;the-tragedy-of-tzset&#34;&gt;The tragedy of tzset()&lt;/h2&gt;
+&lt;p&gt;The timezone handling code in libc isn&amp;rsquo;t outdated, that would imply it was once sufficient for timezone handling.
+&lt;code&gt;tzset()&lt;/code&gt; and &lt;code&gt;localtime()&lt;/code&gt; are the &lt;em&gt;only&lt;/em&gt; ways to handle timezones in libc, and both of them have a insane relationship
+with each other and the process environment:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
+&lt;p&gt;A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
+name you would use to load the timezone. I.e. &lt;code&gt;America/New_York&lt;/code&gt; vs. &lt;code&gt;EST&lt;/code&gt;). &lt;strong&gt;Neither of these things are constant&lt;/strong&gt;, with daylight savings
+time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Even with DST
+variants)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;localtime()&lt;/code&gt; respects this. And gives one zone name and one offset that are dependent on time in a
+&lt;code&gt;tm&lt;/code&gt; struct (the struct variables that store this are non-portable, but it&amp;rsquo;s the only way to properly
+handle timezones without parsing tzdb files).&lt;/p&gt;
+&lt;p&gt;Thus, get a proper timezone offset and name, we have to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;TZ&lt;/code&gt; to the timezone name&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;tzset()&lt;/code&gt; (which secretly provides good data to &lt;code&gt;localtime&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Give the &lt;code&gt;time_t&lt;/code&gt; form of the time to &lt;code&gt;localtime_r&lt;/code&gt; (so the global variable localtime keeps doesn&amp;rsquo;t get overwritten)&lt;/li&gt;
+&lt;li&gt;Get &lt;code&gt;tm_gmtoff&lt;/code&gt; and &lt;code&gt;tm_zone&lt;/code&gt; (On musl, tm_zone is overwritten whenever a new timezone is loaded, which means the string has to be duplicated and
+therefore it must be the users job to free it)&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;TZ&lt;/code&gt; back to whatever it was&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Creating three base functions and two convenience functions to work with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tzoffat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Seconds east of UTC
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt;   &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tznameat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;mytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;intz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// d+tzoffat(d, tz)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;inmytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);           &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// intz(d, mytz())
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;why-weekdays-in-the-time-structure-are-bad&#34;&gt;Why weekdays in the time structure are bad&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;strptime()&lt;/code&gt; is special because it uses uncertainty as a tool. It wont touch anything in the calendar
+structure that isn&amp;rsquo;t directly correlated with a formatting specification. This is as much of a
+asset as it is a liability, it&amp;rsquo;s useful because you can read time with a set of presumptions
+(i.e. read mm/dd as the current year and not 1970). But it&amp;rsquo;s a liability because you can
+&lt;em&gt;unintentionally&lt;/em&gt; read time with a set of presumptions (i.e. read mm/dd and then
+print a wrong weekday because &lt;code&gt;strptime()&lt;/code&gt; did not correct the weekday).&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+    &lt;tr&gt;
+       &lt;td&gt;Date String&lt;/td&gt;  &lt;td&gt; Makes Sense?&lt;/td&gt;  &lt;td&gt; strptime result?&lt;/td&gt; 
+    &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;Thursday February 16 1978&lt;/td&gt;  &lt;td&gt; Yes&lt;/td&gt;  &lt;td&gt; Thur. 2/16/78&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;Febuary 16 1978&lt;/td&gt;  &lt;td&gt; Yes&lt;/td&gt;  &lt;td&gt; ?? 2/16/78&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;Febuary 1978&lt;/td&gt;  &lt;td&gt; Yes&lt;/td&gt;  &lt;td&gt; ?? 2/??/78)&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;Thursday February 1978&lt;/td&gt;  &lt;td&gt; No&lt;/td&gt;  &lt;td&gt; Thur. 2/??/78&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+    &lt;tr&gt;
+       &lt;td&gt;Monday February 30&lt;/td&gt;  &lt;td&gt; No&lt;/td&gt;  &lt;td&gt; Mon. 2/30/??&lt;/td&gt; 
+    &lt;/tr&gt;
+  
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;This is not a problem if the weekday is inferred from other information&lt;/p&gt;
+&lt;h2 id=&#34;formatted-time&#34;&gt;Formatted Time&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;strftime()&lt;/code&gt; formatting has worked its way into many programming languages and applications,
+this is because it is the easiest, sometimes the only way, of getting time to string conversion
+to work in many environments. It has also been standardized since C89.
+Making the formatting of an analog of it a superset of the functionality would provide the benefit of
+compatibility. Since strftime formatting strings are often passed in from user input.
+However, the mnemonics for strftime are poor and do not allow for easy extension.&lt;/p&gt;
+&lt;p&gt;We can free up space for more formatters by using multiple letters in the variations of other formatters.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;s - seconds&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Us - microseconds&lt;/li&gt;
+&lt;li&gt;Ns - nanoseconds&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;m - minutes&lt;/li&gt;
+&lt;li&gt;h - hours&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;ch - clock hours (12-hour time)&lt;/li&gt;
+&lt;li&gt;ih - indicator for hours (AM/PM)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;d - Month day&lt;/li&gt;
+&lt;li&gt;w - Full weekday&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;aw - Abbreviated weekday&lt;/li&gt;
+&lt;li&gt;nw - Number of weekday&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;M - month name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;aM - Abbreviated month&lt;/li&gt;
+&lt;li&gt;nM - Number of month&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;y - year&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Dy - day of year&lt;/li&gt;
+&lt;li&gt;Cy - Century&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;z - zone name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;oz - zone offset&lt;/li&gt;
+&lt;li&gt;nz - index name of zone (i.e. &lt;code&gt;America/New_York&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;in-defense-of-libc&#34;&gt;In defense of libc&amp;hellip;&lt;/h2&gt;
+&lt;p&gt;The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
+and has constantly resisted improvement by standardization. Many components in the library were developed decades
+apart. Many more were designed without the idea of internationalization in mind. The result of this is something
+that is &amp;ldquo;complete&amp;rdquo;, but not pleasant or elegant to use, and which leaves many pitfalls for bugs.&lt;/p&gt;
+&lt;p&gt;And as other languages try to improve &lt;a href=&#34;https://pkg.go.dev/time&#34;&gt;their own time libraries&lt;/a&gt;, looking at the mistakes of C,
+It is interesting to think of ways C itself could&amp;rsquo;ve improved its own time library looking at these same mistakes.&lt;/p&gt;
+&lt;p&gt;The GitHub project for this time library (Partial WIP): &lt;a href=&#34;https://github.com/oliverkwebb/newtime/&#34;&gt;https://github.com/oliverkwebb/newtime/&lt;/a&gt;&lt;/p&gt;
+</description></item>
+
 	<item><title>List of classic UNIX utils re-designed in rust</title>
 	<link>https://oliverkwebb.github.io/articles/rustunixnew/</link>
 	<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>

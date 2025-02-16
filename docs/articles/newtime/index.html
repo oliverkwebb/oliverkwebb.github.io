@@ -19,7 +19,7 @@
 <p>Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
 To the point almost every regularly used element of it has some design decision that&rsquo;s been obsolete for
 decades.</p>
-<p>As a example, here is some code I use to print the current time for my status bar</p>
+<p>As a example, here is some code I use to print the current time for my status bar:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;time.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;unistd.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
@@ -91,14 +91,13 @@ almost exclusively with conversion of time to and from strings.</p>
 It&rsquo;d give <code>strftime</code> and <code>strptime</code> the ability to print milli/micro/nanoseconds. And it&rsquo;d remove the need for
 the <code>timespec</code> struct used in a lot of system-level time functions.</p>
 <p>A floating point number is able to store values up to 2<sup>mantissa_length</sup> with integral precision. Actually, calculating floating
-point precision loss is surprisingly easy. For a number n; Any number below 2<sup>n</sup> will have at least 2<sup>n-mantissa_length</sup> precision.
-Which means for any resolution, we will lose precision at 2<sup>mantissa_length</sup> <em>units of that resolution</em> regardless of base resolution.</p>
-<p>For a quick proof of this, lets consider a long double base resolution of 1 second.
-We lose nanosecond level precision when 2<sup>n-63</sup> is 10^-9^.
-Which means we lose precision at around ~2<sup>33</sup> seconds.</p>
+point precision loss is surprisingly easy. For a number n; Any number below 2<sup>n</sup> will have at least 2<sup>n-mantissa_length</sup> precision.</p>
+<p>As an example, Lets consider a long double that represents seconds.
+We lose nanosecond level precision when 2<sup>n-63</sup> is 10^-9^. Which means we lose precision at around ~2<sup>33</sup> seconds.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ date -d &#34;@$((2**33))&#34;
 </span></span><span style="display:flex;"><span>Wed Mar 16 07:56:32 AM CDT 2242
-</span></span></code></pre></div><p>If this were to have nanosecond level precision, we&rsquo;d lose precision at 2<sup>63</sup> nanoseconds (Around 2262 (The 20 year difference is due to the fact
+</span></span></code></pre></div><p>If this long double were to represent nanoseconds, we&rsquo;d lose precision at
+2<sup>63</sup> nanoseconds (Around 2262 (The 20 year difference is due to the fact
 that 10^-9^ is actually around 2^-29.8^)).</p>
 <p>Using <a href="https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4">some go code</a> I was able to generate the following table:</p>
 
@@ -154,9 +153,9 @@ that 10^-9^ is actually around 2^-29.8^)).</p>
 </table>
 
 
-<p>Looking at this chart alone, 64 bit integers don&rsquo;t seem much better than long doubles, but keep in mind that
-Integers support <em>One percision</em>, and there&rsquo;s a tradeoff between resolution and the bounds of your epoch,
-Floating point values support <em>all percisions</em>, there is no such tradeoff.</p>
+<p>Looking at this chart alone, 64 bit integers don&rsquo;t seem much worse than long doubles, but keep in mind that
+Integers support <em>One percision</em>, and there&rsquo;s a trade off between resolution and the bounds of your epoch,
+Floating point values support <em>all percisions</em>, there is no such trade off.</p>
 <p>For this reason, <code>date_t</code> is a long double floating point value of seconds since the epoch.</p>
 <h2 id="broken-down-time">&ldquo;Broken Down Time&rdquo;</h2>
 <p>Now that we have a base time type, there needs to be some way to convert between
@@ -198,46 +197,6 @@ Unless a functions <em>job</em> is to handle human-friendly time values, it will
 <dt><strong>&ldquo;Why no timezones in the struct?&rdquo;</strong></dt>
 <dd>The date passed into <code>tocal()</code> is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with <code>date_t</code>, not calendars on matter of principle and practicality.</dd>
 </dl>
-<h2 id="why-weekdays-in-the-time-structure-are-bad">Why weekdays in the time structure are bad</h2>
-<p><code>strptime()</code> is special because it uses uncertainty as a tool. It wont touch anything in the calendar
-structure that isn&rsquo;t directly correlated with a formatting specification. This is as much of a
-asset as it is a liability, it&rsquo;s useful because you can read time with a set of presumptions
-(i.e. read mm/dd as the current year and not 1970). But it&rsquo;s a liability because you can
-<em>unintentionally</em> read time with a set of presumptions (i.e. read mm/dd and then
-print a wrong weekday because <code>strptime()</code> did not correct the weekday).</p>
-
-<table>
-<thead>
-    <tr>
-       <td>Date String</td>  <td> Makes Sense?</td>  <td> strptime result?</td> 
-    </tr>
-</thead>
-<tbody>
-  
-    <tr>
-       <td>Febuary 16 1978</td>  <td> Yes</td>  <td> ?? 2/16/78</td> 
-    </tr>
-  
-    <tr>
-       <td>Febuary 1978</td>  <td> Yes</td>  <td> ?? 2/??/78)</td> 
-    </tr>
-  
-    <tr>
-       <td>Thursday February 16 1978</td>  <td> Yes</td>  <td> Thur. 2/16/78</td> 
-    </tr>
-  
-    <tr>
-       <td>Thursday February 1978</td>  <td> No</td>  <td> Thur. 2/??/78</td> 
-    </tr>
-  
-    <tr>
-       <td>Monday February 30</td>  <td> No</td>  <td> Mon. 2/30/??</td> 
-    </tr>
-  
-</tbody>
-</table>
-
-
 <h2 id="the-tragedy-of-tzset">The tragedy of tzset()</h2>
 <p>The timezone handling code in libc isn&rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 <code>tzset()</code> and <code>localtime()</code> are the <em>only</em> ways to handle timezones in libc, and both of them have a insane relationship
@@ -245,10 +204,11 @@ with each other and the process environment:</p>
 <p><img src="/tzset.svg" alt="tzset, environ, and localtime relationship"></p>
 <p>A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
 name you would use to load the timezone. I.e. <code>America/New_York</code> vs. <code>EST</code>). <strong>Neither of these things are constant</strong>, with daylight savings
-time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Yes, even with DST
+time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Even with DST
 variants)</p>
-<p><code>localtime()</code> respects this. And gives one zone name and one offset in a <code>tm</code> struct (the struct variables that store this
-are non-portable, but it&rsquo;s the only way to properly handle timezones without parsing tzdb files).</p>
+<p><code>localtime()</code> respects this. And gives one zone name and one offset that are dependent on time in a
+<code>tm</code> struct (the struct variables that store this are non-portable, but it&rsquo;s the only way to properly
+handle timezones without parsing tzdb files).</p>
 <p>Thus, get a proper timezone offset and name, we have to:</p>
 <ul>
 <li>Set <code>TZ</code> to the timezone name</li>
@@ -265,7 +225,108 @@ therefore it must be the users job to free it)</li>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">date_t</span>      <span style="color:#d2a8ff;font-weight:bold">intz</span>(<span style="color:#ff7b72">date_t</span> d, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>tz); <span style="color:#8b949e;font-style:italic">// d+tzoffat(d, tz)
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"></span><span style="color:#ff7b72">date_t</span>    <span style="color:#d2a8ff;font-weight:bold">inmytz</span>(<span style="color:#ff7b72">date_t</span> d);           <span style="color:#8b949e;font-style:italic">// intz(d, mytz())
-</span></span></span></code></pre></div>
+</span></span></span></code></pre></div><h2 id="why-weekdays-in-the-time-structure-are-bad">Why weekdays in the time structure are bad</h2>
+<p><code>strptime()</code> is special because it uses uncertainty as a tool. It wont touch anything in the calendar
+structure that isn&rsquo;t directly correlated with a formatting specification. This is as much of a
+asset as it is a liability, it&rsquo;s useful because you can read time with a set of presumptions
+(i.e. read mm/dd as the current year and not 1970). But it&rsquo;s a liability because you can
+<em>unintentionally</em> read time with a set of presumptions (i.e. read mm/dd and then
+print a wrong weekday because <code>strptime()</code> did not correct the weekday).</p>
+
+<table>
+<thead>
+    <tr>
+       <td>Date String</td>  <td> Makes Sense?</td>  <td> strptime result?</td> 
+    </tr>
+</thead>
+<tbody>
+  
+    <tr>
+       <td>Thursday February 16 1978</td>  <td> Yes</td>  <td> Thur. 2/16/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Febuary 16 1978</td>  <td> Yes</td>  <td> ?? 2/16/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Febuary 1978</td>  <td> Yes</td>  <td> ?? 2/??/78)</td> 
+    </tr>
+  
+    <tr>
+       <td>Thursday February 1978</td>  <td> No</td>  <td> Thur. 2/??/78</td> 
+    </tr>
+  
+    <tr>
+       <td>Monday February 30</td>  <td> No</td>  <td> Mon. 2/30/??</td> 
+    </tr>
+  
+</tbody>
+</table>
+
+
+<p>This is not a problem if the weekday is inferred from other information</p>
+<h2 id="formatted-time">Formatted Time</h2>
+<p><code>strftime()</code> formatting has worked its way into many programming languages and applications,
+this is because it is the easiest, sometimes the only way, of getting time to string conversion
+to work in many environments. It has also been standardized since C89.
+Making the formatting of an analog of it a superset of the functionality would provide the benefit of
+compatibility. Since strftime formatting strings are often passed in from user input.
+However, the mnemonics for strftime are poor and do not allow for easy extension.</p>
+<p>We can free up space for more formatters by using multiple letters in the variations of other formatters.</p>
+<ul>
+<li>s - seconds</li>
+</ul>
+<ul>
+<li>Us - microseconds</li>
+<li>Ns - nanoseconds</li>
+</ul>
+<ul>
+<li>m - minutes</li>
+<li>h - hours</li>
+</ul>
+<ul>
+<li>ch - clock hours (12-hour time)</li>
+<li>ih - indicator for hours (AM/PM)</li>
+</ul>
+<ul>
+<li>d - Month day</li>
+<li>w - Full weekday</li>
+</ul>
+<ul>
+<li>aw - Abbreviated weekday</li>
+<li>nw - Number of weekday</li>
+</ul>
+<ul>
+<li>M - month name</li>
+</ul>
+<ul>
+<li>aM - Abbreviated month</li>
+<li>nM - Number of month</li>
+</ul>
+<ul>
+<li>y - year</li>
+</ul>
+<ul>
+<li>Dy - day of year</li>
+<li>Cy - Century</li>
+</ul>
+<ul>
+<li>z - zone name</li>
+</ul>
+<ul>
+<li>oz - zone offset</li>
+<li>nz - index name of zone (i.e. <code>America/New_York</code>)</li>
+</ul>
+<h2 id="in-defense-of-libc">In defense of libc&hellip;</h2>
+<p>The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
+and has constantly resisted improvement by standardization. Many components in the library were developed decades
+apart. Many more were designed without the idea of internationalization in mind. The result of this is something
+that is &ldquo;complete&rdquo;, but not pleasant or elegant to use, and which leaves many pitfalls for bugs.</p>
+<p>And as other languages try to improve <a href="https://pkg.go.dev/time">their own time libraries</a>, looking at the mistakes of C,
+It is interesting to think of ways C itself could&rsquo;ve improved its own time library looking at these same mistakes.</p>
+<p>The GitHub project for this time library (Partial WIP): <a href="https://github.com/oliverkwebb/newtime/">https://github.com/oliverkwebb/newtime/</a></p>
+
 
 </article>
 </main>

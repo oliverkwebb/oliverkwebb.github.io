@@ -1,6 +1,5 @@
 ---
 title: "Rethinking The C Time API"
-draft: true
 date: 2025-02-05T10:25:12-05:00
 ---
 
@@ -8,7 +7,7 @@ Out of all the components of C, its time API is probably the one most plagued wi
 To the point almost every regularly used element of it has some design decision that's been obsolete for
 decades.
 
-As a example, here is some code I use to print the current time for my status bar
+As a example, here is some code I use to print the current time for my status bar:
 
 ```
 #include <stdio.h>
@@ -95,18 +94,18 @@ the `timespec` struct used in a lot of system-level time functions.
 
 A floating point number is able to store values up to 2^mantissa_length^ with integral precision. Actually, calculating floating
 point precision loss is surprisingly easy. For a number n; Any number below 2^n^ will have at least 2^n-mantissa_length^ precision.
-Which means for any resolution, we will lose precision at 2^mantissa_length^ *units of that resolution* regardless of base resolution.
 
-For a quick proof of this, lets consider a long double base resolution of 1 second.
-We lose nanosecond level precision when 2^n-63^ is 10^-9^.
-Which means we lose precision at around ~2^33^ seconds.
+
+As an example, Lets consider a long double that represents seconds.
+We lose nanosecond level precision when 2^n-63^ is 10^-9^. Which means we lose precision at around ~2^33^ seconds.
 
 ```
 $ date -d "@$((2**33))"
 Wed Mar 16 07:56:32 AM CDT 2242
 ```
 
-If this were to have nanosecond level precision, we'd lose precision at 2^63^ nanoseconds (Around 2262 (The 20 year difference is due to the fact
+If this long double were to represent nanoseconds, we'd lose precision at
+2^63^ nanoseconds (Around 2262 (The 20 year difference is due to the fact
 that 10^-9^ is actually around 2^-29.8^)).
 
 Using [some go code] I was able to generate the following table:
@@ -125,9 +124,9 @@ Type/Resolution, float (23), int (31), double (52), long/x87 long double (63)
 -1 s, 1969-09-25T21:49, 1901-12-13T20:45, -142711421-01-25T20:11, 292277026596-12-04T15:30
 {{< /csvtbl >}}
 
-Looking at this chart alone, 64 bit integers don't seem much better than long doubles, but keep in mind that
-Integers support *One percision*, and there's a tradeoff between resolution and the bounds of your epoch,
-Floating point values support *all percisions*, there is no such tradeoff.
+Looking at this chart alone, 64 bit integers don't seem much worse than long doubles, but keep in mind that
+Integers support *One percision*, and there's a trade off between resolution and the bounds of your epoch,
+Floating point values support *all percisions*, there is no such trade off.
 
 For this reason, `date_t` is a long double floating point value of seconds since the epoch.
 
@@ -179,24 +178,6 @@ This fixes several problems with the existing `struct tm`:
 **"Why no timezones in the struct?"**
 : The date passed into `tocal()` is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with `date_t`, not calendars on matter of principle and practicality.
 
-## Why weekdays in the time structure are bad
-
-`strptime()` is special because it uses uncertainty as a tool. It wont touch anything in the calendar
-structure that isn't directly correlated with a formatting specification. This is as much of a
-asset as it is a liability, it's useful because you can read time with a set of presumptions
-(i.e. read mm/dd as the current year and not 1970). But it's a liability because you can
-_unintentionally_ read time with a set of presumptions (i.e. read mm/dd and then
-print a wrong weekday because `strptime()` did not correct the weekday).
-
-{{< csvtbl >}}
-Date String, Makes Sense?, strptime result?
-Febuary 16 1978, Yes, ?? 2/16/78
-Febuary 1978, Yes, ?? 2/??/78)
-Thursday February 16 1978, Yes, Thur. 2/16/78
-Thursday February 1978, No, Thur. 2/??/78
-Monday February 30, No, Mon. 2/30/??
-{{< /csvtbl >}}
-
 ## The tragedy of tzset()
 
 The timezone handling code in libc isn't outdated, that would imply it was once sufficient for timezone handling.
@@ -207,11 +188,12 @@ with each other and the process environment:
 
 A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
 name you would use to load the timezone. I.e. `America/New_York` vs. `EST`). **Neither of these things are constant**, with daylight savings
-time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Yes, even with DST
+time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Even with DST
 variants)
 
-`localtime()` respects this. And gives one zone name and one offset in a `tm` struct (the struct variables that store this
-are non-portable, but it's the only way to properly handle timezones without parsing tzdb files).
+`localtime()` respects this. And gives one zone name and one offset that are dependent on time in a
+`tm` struct (the struct variables that store this are non-portable, but it's the only way to properly
+handle timezones without parsing tzdb files).
 
 Thus, get a proper timezone offset and name, we have to:
 * Set `TZ` to the timezone name
@@ -232,6 +214,70 @@ date_t      intz(date_t d, char *tz); // d+tzoffat(d, tz)
 date_t    inmytz(date_t d);           // intz(d, mytz())
 ```
 
+## Why weekdays in the time structure are bad
+
+`strptime()` is special because it uses uncertainty as a tool. It wont touch anything in the calendar
+structure that isn't directly correlated with a formatting specification. This is as much of a
+asset as it is a liability, it's useful because you can read time with a set of presumptions
+(i.e. read mm/dd as the current year and not 1970). But it's a liability because you can
+_unintentionally_ read time with a set of presumptions (i.e. read mm/dd and then
+print a wrong weekday because `strptime()` did not correct the weekday).
+
+{{< csvtbl >}}
+Date String, Makes Sense?, strptime result?
+Thursday February 16 1978, Yes, Thur. 2/16/78
+Febuary 16 1978, Yes, ?? 2/16/78
+Febuary 1978, Yes, ?? 2/??/78)
+Thursday February 1978, No, Thur. 2/??/78
+Monday February 30, No, Mon. 2/30/??
+{{< /csvtbl >}}
+
+
+This is not a problem if the weekday is inferred from other information
+
+## Formatted Time
+
+`strftime()` formatting has worked its way into many programming languages and applications,
+this is because it is the easiest, sometimes the only way, of getting time to string conversion
+to work in many environments. It has also been standardized since C89.
+Making the formatting of an analog of it a superset of the functionality would provide the benefit of
+compatibility. Since strftime formatting strings are often passed in from user input.
+However, the mnemonics for strftime are poor and do not allow for easy extension.
+
+We can free up space for more formatters by using multiple letters in the variations of other formatters.
+
+* s - seconds
+ - Us - microseconds
+ - Ns - nanoseconds
+* m - minutes
+* h - hours
+ - ch - clock hours (12-hour time)
+ - ih - indicator for hours (AM/PM)
+* d - Month day
+* w - Full weekday
+ - aw - Abbreviated weekday
+ - nw - Number of weekday
+* M - month name
+ - aM - Abbreviated month
+ - nM - Number of month
+* y - year
+ - Dy - day of year
+ - Cy - Century
+* z - zone name
+ - oz - zone offset
+ - nz - index name of zone (i.e. `America/New_York`)
+
+## In defense of libc...
+
+The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
+and has constantly resisted improvement by standardization. Many components in the library were developed decades
+apart. Many more were designed without the idea of internationalization in mind. The result of this is something
+that is "complete", but not pleasant or elegant to use, and which leaves many pitfalls for bugs.
+
+And as other languages try to improve [their own time libraries](https://pkg.go.dev/time), looking at the mistakes of C,
+It is interesting to think of ways C itself could've improved its own time library looking at these same mistakes.
+
+The GitHub project for this time library (Partial WIP): https://github.com/oliverkwebb/newtime/
 
 [Time Programming Guide]: https://www.catb.org/~esr/time-programming/index.asc
 [some go code]: https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4
