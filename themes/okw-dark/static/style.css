@@ -6,7 +6,7 @@
 --red: #a0155e;
 --yellow: #f8f828;
 --green: #08c888;
---blue: #0888c8;
+--blue: #0898d8;
 --cyan: #20ffff;
 --purple: #7878c8;
 --pink: #d808d8;
@@ -14,16 +14,16 @@
 
 /* APL386 Unicode by Adám Brudzewsky */
 @font-face {
-	font-family: "APL386";
-	font-style: normal;
-	src: url("./fonts/APL386.ttf") format("truetype")
+font-family: "APL386";
+font-style: normal;
+src: url("./fonts/APL386.ttf") format("truetype")
 }
 
 /* Inconsolata Unicode by Raph Levien */
 @font-face {
-	font-family: "Inconsolata";
-	font-style: normal;
-	src: url("./fonts/Inconsolata.ttf") format("truetype")
+font-family: "Inconsolata";
+font-style: normal;
+src: url("./fonts/Inconsolata.ttf") format("truetype")
 }
 
 html {
@@ -35,7 +35,7 @@ body {
 max-width:800px;
 padding:10px;
 margin:auto;
-font-family: "Inconsolata", Helvetica, sans-serif;
+font-family: "Noto Serif", serif;
 }
 
 pre, code, time {
@@ -50,11 +50,8 @@ nav {
 text-align:center;
 font-size:1.5em;
 font-weight:bold;
-background: repeating-linear-gradient(90deg, var(--green), var(--green) 6px, transparent 0, transparent 18px);
 }
 nav a {
-color:var(--bg);
-background-color: var(--blue);
 font-family: "APL386", Helvetica, sans-serif;
 }
 
@@ -89,7 +86,7 @@ color: #0888c8;
 h2 { font-size:1.5em }
 
 h1,h2,h3 {
-color: var(--purple);
+color: white;
 }
 
 p,li,table,dl {

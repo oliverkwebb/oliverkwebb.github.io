@@ -3,14 +3,13 @@
 {{- end }}
 {{ define "main" -}}
 <div class="intro">
-<img src="8831.png" alt="An 88x31 userbox with my name and pfp"/>
 <p>Linux Developer | 16 y/o | Any/All</p>
 </div>
 {{ .Content }}
 <ul>
 {{- range where .Site.RegularPages "Section" "articles" }}
 <li>
-	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006 Jan 02" }}</time> &ndash;
+	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02 2006" }}</time> &ndash;
 	<a href="{{ .RelPermalink }}">{{ .Title }}</a>
 </li>
 {{- end }}

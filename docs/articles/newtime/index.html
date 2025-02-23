@@ -90,14 +90,14 @@ almost exclusively with conversion of time to and from strings.</p>
 <p>It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
 It&rsquo;d give <code>strftime</code> and <code>strptime</code> the ability to print milli/micro/nanoseconds. And it&rsquo;d remove the need for
 the <code>timespec</code> struct used in a lot of system-level time functions.</p>
-<p>A floating point number is able to store values up to 2<sup>mantissa_length</sup> with integral precision. Actually, calculating floating
-point precision loss is surprisingly easy. For a number n; Any number below 2<sup>n</sup> will have at least 2<sup>n-mantissa_length</sup> precision.</p>
+<p>A floating point number is able to store values up to 2^mantissa_length^ with integral precision. Actually, calculating floating
+point precision loss is surprisingly easy. For a number n; Any number below 2^n^ will have at least 2^n-mantissa_length^ precision.</p>
 <p>As an example, Lets consider a long double that represents seconds.
-We lose nanosecond level precision when 2<sup>n-63</sup> is 10^-9^. Which means we lose precision at around ~2<sup>33</sup> seconds.</p>
+We lose nanosecond level precision when 2^n-63^ is 10^-9^. Which means we lose precision at around ~2^33^ seconds.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ date -d &#34;@$((2**33))&#34;
 </span></span><span style="display:flex;"><span>Wed Mar 16 07:56:32 AM CDT 2242
 </span></span></code></pre></div><p>If this long double were to represent nanoseconds, we&rsquo;d lose precision at
-2<sup>63</sup> nanoseconds (Around 2262 (The 20 year difference is due to the fact
+2^63^ nanoseconds (Around 2262 (The 20 year difference is due to the fact
 that 10^-9^ is actually around 2^-29.8^)).</p>
 <p>Using <a href="https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4">some go code</a> I was able to generate the following table:</p>
 
@@ -333,7 +333,7 @@ It is interesting to think of ways C itself could&rsquo;ve improved its own time
 <hr/>
 <footer>
   <div id="nextprev">
-		<a href="/articles/rustunixnew/" class="prev">&lt;&ndash; List of classic UNIX utils re-designed in rust</a>
+		<a href="/articles/rustunixnew/" class="prev">← List of classic UNIX utils re-designed in rust</a>
 	</div>
 	<br/>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
