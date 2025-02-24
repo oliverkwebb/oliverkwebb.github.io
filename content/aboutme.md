@@ -40,7 +40,11 @@ commands to it's vi. Among other things, such as `tr -t`.
 
 I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`, and `rshift()`) and [UTF8 handling support](/articles/utfawk)
 
+- [libtime](https://gitlab.com/libtime/documentation/-/wikis/home): Time API and implementation documentation
+
 [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 [![Gokul's Userbox](https://gokulswam.me/assets/button.png)](https://gokulswam.me/)
 [![Bunbun's Userbox](https://bunbun.dev/assets/88x31s/bunbun.dev.gif)](https://bunbun.dev/)
 [![libdbso's Userbox](https://libdb.so/_fs/pics/88x31/d14.gif)](https://libdb.so/)
+[![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
+[![Natalieee's Userbox](https://natalieee.net/files/natalieee.net.png)](https://natalieee.net/)

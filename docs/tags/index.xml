@@ -80,15 +80,15 @@ almost exclusively with conversion of time to and from strings.&lt;/p&gt;
 &lt;p&gt;It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
 It&amp;rsquo;d give &lt;code&gt;strftime&lt;/code&gt; and &lt;code&gt;strptime&lt;/code&gt; the ability to print milli/micro/nanoseconds. And it&amp;rsquo;d remove the need for
 the &lt;code&gt;timespec&lt;/code&gt; struct used in a lot of system-level time functions.&lt;/p&gt;
-&lt;p&gt;A floating point number is able to store values up to 2^mantissa_length^ with integral precision. Actually, calculating floating
-point precision loss is surprisingly easy. For a number n; Any number below 2^n^ will have at least 2^n-mantissa_length^ precision.&lt;/p&gt;
+&lt;p&gt;A floating point number is able to store values up to 2&lt;sup&gt;mantissa_length&lt;/sup&gt; with integral precision. Actually, calculating floating
+point precision loss is surprisingly easy. For a number n; Any number below 2&lt;sup&gt;n&lt;/sup&gt; will have at least 2&lt;sup&gt;n-mantissa_length&lt;/sup&gt; precision.&lt;/p&gt;
 &lt;p&gt;As an example, Lets consider a long double that represents seconds.
-We lose nanosecond level precision when 2^n-63^ is 10^-9^. Which means we lose precision at around ~2^33^ seconds.&lt;/p&gt;
+We lose nanosecond level precision when 2&lt;sup&gt;n-63&lt;/sup&gt; is 10&lt;sup&gt;-9&lt;/sup&gt;. Which means we lose precision at around ~2&lt;sup&gt;33&lt;/sup&gt; seconds.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ date -d &amp;#34;@$((2**33))&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Wed Mar 16 07:56:32 AM CDT 2242
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If this long double were to represent nanoseconds, we&amp;rsquo;d lose precision at
-2^63^ nanoseconds (Around 2262 (The 20 year difference is due to the fact
-that 10^-9^ is actually around 2^-29.8^)).&lt;/p&gt;
+2&lt;sup&gt;63&lt;/sup&gt; nanoseconds (Around 2262 (The 20 year difference is due to the fact
+that 10&lt;sup&gt;-9&lt;/sup&gt; is actually around 2&lt;sup&gt;-29.8&lt;/sup&gt;)).&lt;/p&gt;
 &lt;p&gt;Using &lt;a href=&#34;https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4&#34;&gt;some go code&lt;/a&gt; I was able to generate the following table:&lt;/p&gt;
 
 &lt;table&gt;
@@ -322,82 +322,82 @@ It is interesting to think of ways C itself could&amp;rsquo;ve improved its own 
 	<link>https://oliverkwebb.github.io/articles/rustunixnew/</link>
 	<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>
 	<description>&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Name&lt;/th&gt;
-&lt;th&gt;Influenced from&amp;hellip;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Text Processing and Scripting&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/bat&#34;&gt;bat&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;cat&lt;/code&gt;,      &lt;code&gt;less&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://printfn.github.io/fend/documentation/&#34;&gt;fend&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;bc&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/dandavison/delta&#34;&gt;delta&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;diff&lt;/code&gt;, &lt;code&gt;git diff&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/sstadick/hck&#34;&gt;hck&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;cut&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/BurntSushi/ripgrep&#34;&gt;ripgrep&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/chmln/sd&#34;&gt;sd&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;sed&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Process Management&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/ClementTsang/bottom&#34;&gt;bottom&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;top&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/orf/gping&#34;&gt;gping&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;ping&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/dalance/procs&#34;&gt;procs&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;ps&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/polyverse/rmesg/&#34;&gt;rmesg&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;dmesg&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;File Management&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/bootandy/dust&#34;&gt;dust&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;du&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/eza-community/eza&#34;&gt;eza&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/fd&#34;&gt;fd&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;find&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://github.com/ajeetdsouza/zoxide&#34;&gt;zoxide&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;cd&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;Influenced from&amp;hellip;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Text Processing and Scripting&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/bat&#34;&gt;bat&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;cat&lt;/code&gt;,      &lt;code&gt;less&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://printfn.github.io/fend/documentation/&#34;&gt;fend&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;bc&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/dandavison/delta&#34;&gt;delta&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;diff&lt;/code&gt;, &lt;code&gt;git diff&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/sstadick/hck&#34;&gt;hck&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;cut&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/BurntSushi/ripgrep&#34;&gt;ripgrep&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/chmln/sd&#34;&gt;sd&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;sed&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Process Management&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/ClementTsang/bottom&#34;&gt;bottom&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;top&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/orf/gping&#34;&gt;gping&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;ping&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/dalance/procs&#34;&gt;procs&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;ps&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/polyverse/rmesg/&#34;&gt;rmesg&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;dmesg&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;File Management&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/bootandy/dust&#34;&gt;dust&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;du&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/eza-community/eza&#34;&gt;eza&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/fd&#34;&gt;fd&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;find&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/ajeetdsouza/zoxide&#34;&gt;zoxide&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;cd&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 </description></item>
 
@@ -431,7 +431,7 @@ which mint is based off of is a massive pile of enterprise software with cruft a
 &lt;p&gt;This also means there is probably no formal process for replicating a Mint or Ubuntu ISO. Gentoo users build there entire system from the ground up,
 arch users have pacstrap and know the core packages they need. debian has debootstrap. And if I would want to I could theoretically replicate these
 tools to create my own bootstrapped for those distros, then I could modify it to truly customize my distribution.&lt;/p&gt;
-&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;/h2&gt;
 </description></item>
 
 	<item><title>Migrating to Hugo</title>
@@ -474,16 +474,16 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;p&gt;Insert emojis: &amp;#x1f44b;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;==highlighted text==&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;highlighted text&lt;/mark&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;super^scripts^&lt;/p&gt;
+&lt;p&gt;super&lt;sup&gt;scripts&lt;/sup&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;del&gt;Strike-through&lt;/del&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;++Underlined++&lt;/p&gt;
+&lt;p&gt;&lt;ins&gt;Underlined&lt;/ins&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Referring&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
@@ -527,10 +527,7 @@ because:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
-What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;In Linus&amp;rsquo;s book &lt;em&gt;&lt;a href=&#34;https://books.google.com/books/about/Just_for_Fun.html?id=Q3aIPwAACAAJ&#34;&gt;Just For Fun&lt;/a&gt;&lt;/em&gt;, the GNU project plays little to no role in the creation of Linux.
 Linux grew out of comp.os.minix, not anything related to the FSF or GNU project. Additionally, The FSF was
 still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
@@ -538,19 +535,13 @@ still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;The FSF&amp;rsquo;s push for hurd died out sometime in the early 2000&amp;rsquo;s, when Linux was commonplace and Hurd was completely abandoned.&lt;/p&gt;
 &lt;p&gt;From &lt;a href=&#34;https://karmak.org/archive/2003/01/12-14-99.epl.html&#34;&gt;A interview with RMS in 99&amp;rsquo;&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;2. For years, the GNU project was not directly maintaining most of their popular projects&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -574,10 +565,7 @@ intentionally kept it back from being so.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Anything that makes it easier to use GCC back ends without GCC front
 ends&amp;ndash;or simply brings GCC a big step closer to a form that would make
 such usage easy&amp;ndash;would endanger our leverage for causing new front
-ends to be free.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+ends to be free.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;The FSF is a political movement that engages in intentional obfuscation to spread itself.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;4. glibc&amp;rsquo;s feature test macros are designed so that people would mark their code with the GNU projects name&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.man7.org/linux/man-pages/man7/feature_test_macros.7.html&#34;&gt;feature_test_macros&lt;/a&gt; are a opt-out, functionality removing, non-portable feature that was largely pioneered
