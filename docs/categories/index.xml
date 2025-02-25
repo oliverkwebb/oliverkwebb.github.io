@@ -1,10 +1,10 @@
 <rss version="2.0"><channel>
 <title>Oliver Webb&#39;s Website</title>
-<link>https://oliverkwebb.github.io/categories/</link>
+<link>http://localhost:1313/categories/</link>
 <language>en-us</language>
 
 	<item><title>Rethinking The C Time API</title>
-	<link>https://oliverkwebb.github.io/articles/newtime/</link>
+	<link>http://localhost:1313/articles/newtime/</link>
 	<pubDate>Wed, 05 Feb 2025 10:25:12 -0500</pubDate>
 	<description>&lt;p&gt;Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
 To the point almost every regularly used element of it has some design decision that&amp;rsquo;s been obsolete for
@@ -191,7 +191,7 @@ Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time val
 &lt;p&gt;The timezone handling code in libc isn&amp;rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 &lt;code&gt;tzset()&lt;/code&gt; and &lt;code&gt;localtime()&lt;/code&gt; are the &lt;em&gt;only&lt;/em&gt; ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
 name you would use to load the timezone. I.e. &lt;code&gt;America/New_York&lt;/code&gt; vs. &lt;code&gt;EST&lt;/code&gt;). &lt;strong&gt;Neither of these things are constant&lt;/strong&gt;, with daylight savings
 time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Even with DST
@@ -319,7 +319,7 @@ It is interesting to think of ways C itself could&amp;rsquo;ve improved its own 
 </description></item>
 
 	<item><title>List of classic UNIX utils re-designed in rust</title>
-	<link>https://oliverkwebb.github.io/articles/rustunixnew/</link>
+	<link>http://localhost:1313/articles/rustunixnew/</link>
 	<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>
 	<description>&lt;table&gt;
   &lt;thead&gt;
@@ -402,7 +402,7 @@ It is interesting to think of ways C itself could&amp;rsquo;ve improved its own 
 </description></item>
 
 	<item><title>The Oldest Binary on a Mint System</title>
-	<link>https://oliverkwebb.github.io/articles/oldbin/</link>
+	<link>http://localhost:1313/articles/oldbin/</link>
 	<pubDate>Thu, 19 Sep 2024 21:59:45 -0500</pubDate>
 	<description>&lt;p&gt;Simple question with a simple answer: What is the oldest binary on a Linux mint ISO (modification time)? I was playing around with the stat command more than a year ago when I asked this to myself.
 Running a quick shell pipeline &lt;code&gt;stat -c &amp;quot;%Z %z %n&amp;quot; /bin/* | sort -rn&lt;/code&gt;. The oldest 5 binaries you get are all older than 2011, these are (from oldest -&amp;gt; newest):&lt;/p&gt;
@@ -435,7 +435,7 @@ tools to create my own bootstrapped for those distros, then I could modify it to
 </description></item>
 
 	<item><title>Migrating to Hugo</title>
-	<link>https://oliverkwebb.github.io/articles/hugo/</link>
+	<link>http://localhost:1313/articles/hugo/</link>
 	<pubDate>Sun, 18 Aug 2024 12:00:34 -0500</pubDate>
 	<description>&lt;p&gt;This website now runs on &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. I migrated the infrastructure off the old static
 site generator that was written in Makefile.&lt;/p&gt;
@@ -512,7 +512,7 @@ site generator that was written in Makefile.&lt;/p&gt;
 </description></item>
 
 	<item><title>Why I don&#39;t like GNU</title>
-	<link>https://oliverkwebb.github.io/articles/gnulist/</link>
+	<link>http://localhost:1313/articles/gnulist/</link>
 	<pubDate>Sat, 17 Aug 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;This list does not mention the [Richard Stallman controversy]&amp;lt;Link to Drew DeVault article here&amp;gt;.
 Nor his squabbles related to &lt;a href=&#34;https://sourceware.org/legacy-ml/libc-hacker/2000-06/msg00233.html&#34;&gt;glibc&lt;/a&gt;
@@ -647,7 +647,7 @@ everyone.&lt;/p&gt;
 </description></item>
 
 	<item><title>Writing a UTF-8 safe AWK</title>
-	<link>https://oliverkwebb.github.io/articles/utfawk/</link>
+	<link>http://localhost:1313/articles/utfawk/</link>
 	<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for it&amp;rsquo;s
 applications. This has kept things like &lt;a href=&#34;http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html&#34;&gt;the fully GNU compatible tr&lt;/a&gt;
@@ -710,7 +710,7 @@ is figuring out &lt;em&gt;what&lt;/em&gt; needs unicode handling.&lt;/p&gt;
 </description></item>
 
 	<item><title>Replacing Neovim with vis</title>
-	<link>https://oliverkwebb.github.io/articles/vis/</link>
+	<link>http://localhost:1313/articles/vis/</link>
 	<pubDate>Wed, 17 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;Lately, I&amp;rsquo;ve been unhappy with neovim and it&amp;rsquo;s bloat. vi is a simple and beautiful tool by
 itself, but it&amp;rsquo;s most popular deviation vim has been bloated to the point of being unmanageable
@@ -758,7 +758,7 @@ versatile.&lt;/p&gt;
 </description></item>
 
 	<item><title>Making A static site generator with `make`</title>
-	<link>https://oliverkwebb.github.io/articles/makessg/</link>
+	<link>http://localhost:1313/articles/makessg/</link>
 	<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;When making my website, generating static webpages for
 my blogs and articles was a big concern. I want to be able

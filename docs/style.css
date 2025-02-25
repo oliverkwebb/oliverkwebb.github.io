@@ -1,8 +1,8 @@
-/* Ellesmere color scheme with custom fg/bg
-   https://github.com/oliverkwebb/ellesmere-vis */
+/* Ellesmere color scheme with custom fg/bg: https://github.com/oliverkwebb/ellesmere-vis */
 :root {
 --bg: #20202D;
 --fg: #DDDDDD;
+
 --red: #a0155e;
 --yellow: #f8f828;
 --green: #08c888;
@@ -19,13 +19,6 @@ font-style: normal;
 src: url("./fonts/APL386.ttf") format("truetype")
 }
 
-/* Inconsolata Unicode by Raph Levien */
-@font-face {
-font-family: "Inconsolata";
-font-style: normal;
-src: url("./fonts/Inconsolata.ttf") format("truetype")
-}
-
 html {
 background-color:var(--bg);
 color:var(--fg);
@@ -35,19 +28,14 @@ body {
 max-width:800px;
 padding:10px;
 margin:auto;
-font-family: "Noto Serif", serif;
+font-family: "Noto Serif", "Georgia", serif;
 }
 
-pre, code, time {
-font-family: "APL386", monospace;
-}
-
-header {
+header, footer, .intro, nav, .linkbox {
 text-align:center;
 }
 
 nav {
-text-align:center;
 font-size:1.5em;
 font-weight:bold;
 }
@@ -55,13 +43,8 @@ nav a {
 font-family: "APL386", Helvetica, sans-serif;
 }
 
-.intro {
-text-align:center;
-}
-
 .linkbox a {
 display:block;
-text-align:center;
 width: 80%;
 margin: 15px auto 15px auto;
 padding: 10px 0 10px 0;
@@ -69,7 +52,7 @@ color: black;
 border: 2px solid var(--blue);
 box-shadow:11px 5px black;
 background-color: var(--red);
-font-size: 1.2rem;
+font-size: 1.3rem;
 font-family: "APL386", monospace;
 }
 .linkbox a:hover {
@@ -84,14 +67,15 @@ color: #0888c8;
 }
 
 h2 { font-size:1.5em }
-
 h1,h2,h3 {
 color: white;
+font-family:"APL386", monospace;
 }
 
 p,li,table,dl {
 line-height:1.5;
-font-size:1.1rem;
+font-size:1.05rem;
+text-align:justify;
 }
 
 table {
@@ -104,6 +88,9 @@ padding:6px;
 }
 th { background-color: var(--red); }
 
+pre, code, time {
+font-family: "APL386", monospace;
+}
 pre {
 line-height:1.25;
 text-indent:1em;
@@ -118,7 +105,6 @@ background-color:#222;
 }
 
 footer p {
-text-align:center;
 clear:both
 }
 

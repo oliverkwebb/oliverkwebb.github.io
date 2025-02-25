@@ -42,6 +42,8 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 - [libtime](https://gitlab.com/libtime/documentation/-/wikis/home): Time API and implementation documentation
 
+## Friends
+
 [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 [![Gokul's Userbox](https://gokulswam.me/assets/button.png)](https://gokulswam.me/)
 [![Bunbun's Userbox](https://bunbun.dev/assets/88x31s/bunbun.dev.gif)](https://bunbun.dev/)
