@@ -103,6 +103,10 @@ color:#fff;
 background-color:#222;
 }
 
+img {
+max-width: 100%;
+}
+
 footer p {
 clear:both
 }
