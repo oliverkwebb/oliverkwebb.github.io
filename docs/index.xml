@@ -3,6 +3,82 @@
 <link>https://oliverkwebb.github.io/</link>
 <language>en-us</language>
 
+	<item><title>Mathematical data representation (ADT) explained</title>
+	<link>https://oliverkwebb.github.io/articles/adt-visual/</link>
+	<pubDate>Thu, 27 Feb 2025 00:00:00 &#43;0000</pubDate>
+	<description>&lt;p&gt;In C, primitive types are just numbers.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%d, %u, %f, %x&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f85149&#34;&gt;&amp;#39;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f85149&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f85149&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;A&lt;span style=&#34;color:#f85149&#34;&gt;&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;35&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;0.5&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;string&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 65, 4294967261, 0.500000, ce1c2008
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Some are signed, unsigned, floating point, or pointers. But all of them are
+numbers of a certain width. Floats and pointers support a subset of the operations
+integers do, but all primitive types in C support some level of arithmetic.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%d, %x, %ld&amp;#34;&lt;/span&gt;, true &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;6&lt;/span&gt;, argv[&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;0.6&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 6, 4303b661, 99179430350296
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Compound types are either a collection of terms of different types (&lt;code&gt;struct&lt;/code&gt;),
+of the same type (arrays), or a list of aliases to a singular place in memory (&lt;code&gt;union&lt;/code&gt;).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; response {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; abbr[&lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {SUCC, ERR} tag;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;union&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; succ;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; err[&lt;span style=&#34;color:#a5d6ff&#34;&gt;4&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Unions are usually annotated with a tag of which alias is in use.
+Doing this in C requires explicit thought and attention, even though
+this behavior is needed in most contexts.&lt;/p&gt;
+&lt;p&gt;In this spirit, enumerations are interchangeable with integers.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {A, B, C} x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;630&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {D, E, F} y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; A;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;==&lt;/span&gt; D; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// True
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All of this allows for transparent memory management. The price paid is that it&amp;rsquo;s a lot harder to cleanly
+represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.&lt;/p&gt;
+&lt;p&gt;Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.&lt;/p&gt;
+&lt;h2 id=&#34;algebraic-description-of-types-adt&#34;&gt;Algebraic Description of Types (ADT)&lt;/h2&gt;
+&lt;p&gt;Using ADT, a type is just a set of terms. Values outside of these terms are &lt;strong&gt;unconstructable&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Boolean&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;True,&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;False,&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The mathematical notation for type theory often works with the number of terms in the type. For example, the boolean type is commonly
+called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
+&lt;p&gt;We can combine types into larger types using product and sum types.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/Product_Sum_Diagram.png&#34; alt=&#34;The Product and Sum Type&#34;&gt;&lt;/p&gt;
+&lt;p&gt;A product type combines types in a similar fashion as a &lt;code&gt;struct&lt;/code&gt; in C.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Person&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Name(String),&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Age(&lt;span style=&#34;color:#ff7b72&#34;&gt;u32&lt;/span&gt;),&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The number of terms in a product type is equal to the &lt;strong&gt;product&lt;/strong&gt; of the number of terms in the two combining types.&lt;/p&gt;
+&lt;p&gt;A sum type is analogous to a tagged union, representing &lt;em&gt;either&lt;/em&gt; one value or another.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Response&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Succ(&lt;span style=&#34;color:#ff7b72&#34;&gt;u32&lt;/span&gt;),&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Error,&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The number of terms in a sum type is equal to the sum of the terms in the combining types.&lt;/p&gt;
+&lt;p&gt;Types that represent functions with one argument are also possible, reducing down to the exponentiation.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/functype.png&#34; alt=&#34;The Function Type&#34;&gt;&lt;/p&gt;
+&lt;p&gt;A function with multiple arguments is possible via currying, returning a function with one less argument.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;2&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;now-prove-that-numbers-exist&#34;&gt;Now, Prove that numbers exist.&lt;/h2&gt;
+&lt;p&gt;No, seriously. Do it. Or less ambiguously, name a valid number.&lt;/p&gt;
+&lt;p&gt;5, TREE(3), perhaps 3,735,928,559? Congratulations, you have proved that numbers exist!&lt;/p&gt;
+&lt;p&gt;Now, prove that the type returned by rusts &lt;a href=&#34;https://doc.rust-lang.org/std/process/fn.exit.html&#34;&gt;exit function&lt;/a&gt; exists. Or less ambiguously, name a valid term the exit function returns.&lt;/p&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;No answer? That is because the type exit returns (in rust) has no valid term. And therefore this function cannot return since it isn&amp;rsquo;t capable of
+returning a valid value.&lt;/p&gt;
+&lt;p&gt;The obvious consequence of this is that the &lt;code&gt;noreturn&lt;/code&gt; &amp;ldquo;type&amp;rdquo; in C can be replaced by a null type. But this has a deeper implication of being able
+to express statements in a type and prove they are true if the type is inhabited.&lt;/p&gt;
+&lt;p&gt;Similarly, proving that &lt;code&gt;Result&amp;lt;A,B&amp;gt;&lt;/code&gt; exists proves that A &lt;em&gt;or&lt;/em&gt; B exists (aka. A + B != 0). And &lt;code&gt;(A, B)&lt;/code&gt; proves that A and B exists (aka. A * B != 0)&lt;/p&gt;
+&lt;h2 id=&#34;see-also&#34;&gt;See Also:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;&lt;a href=&#34;https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types&#34;&gt;The algebra (and calculus!) of algebraic data types&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;a href=&#34;https://math.berkeley.edu/~forte/notes/type_theory.pdf&#34;&gt;Introduction to type theory&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description></item>
+
 	<item><title>Rethinking The C Time API</title>
 	<link>https://oliverkwebb.github.io/articles/newtime/</link>
 	<pubDate>Wed, 05 Feb 2025 10:25:12 -0500</pubDate>

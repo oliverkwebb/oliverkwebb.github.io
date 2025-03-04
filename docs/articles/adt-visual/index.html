@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Mathematical Data Representation (ADT) Explained | Oliver Webb&#39;s Website</title>
+	<link rel="canonical" href="https://oliverkwebb.github.io/">
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+<nav>
+	<a href="/">Oliver Webb's Website</a>
+</nav>
+<main>
+<header><h1 id="tag_Mathematical data representation (ADT) explained">Mathematical data representation (ADT) explained</h1></header>
+<article>
+
+<p>In C, primitive types are just numbers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">printf</span>(<span style="color:#a5d6ff">&#34;%d, %u, %f, %x&#34;</span>, <span style="color:#f85149">&#39;\</span><span style="color:#a5d6ff">0</span><span style="color:#f85149">\</span><span style="color:#a5d6ff">0</span><span style="color:#f85149">\</span><span style="color:#a5d6ff">0</span>A<span style="color:#f85149">&#39;</span>, <span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#a5d6ff">35</span>, <span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">&#34;string&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">// 65, 4294967261, 0.500000, ce1c2008
+</span></span></span></code></pre></div><p>Some are signed, unsigned, floating point, or pointers. But all of them are
+numbers of a certain width. Floats and pointers support a subset of the operations
+integers do, but all primitive types in C support some level of arithmetic.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">printf</span>(<span style="color:#a5d6ff">&#34;%d, %x, %ld&#34;</span>, true <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#a5d6ff">6</span>, argv[<span style="color:#a5d6ff">0</span>]<span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">0.6</span>);
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">// 6, 4303b661, 99179430350296
+</span></span></span></code></pre></div><p>Compound types are either a collection of terms of different types (<code>struct</code>),
+of the same type (arrays), or a list of aliases to a singular place in memory (<code>union</code>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">struct</span> response {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">char</span> abbr[<span style="color:#a5d6ff">3</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">enum</span> {SUCC, ERR} tag;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">union</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">int</span> succ;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">char</span> err[<span style="color:#a5d6ff">4</span>];
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Unions are usually annotated with a tag of which alias is in use.
+Doing this in C requires explicit thought and attention, even though
+this behavior is needed in most contexts.</p>
+<p>In this spirit, enumerations are interchangeable with integers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">enum</span> {A, B, C} x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">630</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">enum</span> {D, E, F} y <span style="color:#ff7b72;font-weight:bold">=</span> A;
+</span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">==</span> D; <span style="color:#8b949e;font-style:italic">// True
+</span></span></span></code></pre></div><p>All of this allows for transparent memory management. The price paid is that it&rsquo;s a lot harder to cleanly
+represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.</p>
+<p>Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.</p>
+<h2 id="algebraic-description-of-types-adt">Algebraic Description of Types (ADT)</h2>
+<p>Using ADT, a type is just a set of terms. Values outside of these terms are <strong>unconstructable</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff7b72">enum</span> <span style="color:#f0883e;font-weight:bold">Boolean</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>True,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>False,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span></code></pre></div><p>The mathematical notation for type theory often works with the number of terms in the type. For example, the boolean type is commonly
+called <code>2</code> in mathematical contexts.</p>
+<p>We can combine types into larger types using product and sum types.</p>
+<p><img src="/Product_Sum_Diagram.png" alt="The Product and Sum Type"></p>
+<p>A product type combines types in a similar fashion as a <code>struct</code> in C.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff7b72">struct</span> <span style="color:#f0883e;font-weight:bold">Person</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Name(String),<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Age(<span style="color:#ff7b72">u32</span>),<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span></code></pre></div><p>The number of terms in a product type is equal to the <strong>product</strong> of the number of terms in the two combining types.</p>
+<p>A sum type is analogous to a tagged union, representing <em>either</em> one value or another.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff7b72">enum</span> <span style="color:#f0883e;font-weight:bold">Response</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Succ(<span style="color:#ff7b72">u32</span>),<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Error,<span style="color:#6e7681">
+</span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
+</span></span></span></code></pre></div><p>The number of terms in a sum type is equal to the sum of the terms in the combining types.</p>
+<p>Types that represent functions with one argument are also possible, reducing down to the exponentiation.</p>
+<p><img src="/functype.png" alt="The Function Type"></p>
+<p>A function with multiple arguments is possible via currying, returning a function with one less argument.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;</span> x <span style="color:#ff7b72;font-weight:bold">=</span> (<span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;</span> x <span style="color:#a5d6ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">5</span>
+</span></span></code></pre></div><h2 id="now-prove-that-numbers-exist">Now, Prove that numbers exist.</h2>
+<p>No, seriously. Do it. Or less ambiguously, name a valid number.</p>
+<p>5, TREE(3), perhaps 3,735,928,559? Congratulations, you have proved that numbers exist!</p>
+<p>Now, prove that the type returned by rusts <a href="https://doc.rust-lang.org/std/process/fn.exit.html">exit function</a> exists. Or less ambiguously, name a valid term the exit function returns.</p>
+<p>&hellip;</p>
+<p>No answer? That is because the type exit returns (in rust) has no valid term. And therefore this function cannot return since it isn&rsquo;t capable of
+returning a valid value.</p>
+<p>The obvious consequence of this is that the <code>noreturn</code> &ldquo;type&rdquo; in C can be replaced by a null type. But this has a deeper implication of being able
+to express statements in a type and prove they are true if the type is inhabited.</p>
+<p>Similarly, proving that <code>Result&lt;A,B&gt;</code> exists proves that A <em>or</em> B exists (aka. A + B != 0). And <code>(A, B)</code> proves that A and B exists (aka. A * B != 0)</p>
+<h2 id="see-also">See Also:</h2>
+<ul>
+<li><em><a href="https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types">The algebra (and calculus!) of algebraic data types</a></em></li>
+<li><em><a href="https://math.berkeley.edu/~forte/notes/type_theory.pdf">Introduction to type theory</a></em></li>
+</ul>
+
+
+</article>
+</main>
+<hr/>
+<footer>
+  <div id="nextprev">
+		<a href="/articles/newtime/" class="prev">← Rethinking The C Time API</a>
+	</div>
+	<br/>
+<p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
+  <p>The content of this site by &#xa9; 2024 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+
+</body>
+</html>

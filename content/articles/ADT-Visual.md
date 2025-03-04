@@ -1,7 +1,6 @@
 ---
-title: "ADT - Mathematical data representation"
+title: "Mathematical data representation (ADT) explained"
 date: 2025-02-27
-draft: yes
 ---
 In C, primitive types are just numbers.
 
@@ -10,24 +9,17 @@ printf("%d, %u, %f, %x", '\0\0\0A', -35, 0.5, "string");
 // 65, 4294967261, 0.500000, ce1c2008
 ```
 
-Some are signed, unsigned, floating point, or pointers. But all of them are numbers of a certain width.
-Floats and pointers support a subset of the operations integers do, but all primitive types in C support some
-level of arithmetic.
+Some are signed, unsigned, floating point, or pointers. But all of them are
+numbers of a certain width. Floats and pointers support a subset of the operations
+integers do, but all primitive types in C support some level of arithmetic.
 
 ```c
 printf("%d, %x, %ld", true * 6, argv[0]+3, 0.6);
 // 6, 4303b661, 99179430350296
 ```
 
-In this spirit, enumerations are fake and interchangeable with integers.
-
-```c
-enum {A, B, C} x = 630;
-enum {D, E, F} y = A;
-y == D; // True
-```
-
-Compound types are either a collection of terms of different types (`struct`), of the same type (arrays), or a list of aliases to a singular place in memory (`union`).
+Compound types are either a collection of terms of different types (`struct`),
+of the same type (arrays), or a list of aliases to a singular place in memory (`union`).
 
 ```c
 struct response {
@@ -38,20 +30,29 @@ struct response {
         char err[4];
     };
 };
+
 ```
 
-Unless the programmer is doing bit-hacks (which can be as easily done via pointers). Unions are usually
-annotated with a tag of which value is in use. Doing this in C requires explicit thought
-and attention, even though this behavior is needed in most contexts.
+Unions are usually annotated with a tag of which alias is in use.
+Doing this in C requires explicit thought and attention, even though
+this behavior is needed in most contexts.
+
+In this spirit, enumerations are interchangeable with integers.
+
+```c
+enum {A, B, C} x = 630;
+enum {D, E, F} y = A;
+y == D; // True
+```
 
 All of this allows for transparent memory management. The price paid is that it's a lot harder to cleanly
 represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.
 
-## The core of ADT
-
 Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.
 
-Using this model, a type is just a set of terms. Values outside of these terms are **unconstructable**.
+## Algebraic Description of Types (ADT)
+
+Using ADT, a type is just a set of terms. Values outside of these terms are **unconstructable**.
 
 ```rust
 enum Boolean {
@@ -63,11 +64,11 @@ enum Boolean {
 The mathematical notation for type theory often works with the number of terms in the type. For example, the boolean type is commonly
 called `2` in mathematical contexts.
 
-## Means of combination
+We can combine types into larger types using product and sum types.
 
 ![The Product and Sum Type](/Product_Sum_Diagram.png)
 
-The product type combines two values in a similar fashion as a `struct` in C.
+A product type combines types in a similar fashion as a `struct` in C.
 
 ```rust
 struct Person {
@@ -76,9 +77,9 @@ struct Person {
 }
 ```
 
-The number of terms in a product type is equal to the product of the number of terms in the two combined types.
+The number of terms in a product type is equal to the **product** of the number of terms in the two combining types.
 
-The sum type is analogous to a tagged union, representing *either* one value or another.
+A sum type is analogous to a tagged union, representing *either* one value or another.
 
 ```rust
 enum Response {
@@ -87,17 +88,21 @@ enum Response {
 }
 ```
 
-The number of terms in a sum type is equal to the sum of the terms in the combined types.
+The number of terms in a sum type is equal to the sum of the terms in the combining types.
 
-## The function type
+Types that represent functions with one argument are also possible, reducing down to the exponentiation.
 
-The function `iseven(n) -> bool` is a member of the power-set of the natural numbers.
+![The Function Type](/functype.png)
 
-## The type function (Dependent types)
+A function with multiple arguments is possible via currying, returning a function with one less argument.
 
-We can also model types in the same way functions are modeled 
+```haskell
+> x = (+ 2)
+> x 3
+5
+```
 
-## Prove that numbers exist
+## Now, Prove that numbers exist.
 
 No, seriously. Do it. Or less ambiguously, name a valid number.
 
@@ -113,16 +118,9 @@ returning a valid value.
 The obvious consequence of this is that the `noreturn` "type" in C can be replaced by a null type. But this has a deeper implication of being able
 to express statements in a type and prove they are true if the type is inhabited.
 
-Similarly, proving that `Result<A,B>` exists proves that A _or_ B exists (aka. A + B != 0). `(A, B)` proves that A and B exists (aka. A * B != 0)
+Similarly, proving that `Result<A,B>` exists proves that A _or_ B exists (aka. A + B != 0). And `(A, B)` proves that A and B exists (aka. A * B != 0)
 
-## The "cost" of abstraction
+## See Also:
 
-Surely since we aren't directly thinking about the memory on a byte-by-byte basis, as C forces you to do in many cases.
-We must be introducing a lot of overhead and using a lot more memory, right?
-
-In this case, rust abstracts away the necessary, whilst still being efficient as C.
-
-## Lit:
-
-https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types
-https://math.berkeley.edu/~forte/notes/type_theory.pdf
+* *[The algebra (and calculus!) of algebraic data types](https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types)*
+* *[Introduction to type theory](https://math.berkeley.edu/~forte/notes/type_theory.pdf)*
