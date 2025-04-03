@@ -1,7 +1,11 @@
 /* Ellesmere color scheme with custom fg/bg: https://github.com/oliverkwebb/ellesmere-vis */
 :root {
+/*
 --bg: #20202D;
 --fg: #DDDDDD;
+*/
+--bg: #000000;
+--fg: #FFFFFF;
 
 --red: #a0155e;
 --yellow: #f8f828;
@@ -28,7 +32,7 @@ body {
 max-width:800px;
 padding:10px;
 margin:auto;
-font-family: "Noto Serif", "Georgia", serif;
+font-family: "Geist", sans-serif;
 }
 
 header, footer, .intro, nav, .linkbox {
@@ -74,7 +78,7 @@ font-family:"APL386", monospace;
 
 p,li,table,dl {
 line-height:1.5;
-font-size:1.05rem;
+font-size:1.1rem;
 }
 
 table {

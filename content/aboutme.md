@@ -20,13 +20,15 @@ I have a page describing the software I use [here](/rocks)
 
 ## Projects I've made
 
+- [deskephem](https://github.com/oliverkwebb/deskephem): A CLI astronomy calculator<M-Left>
+- [pracstro](https://crates.io/crates/pracstro): A compact, accurate ephemeris generating library for celestial objects.
 - [cheat](https://github.com/oliverkwebb/cheat): An offline analog for [cheat.sh](https://cheat.sh)
 - [moontool](https://github.com/oliverkwebb/moontool): A collection of C programs that work with moon phases
 - [ytmpv](https://github.com/oliverkwebb/ytmpv): A shell script that provides quick access to proxies to counter anti-ad-block
 - [calfact](https://github.com/oliverkwebb/calfact) A xkcd 1930 generator
-- [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and compliment with C89
 - [luaed](https://codeberg.org/oliverkwebb/luaed): An ed implementation with syntax highlighting
 - [newtime](https://github.com/oliverkwebb/newtime): A redesign of the C time library with an emphasis on cleanliness and completeness.
+- [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and compliment with C89
 
 ## Other projects I've contributed significantly to
 
@@ -45,7 +47,7 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 ## Friends
 
 [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
-[![Gokul's Userbox](https://gokulswam.me/assets/button.png)](https://gokulswam.me/)
+[![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
 [![Bunbun's Userbox](https://bunbun.dev/assets/88x31s/bunbun.dev.gif)](https://bunbun.dev/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
 [![Natalieee's Userbox](https://natalieee.net/files/natalieee.net.png)](https://natalieee.net/)
