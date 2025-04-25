@@ -12,15 +12,18 @@ Mastodon
 Pronouns
 : Any/All
 
-I am at the time of writing (January 2025) 16 and a high school student.
+Userbox (88x31)
+: [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
+
+I am at the time of writing (April 2025) 16 and a high school student.
 And have been programming and learning about how computers work for a
-couple years. I know how to work C, Lua, Bash, and Linux, extensively.
+couple years. I know how to work C, Rust, Lua, Bash, and Linux extensively.
 
 I have a page describing the software I use [here](/rocks)
 
-## Projects I've made
+## Projects
 
-- [deskephem](https://github.com/oliverkwebb/deskephem): A CLI astronomy calculator<M-Left>
+- [deskephem](https://github.com/oliverkwebb/deskephem): A general purpose CLI astronomy calculator
 - [pracstro](https://crates.io/crates/pracstro): A compact, accurate ephemeris generating library for celestial objects.
 - [cheat](https://github.com/oliverkwebb/cheat): An offline analog for [cheat.sh](https://cheat.sh)
 - [moontool](https://github.com/oliverkwebb/moontool): A collection of C programs that work with moon phases
@@ -30,7 +33,7 @@ I have a page describing the software I use [here](/rocks)
 - [newtime](https://github.com/oliverkwebb/newtime): A redesign of the C time library with an emphasis on cleanliness and completeness.
 - [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and compliment with C89
 
-## Other projects I've contributed significantly to
+## Open Source Contributions
 
 - [toybox](https://www.landley.net/toybox): Over 200 Linux command line utilities in a single (500KB) executable
 
@@ -44,10 +47,18 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 - [libtime](https://gitlab.com/libtime/documentation/-/wikis/home): Time API and implementation documentation
 
-## Friends
+## Associates
 
 [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 [![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
 [![Bunbun's Userbox](https://bunbun.dev/assets/88x31s/bunbun.dev.gif)](https://bunbun.dev/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
 [![Natalieee's Userbox](https://natalieee.net/files/natalieee.net.png)](https://natalieee.net/)
+
+[cpli.dev](https://cpli.dev/) |
+[yemou.pink](https://yemou.pink/) |
+[soph.systems](https://soph.systems/) |
+[okash.it](https://okash.it/) |
+[leahneukirchen.org](https://leahneukirchen.org/) |
+[zougloub.eu](https://zougloub.eu/) |
+[flisk.xyz](https://flisk.xyz/)
