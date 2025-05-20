@@ -2,7 +2,7 @@
 title: "Why I don't like GNU"
 date: 2024-08-17
 ---
-This list does not mention the \[Richard Stallman controversy\]\<Link to Drew DeVault article here\>. 
+This list does not mention the \[Richard Stallman controversy\]\<Link to Drew DeVault article here\>.
 Nor his squabbles related to [glibc](https://sourceware.org/legacy-ml/libc-hacker/2000-06/msg00233.html)
 because:
 

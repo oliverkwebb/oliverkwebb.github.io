@@ -1,19 +1,6 @@
-/* Ellesmere color scheme with custom fg/bg: https://github.com/oliverkwebb/ellesmere-vis */
 :root {
-/*
---bg: #20202D;
---fg: #DDDDDD;
-*/
---bg: #000000;
---fg: #FFFFFF;
-
---red: #a0155e;
---yellow: #f8f828;
---green: #08c888;
---blue: #0898d8;
---cyan: #20ffff;
---purple: #7878c8;
---pink: #d808d8;
+--bg: var(--uchu-blue-1);
+--fg: var(--uchu-yin-9);
 }
 
 /* APL386 Unicode by Adám Brudzewsky */
@@ -25,14 +12,14 @@ src: url("./fonts/APL386.ttf") format("truetype")
 
 html {
 background-color:var(--bg);
-color:var(--fg);
+color: black;
 }
 
 body {
 max-width:800px;
 padding:10px;
 margin:auto;
-font-family: "Geist", sans-serif;
+font-family: "Roboto", sans-serif;
 }
 
 header, footer, .intro, nav, .linkbox {
@@ -53,32 +40,32 @@ width: 80%;
 margin: 15px auto 15px auto;
 padding: 10px 0 10px 0;
 color: black;
-border: 2px solid var(--blue);
+border: 3px solid var(--uchu-blue-9);
 box-shadow:11px 5px black;
-background-color: var(--red);
+background-color: var(--uchu-red-3);
 font-size: 1.3rem;
 font-family: "APL386", monospace;
 }
 .linkbox a:hover {
-color: white;
+color: var(--uchu-yin-1);
 box-shadow:0px 0px;
 transform: translate(11px, 5px);
 }
 
 a {
 text-decoration:none;
-color: #0888c8;
+color: var(--uchu-blue-9);
 }
 
 h2 { font-size:1.5em }
 h1,h2,h3 {
-color: white;
+color: var(--uchu-red-5);
 font-family:"APL386", monospace;
 }
 
 p,li,table,dl {
 line-height:1.5;
-font-size:1.1rem;
+font-size:1.2rem;
 }
 
 table {
@@ -89,7 +76,7 @@ td,th {
 border-bottom:2px solid;
 padding:6px;
 }
-th { background-color: var(--red); }
+th { background-color: var(--uchu-blue-8); }
 
 pre, code, time {
 font-family: "APL386", monospace;
@@ -103,8 +90,8 @@ padding: 3px 4px;
 border-radius:4px;
 }
 p code {
-color:#fff;
-background-color:#222;
+color:white;
+background-color:var(--uchu-yin-9);
 }
 
 img {
