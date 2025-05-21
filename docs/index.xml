@@ -3,6 +3,56 @@
 <link>https://oliverkwebb.github.io/</link>
 <language>en-us</language>
 
+	<item><title>Astronomy: Time is an Angle</title>
+	<link>https://oliverkwebb.github.io/articles/astronomy-angles/</link>
+	<pubDate>Tue, 20 May 2025 16:08:15 -0500</pubDate>
+	<description>&lt;p&gt;The time of day as an idea needs no introduction.&lt;/p&gt;
+&lt;div style=&#34;width: 100%&#34; id=&#34;current-time&#34;&gt;
+&lt;/div&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;But what does it &lt;em&gt;represent&lt;/em&gt;, really? Well, it represents a fraction of a rotation (the Earth&amp;rsquo;s), which makes it an Angle.&lt;/p&gt;
+&lt;p&gt;In many astronomical calculations, angles are represented as time to make certain conversions easier. For example,
+the horizontal coordinate of &lt;a href=&#34;https://en.wikipedia.org/wiki/Algol&#34;&gt;Algol&lt;/a&gt; is 03:08:10.13 (Usually written 03h08m10.13s).&lt;/p&gt;
+&lt;p&gt;If you disregard the fact that this is a coordinate and treat it as a time of day,
+you can convert this time to your &lt;a href=&#34;https://en.wikipedia.org/wiki/Sidereal_time&#34;&gt;local mean siderial time&lt;/a&gt;, and get
+the hour angle (also written as a time), which its location on the celestial equator relative to you, or rather,
+how much the celestial sphere has rotated in comparison to the prime meridian.&lt;/p&gt;
+&lt;p&gt;Since in astronomy, angles are sometimes represented as time, why not represent time as an angle?&lt;/p&gt;
+&lt;h1 id=&#34;the-360-hour-clock-the-2π-hour-clock-and-the-1-hour-clock&#34;&gt;The 360 hour clock, the 2π hour clock, and the 1 hour clock&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
+&lt;div style=&#34;width: 100%&#34; id=&#34;current-time-angle&#34;&gt;
+&lt;/div&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time-angle.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;In 4 minutes, the earth rotates 1 degree around its axis, and in about 4 hours, it rotates one radian.
+This is useful since it can give a vague idea of how much objects will move in the sky. The sun takes
+up about half a degree of view in the sky, so a sunset will take a minimum of two minutes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/AngleTime.png&#34; alt=&#34;Conversion between angle units and time units&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Venus takes up about 1/60th of a degree of view. So it could only take 4 seconds to move its own
+diameter in the sky, which is good to know for telescope readjustment (&amp;ldquo;If I leave my telescope alone,
+I&amp;rsquo;ll be able to see X for at least Y amount of time&amp;rdquo;).&lt;/p&gt;
+&lt;p&gt;Using degrees in place of hours on a clock, or using &amp;ldquo;turns&amp;rdquo; (the fraction of the day) gives
+results that are interesting, but don&amp;rsquo;t deserve much cometary.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/places100deg.png&#34; alt=&#34;Places on Earth where it can be 100 degrees in the morning&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;the-tangent-of-time&#34;&gt;The Tangent of Time&lt;/h1&gt;
+&lt;p&gt;Why radians? To take trig functions, of course!&lt;/p&gt;
+&lt;div style=&#34;width: 100%&#34; id=&#34;tangent-of-time&#34;&gt;
+&lt;/div&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/tangent-of-time.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Whilst taking trig functions on your coordinates can yield interesting results
+(the cosine of your latitude is how long your line of latitude is, compared to the equator).
+These don&amp;rsquo;t seem to map to anything interesting and non-obvious.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;The term &amp;ldquo;12-hour clock&amp;rdquo; is valid even though it describes a 24 hour day&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description></item>
+
 	<item><title>Mathematical data representation (ADT) explained</title>
 	<link>https://oliverkwebb.github.io/articles/adt-visual/</link>
 	<pubDate>Thu, 27 Feb 2025 00:00:00 &#43;0000</pubDate>
