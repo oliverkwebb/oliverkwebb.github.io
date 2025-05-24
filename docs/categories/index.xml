@@ -3,6 +3,202 @@
 <link>https://oliverkwebb.github.io/categories/</link>
 <language>en-us</language>
 
+	<item><title>Practical Astronomy with Your Command Line</title>
+	<link>https://oliverkwebb.github.io/articles/pracstro/</link>
+	<pubDate>Fri, 23 May 2025 17:02:40 -0500</pubDate>
+	<description>&lt;p&gt;About a year and a half ago, I was trying to put the current moon phase in my status bar,
+Simultaneously I was trying to make other projects that would show the sunrise and sunset time.
+There are many open-source tools that can generate astronomical info on linux:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://stellarium.org/&#34;&gt;Stellarium&lt;/a&gt; is easily the most extensive astronomy tool out there, acting as a full planetarium and astronomer toolkit.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stellarium-web.org/&#34;&gt;Stellarium Web&lt;/a&gt; - a slightly clunkier version of stellarium for browsers (To picture the level of degradation, think old desktop Google Earth (&lt;a href=&#34;https://www.tomsguide.com/how-to/google-earth-has-a-hidden-flight-simulator-heres-how-to-find-it&#34;&gt;flight sim included&lt;/a&gt;) vs the web version).&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://celestiaproject.space/&#34;&gt;Celestia&lt;/a&gt; is a simulator in a similar style to stellarium.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ssd.jpl.nasa.gov/horizons/&#34;&gt;JPL Horizons&lt;/a&gt; is a highly modular data generator that you can telnet into.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Looking to more specific purpose tools:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wttr.in/moon&#34;&gt;wttr.in/moon&lt;/a&gt; - a &lt;code&gt;curl&lt;/code&gt; service that includes a moon phase generator based off a python rewrite of &lt;code&gt;phoon&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://acme.com/software/phoon/&#34;&gt;phoon&lt;/a&gt; - a unix moon phase viewer based off the code for &lt;code&gt;moontool&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.fourmilab.ch/moontoolw/moontool16.html&#34;&gt;moontool&lt;/a&gt; - GUI moon phase viewer.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/risacher/sunwait&#34;&gt;sunwait&lt;/a&gt; - sunrise/sunset calculator.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://9fans.github.io/plan9port/man/man1/astro.html&#34;&gt;plan9 astro(1)&lt;/a&gt; - astronomical info generator, largely exclusive to plan9.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&amp;rsquo;t fill.
+To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info
+in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
+most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;How easy is it to make something like that?&lt;/h1&gt;
+&lt;p&gt;Lets lessen the scope for a moment, to&amp;hellip; lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to
+get info about without revving up an awk interpreter to strip out text from other things,
+using inaccurate approximations, or curling information from the internet.&lt;/p&gt;
+&lt;p&gt;A year ago, I was looking at &lt;a href=&#34;https://github.com/chubin/pyphoon&#34;&gt;pyphoon&lt;/a&gt;,
+and found the &lt;a href=&#34;https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py&#34;&gt;astronomy code&lt;/a&gt; from it
+was a rewrite of C code written almost &lt;a href=&#34;https://www.fourmilab.ch/moontoolw/&#34;&gt;40 years ago&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Instead of dividing the current date by twenty-some days and working off the value that returns, this code
+could give accurate information about the phase of the moon centuries into the future and past. Along with
+information such as angular diameter and distance. And it could do that parsimoniously in around 400 lines
+of C (before refactoring).&lt;/p&gt;
+&lt;p&gt;Stripping out all the GUI code (which would not compile on X since it uses SunOS specific libraries (think
+1987 when color monitors running X are the hot new thing)), that code could easily be refactored into &lt;a href=&#34;https://github.com/oliverkwebb/moontool&#34;&gt;a CLI tool&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mprintf -h
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# mprintf [-h] [-t TIME] [FORMAT]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# -f formats:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# %a Moon Age      %J Julian Day&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# %e Emoji         %s Emoji of phase (Southern Hemisphere)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# %p Phase Name    %P Illuminated Percent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# %% Percent Sign  %n Newline&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mprintf &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%e %P %p&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# 🌘 13.3 Waning Crescent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I later transpiled this to &lt;a href=&#34;https://github.com/oliverkwebb/moontool/tree/main/lua&#34;&gt;lua&lt;/a&gt; and
+&lt;a href=&#34;https://github.com/oliverkwebb/moontool-rs&#34;&gt;rust&lt;/a&gt;. But&amp;hellip; &lt;em&gt;how did the original code get the moon phase&lt;/em&gt;,
+and how did they come up with the algorithm?&lt;/p&gt;
+&lt;p&gt;In the header of that code, the book &lt;em&gt;Practical Astronomy with Your Calculator&lt;/em&gt; by Peter Duffett-Smith is mentioned.
+Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
+This book is actually simpler to transcribe code from than similar books for BASIC/FORTRAN/Forth/C/PASCAL,
+since their algorithms are usually restricted to arithmetic, exponentiation, and trig functions.&lt;/p&gt;
+&lt;h1 id=&#34;how-accurate-can-we-be&#34;&gt;How accurate can we be?&lt;/h1&gt;
+&lt;p&gt;TL;DR: Accurate Enough.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hyper-Accurate&lt;/strong&gt; Astronomy is&amp;hellip; &lt;a href=&#34;https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html&#34;&gt;hard&lt;/a&gt;.
+Often times it is &lt;a href=&#34;https://en.wikipedia.org/wiki/Extinction_(astronomy)&#34;&gt;impossible&lt;/a&gt; without &lt;a href=&#34;https://en.wikipedia.org/wiki/Polar_motion&#34;&gt;information&lt;/a&gt;
+that can&amp;rsquo;t be &lt;a href=&#34;https://www.news18.com/news/buzz/want-to-see-two-sunsets-in-the-same-evening-burj-khalifa-is-the-place-to-be-4132970.html&#34;&gt;queried&lt;/a&gt;
+from the user reasonably.&lt;/p&gt;
+&lt;p&gt;In most astronomical algorithms, you will see approximations for slightly varying factors given in the form of a
+polynomial of centuries since some epoch. Even though those formulas diverge to infinity, they are &amp;ldquo;good enough&amp;rdquo;
+for a range of a few thousand years.&lt;/p&gt;
+&lt;p&gt;Generally, most &amp;ldquo;constants&amp;rdquo; wobble by some small amount over a large period of time due to a large amount of effects.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The moon is half a degree in the sky (30 arcminutes)&lt;/li&gt;
+&lt;li&gt;An arcsecond is the angular diameter of a dime viewed from 2.5 km&lt;/li&gt;
+&lt;li&gt;The Hubble Space Telescope has a resolution of around 0.1 arcseconds&lt;/li&gt;
+&lt;li&gt;The Gaia telescope can pinpoint star locations down to 7 microarcseconds&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Effect&lt;/th&gt;
+          &lt;th&gt;Predictable&lt;/th&gt;
+          &lt;th&gt;Caused By&lt;/th&gt;
+          &lt;th&gt;Max Change in Accuracy&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Precession&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;Wobble&lt;/td&gt;
+          &lt;td&gt;~1°/century&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Parallax&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;Distance Changes&lt;/td&gt;
+          &lt;td&gt;1 degree (lunar), less than 1 arcsec (everything else)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Refraction&lt;/td&gt;
+          &lt;td&gt;Yes&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+          &lt;td&gt;The Atmosphere&lt;/td&gt;
+          &lt;td&gt;Up to 30 arcmin (near the horizon)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Pertubation&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;Newtonion Gravity&lt;/td&gt;
+          &lt;td&gt;Up to 1.5 degrees&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Proper Motion&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;Star Movement&lt;/td&gt;
+          &lt;td&gt;Less than 5 arcsec per year&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Nutation&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;Wobble&lt;/td&gt;
+          &lt;td&gt;~10 arcsec/20y&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Polar Motion&lt;/td&gt;
+          &lt;td&gt;No&lt;/td&gt;
+          &lt;td&gt;???&lt;/td&gt;
+          &lt;td&gt;~0.1 arcsec/year&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Extinction&lt;/td&gt;
+          &lt;td&gt;No&lt;/td&gt;
+          &lt;td&gt;The Atmosphere&lt;/td&gt;
+          &lt;td&gt;Varies (effecting visual magnitude)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Abberation&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;The Earths Orbit&lt;/td&gt;
+          &lt;td&gt;Up to 20 arcsec&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Apsidal Precession&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;General Relativity&lt;/td&gt;
+          &lt;td&gt;Less than 1 arcsec per century&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Not all these effects are worth accounting for to the level of picoarcseconds. Many are not worth accounting for at all in a
+parsimonious info generator. Some only matter for historical dates or dates far in the future. At the same time,
+there is a noticeable difference caused by parallax, refraction, and pertubation.&lt;/p&gt;
+&lt;p&gt;Correcting for precession, pertubation, refraction, and parallax gives results that are &amp;ldquo;good enough&amp;rdquo; for telescope pointing,
+observation scheduling, and most real-world uses.&lt;/p&gt;
+&lt;h1 id=&#34;alogrithms-and-plumbing&#34;&gt;Alogrithms and Plumbing&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Practical Astronomy with Your Calculator&lt;/em&gt; is a very useful source of information, but there are other
+collections of algorithms that are just as useful:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Astronomical Formulae for Calculators&lt;/em&gt; by Jean Meeus covers most of the same topics, with slightly more accurate algorithms and slightly less
+explanation on why they work.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;a href=&#34;https://www.celestialprogramming.com/&#34;&gt;https://www.celestialprogramming.com/&lt;/a&gt;&lt;/em&gt; provides much more accurate algorithms, in easy to transpile javascript. Along with things like &lt;a href=&#34;https://www.celestialprogramming.com/snippets/rotationmatrix.html&#34;&gt;rotation matrix code&lt;/a&gt;, although with little to no explanation of the algorithms themselves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As for the plumbing, we can generally break down any calculation into the form &lt;code&gt;get [PROPERTY] from [OBJECT] assuming [TIME/LATLONG]&lt;/code&gt;&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;.
+Creating a table of properties of an object over time is called &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeris&#34;&gt;ephemeris&lt;/a&gt;.
+Using this model, we can make a simple interface to these algorithms for a command line:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;deskephem -l 45s,0 moon phase
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# 🌘 Waning Crescent (8.0%)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;deskephem -E now,5d,+3w saturn distance
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ===================================================&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#          Date                   Distance           &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ===================================================&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-05-24T13:45:27  10.00 AU                     &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-05-29T13:45:27  9.92 AU                      &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-03T13:45:27  9.84 AU                      &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-08T13:45:27  9.76 AU                      &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-13T13:45:27  9.68 AU   &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Additionally, output can be added for JSON and CSV, to make parsing data with tools much easier.&lt;/p&gt;
+&lt;h1 id=&#34;the-result&#34;&gt;The result?&lt;/h1&gt;
+&lt;p&gt;Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
+Doing this entirely inside the command line with conventional tools is normally a painful process, but using
+CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
+into your data analysis tool of choice (gnuplot, python, etc&amp;hellip;).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/SMVm.png&#34; alt=&#34;Inner Solar System Distance Graph&#34;&gt;&lt;/p&gt;
+&lt;p&gt;It is easy to see why mercury is the &lt;a href=&#34;https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/&#34;&gt;&amp;ldquo;mostest closest&amp;rdquo;&lt;/a&gt; with
+this graph. You can also see the slight eccentricity of earths, and Mercury&amp;rsquo;s orbit as wobble in the line of the sun, and a
+more substantial difference in the wave of Mercury&amp;rsquo;s orbit.&lt;/p&gt;
+&lt;p&gt;As for the complexity of this tool, it only took 1500 lines of rust (astronomical algorithms included), with 0-dependencies aside from std.
+And the algorithms are universal enough to be rewritten to anything with trig functions and floating point math.&lt;/p&gt;
+&lt;p&gt;The ephemeris generator that came from this research: &lt;a href=&#34;https://github.com/oliverkwebb/deskephem&#34;&gt;deskephem&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Truly Accurate Predictions require temperature, pressure, and altitude measurements, but even without these refraction can be approximated.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Generally, the latitude and longitude is only important in some parallax calculations and in conversion to horizontal coordinates.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description></item>
+
 	<item><title>Astronomy: Time is an Angle</title>
 	<link>https://oliverkwebb.github.io/articles/astronomy-angles/</link>
 	<pubDate>Tue, 20 May 2025 16:08:15 -0500</pubDate>
