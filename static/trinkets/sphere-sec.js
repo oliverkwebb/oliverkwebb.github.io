@@ -40,7 +40,7 @@ function render_sphere_sec(ssrdiv, ang1, ang2, ang3, ang4) {
 	<tr><td>Distance (Radii)</td><td>${d.toFixed(2)}</td>
 	<tr><td>Chord</td><td>${crd.toFixed(2)}</td></tr>
 	<tr><td>Ratio</td><td>${(drad/crd).toFixed(3)}</td></tr>
-	<tr><td>Distance (Earth, km)</td><td>${(d*6371).toFixed(2)}km</td></tr>
+	<tr><td>Distance (Earth, km)</td><td>${(crd*6371).toFixed(2)}km</td></tr>
 	</table>
 	`
 }
