@@ -3,6 +3,45 @@
 <link>https://oliverkwebb.github.io/categories/</link>
 <language>en-us</language>
 
+	<item><title>Astronomy and Earth: Coordinate Distances</title>
+	<link>https://oliverkwebb.github.io/articles/astronomy-coordinate-distance/</link>
+	<pubDate>Sat, 24 May 2025 19:07:58 -0500</pubDate>
+	<description>&lt;p&gt;You might of heard the phrase &lt;a href=&#34;https://www.mentalfloss.com/article/27585/could-you-really-dig-hole-china&#34;&gt;&amp;ldquo;dig to china&amp;rdquo;&lt;/a&gt; before,
+or talked about digging a b-line through the earth to some far off land jokingly. But how much distance would you actually save
+by digging through the earth instead of traveling along the surface?&lt;/p&gt;
+&lt;p&gt;Since coordinates on a sphere are 2 dimensional, lets think of a simpler problem. On a unit circle where both locations
+positions can be represented by one angle, what&amp;rsquo;s the difference between going through the circle versus traveling
+along its circumference?&lt;/p&gt;
+&lt;p&gt;Well, we need to get the difference between these two angles, which is just another angle that you can get by subtraction,
+from here &lt;code&gt;crd&lt;/code&gt; (&lt;code&gt;2*sin(0.5*x)&lt;/code&gt;) can do the work trivially.&lt;/p&gt;
+&lt;div style=&#34;width: 100%&#34; id=&#34;circle-sec&#34;&gt;
+&lt;/div&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/circle-sec.js&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Extending this problem into 2d, what can we do?&lt;/p&gt;
+&lt;p&gt;Well, any two points on a sphere form a great circle. This immediately reduces the problem back into the first 2d one.
+We can get the angle between the two points on the great circle using:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;arccos(sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(lat1 - lat2))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Multiplying the resulting chord by the earths radius, we can approximately get a distance calculation for digging
+through the earth between any two coordinates.&lt;/p&gt;
+&lt;div style=&#34;width: 100%&#34; id=&#34;sphere-sec&#34;&gt;
+&lt;/div&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/sphere-sec.js&#34;&gt;&lt;/script&gt;
+
+&lt;h1 id=&#34;how-does-this-relate-to-astronomy&#34;&gt;How does this relate to astronomy?&lt;/h1&gt;
+&lt;p&gt;When calculating the phase (illuminated fraction and bright limb position) of planets, you
+work with a &amp;ldquo;phase angle&amp;rdquo; that is the angle between the Earth, that planet, and the sun.
+With (&lt;code&gt;(1-cos(x))/2&lt;/code&gt;), you can turn this number into an illuminated fraction.&lt;/p&gt;
+&lt;p&gt;How do you calculate this angle? Imagine a triangle between the sun, earth, and planet,
+we have the length of the Earth-Sun line (1AU within a rounding error for these calculations),
+and the length of the Earth-Planet line (if your ephemeris generator doesn&amp;rsquo;t give distances,
+find something different).&lt;/p&gt;
+&lt;p&gt;We need the sun-earth-planet angle to have enough info
+to law-of-cosines the desired result. And if we have the coordinates of the sun and planet (which should be trivial to find
+at this stage), we can take the angle between these two coordinates on the celestial sphere. And have enough info
+to get the phase angle from coordinates and distance alone.&lt;/p&gt;
+</description></item>
+
 	<item><title>Practical Astronomy with Your Command Line</title>
 	<link>https://oliverkwebb.github.io/articles/pracstro/</link>
 	<pubDate>Fri, 23 May 2025 17:02:40 -0500</pubDate>
