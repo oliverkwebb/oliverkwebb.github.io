@@ -3,6 +3,56 @@
 <link>https://oliverkwebb.github.io/</link>
 <language>en-us</language>
 
+	<item><title>Bitmap Images in 1965 - Mariner 4</title>
+	<link>https://oliverkwebb.github.io/articles/bmp-1965/</link>
+	<pubDate>Sun, 25 May 2025 11:56:07 -0500</pubDate>
+	<description>&lt;p&gt;On July 14th, 1965, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Mariner_4&#34;&gt;Mariner 4&lt;/a&gt; spacecraft flew by Mars, the first
+to ever reach the planet successfully. In the scientific data it recorded, it took 21 pictures, similar space
+probes built for the moon or earth would usually transmit image data back in a analog format of continuous
+scan-lines (similar to a TV broadcast). But for clarity across interplanetary distances, This probe had
+to record and transmit its data back in a digital format.&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/m4-mars-craters.jpg&#34;
+    alt=&#34;The clearest image from Mariner 4, with pixels visible&#34;&gt;&lt;figcaption&gt;
+      &lt;p&gt;The clearest image from Mariner 4, with pixels visible&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h1 id=&#34;bmp-1965&#34;&gt;.bmp-1965&lt;/h1&gt;
+&lt;p&gt;Image data from this was transmitted back as a series of bits, with a 6 bit number per pixel.
+Weirdly enough, the highest number (63, 0b111111) represented black whilst 0 represented white,
+the opposite of how its represented today.&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/m4-mars-first.jpg&#34;
+    alt=&#34;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&#34;&gt;&lt;figcaption&gt;
+      &lt;p&gt;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;These pixels would be transmitted continuously to send a 200x200 image.&lt;/p&gt;
+&lt;h1 id=&#34;digitializing-this-format&#34;&gt;Digitializing this format&lt;/h1&gt;
+&lt;p&gt;From here, these pixels would be recorded as dots on a tape, this tape would
+be scanned to imprint the image onto film, and finer restoration work would
+be done to perfect the picture. This is an example of an early dot-matrix
+image printer.&lt;/p&gt;
+&lt;p&gt;Now, with modern computers and image formats, this data format does not
+have to be imprinted onto tape to be viewed, converting this to raw
+RGB data is fairly easy, and from there, you can convert that to
+png/jpg/etc using tools like XPM or &lt;a href=&#34;https://tools.suckless.org/farbfeld/&#34;&gt;farbfeld&lt;/a&gt;
+(which is just 16-bit ARGB). The only hard part of this process is
+that Mariner 4 image data works with 6 bit pixels, which means that
+you have to work with chunks of 4 pixels (3 bytes) at a time.&lt;/p&gt;
+&lt;p&gt;Doing bit the manipulation needed to pack the image data efficiently,
+any 200x200 image can be converted and viewed as if it came from the
+antenna of a 1960&amp;rsquo;s space probe.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/original-mar4.png&#34; alt=&#34;original&#34;&gt;
+&lt;img src=&#34;https://oliverkwebb.github.io/1pass.png&#34; alt=&#34;converted&#34;&gt;
+&lt;img src=&#34;https://oliverkwebb.github.io/2pass.png&#34; alt=&#34;2 passes&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;see-also&#34;&gt;See Also&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://openlibrary.org/books/OL5614703M/Appointment_on_the_Moon&#34;&gt;&lt;em&gt;Appointment on the Moon&lt;/em&gt;&lt;/a&gt; by Richard S. Lewis - Information in the chapter &amp;ldquo;No Hiding Place&amp;rdquo; was the inspiration for this article.&lt;/li&gt;
+&lt;li&gt;My converter for this format: &lt;a href=&#34;https://github.com/oliverkwebb/mar4-ff&#34;&gt;mar4-ff&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description></item>
+
 	<item><title>Astronomy and Earth: Coordinate Distances</title>
 	<link>https://oliverkwebb.github.io/articles/astronomy-coordinate-distance/</link>
 	<pubDate>Sat, 24 May 2025 19:07:58 -0500</pubDate>
