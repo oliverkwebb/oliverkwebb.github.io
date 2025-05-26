@@ -6,9 +6,6 @@ Email
 GitHub
 : [oliverkwebb](https://www.github.com/oliverkwebb)
 
-Mastodon
-: [@oliverkwebb@hachyderm.io](https://hachyderm.io/@oliverkwebb)
-
 Pronouns
 : Any/All
 
@@ -32,6 +29,7 @@ I have a page describing the software I use [here](/rocks)
 - [luaed](https://codeberg.org/oliverkwebb/luaed): An ed implementation with syntax highlighting
 - [newtime](https://github.com/oliverkwebb/newtime): A redesign of the C time library with an emphasis on cleanliness and completeness.
 - [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and compliment with C89
+- [mar4-ff](https://github.com/oliverkwebb/mar4-ff): A converter between Mariner 4 image data and farbfeld
 
 ## Open Source Contributions
 
