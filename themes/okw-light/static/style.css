@@ -10,6 +10,18 @@ font-style: normal;
 src: url("./fonts/APL386.ttf") format("truetype")
 }
 
+/* Jost by Owen Earl */
+@font-face {
+font-family: "Jost";
+font-style: normal;
+src: url("./fonts/Jost-VariableFont_wght.ttf") format("truetype")
+}
+@font-face {
+font-family: "Jost";
+font-style: italic;
+src: url("./fonts/Jost-Italic-VariableFont_wght.ttf") format("truetype")
+}
+
 html {
 background-color:var(--bg);
 color: black;
@@ -19,7 +31,7 @@ body {
 max-width:800px;
 padding:10px;
 margin:auto;
-font-family: "Roboto", sans-serif;
+font-family: "Jost", sans-serif;
 }
 
 header, footer, .intro, nav, .linkbox {

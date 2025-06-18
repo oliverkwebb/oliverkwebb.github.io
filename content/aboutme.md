@@ -12,14 +12,16 @@ Pronouns
 Userbox (88x31)
 : [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 
-I am at the time of writing (April 2025) 16 and a high school student.
+I am at the time of writing (June 2025) 16 and a high school student.
 And have been programming and learning about how computers work for a
-couple years. I know how to work C, Rust, Lua, Bash, and Linux extensively.
+several years. I know how to work a variety of languages, tools, and systems
+extensively. Mainly C, Rust, Lua, Bash, and Linux.
 
 I have a page describing the software I use [here](/rocks)
 
 ## Projects
 
+- [moonphase](https://github.com/oliverkwebb/moonphase): A collection of implementations to get the current moon phase in a variety of languages.
 - [deskephem](https://github.com/oliverkwebb/deskephem): A general purpose CLI astronomy calculator
 - [pracstro](https://crates.io/crates/pracstro): A compact, accurate ephemeris generating library for celestial objects.
 - [cheat](https://github.com/oliverkwebb/cheat): An offline analog for [cheat.sh](https://cheat.sh)
@@ -27,6 +29,7 @@ I have a page describing the software I use [here](/rocks)
 - [ytmpv](https://github.com/oliverkwebb/ytmpv): A shell script that provides quick access to proxies to counter anti-ad-block
 - [calfact](https://github.com/oliverkwebb/calfact) A xkcd 1930 generator
 - [luaed](https://codeberg.org/oliverkwebb/luaed): An ed implementation with syntax highlighting
+- [do-not-resize](https://webb.is-a.dev/do-not-resize/): A satirizing of the GNOME projects push against user freedom in themes.
 - [newtime](https://github.com/oliverkwebb/newtime): A redesign of the C time library with an emphasis on cleanliness and completeness.
 - [pdlibc](https://github.com/oliverkwebb/pdlibc): A public domain example implementation of libc aiming to be a superset of nolibc and compliment with C89
 - [mar4-ff](https://github.com/oliverkwebb/mar4-ff): A converter between Mariner 4 image data and farbfeld
