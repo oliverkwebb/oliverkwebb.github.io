@@ -1,5 +1,6 @@
 ---
 title: "Rethinking The C Time API"
+tags: ['Programming']
 date: 2025-02-05T10:25:12-05:00
 ---
 

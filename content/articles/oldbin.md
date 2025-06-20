@@ -1,5 +1,6 @@
 ---
 title: "The Oldest Binary on a Mint System"
+tags: ['Programming']
 date: 2024-09-19T21:59:45-05:00
 ---
 Simple question with a simple answer: What is the oldest binary on a Linux mint ISO (modification time)? I was playing around with the stat command more than a year ago when I asked this to myself.

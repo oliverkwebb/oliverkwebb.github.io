@@ -11,7 +11,25 @@
     <loc>https://oliverkwebb.github.io/articles/bmp-1965/</loc>
     <lastmod>2025-05-25T11:56:07-05:00</lastmod>
   </url><url>
+    <loc>https://oliverkwebb.github.io/tags/history/</loc>
+    <lastmod>2025-05-25T11:56:07-05:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/programming/</loc>
+    <lastmod>2025-05-25T11:56:07-05:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/spaceflight/</loc>
+    <lastmod>2025-05-25T11:56:07-05:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/</loc>
+    <lastmod>2025-05-25T11:56:07-05:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/astronomy/</loc>
+    <lastmod>2025-05-24T19:07:58-05:00</lastmod>
+  </url><url>
     <loc>https://oliverkwebb.github.io/articles/astronomy-coordinate-distance/</loc>
+    <lastmod>2025-05-24T19:07:58-05:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/math/</loc>
     <lastmod>2025-05-24T19:07:58-05:00</lastmod>
   </url><url>
     <loc>https://oliverkwebb.github.io/articles/pracstro/</loc>
@@ -21,6 +39,9 @@
     <lastmod>2025-05-20T16:08:15-05:00</lastmod>
   </url><url>
     <loc>https://oliverkwebb.github.io/articles/adt-visual/</loc>
+    <lastmod>2025-02-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/rust/</loc>
     <lastmod>2025-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://oliverkwebb.github.io/articles/newtime/</loc>
@@ -38,8 +59,17 @@
     <loc>https://oliverkwebb.github.io/articles/hugo/</loc>
     <lastmod>2024-08-18T12:00:34-05:00</lastmod>
   </url><url>
+    <loc>https://oliverkwebb.github.io/tags/miscellaneous/</loc>
+    <lastmod>2024-08-18T12:00:34-05:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/opinion/</loc>
+    <lastmod>2024-08-17T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://oliverkwebb.github.io/articles/gnulist/</loc>
     <lastmod>2024-08-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://oliverkwebb.github.io/tags/theory/</loc>
+    <lastmod>2024-04-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://oliverkwebb.github.io/articles/utfawk/</loc>
     <lastmod>2024-04-26T00:00:00+00:00</lastmod>
@@ -55,7 +85,5 @@
     <loc>https://oliverkwebb.github.io/techdia/</loc>
   </url><url>
     <loc>https://oliverkwebb.github.io/categories/</loc>
-  </url><url>
-    <loc>https://oliverkwebb.github.io/tags/</loc>
   </url>
 </urlset>

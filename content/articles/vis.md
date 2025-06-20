@@ -1,5 +1,6 @@
 ---
 Title: Replacing Neovim with vis
+tags: ['Programming']
 Date: 2024-04-17
 ---
 Lately, I've been unhappy with neovim and it's bloat. vi is a simple and beautiful tool by

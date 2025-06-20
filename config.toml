@@ -1,7 +1,7 @@
 baseURL = 'https://oliverkwebb.github.io'
 languageCode = 'en-us'
 title = "Oliver Webb's Website"
-theme = 'okw-light'
+theme = 'okw'
 publishDir = 'docs/'
 disableHugoGeneratorInject = true
 enableEmoji = true

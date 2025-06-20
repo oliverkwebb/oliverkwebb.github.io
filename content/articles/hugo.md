@@ -1,5 +1,6 @@
 ---
 title: "Migrating to Hugo"
+tags: ['Miscellaneous']
 date: 2024-08-18T12:00:34-05:00
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "List of classic UNIX utils re-designed in rust"
+tags: ['Programming', 'Rust']
 date: 2024-12-14T09:12:08-06:00
 ---
 

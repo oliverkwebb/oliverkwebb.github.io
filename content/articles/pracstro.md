@@ -1,5 +1,6 @@
 ---
 title: "Practical Astronomy with Your Command Line"
+tags: ['Astronomy', 'Programming']
 date: 2025-05-23T17:02:40-05:00
 ---
 About a year and a half ago, I was trying to put the current moon phase in my status bar,

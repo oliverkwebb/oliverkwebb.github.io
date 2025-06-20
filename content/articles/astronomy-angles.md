@@ -1,5 +1,6 @@
 ---
 title: "Astronomy: Time is an Angle"
+tags: ['Astronomy', 'Math']
 date: 2025-05-20T16:08:15-05:00
 ---
 The time of day as an idea needs no introduction.

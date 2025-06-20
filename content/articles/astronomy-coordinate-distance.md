@@ -1,5 +1,6 @@
 ---
 title: "Astronomy and Earth: Coordinate Distances"
+tags: ['Astronomy', 'Math']
 date: 2025-05-24T19:07:58-05:00
 ---
 You might of heard the phrase ["dig to china"](https://www.mentalfloss.com/article/27585/could-you-really-dig-hole-china) before,

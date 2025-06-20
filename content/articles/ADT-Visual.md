@@ -1,5 +1,6 @@
 ---
 title: "Mathematical data representation (ADT) explained"
+tags: ['Math', 'Programming', 'Rust']
 date: 2025-02-27
 ---
 In C, primitive types are just numbers.

@@ -1,5 +1,6 @@
 ---
 Title: Making A static site generator with `make`
+tags: ['Programming']
 Date: 2024-04-13
 ---
 When making my website, generating static webpages for

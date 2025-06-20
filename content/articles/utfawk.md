@@ -1,5 +1,6 @@
 ---
 Title: Writing a UTF-8 safe AWK
+Tags: ['Programming', 'Theory']
 Date: 2024-04-26
 ---
 One of the things the toybox project prioritizes is unicode handling for it's
