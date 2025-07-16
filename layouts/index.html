@@ -12,6 +12,12 @@
 	<a href="{{ .RelPermalink }}" style="font-size:1.3em;">{{ .Title }}</a>
 	<br>
 	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02 2006" }}</time> &ndash; {{ .FuzzyWordCount }} Words
+	  {{ if .Params.isgraphic }}
+                <a href="{{ .Params.imagesource }}"><img src="{{ .Params.imagesource }}" width="80%"></a>
+      {{ else }}
+
+      {{ end }}
+
 	<hr style="margin-right:10%;">
 </li>
 {{- end }}
