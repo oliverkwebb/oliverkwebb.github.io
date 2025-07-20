@@ -25,7 +25,7 @@ To properly script/embed these tools in the spirit of classic UNIX, there needs 
 in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
 most of them aren't general purpose enough to generate things like moon phases/sunset times/planet positions all at once.
 
-![A Venn Diagram of Astronomy Tools](/astro-tools-venn.png)
+![A Venn Diagram of Astronomy Tools](/graph/astro-tools-venn.png)
 
 # How easy is it to make something like that?
 
@@ -145,7 +145,7 @@ Doing this entirely inside the command line with conventional tools is normally 
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc...).
 
-![Inner Solar System Distance Graph](/SMVm.png)
+![Inner Solar System Distance Graph](/graph/SMVm.png)
 
 It is easy to see why mercury is the ["mostest closest"](https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/) with
 this graph. You can also see the slight eccentricity of earths, and Mercury's orbit as wobble in the line of the sun, and a

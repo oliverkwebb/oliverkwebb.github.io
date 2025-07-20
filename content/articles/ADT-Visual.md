@@ -67,7 +67,7 @@ called `2` in mathematical contexts.
 
 We can combine types into larger types using product and sum types.
 
-![The Product and Sum Type](/Product_Sum_Diagram.png)
+![The Product and Sum Type](/graph/Product_Sum_Diagram.png)
 
 A product type combines types in a similar fashion as a `struct` in C.
 
@@ -93,7 +93,7 @@ The number of terms in a sum type is equal to the sum of the terms in the combin
 
 Types that represent functions with one argument are also possible, reducing down to the exponentiation.
 
-![The Function Type](/functype.png)
+![The Function Type](/graph/functype.png)
 
 A function with multiple arguments is possible via currying, returning a function with one less argument.
 

@@ -36,7 +36,7 @@ I'll be able to see X for at least Y amount of time").
 Using degrees in place of hours on a clock, or using "turns" (the fraction of the day) gives
 results that are interesting, but don't deserve much cometary.
 
-![Places on Earth where it can be 100 degrees in the morning](/places100deg.png)
+![Places on Earth where it can be 100 degrees in the morning](/graph/places100deg.png)
 
 # The Tangent of Time
 

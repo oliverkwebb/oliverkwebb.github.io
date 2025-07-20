@@ -48,13 +48,13 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 - [libtime](https://gitlab.com/libtime/documentation/-/wikis/home): Time API and implementation documentation
 
-## Associates
+## Userboxes and Links
 
 [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 [![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
 [![Bunbun's Userbox](https://bunbun.dev/assets/88x31s/bunbun.dev.gif)](https://bunbun.dev/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
-[![Natalieee's Userbox](https://natalieee.net/files/natalieee.net.png)](https://natalieee.net/)
+[![Natalieee's Userbox](https://natalieee.net/assets/88x31/natalieee.net.png)](https://natalieee.net/)
 
 [cpli.dev](https://cpli.dev/) |
 [yemou.pink](https://yemou.pink/) |

@@ -38,7 +38,7 @@ There are many open-source tools that can generate astronomical info on linux:</
 To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info
 in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
 most of them aren&rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.</p>
-<p><img src="/astro-tools-venn.png" alt="A Venn Diagram of Astronomy Tools"></p>
+<p><img src="/graph/astro-tools-venn.png" alt="A Venn Diagram of Astronomy Tools"></p>
 <h1 id="how-easy-is-it-to-make-something-like-that">How easy is it to make something like that?</h1>
 <p>Lets lessen the scope for a moment, to&hellip; lets say moon phases. Which I couldn&rsquo;t find a straightforward way to
 get info about without revving up an awk interpreter to strip out text from other things,
@@ -190,7 +190,7 @@ Using this model, we can make a simple interface to these algorithms for a comma
 Doing this entirely inside the command line with conventional tools is normally a painful process, but using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&hellip;).</p>
-<p><img src="/SMVm.png" alt="Inner Solar System Distance Graph"></p>
+<p><img src="/graph/SMVm.png" alt="Inner Solar System Distance Graph"></p>
 <p>It is easy to see why mercury is the <a href="https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/">&ldquo;mostest closest&rdquo;</a> with
 this graph. You can also see the slight eccentricity of earths, and Mercury&rsquo;s orbit as wobble in the line of the sun, and a
 more substantial difference in the wave of Mercury&rsquo;s orbit.</p>

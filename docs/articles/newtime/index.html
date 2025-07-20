@@ -202,7 +202,7 @@ Unless a functions <em>job</em> is to handle human-friendly time values, it will
 <p>The timezone handling code in libc isn&rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 <code>tzset()</code> and <code>localtime()</code> are the <em>only</em> ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:</p>
-<p><img src="/tzset.svg" alt="tzset, environ, and localtime relationship"></p>
+<p><img src="/svg/tzset.svg" alt="tzset, environ, and localtime relationship"></p>
 <p>A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
 name you would use to load the timezone. I.e. <code>America/New_York</code> vs. <code>EST</code>). <strong>Neither of these things are constant</strong>, with daylight savings
 time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Even with DST

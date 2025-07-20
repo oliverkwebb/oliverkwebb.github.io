@@ -54,7 +54,7 @@ represent data with C. The programmer has to be constantly paranoid about invali
 </span></span></span></code></pre></div><p>The mathematical notation for type theory often works with the number of terms in the type. For example, the boolean type is commonly
 called <code>2</code> in mathematical contexts.</p>
 <p>We can combine types into larger types using product and sum types.</p>
-<p><img src="/Product_Sum_Diagram.png" alt="The Product and Sum Type"></p>
+<p><img src="/graph/Product_Sum_Diagram.png" alt="The Product and Sum Type"></p>
 <p>A product type combines types in a similar fashion as a <code>struct</code> in C.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff7b72">struct</span> <span style="color:#f0883e;font-weight:bold">Person</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>Name(String),<span style="color:#6e7681">
@@ -68,7 +68,7 @@ called <code>2</code> in mathematical contexts.</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681"></span>}<span style="color:#6e7681">
 </span></span></span></code></pre></div><p>The number of terms in a sum type is equal to the sum of the terms in the combining types.</p>
 <p>Types that represent functions with one argument are also possible, reducing down to the exponentiation.</p>
-<p><img src="/functype.png" alt="The Function Type"></p>
+<p><img src="/graph/functype.png" alt="The Function Type"></p>
 <p>A function with multiple arguments is possible via currying, returning a function with one less argument.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;</span> x <span style="color:#ff7b72;font-weight:bold">=</span> (<span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">2</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;</span> x <span style="color:#a5d6ff">3</span>

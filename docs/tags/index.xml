@@ -17,7 +17,7 @@ to ever reach the planet successfully. In the scientific data it recorded, it to
 probes built for the moon or earth would usually transmit image data back in a analog format of continuous
 scan-lines (similar to a TV broadcast). But for clarity across interplanetary distances, This probe had
 to record and transmit its data back in a digital format.&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/m4-mars-craters.jpg&#34;
+&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/m4-mars-craters.jpg&#34;
     alt=&#34;The clearest image from Mariner 4, with pixels visible&#34;&gt;&lt;figcaption&gt;
       &lt;p&gt;The clearest image from Mariner 4, with pixels visible&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -27,7 +27,7 @@ to record and transmit its data back in a digital format.&lt;/p&gt;
 &lt;p&gt;Image data from this was transmitted back as a series of bits, with a 6 bit number per pixel.
 Weirdly enough, the highest number (63, 0b111111) represented black whilst 0 represented white,
 the opposite of how its represented today.&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/m4-mars-first.jpg&#34;
+&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/m4-mars-first.jpg&#34;
     alt=&#34;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&#34;&gt;&lt;figcaption&gt;
       &lt;p&gt;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -49,9 +49,9 @@ you have to work with chunks of 4 pixels (3 bytes) at a time.&lt;/p&gt;
 &lt;p&gt;Doing bit the manipulation needed to pack the image data efficiently,
 any 200x200 image can be converted and viewed as if it came from the
 antenna of a 1960&amp;rsquo;s space probe.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/original-mar4.png&#34; alt=&#34;original&#34;&gt;
-&lt;img src=&#34;https://oliverkwebb.github.io/1pass.png&#34; alt=&#34;converted&#34;&gt;
-&lt;img src=&#34;https://oliverkwebb.github.io/2pass.png&#34; alt=&#34;2 passes&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/original-mar4.png&#34; alt=&#34;original&#34;&gt;
+&lt;img src=&#34;https://oliverkwebb.github.io/mar4/1pass.png&#34; alt=&#34;converted&#34;&gt;
+&lt;img src=&#34;https://oliverkwebb.github.io/mar4/2pass.png&#34; alt=&#34;2 passes&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;see-also&#34;&gt;See Also&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://openlibrary.org/books/OL5614703M/Appointment_on_the_Moon&#34;&gt;&lt;em&gt;Appointment on the Moon&lt;/em&gt;&lt;/a&gt; by Richard S. Lewis - Information in the chapter &amp;ldquo;No Hiding Place&amp;rdquo; was the inspiration for this article.&lt;/li&gt;
@@ -122,7 +122,7 @@ There are many open-source tools that can generate astronomical info on linux:&l
 To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info
 in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
 most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;How easy is it to make something like that?&lt;/h1&gt;
 &lt;p&gt;Lets lessen the scope for a moment, to&amp;hellip; lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to
 get info about without revving up an awk interpreter to strip out text from other things,
@@ -274,7 +274,7 @@ Using this model, we can make a simple interface to these algorithms for a comma
 Doing this entirely inside the command line with conventional tools is normally a painful process, but using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&amp;hellip;).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/SMVm.png&#34; alt=&#34;Inner Solar System Distance Graph&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/SMVm.png&#34; alt=&#34;Inner Solar System Distance Graph&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It is easy to see why mercury is the &lt;a href=&#34;https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/&#34;&gt;&amp;ldquo;mostest closest&amp;rdquo;&lt;/a&gt; with
 this graph. You can also see the slight eccentricity of earths, and Mercury&amp;rsquo;s orbit as wobble in the line of the sun, and a
 more substantial difference in the wave of Mercury&amp;rsquo;s orbit.&lt;/p&gt;
@@ -324,7 +324,7 @@ diameter in the sky, which is good to know for telescope readjustment (&amp;ldqu
 I&amp;rsquo;ll be able to see X for at least Y amount of time&amp;rdquo;).&lt;/p&gt;
 &lt;p&gt;Using degrees in place of hours on a clock, or using &amp;ldquo;turns&amp;rdquo; (the fraction of the day) gives
 results that are interesting, but don&amp;rsquo;t deserve much cometary.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/places100deg.png&#34; alt=&#34;Places on Earth where it can be 100 degrees in the morning&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/places100deg.png&#34; alt=&#34;Places on Earth where it can be 100 degrees in the morning&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;the-tangent-of-time&#34;&gt;The Tangent of Time&lt;/h1&gt;
 &lt;p&gt;Why radians? To take trig functions, of course!&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;tangent-of-time&#34;&gt;
@@ -384,7 +384,7 @@ represent data with C. The programmer has to be constantly paranoid about invali
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The mathematical notation for type theory often works with the number of terms in the type. For example, the boolean type is commonly
 called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
 &lt;p&gt;We can combine types into larger types using product and sum types.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/Product_Sum_Diagram.png&#34; alt=&#34;The Product and Sum Type&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/Product_Sum_Diagram.png&#34; alt=&#34;The Product and Sum Type&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A product type combines types in a similar fashion as a &lt;code&gt;struct&lt;/code&gt; in C.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Person&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Name(String),&lt;span style=&#34;color:#6e7681&#34;&gt;
@@ -398,7 +398,7 @@ called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The number of terms in a sum type is equal to the sum of the terms in the combining types.&lt;/p&gt;
 &lt;p&gt;Types that represent functions with one argument are also possible, reducing down to the exponentiation.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/functype.png&#34; alt=&#34;The Function Type&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/functype.png&#34; alt=&#34;The Function Type&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A function with multiple arguments is possible via currying, returning a function with one less argument.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;2&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;
@@ -608,7 +608,7 @@ Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time val
 &lt;p&gt;The timezone handling code in libc isn&amp;rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 &lt;code&gt;tzset()&lt;/code&gt; and &lt;code&gt;localtime()&lt;/code&gt; are the &lt;em&gt;only&lt;/em&gt; ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/svg/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
 name you would use to load the timezone. I.e. &lt;code&gt;America/New_York&lt;/code&gt; vs. &lt;code&gt;EST&lt;/code&gt;). &lt;strong&gt;Neither of these things are constant&lt;/strong&gt;, with daylight savings
 time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Even with DST

@@ -185,7 +185,7 @@ The timezone handling code in libc isn't outdated, that would imply it was once 
 `tzset()` and `localtime()` are the *only* ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:
 
-![tzset, environ, and localtime relationship](/tzset.svg)
+![tzset, environ, and localtime relationship](/svg/tzset.svg)
 
 A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
 name you would use to load the timezone. I.e. `America/New_York` vs. `EST`). **Neither of these things are constant**, with daylight savings
