@@ -110,6 +110,11 @@ img {
 max-width: 100%;
 }
 
+.userboxes {
+  display: flex;
+  justify-content: center;
+}
+
 footer p {
 clear:both
 }
