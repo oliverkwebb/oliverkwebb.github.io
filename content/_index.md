@@ -1,12 +1,20 @@
-[]()
+<p style="text-align: center">
+Computer Scientist | 16 y/o | Any/All
+</p>
 
 {{< linkbox "https://www.github.com/oliverkwebb" "GitHub" >}}
 {{< linkbox "mailto:oliverwebb8192@gmail.com" "Email" >}}
 {{< linkbox "/aboutme" "About and Contact" >}}
 
-Web trinkets and widgets:
-[moonphase](https://webb.is-a.dev/moonphase/) | [calfact](https://webb.is-a.dev/calfact/) | [chmodcalc](https://webb.is-a.dev/chmodcalc/)
+Web trinkets and widgets
+(Other various trinkets and technical diagrams can be found interspersed in my articles.):
 
-Other various trinkets and technical diagrams can be found interspersed in my articles.
+<div class="trinkets">
 
-I only write about ideas, events, or projects that I find interesting.
+[moonphase<br> 🌖](https://webb.is-a.dev/moonphase/)
+
+[calfact<br> 📆](https://webb.is-a.dev/calfact/)
+
+[chmodcalc<br> 🕵️](https://webb.is-a.dev/chmodcalc/)
+
+</div>

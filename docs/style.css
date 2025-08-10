@@ -34,7 +34,7 @@ margin:auto;
 font-family: "Jost", sans-serif;
 }
 
-header, footer, .intro, nav, .linkbox {
+header, footer, nav, .linkbox {
 text-align:center;
 }
 
@@ -67,6 +67,22 @@ transform: translate(11px, 5px);
 a {
 text-decoration:none;
 color: var(--uchu-blue-9);
+}
+
+.trinkets {
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+.trinkets p {
+	margin: 0
+}
+
+.trinkets p a, .trinkets p {
+	border: 1px solid black;
+	display:block;
+	width: 100%;
+	text-align: center;
 }
 
 h2 { font-size:1.5em }
@@ -118,6 +134,38 @@ max-width: 100%;
 footer p {
 clear:both
 }
+
+.articleindex {
+	display: flex;
+	flex-direction: column;
+}
+
+.articleitem {
+	width: 90%;
+	margin: auto;
+	display: grid;
+	grid-template-areas:
+	"title image"
+	"info image";
+	border-top: 2px solid black;
+	grid-template-columns: 1fr min-content
+}
+
+.articleitem .title {
+	text-align: center;
+	grid-area: title;
+}
+.articleitem .info {
+	text-align: center;
+	grid-area: info;
+}
+.articleitem .image {
+	grid-area: image;
+}
+.articleitem img {
+	min-width: 200px;
+}
+
 
 #nextprev {width:100%}
 .next {float:right}

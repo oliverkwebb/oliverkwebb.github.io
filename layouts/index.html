@@ -2,23 +2,20 @@
 {{ .Title | title }}
 {{- end }}
 {{ define "main" -}}
-<div class="intro">
-<p>Linux Developer | 16 y/o | Any/All</p>
-</div>
 {{ .Content }}
-<ul style="list-style:none;">
+<ul style="list-style:none; padding: 0" class="articleindex">
 {{- range where .Site.RegularPages "Section" "articles" }}
-<li>
+<li class="articleitem">
+	<div class="title">
 	<a href="{{ .RelPermalink }}" style="font-size:1.3em;">{{ .Title }}</a>
-	<br>
+	</div>
+	<div class="info">
 	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02 2006" }}</time> &ndash; {{ .FuzzyWordCount }} Words
-	  {{ if .Params.isgraphic }}
-                <a href="{{ .Params.imagesource }}"><img src="{{ .Params.imagesource }}" width="80%"></a>
-      {{ else }}
-
-      {{ end }}
-
-	<hr style="margin-right:10%;">
+	</div>
+	{{ if .Params.isgraphic }}
+   	<img class="image" src="{{ .Params.imagesource }}" width="40%">
+   	{{ else }}
+   	{{ end }}
 </li>
 {{- end }}
 </ul>
