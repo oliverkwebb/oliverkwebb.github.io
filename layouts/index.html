@@ -6,15 +6,12 @@
 <ul style="list-style:none; padding: 0" class="articleindex">
 {{- range where .Site.RegularPages "Section" "articles" }}
 <li class="articleitem">
-	<div class="title">
-	<a href="{{ .RelPermalink }}" style="font-size:1.3em;">{{ .Title }}</a>
-	</div>
+	<a href="{{ .RelPermalink }}" class="title" style="font-size:1.3em;">{{ .Title }}</a>
 	<div class="info">
 	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02 2006" }}</time> &ndash; {{ .FuzzyWordCount }} Words
 	</div>
 	{{ if .Params.isgraphic }}
    	<img class="image" src="{{ .Params.imagesource }}" width="40%">
-   	{{ else }}
    	{{ end }}
 </li>
 {{- end }}

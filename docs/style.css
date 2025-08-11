@@ -22,12 +22,9 @@ font-style: italic;
 src: url("./fonts/Jost-Italic-VariableFont_wght.ttf") format("truetype")
 }
 
-html {
+body {
 background-color:var(--bg);
 color: black;
-}
-
-body {
 max-width:800px;
 padding:10px;
 margin:auto;
@@ -36,14 +33,12 @@ font-family: "Jost", sans-serif;
 
 header, footer, nav, .linkbox {
 text-align:center;
+font-family: "APL386", Helvetica, sans-serif;
 }
 
 nav {
 font-size:1.5em;
 font-weight:bold;
-}
-nav a {
-font-family: "APL386", Helvetica, sans-serif;
 }
 
 .linkbox a {
@@ -56,7 +51,6 @@ border: 4px solid var(--uchu-blue-9);
 box-shadow:11px 5px black;
 background-image: linear-gradient(to bottom, var(--uchu-red-4), var(--uchu-red-3));
 font-size: 1.3rem;
-font-family: "APL386", monospace;
 }
 .linkbox a:hover {
 color: var(--uchu-yin-1);
@@ -71,19 +65,55 @@ color: var(--uchu-blue-9);
 
 .trinkets {
 	display: grid;
+	grid-gap: 10px;
 	grid-template-columns: auto auto auto;
 }
 
 .trinkets p {
-	margin: 0
+	margin: 0;
+	border: 2px solid black;
+	border-radius: 5px;
 }
 
 .trinkets p a, .trinkets p {
-	border: 1px solid black;
 	display:block;
 	width: 100%;
 	text-align: center;
 }
+
+.articleindex {
+	display: flex;
+	flex-direction: column;
+}
+
+.articleitem {
+	width: 90%;
+	margin: auto;
+	display: grid;
+	grid-template-areas:
+	"title image"
+	"info image";
+	border-top: 2px solid black;
+	grid-template-columns: 1fr min-content
+}
+
+.articleitem .title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  grid-area: title;
+}
+.articleitem .info {
+	text-align: center;
+	grid-area: info;
+}
+.articleitem .image {
+	grid-area: image;
+}
+.articleitem img {
+	min-width: 200px;
+}
+
 
 h2 { font-size:1.5em }
 h1,h2,h3 {
@@ -134,38 +164,6 @@ max-width: 100%;
 footer p {
 clear:both
 }
-
-.articleindex {
-	display: flex;
-	flex-direction: column;
-}
-
-.articleitem {
-	width: 90%;
-	margin: auto;
-	display: grid;
-	grid-template-areas:
-	"title image"
-	"info image";
-	border-top: 2px solid black;
-	grid-template-columns: 1fr min-content
-}
-
-.articleitem .title {
-	text-align: center;
-	grid-area: title;
-}
-.articleitem .info {
-	text-align: center;
-	grid-area: info;
-}
-.articleitem .image {
-	grid-area: image;
-}
-.articleitem img {
-	min-width: 200px;
-}
-
 
 #nextprev {width:100%}
 .next {float:right}
