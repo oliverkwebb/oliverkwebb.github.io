@@ -129,6 +129,7 @@ font-size:1.2rem;
 table {
 border-collapse: collapse;
 width:100%;
+max-width:100%;
 }
 td,th {
 border-bottom:2px solid;
@@ -137,6 +138,7 @@ padding:6px;
 th { background-color: var(--uchu-blue-8); }
 
 pre, code, time {
+overflow-x: scroll;
 font-family: "APL386", monospace;
 }
 pre {
