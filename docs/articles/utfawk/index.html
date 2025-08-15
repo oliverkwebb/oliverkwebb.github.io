@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Writing a UTF-8 Safe AWK | Oliver Webb&#39;s Website</title>
+	<title>Writing a UTF-8 Safe AWK | Oliver Webb</title>
 	<link rel="canonical" href="https://oliverkwebb.github.io/">
 	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
 	<link rel='stylesheet' type='text/css' href='/style.css'>
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav>
-	<a href="/">Oliver Webb's Website</a>
+	<a href="/">Oliver Webb</a>
 </nav>
 <main>
 <header><h1 id="tag_Writing a UTF-8 safe AWK">Writing a UTF-8 safe AWK</h1></header>
@@ -27,8 +27,10 @@ attempting to get into toybox; Awk works with strings, while tr works with
 characters. Awk does not regularly index into the strings it works with, and
 when it does it only happens in a few functions. This means that if we want
 to handle UTF-8, we can divide and conquer.</p>
-<h3 id="what-a-utf-8-safe-awk-needs">What a UTF-8 Safe awk needs</h3>
-<p>The <a href="https://man7.org/linux/man-pages/man1/gawk.1.html">gawk(1) man page</a> says
+<h3 id="what-a-utf-8-safe-awk-needs">
+  <a href="#what-a-utf-8-safe-awk-needs">#</a>
+  What a UTF-8 Safe awk needs
+</h3><p>The <a href="https://man7.org/linux/man-pages/man1/gawk.1.html">gawk(1) man page</a> says
 these 4 functions work on &ldquo;characters, not bytes&rdquo;:</p>
 <ul>
 <li>substr()</li>
@@ -48,8 +50,10 @@ these 4 functions work on &ldquo;characters, not bytes&rdquo;:</p>
 <li>tolower()</li>
 </ul>
 <p>That&rsquo;s &ldquo;divide&rdquo; out of the way, now lets conquer.</p>
-<h3 id="implementing-a-utf-8-awk">Implementing a UTF-8 Awk</h3>
-<p>A reminder that we are trying to add in UTF-8 support to a existing awk, not
+<h3 id="implementing-a-utf-8-awk">
+  <a href="#implementing-a-utf-8-awk">#</a>
+  Implementing a UTF-8 Awk
+</h3><p>A reminder that we are trying to add in UTF-8 support to a existing awk, not
 make a new one with UTF-8 support.</p>
 <p>In a awk that is UTF-8 safe, all strings are indexed by a number of UTF-8
 characters. While in C, all strings are indexed based off of bytes. This
@@ -86,8 +90,16 @@ is figuring out <em>what</em> needs unicode handling.</p>
 	<a href="/articles/gnulist/" class="next">Why I don&#39;t like GNU →</a>
 	</div>
 	<br/>
+<p id="taglist">
+	Tags:
+	
+    <a href="/tags/programming">Programming</a>
+  
+    <a href="/tags/theory">Theory</a>
+  
+	</p>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
-  <p>The content of this site by &#xa9; 2025 Oliver Webb is licensed under
+  <p>The text of <a href="https://oliverkwebb.github.io/">this site</a> by &#xa9; 2025 Oliver Webb is licensed under
   <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
 </footer>
 

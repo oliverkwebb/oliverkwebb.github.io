@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Practical Astronomy With Your Command Line | Oliver Webb&#39;s Website</title>
+	<title>Practical Astronomy With Your Command Line | Oliver Webb</title>
 	<link rel="canonical" href="https://oliverkwebb.github.io/">
 	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
 	<link rel='stylesheet' type='text/css' href='/style.css'>
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav>
-	<a href="/">Oliver Webb's Website</a>
+	<a href="/">Oliver Webb</a>
 </nav>
 <main>
 <header><h1 id="tag_Practical Astronomy with Your Command Line">Practical Astronomy with Your Command Line</h1></header>
@@ -39,8 +39,10 @@ To properly script/embed these tools in the spirit of classic UNIX, there needs 
 in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
 most of them aren&rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.</p>
 <p><img src="/graph/astro-tools-venn.png" alt="A Venn Diagram of Astronomy Tools"></p>
-<h1 id="how-easy-is-it-to-make-something-like-that">How easy is it to make something like that?</h1>
-<p>Lets lessen the scope for a moment, to&hellip; lets say moon phases. Which I couldn&rsquo;t find a straightforward way to
+<h1 id="how-easy-is-it-to-make-something-like-that">
+  <a href="#how-easy-is-it-to-make-something-like-that">#</a>
+  How easy is it to make something like that?
+</h1><p>Lets lessen the scope for a moment, to&hellip; lets say moon phases. Which I couldn&rsquo;t find a straightforward way to
 get info about without revving up an awk interpreter to strip out text from other things,
 using inaccurate approximations, or curling information from the internet.</p>
 <p>A year ago, I was looking at <a href="https://github.com/chubin/pyphoon">pyphoon</a>,
@@ -69,8 +71,10 @@ and how did they come up with the algorithm?</p>
 Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
 This book is actually simpler to transcribe code from than similar books for BASIC/FORTRAN/Forth/C/PASCAL,
 since their algorithms are usually restricted to arithmetic, exponentiation, and trig functions.</p>
-<h1 id="how-accurate-can-we-be">How accurate can we be?</h1>
-<p>TL;DR: Accurate Enough.</p>
+<h1 id="how-accurate-can-we-be">
+  <a href="#how-accurate-can-we-be">#</a>
+  How accurate can we be?
+</h1><p>TL;DR: Accurate Enough.</p>
 <p><strong>Hyper-Accurate</strong> Astronomy is&hellip; <a href="https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html">hard</a>.
 Often times it is <a href="https://en.wikipedia.org/wiki/Extinction_(astronomy)">impossible</a> without <a href="https://en.wikipedia.org/wiki/Polar_motion">information</a>
 that can&rsquo;t be <a href="https://www.news18.com/news/buzz/want-to-see-two-sunsets-in-the-same-evening-burj-khalifa-is-the-place-to-be-4132970.html">queried</a>
@@ -162,8 +166,10 @@ parsimonious info generator. Some only matter for historical dates or dates far 
 there is a noticeable difference caused by parallax, refraction, and pertubation.</p>
 <p>Correcting for precession, pertubation, refraction, and parallax gives results that are &ldquo;good enough&rdquo; for telescope pointing,
 observation scheduling, and most real-world uses.</p>
-<h1 id="alogrithms-and-plumbing">Alogrithms and Plumbing</h1>
-<p><em>Practical Astronomy with Your Calculator</em> is a very useful source of information, but there are other
+<h1 id="alogrithms-and-plumbing">
+  <a href="#alogrithms-and-plumbing">#</a>
+  Alogrithms and Plumbing
+</h1><p><em>Practical Astronomy with Your Calculator</em> is a very useful source of information, but there are other
 collections of algorithms that are just as useful:</p>
 <ul>
 <li><em>Astronomical Formulae for Calculators</em> by Jean Meeus covers most of the same topics, with slightly more accurate algorithms and slightly less
@@ -185,8 +191,10 @@ Using this model, we can make a simple interface to these algorithms for a comma
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-08T13:45:27  9.76 AU                      </span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-13T13:45:27  9.68 AU   </span>
 </span></span></code></pre></div><p>Additionally, output can be added for JSON and CSV, to make parsing data with tools much easier.</p>
-<h1 id="the-result">The result?</h1>
-<p>Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
+<h1 id="the-result">
+  <a href="#the-result">#</a>
+  The result?
+</h1><p>Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
 Doing this entirely inside the command line with conventional tools is normally a painful process, but using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&hellip;).</p>
@@ -219,8 +227,16 @@ And the algorithms are universal enough to be rewritten to anything with trig fu
 	<a href="/articles/astronomy-coordinate-distance/" class="next">Astronomy and Earth: Coordinate Distances →</a>
 	</div>
 	<br/>
+<p id="taglist">
+	Tags:
+	
+    <a href="/tags/astronomy">Astronomy</a>
+  
+    <a href="/tags/programming">Programming</a>
+  
+	</p>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
-  <p>The content of this site by &#xa9; 2025 Oliver Webb is licensed under
+  <p>The text of <a href="https://oliverkwebb.github.io/">this site</a> by &#xa9; 2025 Oliver Webb is licensed under
   <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
 </footer>
 

@@ -60,6 +60,9 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 [![Bunbun's Userbox](https://bunbun.dev/assets/88x31s/bunbun.dev.gif)](https://bunbun.dev/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
 [![Natalieee's Userbox](https://natalieee.net/assets/88x31/natalieee.net.png)](https://natalieee.net/)
+<a href="https://creativecommons.org/licenses/by/4.0/">
+<img width="88" height="31" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png" alt="Creative Commons BY">
+</a>
 
 </div>
 

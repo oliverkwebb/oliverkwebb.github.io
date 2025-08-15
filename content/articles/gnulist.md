@@ -13,7 +13,7 @@ because:
 ## 1. The "Linux was developed for the GNU tools" narritive propogated by the FSF is false
 
 From https://www.gnu.org/gnu/linux-and-gnu.html:
->>>its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
+>its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
 What they found was no accident—it was the not-quite-complete GNU system.
 
 In Linus's book *[Just For Fun]*, the GNU project plays little to no role in the creation of Linux.
@@ -21,12 +21,12 @@ Linux grew out of comp.os.minix, not anything related to the FSF or GNU project.
 still advocating for Hurd until well after Linux was popular.
 
 From *[The Hurd and Linux (1997)]*:
->>>But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.
+>But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.
 
 The FSF's push for hurd died out sometime in the early 2000's, when Linux was commonplace and Hurd was completely abandoned.
 
 From [A interview with RMS in 99'][RMS tech interview]:
->>> Yes. Unfortunately, progress right now is very slow. We don't have anybody working on it full time, and I wish we did.
+> Yes. Unfortunately, progress right now is very slow. We don't have anybody working on it full time, and I wish we did.
 
 ## 2. For years, the GNU project was not directly maintaining most of their popular projects
 
@@ -44,7 +44,7 @@ The reason why GCC didn't become a platform for compiler development like LLVM o
 intentionally kept it back from being so.**
 
 From https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html:
->>> Anything that makes it easier to use GCC back ends without GCC front
+> Anything that makes it easier to use GCC back ends without GCC front
 ends--or simply brings GCC a big step closer to a form that would make
 such usage easy--would endanger our leverage for causing new front
 ends to be free.

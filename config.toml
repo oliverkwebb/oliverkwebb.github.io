@@ -1,6 +1,6 @@
 baseURL = 'https://oliverkwebb.github.io'
 languageCode = 'en-us'
-title = "Oliver Webb's Website"
+title = "Oliver Webb"
 theme = 'okw'
 publishDir = 'docs/'
 disableHugoGeneratorInject = true

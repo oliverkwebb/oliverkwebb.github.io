@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Mathematical Data Representation (ADT) Explained | Oliver Webb&#39;s Website</title>
+	<title>Mathematical Data Representation (ADT) Explained | Oliver Webb</title>
 	<link rel="canonical" href="https://oliverkwebb.github.io/">
 	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
 	<link rel='stylesheet' type='text/css' href='/style.css'>
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav>
-	<a href="/">Oliver Webb's Website</a>
+	<a href="/">Oliver Webb</a>
 </nav>
 <main>
 <header><h1 id="tag_Mathematical data representation (ADT) explained">Mathematical data representation (ADT) explained</h1></header>
@@ -45,8 +45,10 @@ this behavior is needed in most contexts.</p>
 </span></span></span></code></pre></div><p>All of this allows for transparent memory management. The price paid is that it&rsquo;s a lot harder to cleanly
 represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.</p>
 <p>Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.</p>
-<h2 id="algebraic-description-of-types-adt">Algebraic Description of Types (ADT)</h2>
-<p>Using ADT, a type is just a set of terms. Values outside of these terms are <strong>unconstructable</strong>.</p>
+<h2 id="algebraic-description-of-types-adt">
+  <a href="#algebraic-description-of-types-adt">#</a>
+  Algebraic Description of Types (ADT)
+</h2><p>Using ADT, a type is just a set of terms. Values outside of these terms are <strong>unconstructable</strong>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff7b72">enum</span> <span style="color:#f0883e;font-weight:bold">Boolean</span><span style="color:#6e7681"> </span>{<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>True,<span style="color:#6e7681">
 </span></span></span><span style="display:flex;"><span><span style="color:#6e7681">    </span>False,<span style="color:#6e7681">
@@ -73,8 +75,10 @@ called <code>2</code> in mathematical contexts.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;</span> x <span style="color:#ff7b72;font-weight:bold">=</span> (<span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">2</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72;font-weight:bold">&gt;</span> x <span style="color:#a5d6ff">3</span>
 </span></span><span style="display:flex;"><span><span style="color:#a5d6ff">5</span>
-</span></span></code></pre></div><h2 id="now-prove-that-numbers-exist">Now, Prove that numbers exist.</h2>
-<p>No, seriously. Do it. Or less ambiguously, name a valid number.</p>
+</span></span></code></pre></div><h2 id="now-prove-that-numbers-exist">
+  <a href="#now-prove-that-numbers-exist">#</a>
+  Now, Prove that numbers exist.
+</h2><p>No, seriously. Do it. Or less ambiguously, name a valid number.</p>
 <p>5, TREE(3), perhaps 3,735,928,559? Congratulations, you have proved that numbers exist!</p>
 <p>Now, prove that the type returned by rusts <a href="https://doc.rust-lang.org/std/process/fn.exit.html">exit function</a> exists. Or less ambiguously, name a valid term the exit function returns.</p>
 <p>&hellip;</p>
@@ -83,8 +87,10 @@ returning a valid value.</p>
 <p>The obvious consequence of this is that the <code>noreturn</code> &ldquo;type&rdquo; in C can be replaced by a null type. But this has a deeper implication of being able
 to express statements in a type and prove they are true if the type is inhabited.</p>
 <p>Similarly, proving that <code>Result&lt;A,B&gt;</code> exists proves that A <em>or</em> B exists (aka. A + B != 0). And <code>(A, B)</code> proves that A and B exists (aka. A * B != 0)</p>
-<h2 id="see-also">See Also:</h2>
-<ul>
+<h2 id="see-also">
+  <a href="#see-also">#</a>
+  See Also:
+</h2><ul>
 <li><em><a href="https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types">The algebra (and calculus!) of algebraic data types</a></em></li>
 <li><em><a href="https://math.berkeley.edu/~forte/notes/type_theory.pdf">Introduction to type theory</a></em></li>
 </ul>
@@ -99,8 +105,18 @@ to express statements in a type and prove they are true if the type is inhabited
 	<a href="/articles/astronomy-angles/" class="next">Astronomy: Time is an Angle →</a>
 	</div>
 	<br/>
+<p id="taglist">
+	Tags:
+	
+    <a href="/tags/math">Math</a>
+  
+    <a href="/tags/programming">Programming</a>
+  
+    <a href="/tags/rust">Rust</a>
+  
+	</p>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
-  <p>The content of this site by &#xa9; 2025 Oliver Webb is licensed under
+  <p>The text of <a href="https://oliverkwebb.github.io/">this site</a> by &#xa9; 2025 Oliver Webb is licensed under
   <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
 </footer>
 

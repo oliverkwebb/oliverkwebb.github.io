@@ -1,5 +1,5 @@
 <rss version="2.0"><channel>
-<title>Oliver Webb&#39;s Website</title>
+<title>Oliver Webb</title>
 <link>https://oliverkwebb.github.io/tags/history/</link>
 <language>en-us</language>
 
@@ -23,8 +23,10 @@ to record and transmit its data back in a digital format.&lt;/p&gt;
     &lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;h1 id=&#34;bmp-1965&#34;&gt;.bmp-1965&lt;/h1&gt;
-&lt;p&gt;Image data from this was transmitted back as a series of bits, with a 6 bit number per pixel.
+&lt;h1 id=&#34;bmp-1965&#34;&gt;
+  &lt;a href=&#34;#bmp-1965&#34;&gt;#&lt;/a&gt;
+  .bmp-1965
+&lt;/h1&gt;&lt;p&gt;Image data from this was transmitted back as a series of bits, with a 6 bit number per pixel.
 Weirdly enough, the highest number (63, 0b111111) represented black whilst 0 represented white,
 the opposite of how its represented today.&lt;/p&gt;
 &lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/m4-mars-first.jpg&#34;
@@ -34,8 +36,10 @@ the opposite of how its represented today.&lt;/p&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;These pixels would be transmitted continuously to send a 200x200 image.&lt;/p&gt;
-&lt;h1 id=&#34;digitializing-this-format&#34;&gt;Digitializing this format&lt;/h1&gt;
-&lt;p&gt;From here, these pixels would be recorded as dots on a tape, this tape would
+&lt;h1 id=&#34;digitializing-this-format&#34;&gt;
+  &lt;a href=&#34;#digitializing-this-format&#34;&gt;#&lt;/a&gt;
+  Digitializing this format
+&lt;/h1&gt;&lt;p&gt;From here, these pixels would be recorded as dots on a tape, this tape would
 be scanned to imprint the image onto film, and finer restoration work would
 be done to perfect the picture. This is an example of an early dot-matrix
 image printer.&lt;/p&gt;
@@ -52,8 +56,10 @@ antenna of a 1960&amp;rsquo;s space probe.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/original-mar4.png&#34; alt=&#34;original&#34;&gt;
 &lt;img src=&#34;https://oliverkwebb.github.io/mar4/1pass.png&#34; alt=&#34;converted&#34;&gt;
 &lt;img src=&#34;https://oliverkwebb.github.io/mar4/2pass.png&#34; alt=&#34;2 passes&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;see-also&#34;&gt;See Also&lt;/h1&gt;
-&lt;ul&gt;
+&lt;h1 id=&#34;see-also&#34;&gt;
+  &lt;a href=&#34;#see-also&#34;&gt;#&lt;/a&gt;
+  See Also
+&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://openlibrary.org/books/OL5614703M/Appointment_on_the_Moon&#34;&gt;&lt;em&gt;Appointment on the Moon&lt;/em&gt;&lt;/a&gt; by Richard S. Lewis - Information in the chapter &amp;ldquo;No Hiding Place&amp;rdquo; was the inspiration for this article.&lt;/li&gt;
 &lt;li&gt;My converter for this format: &lt;a href=&#34;https://github.com/oliverkwebb/mar4-ff&#34;&gt;mar4-ff&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -84,8 +90,10 @@ through the earth between any two coordinates.&lt;/p&gt;
 &lt;/div&gt;
 &lt;script src=&#34;https://oliverkwebb.github.io/trinkets/sphere-sec.js&#34;&gt;&lt;/script&gt;
 
-&lt;h1 id=&#34;how-does-this-relate-to-astronomy&#34;&gt;How does this relate to astronomy?&lt;/h1&gt;
-&lt;p&gt;When calculating the phase (illuminated fraction and bright limb position) of planets, you
+&lt;h1 id=&#34;how-does-this-relate-to-astronomy&#34;&gt;
+  &lt;a href=&#34;#how-does-this-relate-to-astronomy&#34;&gt;#&lt;/a&gt;
+  How does this relate to astronomy?
+&lt;/h1&gt;&lt;p&gt;When calculating the phase (illuminated fraction and bright limb position) of planets, you
 work with a &amp;ldquo;phase angle&amp;rdquo; that is the angle between the Earth, that planet, and the sun.
 With (&lt;code&gt;(1-cos(x))/2&lt;/code&gt;), you can turn this number into an illuminated fraction.&lt;/p&gt;
 &lt;p&gt;How do you calculate this angle? Imagine a triangle between the sun, earth, and planet,
@@ -123,8 +131,10 @@ To properly script/embed these tools in the spirit of classic UNIX, there needs 
 in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
 most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;How easy is it to make something like that?&lt;/h1&gt;
-&lt;p&gt;Lets lessen the scope for a moment, to&amp;hellip; lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to
+&lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;
+  &lt;a href=&#34;#how-easy-is-it-to-make-something-like-that&#34;&gt;#&lt;/a&gt;
+  How easy is it to make something like that?
+&lt;/h1&gt;&lt;p&gt;Lets lessen the scope for a moment, to&amp;hellip; lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to
 get info about without revving up an awk interpreter to strip out text from other things,
 using inaccurate approximations, or curling information from the internet.&lt;/p&gt;
 &lt;p&gt;A year ago, I was looking at &lt;a href=&#34;https://github.com/chubin/pyphoon&#34;&gt;pyphoon&lt;/a&gt;,
@@ -153,8 +163,10 @@ and how did they come up with the algorithm?&lt;/p&gt;
 Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
 This book is actually simpler to transcribe code from than similar books for BASIC/FORTRAN/Forth/C/PASCAL,
 since their algorithms are usually restricted to arithmetic, exponentiation, and trig functions.&lt;/p&gt;
-&lt;h1 id=&#34;how-accurate-can-we-be&#34;&gt;How accurate can we be?&lt;/h1&gt;
-&lt;p&gt;TL;DR: Accurate Enough.&lt;/p&gt;
+&lt;h1 id=&#34;how-accurate-can-we-be&#34;&gt;
+  &lt;a href=&#34;#how-accurate-can-we-be&#34;&gt;#&lt;/a&gt;
+  How accurate can we be?
+&lt;/h1&gt;&lt;p&gt;TL;DR: Accurate Enough.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Hyper-Accurate&lt;/strong&gt; Astronomy is&amp;hellip; &lt;a href=&#34;https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html&#34;&gt;hard&lt;/a&gt;.
 Often times it is &lt;a href=&#34;https://en.wikipedia.org/wiki/Extinction_(astronomy)&#34;&gt;impossible&lt;/a&gt; without &lt;a href=&#34;https://en.wikipedia.org/wiki/Polar_motion&#34;&gt;information&lt;/a&gt;
 that can&amp;rsquo;t be &lt;a href=&#34;https://www.news18.com/news/buzz/want-to-see-two-sunsets-in-the-same-evening-burj-khalifa-is-the-place-to-be-4132970.html&#34;&gt;queried&lt;/a&gt;
@@ -246,8 +258,10 @@ parsimonious info generator. Some only matter for historical dates or dates far 
 there is a noticeable difference caused by parallax, refraction, and pertubation.&lt;/p&gt;
 &lt;p&gt;Correcting for precession, pertubation, refraction, and parallax gives results that are &amp;ldquo;good enough&amp;rdquo; for telescope pointing,
 observation scheduling, and most real-world uses.&lt;/p&gt;
-&lt;h1 id=&#34;alogrithms-and-plumbing&#34;&gt;Alogrithms and Plumbing&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;Practical Astronomy with Your Calculator&lt;/em&gt; is a very useful source of information, but there are other
+&lt;h1 id=&#34;alogrithms-and-plumbing&#34;&gt;
+  &lt;a href=&#34;#alogrithms-and-plumbing&#34;&gt;#&lt;/a&gt;
+  Alogrithms and Plumbing
+&lt;/h1&gt;&lt;p&gt;&lt;em&gt;Practical Astronomy with Your Calculator&lt;/em&gt; is a very useful source of information, but there are other
 collections of algorithms that are just as useful:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;Astronomical Formulae for Calculators&lt;/em&gt; by Jean Meeus covers most of the same topics, with slightly more accurate algorithms and slightly less
@@ -269,8 +283,10 @@ Using this model, we can make a simple interface to these algorithms for a comma
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-08T13:45:27  9.76 AU                      &lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-13T13:45:27  9.68 AU   &lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Additionally, output can be added for JSON and CSV, to make parsing data with tools much easier.&lt;/p&gt;
-&lt;h1 id=&#34;the-result&#34;&gt;The result?&lt;/h1&gt;
-&lt;p&gt;Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
+&lt;h1 id=&#34;the-result&#34;&gt;
+  &lt;a href=&#34;#the-result&#34;&gt;#&lt;/a&gt;
+  The result?
+&lt;/h1&gt;&lt;p&gt;Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
 Doing this entirely inside the command line with conventional tools is normally a painful process, but using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&amp;hellip;).&lt;/p&gt;
@@ -310,8 +326,10 @@ you can convert this time to your &lt;a href=&#34;https://en.wikipedia.org/wiki/
 the hour angle (also written as a time), which its location on the celestial equator relative to you, or rather,
 how much the celestial sphere has rotated in comparison to the prime meridian.&lt;/p&gt;
 &lt;p&gt;Since in astronomy, angles are sometimes represented as time, why not represent time as an angle?&lt;/p&gt;
-&lt;h1 id=&#34;the-360-hour-clock-the-2π-hour-clock-and-the-1-hour-clock&#34;&gt;The 360 hour clock, the 2π hour clock, and the 1 hour clock&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h1&gt;
-&lt;div style=&#34;width: 100%&#34; id=&#34;current-time-angle&#34;&gt;
+&lt;h1 id=&#34;the-360-hour-clock-the-2π-hour-clock-and-the-1-hour-clock&#34;&gt;
+  &lt;a href=&#34;#the-360-hour-clock-the-2%cf%80-hour-clock-and-the-1-hour-clock&#34;&gt;#&lt;/a&gt;
+  The 360 hour clock, the 2π hour clock, and the 1 hour clock&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
+&lt;/h1&gt;&lt;div style=&#34;width: 100%&#34; id=&#34;current-time-angle&#34;&gt;
 &lt;/div&gt;
 &lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time-angle.js&#34;&gt;&lt;/script&gt;
 
@@ -325,8 +343,10 @@ I&amp;rsquo;ll be able to see X for at least Y amount of time&amp;rdquo;).&lt;/p
 &lt;p&gt;Using degrees in place of hours on a clock, or using &amp;ldquo;turns&amp;rdquo; (the fraction of the day) gives
 results that are interesting, but don&amp;rsquo;t deserve much cometary.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/places100deg.png&#34; alt=&#34;Places on Earth where it can be 100 degrees in the morning&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;the-tangent-of-time&#34;&gt;The Tangent of Time&lt;/h1&gt;
-&lt;p&gt;Why radians? To take trig functions, of course!&lt;/p&gt;
+&lt;h1 id=&#34;the-tangent-of-time&#34;&gt;
+  &lt;a href=&#34;#the-tangent-of-time&#34;&gt;#&lt;/a&gt;
+  The Tangent of Time
+&lt;/h1&gt;&lt;p&gt;Why radians? To take trig functions, of course!&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;tangent-of-time&#34;&gt;
 &lt;/div&gt;
 &lt;script src=&#34;https://oliverkwebb.github.io/trinkets/tangent-of-time.js&#34;&gt;&lt;/script&gt;
@@ -375,8 +395,10 @@ this behavior is needed in most contexts.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All of this allows for transparent memory management. The price paid is that it&amp;rsquo;s a lot harder to cleanly
 represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.&lt;/p&gt;
 &lt;p&gt;Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.&lt;/p&gt;
-&lt;h2 id=&#34;algebraic-description-of-types-adt&#34;&gt;Algebraic Description of Types (ADT)&lt;/h2&gt;
-&lt;p&gt;Using ADT, a type is just a set of terms. Values outside of these terms are &lt;strong&gt;unconstructable&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;algebraic-description-of-types-adt&#34;&gt;
+  &lt;a href=&#34;#algebraic-description-of-types-adt&#34;&gt;#&lt;/a&gt;
+  Algebraic Description of Types (ADT)
+&lt;/h2&gt;&lt;p&gt;Using ADT, a type is just a set of terms. Values outside of these terms are &lt;strong&gt;unconstructable&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Boolean&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;True,&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;False,&lt;span style=&#34;color:#6e7681&#34;&gt;
@@ -403,8 +425,10 @@ called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;2&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;5&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;now-prove-that-numbers-exist&#34;&gt;Now, Prove that numbers exist.&lt;/h2&gt;
-&lt;p&gt;No, seriously. Do it. Or less ambiguously, name a valid number.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;now-prove-that-numbers-exist&#34;&gt;
+  &lt;a href=&#34;#now-prove-that-numbers-exist&#34;&gt;#&lt;/a&gt;
+  Now, Prove that numbers exist.
+&lt;/h2&gt;&lt;p&gt;No, seriously. Do it. Or less ambiguously, name a valid number.&lt;/p&gt;
 &lt;p&gt;5, TREE(3), perhaps 3,735,928,559? Congratulations, you have proved that numbers exist!&lt;/p&gt;
 &lt;p&gt;Now, prove that the type returned by rusts &lt;a href=&#34;https://doc.rust-lang.org/std/process/fn.exit.html&#34;&gt;exit function&lt;/a&gt; exists. Or less ambiguously, name a valid term the exit function returns.&lt;/p&gt;
 &lt;p&gt;&amp;hellip;&lt;/p&gt;
@@ -413,8 +437,10 @@ returning a valid value.&lt;/p&gt;
 &lt;p&gt;The obvious consequence of this is that the &lt;code&gt;noreturn&lt;/code&gt; &amp;ldquo;type&amp;rdquo; in C can be replaced by a null type. But this has a deeper implication of being able
 to express statements in a type and prove they are true if the type is inhabited.&lt;/p&gt;
 &lt;p&gt;Similarly, proving that &lt;code&gt;Result&amp;lt;A,B&amp;gt;&lt;/code&gt; exists proves that A &lt;em&gt;or&lt;/em&gt; B exists (aka. A + B != 0). And &lt;code&gt;(A, B)&lt;/code&gt; proves that A and B exists (aka. A * B != 0)&lt;/p&gt;
-&lt;h2 id=&#34;see-also&#34;&gt;See Also:&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;see-also&#34;&gt;
+  &lt;a href=&#34;#see-also&#34;&gt;#&lt;/a&gt;
+  See Also:
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;&lt;a href=&#34;https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types&#34;&gt;The algebra (and calculus!) of algebraic data types&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;&lt;a href=&#34;https://math.berkeley.edu/~forte/notes/type_theory.pdf&#34;&gt;Introduction to type theory&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -456,8 +482,10 @@ decades.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;not&lt;/span&gt; os.execute(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;sleep 1&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#ff7b72&#34;&gt;then&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#ff7b72&#34;&gt;end&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;end&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The library I describe in this article was not made because I expect it to have widespread use. But as a proof of concept of what could&amp;rsquo;ve been, and to illustrate some of the subtler design flaws of the time library.&lt;/p&gt;
-&lt;h2 id=&#34;scope&#34;&gt;Scope&lt;/h2&gt;
-&lt;p&gt;I will be using the functions described in Eric S. Raymond&amp;rsquo;s &lt;em&gt;&lt;a href=&#34;https://www.catb.org/~esr/time-programming/index.asc&#34;&gt;Time, Clock, and Calendar Programming In C&lt;/a&gt;&lt;/em&gt;
+&lt;h2 id=&#34;scope&#34;&gt;
+  &lt;a href=&#34;#scope&#34;&gt;#&lt;/a&gt;
+  Scope
+&lt;/h2&gt;&lt;p&gt;I will be using the functions described in Eric S. Raymond&amp;rsquo;s &lt;em&gt;&lt;a href=&#34;https://www.catb.org/~esr/time-programming/index.asc&#34;&gt;Time, Clock, and Calendar Programming In C&lt;/a&gt;&lt;/em&gt;
 as a boundary for the C time API. These forty-something functions can be classified as:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Alarm/Timer (&lt;code&gt;alarm()&lt;/code&gt;, &lt;code&gt;ualarm()&lt;/code&gt;, the &lt;code&gt;timer_&lt;/code&gt; group)&lt;/li&gt;
@@ -493,8 +521,10 @@ And NTP correction are out of scope. This leaves:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;time_t&lt;/code&gt; and &lt;code&gt;struct timespec&lt;/code&gt; are used almost exclusively in kernel-level functions. Whilst &lt;code&gt;struct tm&lt;/code&gt; is used
 almost exclusively with conversion of time to and from strings.&lt;/p&gt;
-&lt;h2 id=&#34;nanoseconds-floating-point-percision-and-the-y2262-problem&#34;&gt;Nanoseconds, Floating Point Percision, and the Y2262 problem&lt;/h2&gt;
-&lt;p&gt;It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
+&lt;h2 id=&#34;nanoseconds-floating-point-percision-and-the-y2262-problem&#34;&gt;
+  &lt;a href=&#34;#nanoseconds-floating-point-percision-and-the-y2262-problem&#34;&gt;#&lt;/a&gt;
+  Nanoseconds, Floating Point Percision, and the Y2262 problem
+&lt;/h2&gt;&lt;p&gt;It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
 It&amp;rsquo;d give &lt;code&gt;strftime&lt;/code&gt; and &lt;code&gt;strptime&lt;/code&gt; the ability to print milli/micro/nanoseconds. And it&amp;rsquo;d remove the need for
 the &lt;code&gt;timespec&lt;/code&gt; struct used in a lot of system-level time functions.&lt;/p&gt;
 &lt;p&gt;A floating point number is able to store values up to 2&lt;sup&gt;mantissa_length&lt;/sup&gt; with integral precision. Actually, calculating floating
@@ -564,8 +594,10 @@ that 10&lt;sup&gt;-9&lt;/sup&gt; is actually around 2&lt;sup&gt;-29.8&lt;/sup&gt
 Integers support &lt;em&gt;One percision&lt;/em&gt;, and there&amp;rsquo;s a trade off between resolution and the bounds of your epoch,
 Floating point values support &lt;em&gt;all percisions&lt;/em&gt;, there is no such trade off.&lt;/p&gt;
 &lt;p&gt;For this reason, &lt;code&gt;date_t&lt;/code&gt; is a long double floating point value of seconds since the epoch.&lt;/p&gt;
-&lt;h2 id=&#34;broken-down-time&#34;&gt;&amp;ldquo;Broken Down Time&amp;rdquo;&lt;/h2&gt;
-&lt;p&gt;Now that we have a base time type, there needs to be some way to convert between
+&lt;h2 id=&#34;broken-down-time&#34;&gt;
+  &lt;a href=&#34;#broken-down-time&#34;&gt;#&lt;/a&gt;
+  &amp;ldquo;Broken Down Time&amp;rdquo;
+&lt;/h2&gt;&lt;p&gt;Now that we have a base time type, there needs to be some way to convert between
 human friendly to machine friendly values. I.e. getting the year, month and day.
 In the spirit of &amp;ldquo;100 functions for 10 datastructures vs. 10 functions for 1 datastructure&amp;rdquo;,
 Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time values, it will use &lt;code&gt;date_t&lt;/code&gt;.&lt;/p&gt;
@@ -604,8 +636,10 @@ Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time val
 &lt;dt&gt;&lt;strong&gt;&amp;ldquo;Why no timezones in the struct?&amp;rdquo;&lt;/strong&gt;&lt;/dt&gt;
 &lt;dd&gt;The date passed into &lt;code&gt;tocal()&lt;/code&gt; is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with &lt;code&gt;date_t&lt;/code&gt;, not calendars on matter of principle and practicality.&lt;/dd&gt;
 &lt;/dl&gt;
-&lt;h2 id=&#34;the-tragedy-of-tzset&#34;&gt;The tragedy of tzset()&lt;/h2&gt;
-&lt;p&gt;The timezone handling code in libc isn&amp;rsquo;t outdated, that would imply it was once sufficient for timezone handling.
+&lt;h2 id=&#34;the-tragedy-of-tzset&#34;&gt;
+  &lt;a href=&#34;#the-tragedy-of-tzset&#34;&gt;#&lt;/a&gt;
+  The tragedy of tzset()
+&lt;/h2&gt;&lt;p&gt;The timezone handling code in libc isn&amp;rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 &lt;code&gt;tzset()&lt;/code&gt; and &lt;code&gt;localtime()&lt;/code&gt; are the &lt;em&gt;only&lt;/em&gt; ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/svg/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
@@ -632,8 +666,10 @@ therefore it must be the users job to free it)&lt;/li&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;intz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// d+tzoffat(d, tz)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;inmytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);           &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// intz(d, mytz())
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;why-weekdays-in-the-time-structure-are-bad&#34;&gt;Why weekdays in the time structure are bad&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;strptime()&lt;/code&gt; is special because it uses uncertainty as a tool. It wont touch anything in the calendar
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;why-weekdays-in-the-time-structure-are-bad&#34;&gt;
+  &lt;a href=&#34;#why-weekdays-in-the-time-structure-are-bad&#34;&gt;#&lt;/a&gt;
+  Why weekdays in the time structure are bad
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;strptime()&lt;/code&gt; is special because it uses uncertainty as a tool. It wont touch anything in the calendar
 structure that isn&amp;rsquo;t directly correlated with a formatting specification. This is as much of a
 asset as it is a liability, it&amp;rsquo;s useful because you can read time with a set of presumptions
 (i.e. read mm/dd as the current year and not 1970). But it&amp;rsquo;s a liability because you can
@@ -673,8 +709,10 @@ print a wrong weekday because &lt;code&gt;strptime()&lt;/code&gt; did not correc
 
 
 &lt;p&gt;This is not a problem if the weekday is inferred from other information&lt;/p&gt;
-&lt;h2 id=&#34;formatted-time&#34;&gt;Formatted Time&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;strftime()&lt;/code&gt; formatting has worked its way into many programming languages and applications,
+&lt;h2 id=&#34;formatted-time&#34;&gt;
+  &lt;a href=&#34;#formatted-time&#34;&gt;#&lt;/a&gt;
+  Formatted Time
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;strftime()&lt;/code&gt; formatting has worked its way into many programming languages and applications,
 this is because it is the easiest, sometimes the only way, of getting time to string conversion
 to work in many environments. It has also been standardized since C89.
 Making the formatting of an analog of it a superset of the functionality would provide the benefit of
@@ -725,8 +763,10 @@ However, the mnemonics for strftime are poor and do not allow for easy extension
 &lt;li&gt;oz - zone offset&lt;/li&gt;
 &lt;li&gt;nz - index name of zone (i.e. &lt;code&gt;America/New_York&lt;/code&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;in-defense-of-libc&#34;&gt;In defense of libc&amp;hellip;&lt;/h2&gt;
-&lt;p&gt;The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
+&lt;h2 id=&#34;in-defense-of-libc&#34;&gt;
+  &lt;a href=&#34;#in-defense-of-libc&#34;&gt;#&lt;/a&gt;
+  In defense of libc&amp;hellip;
+&lt;/h2&gt;&lt;p&gt;The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
 and has constantly resisted improvement by standardization. Many components in the library were developed decades
 apart. Many more were designed without the idea of internationalization in mind. The result of this is something
 that is &amp;ldquo;complete&amp;rdquo;, but not pleasant or elegant to use, and which leaves many pitfalls for bugs.&lt;/p&gt;
@@ -831,8 +871,10 @@ Running a quick shell pipeline &lt;code&gt;stat -c &amp;quot;%Z %z %n&amp;quot; 
 &lt;li&gt;Thunar-daemon - Which is on systems even where thunar is not installed.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;While that does answer the question, it also brings up a much greater question; Why are these scripts and wrappers installed on my system when they probably aren&amp;rsquo;t used anywhere anymore?&lt;/p&gt;
-&lt;h2 id=&#34;lets-compare&#34;&gt;Lets compare&lt;/h2&gt;
-&lt;p&gt;Comparing this with the GUI version of the Gentoo livecd (Which contains a full KDE-plasma environment), the 5 oldest binaries are all from after 2020, and the 5th oldest one is from 2024, these are:&lt;/p&gt;
+&lt;h2 id=&#34;lets-compare&#34;&gt;
+  &lt;a href=&#34;#lets-compare&#34;&gt;#&lt;/a&gt;
+  Lets compare
+&lt;/h2&gt;&lt;p&gt;Comparing this with the GUI version of the Gentoo livecd (Which contains a full KDE-plasma environment), the 5 oldest binaries are all from after 2020, and the 5th oldest one is from 2024, these are:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;pram - A tool for managing GitHub PR&amp;rsquo;s.&lt;/li&gt;
 &lt;li&gt;symtree - A simple tool for tracking symbol information.&lt;/li&gt;
@@ -841,14 +883,15 @@ Running a quick shell pipeline &lt;code&gt;stat -c &amp;quot;%Z %z %n&amp;quot; 
 &lt;li&gt;pa-info - A bash script for pulseaudio.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;It also should be noted that the Gentoo GUI livecd provides a much more extensive environment than the mint livecd ISO.&lt;/p&gt;
-&lt;h2 id=&#34;replication&#34;&gt;Replication&lt;/h2&gt;
-&lt;p&gt;The real answer to the question of why &amp;ldquo;search4files&amp;rdquo; is on the mint livecd is that some Debian or Ubuntu or Mint developer in the mid 2000s put it
+&lt;h2 id=&#34;replication&#34;&gt;
+  &lt;a href=&#34;#replication&#34;&gt;#&lt;/a&gt;
+  Replication
+&lt;/h2&gt;&lt;p&gt;The real answer to the question of why &amp;ldquo;search4files&amp;rdquo; is on the mint livecd is that some Debian or Ubuntu or Mint developer in the mid 2000s put it
 on there to manage another GUI application. And it was forgotten about and left on years after it ceased its usefulness. And that Mint, or Ubuntu
 which mint is based off of is a massive pile of enterprise software with cruft and out of date parts.&lt;/p&gt;
 &lt;p&gt;This also means there is probably no formal process for replicating a Mint or Ubuntu ISO. Gentoo users build there entire system from the ground up,
 arch users have pacstrap and know the core packages they need. debian has debootstrap. And if I would want to I could theoretically replicate these
 tools to create my own bootstrapped for those distros, then I could modify it to truly customize my distribution.&lt;/p&gt;
-&lt;h2&gt;&lt;/h2&gt;
 </description></item>
 
 	<item><title>Migrating to Hugo</title>
@@ -856,8 +899,10 @@ tools to create my own bootstrapped for those distros, then I could modify it to
 	<pubDate>Sun, 18 Aug 2024 12:00:34 -0500</pubDate>
 	<description>&lt;p&gt;This website now runs on &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. I migrated the infrastructure off the old static
 site generator that was written in Makefile.&lt;/p&gt;
-&lt;h2 id=&#34;why&#34;&gt;Why?&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;why&#34;&gt;
+  &lt;a href=&#34;#why&#34;&gt;#&lt;/a&gt;
+  Why?
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;My static site generator isn&amp;rsquo;t that unique, &lt;a href=&#34;https://pedantic.software/git/blogit&#34;&gt;blogit&lt;/a&gt; already exists.&lt;/p&gt;
 &lt;/li&gt;
@@ -868,8 +913,10 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;p&gt;Hugo isn&amp;rsquo;t &lt;em&gt;that&lt;/em&gt; large compared to other web frameworks&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;what-i-dont-like&#34;&gt;What I don&amp;rsquo;t like.&lt;/h2&gt;
-&lt;ol&gt;
+&lt;h2 id=&#34;what-i-dont-like&#34;&gt;
+  &lt;a href=&#34;#what-i-dont-like&#34;&gt;#&lt;/a&gt;
+  What I don&amp;rsquo;t like.
+&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Isn&amp;rsquo;t generalized enough&lt;/p&gt;
 &lt;/li&gt;
@@ -887,8 +934,10 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;dt&gt;_default&lt;/dt&gt;
 &lt;dd&gt;Base templates&lt;/dd&gt;
 &lt;/dl&gt;
-&lt;h2 id=&#34;markdown-extensions&#34;&gt;Markdown extensions&lt;/h2&gt;
-&lt;p&gt;Insert emojis: &amp;#x1f44b;&lt;/p&gt;
+&lt;h2 id=&#34;markdown-extensions&#34;&gt;
+  &lt;a href=&#34;#markdown-extensions&#34;&gt;#&lt;/a&gt;
+  Markdown extensions
+&lt;/h2&gt;&lt;p&gt;Insert emojis: &amp;#x1f44b;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;mark&gt;highlighted text&lt;/mark&gt;&lt;/p&gt;
@@ -938,29 +987,27 @@ because:&lt;/p&gt;
 &lt;li&gt;Most-everybody knows about it&lt;/li&gt;
 &lt;li&gt;These are related to RMS &lt;em&gt;specificly&lt;/em&gt;, not his broader actions to influence the GNU project.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;1-the-linux-was-developed-for-the-gnu-tools-narritive-propogated-by-the-fsf-is-false&#34;&gt;1. The &amp;ldquo;Linux was developed for the GNU tools&amp;rdquo; narritive propogated by the FSF is false&lt;/h2&gt;
-&lt;p&gt;From &lt;a href=&#34;https://www.gnu.org/gnu/linux-and-gnu.html&#34;&gt;https://www.gnu.org/gnu/linux-and-gnu.html&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
+&lt;h2 id=&#34;1-the-linux-was-developed-for-the-gnu-tools-narritive-propogated-by-the-fsf-is-false&#34;&gt;
+  &lt;a href=&#34;#1-the-linux-was-developed-for-the-gnu-tools-narritive-propogated-by-the-fsf-is-false&#34;&gt;#&lt;/a&gt;
+  1. The &amp;ldquo;Linux was developed for the GNU tools&amp;rdquo; narritive propogated by the FSF is false
+&lt;/h2&gt;&lt;p&gt;From &lt;a href=&#34;https://www.gnu.org/gnu/linux-and-gnu.html&#34;&gt;https://www.gnu.org/gnu/linux-and-gnu.html&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
-What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
+What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;In Linus&amp;rsquo;s book &lt;em&gt;&lt;a href=&#34;https://books.google.com/books/about/Just_for_Fun.html?id=Q3aIPwAACAAJ&#34;&gt;Just For Fun&lt;/a&gt;&lt;/em&gt;, the GNU project plays little to no role in the creation of Linux.
 Linux grew out of comp.os.minix, not anything related to the FSF or GNU project. Additionally, The FSF was
 still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
 &lt;p&gt;From &lt;em&gt;&lt;a href=&#34;https://web.archive.org/web/19980126191050/http://www.gnu.org/software/hurd/hurd-and-linux.html&#34;&gt;The Hurd and Linux (1997)&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
+&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;The FSF&amp;rsquo;s push for hurd died out sometime in the early 2000&amp;rsquo;s, when Linux was commonplace and Hurd was completely abandoned.&lt;/p&gt;
 &lt;p&gt;From &lt;a href=&#34;https://karmak.org/archive/2003/01/12-14-99.epl.html&#34;&gt;A interview with RMS in 99&amp;rsquo;&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
-&lt;h2 id=&#34;2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;2. For years, the GNU project was not directly maintaining most of their popular projects&lt;/h2&gt;
-&lt;ul&gt;
+&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;
+  &lt;a href=&#34;#2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;#&lt;/a&gt;
+  2. For years, the GNU project was not directly maintaining most of their popular projects
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;For several years in the &amp;rsquo;90s and &amp;rsquo;00s, GCC, Binutils, GDB, and other FSF projects were being maintained by a external company called &lt;a href=&#34;https://en.wikipedia.org/wiki/Cygnus_Solutions&#34;&gt;Cygnus&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
@@ -972,20 +1019,22 @@ still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The FSF, to this day, still does not have direct authoritative control over the GCC compiler.&lt;/p&gt;
-&lt;h2 id=&#34;3-the-fsf-intentionally-makes-code-less-modular-to-spread-itself&#34;&gt;3. The FSF intentionally makes code less modular to spread itself&lt;/h2&gt;
-&lt;p&gt;The reason why GCC didn&amp;rsquo;t become a platform for compiler development like LLVM or qbe is because &lt;strong&gt;the FSF
+&lt;h2 id=&#34;3-the-fsf-intentionally-makes-code-less-modular-to-spread-itself&#34;&gt;
+  &lt;a href=&#34;#3-the-fsf-intentionally-makes-code-less-modular-to-spread-itself&#34;&gt;#&lt;/a&gt;
+  3. The FSF intentionally makes code less modular to spread itself
+&lt;/h2&gt;&lt;p&gt;The reason why GCC didn&amp;rsquo;t become a platform for compiler development like LLVM or qbe is because &lt;strong&gt;the FSF
 intentionally kept it back from being so.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;From &lt;a href=&#34;https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html&#34;&gt;https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Anything that makes it easier to use GCC back ends without GCC front
 ends&amp;ndash;or simply brings GCC a big step closer to a form that would make
 such usage easy&amp;ndash;would endanger our leverage for causing new front
-ends to be free.&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
+ends to be free.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;The FSF is a political movement that engages in intentional obfuscation to spread itself.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;4. glibc&amp;rsquo;s feature test macros are designed so that people would mark their code with the GNU projects name&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.man7.org/linux/man-pages/man7/feature_test_macros.7.html&#34;&gt;feature_test_macros&lt;/a&gt; are a opt-out, functionality removing, non-portable feature that was largely pioneered
+&lt;h2 id=&#34;4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;
+  &lt;a href=&#34;#4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;#&lt;/a&gt;
+  4. glibc&amp;rsquo;s feature test macros are designed so that people would mark their code with the GNU projects name
+&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.man7.org/linux/man-pages/man7/feature_test_macros.7.html&#34;&gt;feature_test_macros&lt;/a&gt; are a opt-out, functionality removing, non-portable feature that was largely pioneered
 by glibc.&lt;/p&gt;
 &lt;p&gt;glibc gives you a few test macros by default (which most of the base functions are under).
 But If you wanna include something like &lt;code&gt;strptime()&lt;/code&gt; you need to &lt;code&gt;#define _XOPEN_SOURCE&lt;/code&gt;
@@ -995,8 +1044,10 @@ So &lt;em&gt;the most convenient way to deal with this opt-out &amp;ldquo;featur
 GNU projects name.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;dup3()&lt;/code&gt; system call is neither written by GNU or even in the &amp;ldquo;GNU Operating System&amp;rsquo;s&amp;rdquo;
 Hurd kernel. And even though this is not GNU you still have to &lt;code&gt;#define _GNU_SOURCE&lt;/code&gt; to get it.&lt;/p&gt;
-&lt;h2 id=&#34;5-gnu-code-sucks&#34;&gt;5. GNU code &lt;em&gt;sucks&lt;/em&gt;&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;5-gnu-code-sucks&#34;&gt;
+  &lt;a href=&#34;#5-gnu-code-sucks&#34;&gt;#&lt;/a&gt;
+  5. GNU code &lt;em&gt;sucks&lt;/em&gt;
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;The &lt;code&gt;true&lt;/code&gt; command (which is only supposed to return 0) in most other utility implementations is 1 line of
 code (i.e. &lt;code&gt;int main(){}&lt;/code&gt;), GNU true is &lt;a href=&#34;https://github.com/coreutils/coreutils/blob/master/src/true.c&#34;&gt;80 lines&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1014,8 +1065,10 @@ code (i.e. &lt;code&gt;int main(){}&lt;/code&gt;), GNU true is &lt;a href=&#34;h
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I could point out more examples, but the message is conveyed that where a programmer might need 10 lines of code to do a job, a GNU programmer would need 100. I have yet to find someone who favors the GNU syntax style. And GNU code is filled with ifdefs, unneeded indirection and complexity, etc (read some yourself, pick a GNU project, any GNU project).&lt;/p&gt;
-&lt;h2 id=&#34;6-gnus-obsession-with-portability-adds-copius-amounts-of-complexity-and-helps-no-one&#34;&gt;6. GNUs obsession with portability adds copius amounts of complexity and helps no one&lt;/h2&gt;
-&lt;ul&gt;
+&lt;h2 id=&#34;6-gnus-obsession-with-portability-adds-copius-amounts-of-complexity-and-helps-no-one&#34;&gt;
+  &lt;a href=&#34;#6-gnus-obsession-with-portability-adds-copius-amounts-of-complexity-and-helps-no-one&#34;&gt;#&lt;/a&gt;
+  6. GNUs obsession with portability adds copius amounts of complexity and helps no one
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;The &lt;a href=&#34;https://invisible-island.net/ncurses/ncurses.faq.html#which_terminfo&#34;&gt;terminfo/termcap&lt;/a&gt; databases
 contain support for thousands of different terminals and terminal emulators no one uses (You can try this
@@ -1042,8 +1095,10 @@ standardized since ANSI escape codes.&lt;/p&gt;
 &lt;p&gt;I note that I picked these 2 at random and I&amp;rsquo;m not searching hard. These are everywhere and I&amp;rsquo;m sure I could
 find many more, No one is building modern versions of bash or the version of gawk from 2021 that Github
 mirror provides on System V machines, nor IRIX, Solaris, 386, AIX or even Hurd.&lt;/p&gt;
-&lt;h2 id=&#34;7-the-fsf-fractured-the-open-source-world-for-no-good-reason&#34;&gt;7. The FSF fractured the Open Source world for no good reason&lt;/h2&gt;
-&lt;p&gt;Nothing is &lt;em&gt;wrong&lt;/em&gt; with the GPLv2, there aren&amp;rsquo;t any loopholes in it. And most of the people I see using the GPLv3
+&lt;h2 id=&#34;7-the-fsf-fractured-the-open-source-world-for-no-good-reason&#34;&gt;
+  &lt;a href=&#34;#7-the-fsf-fractured-the-open-source-world-for-no-good-reason&#34;&gt;#&lt;/a&gt;
+  7. The FSF fractured the Open Source world for no good reason
+&lt;/h2&gt;&lt;p&gt;Nothing is &lt;em&gt;wrong&lt;/em&gt; with the GPLv2, there aren&amp;rsquo;t any loopholes in it. And most of the people I see using the GPLv3
 (including myself for a while) just used it because &amp;ldquo;The number is bigger therefore it must be even more free than last time&amp;rdquo; and/or they want compatibility with other GPLv3 code.&lt;/p&gt;
 &lt;p&gt;If you ask someone to explain the general tenants of the GPLv2 and GPLv3, 90% of the time they come up
 with identical answers (&amp;ldquo;Permitted source code distribution with no non-GPL forks&amp;rdquo;). Yes there are reasons
@@ -1053,8 +1108,10 @@ spread proprietary software in the same way that MINIX became the infrastructure
 conceptually supposed to prevent. The days of codesharing between open-source code without checking the license to make sure it isn&amp;rsquo;t illegal to do so are gone.&lt;/p&gt;
 &lt;p&gt;A benefit of open source over proprietary software is &lt;a href=&#34;https://www.catb.org/~esr/writings/taoup/html/ch16s01.html&#34;&gt;code-sharing between projects&lt;/a&gt;. And this isn&amp;rsquo;t as effective when there are multiple incompatible open
 source licenses that can&amp;rsquo;t legally share code.&lt;/p&gt;
-&lt;h2 id=&#34;8-gnu-pushes-incecently-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;8. GNU pushes incecently for texinfo, a format no one likes or uses.&lt;/h2&gt;
-&lt;p&gt;GNU info was designed to solve a problem nobody had, and in their push for it they made man pages &lt;a href=&#34;https://www.youtube.com/watch?v=rGSZFmQuQrU&#34;&gt;worse&lt;/a&gt;, which did create a problem, and when people who didn&amp;rsquo;t wanna use GNU info, they created their &lt;a href=&#34;https://cheat.sh&#34;&gt;own solutions&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;8-gnu-pushes-incecently-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;
+  &lt;a href=&#34;#8-gnu-pushes-incecently-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;#&lt;/a&gt;
+  8. GNU pushes incecently for texinfo, a format no one likes or uses.
+&lt;/h2&gt;&lt;p&gt;GNU info was designed to solve a problem nobody had, and in their push for it they made man pages &lt;a href=&#34;https://www.youtube.com/watch?v=rGSZFmQuQrU&#34;&gt;worse&lt;/a&gt;, which did create a problem, and when people who didn&amp;rsquo;t wanna use GNU info, they created their &lt;a href=&#34;https://cheat.sh&#34;&gt;own solutions&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;GNU info is not portable to other operating systems like man pages, nor well used even by most GNU projects,
 nor is the browser you need to get a benefit out of its format pleasant to use. Nor is it liked even within the GNU project.
 This does not change the fact GNU help2man by default refers to info pages in it&amp;rsquo;s output.&lt;/p&gt;
@@ -1076,8 +1133,10 @@ attempting to get into toybox; Awk works with strings, while tr works with
 characters. Awk does not regularly index into the strings it works with, and
 when it does it only happens in a few functions. This means that if we want
 to handle UTF-8, we can divide and conquer.&lt;/p&gt;
-&lt;h3 id=&#34;what-a-utf-8-safe-awk-needs&#34;&gt;What a UTF-8 Safe awk needs&lt;/h3&gt;
-&lt;p&gt;The &lt;a href=&#34;https://man7.org/linux/man-pages/man1/gawk.1.html&#34;&gt;gawk(1) man page&lt;/a&gt; says
+&lt;h3 id=&#34;what-a-utf-8-safe-awk-needs&#34;&gt;
+  &lt;a href=&#34;#what-a-utf-8-safe-awk-needs&#34;&gt;#&lt;/a&gt;
+  What a UTF-8 Safe awk needs
+&lt;/h3&gt;&lt;p&gt;The &lt;a href=&#34;https://man7.org/linux/man-pages/man1/gawk.1.html&#34;&gt;gawk(1) man page&lt;/a&gt; says
 these 4 functions work on &amp;ldquo;characters, not bytes&amp;rdquo;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;substr()&lt;/li&gt;
@@ -1097,8 +1156,10 @@ these 4 functions work on &amp;ldquo;characters, not bytes&amp;rdquo;:&lt;/p&gt;
 &lt;li&gt;tolower()&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That&amp;rsquo;s &amp;ldquo;divide&amp;rdquo; out of the way, now lets conquer.&lt;/p&gt;
-&lt;h3 id=&#34;implementing-a-utf-8-awk&#34;&gt;Implementing a UTF-8 Awk&lt;/h3&gt;
-&lt;p&gt;A reminder that we are trying to add in UTF-8 support to a existing awk, not
+&lt;h3 id=&#34;implementing-a-utf-8-awk&#34;&gt;
+  &lt;a href=&#34;#implementing-a-utf-8-awk&#34;&gt;#&lt;/a&gt;
+  Implementing a UTF-8 Awk
+&lt;/h3&gt;&lt;p&gt;A reminder that we are trying to add in UTF-8 support to a existing awk, not
 make a new one with UTF-8 support.&lt;/p&gt;
 &lt;p&gt;In a awk that is UTF-8 safe, all strings are indexed by a number of UTF-8
 characters. While in C, all strings are indexed based off of bytes. This

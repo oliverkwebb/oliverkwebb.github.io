@@ -3,6 +3,7 @@
 {{- end }}
 {{ define "main" -}}
 {{ .Content }}
+{{ block "list" . }}
 <ul> <!-- Note to self, columuns:2; looks cool sometimes -->
 {{- range.Pages }}
 <li>
@@ -14,4 +15,5 @@
 </li>
 {{- end }}
 </ul>
+{{- end }}
 {{- end }}

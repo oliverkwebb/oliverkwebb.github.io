@@ -1,7 +1,4 @@
-{{ define "title" -}}
-{{ .Title | title }}
-{{- end }}
-{{ define "main" -}}
+{{ define "main" }}
 {{ .Content }}
 <ul style="list-style:none; padding: 0" class="articleindex">
 {{- range where .Site.RegularPages "Section" "articles" }}
