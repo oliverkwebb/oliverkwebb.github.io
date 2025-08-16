@@ -93,6 +93,8 @@ color: var(--uchu-blue-9);
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  text-align: justify;
+  text-align-last: center;
   grid-area: title;
 }
 .articleitem .info {
@@ -141,6 +143,7 @@ border-radius:4px;
 p code {
 color:white;
 background-color:var(--uchu-yin-9);
+text-size-adjust: 100%;
 }
 
 img {
