@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Generalizing Printf in C | Oliver Webb</title>
+	<link rel="canonical" href="https://oliverkwebb.github.io/">
+	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+<nav>
+	<a href="/">Oliver Webb</a>
+</nav>
+<main>
+<header><h1 id="tag_Generalizing printf in C">Generalizing printf in C</h1></header>
+<article>
+
+<p>In ANSI C89, there are 6 printf functions:</p>
+<ul>
+<li><code>printf</code></li>
+<li><code>sprintf</code></li>
+<li><code>fprintf</code></li>
+<li><code>vprintf</code></li>
+<li><code>vsprintf</code></li>
+<li><code>vfprintf</code></li>
+</ul>
+<p>Other C versions add more:</p>
+<ul>
+<li><code>dprintf</code></li>
+<li><code>snprintf</code></li>
+<li><code>asprintf</code></li>
+<li><code>vdprintf</code></li>
+<li><code>vsnprintf</code></li>
+<li><code>vasprintf</code></li>
+</ul>
+<p>The sole difference between these functions is the format of input and the source of output. It would make sense to generalize this class of functions in a implementation of printf. Ideally down into one function that constructs and outputs the formatted string which the 12 functions can wrap around or be based upon.</p>
+<p>Some simple optimizations can be made already, all printf functions wrap around their varaidic forms, which cuts the list in half. <code>printf</code> and <code>dprintf</code> can both be thought of as wrappers, which reduces the now 6 functions needed into 4:</p>
+<ul>
+<li><code>vsprintf</code></li>
+<li><code>vfprintf</code></li>
+<li><code>vsnprintf</code></li>
+<li><code>vasprintf</code></li>
+</ul>
+<p><code>sprintf</code> was a bad idea for the same reason <code>gets</code> was (in fact, GCC will throw a warning if it detects the use of either of those in almost every case). <code>snprintf</code> is theoretically different because it needs an output limit, but the behaviour of <code>sprintf</code> can be replicated by setting that limit to <code>SIZE_MAX</code> or similar.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>The 3 functions left are <code>vfprintf</code>, <code>vasprintf</code>, and <code>vsnprintf</code>. There is a straightforward way to reduce these down into one function, to <code>vasprintf</code> a dynamically allocated string, output it  with <code>memcpy</code> or <code>fputs</code>, then <code>free</code> it.</p>
+<p>The problem with this approach is that it is inefficient. Even if using a vector that doubles in size when expanding to be O(log n), there are redundant allocations. If the formatted result is especially large, it will take up a large amount of memory. Trying to generalize printf functions that outputs the string as its constructed is a harder and more interesting problem.</p>
+<h2 id="the-art-of-transmutation-and-opaqueness">
+  <a href="#the-art-of-transmutation-and-opaqueness">#</a>
+  The art of transmutation and opaqueness
+</h2><p>C89<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> defines <code>qsort</code> as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">void</span> <span style="color:#d2a8ff;font-weight:bold">qsort</span>(<span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>base, <span style="color:#ff7b72">size_t</span> nmemb, <span style="color:#ff7b72">size_t</span> size, <span style="color:#ff7b72">int</span> (<span style="color:#ff7b72;font-weight:bold">*</span>compar)(<span style="color:#ff7b72">const</span> <span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>, <span style="color:#ff7b72">const</span> <span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>));
+</span></span></code></pre></div><p>The first 3 arguments are the parameters for an array, with the last being a function to pass the elements to (often a wrapper around <code>strcmp</code>, the comparison operator, or similar).</p>
+<p>What is notable about this function is the use of function pointers to modularize code, and the fact that it has no information about the array it is given besides its size and element size. Because of this:</p>
+<ul>
+<li>Transmutation is required to use it</li>
+<li>Which makes use of the function much more volatile since it is harder to check if the types being given or interpreted are valid</li>
+</ul>
+<p>Consider the two arrays:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>long long a[] = {0, 0, 0, 0, 0};
+</span></span><span style="display:flex;"><span>char *b[] = {&#34;b&#34;, &#34;a&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;}; 
+</span></span></code></pre></div><p>Both contain 5 8-byte elements<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. But they both cast to a void pointer when passed into <code>qsort</code>. And the information about the type is lost until it is recast presuming it&rsquo;s the desired type. The compiler won&rsquo;t throw a warning if you sort the first array with a wrapper around <code>strcmp</code>. Nor will it warn you if you give a wrong number of elements or element size.</p>
+<p>In our printf implementation, we can pass in both a file <strong>and</strong> a buffer to write to, along with a output function and the needed format string and list of arguments:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">static</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">_vfsprintf</span>(FILE <span style="color:#ff7b72;font-weight:bold">*</span>stream, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>buffer, <span style="color:#ff7b72">size_t</span> size, <span style="color:#ff7b72">int</span> (<span style="color:#ff7b72;font-weight:bold">*</span>submit)(<span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>, FILE <span style="color:#ff7b72;font-weight:bold">*</span>), <span style="color:#ff7b72">const</span> <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>format, va_list va);
+</span></span></code></pre></div><p>Since the <code>FILE</code> stream, the <code>buffer</code>, and the <code>size</code> are only used inside the <code>submit</code> function, they can be set to null and ignored in the output handlers.</p>
+<p>If you could write a static/dynamic buffer in multiple distributed steps using a function pointer and a pointer to the start of the buffer alone, this and a few wrapper functions would be the end of it. Unfortunately, doing this in C requires state.</p>
+<h2 id="oop-in-c">
+  <a href="#oop-in-c">#</a>
+  OOP in C
+</h2><p>Writing a buffer in multiple steps with a function requires you to continue from where you left off. Keeping track of where you left off is trivial:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">struct</span> bufinfo {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">int</span> idx;
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">size_t</span> len;
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>buffer;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>This needs to be carried with you the entire time you&rsquo;re writing to the buffer. Which can be done by passing in a void pointer in containing the state that the output function needs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">static</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">__submit_vfprintf</span>(FILE <span style="color:#ff7b72;font-weight:bold">*</span>stream, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>str, <span style="color:#ff7b72">int</span> (<span style="color:#ff7b72;font-weight:bold">*</span>submit)(<span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>, FILE <span style="color:#ff7b72;font-weight:bold">*</span>, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>, <span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>), <span style="color:#ff7b72">const</span> <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>format, va_list va, <span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>initstate)
+</span></span></code></pre></div><p>The pointer <code>initstate</code> is passed to the output function, which uses it to write to the buffer then modifies the information inside it for the next time the function is called. This is a way of keeping state that is neither local nor global.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">static</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">vfp_strapp_submit</span>(<span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>str, FILE <span style="color:#ff7b72;font-weight:bold">*</span>ignored, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>ignoredalso, <span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>bufferinfo) {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">struct</span> bufinfo <span style="color:#ff7b72;font-weight:bold">*</span>bi <span style="color:#ff7b72;font-weight:bold">=</span> bufferinfo;
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">size_t</span> len <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">strlen</span>(str);
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">size_t</span> left <span style="color:#ff7b72;font-weight:bold">=</span> bi<span style="color:#ff7b72;font-weight:bold">-&gt;</span>len <span style="color:#ff7b72;font-weight:bold">-</span> bi<span style="color:#ff7b72;font-weight:bold">-&gt;</span>idx;
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">if</span> (len <span style="color:#ff7b72;font-weight:bold">&gt;</span> left) {
+</span></span><span style="display:flex;"><span>		<span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#d2a8ff;font-weight:bold">memcpy</span>(bi<span style="color:#ff7b72;font-weight:bold">-&gt;</span>buffer<span style="color:#ff7b72;font-weight:bold">+</span>bi<span style="color:#ff7b72;font-weight:bold">-&gt;</span>idx, str, len);
+</span></span><span style="display:flex;"><span>	bi<span style="color:#ff7b72;font-weight:bold">-&gt;</span>idx <span style="color:#ff7b72;font-weight:bold">+=</span> len;
+</span></span><span style="display:flex;"><span>	bi<span style="color:#ff7b72;font-weight:bold">-&gt;</span>buffer[bi<span style="color:#ff7b72;font-weight:bold">-&gt;</span>idx <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span>] <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;\0&#39;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">return</span> len;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Thus, an implementation of <code>vsnprintf</code> (and by extension <code>sprintf</code> and <code>snprintf</code>) can be made with a few lines of boilerplate code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">vsnprintf</span>(<span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>s, <span style="color:#ff7b72">size_t</span> n, <span style="color:#ff7b72">const</span> <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>format, va_list arg) {
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">struct</span> bufinfo bufinfo;
+</span></span><span style="display:flex;"><span>	bufinfo.buffer <span style="color:#ff7b72;font-weight:bold">=</span> s;
+</span></span><span style="display:flex;"><span>	bufinfo.len <span style="color:#ff7b72;font-weight:bold">=</span> n;
+</span></span><span style="display:flex;"><span>	bufinfo.idx <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">return</span> <span style="color:#d2a8ff;font-weight:bold">__submit_vfprintf</span>(NULL, NULL, vfp_strapp_submit, format, arg, <span style="color:#ff7b72;font-weight:bold">&amp;</span>bufinfo);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>An alternate solution for perfectionists would be to make both functions a wrapper around one core function that takes a boolean of whether or not to look at the output limit.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Later versions of the C standard may make use of <code>typeof</code> or other modern features&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>A more realistic example might be sorting an array of 64-bit numbers using the comparison function that sorts 32-bit integers&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+</article>
+</main>
+<hr/>
+<footer>
+  <div id="nextprev">
+		<a href="/articles/iausofa/" class="prev">← A Visual Tour of IAU SOFA</a>
+	</div>
+	<br/>
+<p id="taglist">
+	Tags:
+	
+    <a href="/tags/programming">Programming</a>
+  
+	</p>
+<p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
+  <p>The text of <a href="https://oliverkwebb.github.io/">this site</a> by &#xa9; 2025 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+
+</body>
+</html>

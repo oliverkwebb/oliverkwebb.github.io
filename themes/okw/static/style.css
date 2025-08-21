@@ -95,6 +95,8 @@ color: var(--uchu-blue-9);
   justify-content: center;
   text-align: justify;
   text-align-last: center;
+  padding-left: 10px;
+  padding-right: 10px;
   grid-area: title;
 }
 .articleitem .info {
