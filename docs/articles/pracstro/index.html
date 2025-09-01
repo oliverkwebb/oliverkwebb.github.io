@@ -17,9 +17,7 @@
 <header><h1 id="tag_Practical Astronomy with Your Command Line">Practical Astronomy with Your Command Line</h1></header>
 <article>
 
-<p>About a year and a half ago, I was trying to put the current moon phase in my status bar,
-Simultaneously I was trying to make other projects that would show the sunrise and sunset time.
-There are many open-source tools that can generate astronomical info on linux:</p>
+<p>About a year and a half ago, I was trying to put the current moon phase in my status bar, Simultaneously I was trying to make other projects that would show the sunrise and sunset time. There are many open-source tools that can generate astronomical info on Linux:</p>
 <ul>
 <li><a href="https://stellarium.org/">Stellarium</a> is easily the most extensive astronomy tool out there, acting as a full planetarium and astronomer toolkit.</li>
 <li><a href="https://stellarium-web.org/">Stellarium Web</a> - a slightly clunkier version of stellarium for browsers (To picture the level of degradation, think old desktop Google Earth (<a href="https://www.tomsguide.com/how-to/google-earth-has-a-hidden-flight-simulator-heres-how-to-find-it">flight sim included</a>) vs the web version).</li>
@@ -34,20 +32,14 @@ There are many open-source tools that can generate astronomical info on linux:</
 <li><a href="https://github.com/risacher/sunwait">sunwait</a> - sunrise/sunset calculator.</li>
 <li><a href="https://9fans.github.io/plan9port/man/man1/astro.html">plan9 astro(1)</a> - astronomical info generator, largely exclusive to plan9.</li>
 </ul>
-<p>As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&rsquo;t fill.
-To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info
-in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
-most of them aren&rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.</p>
+<p>As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&rsquo;t fill. To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren&rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.</p>
 <p><img src="/graph/astro-tools-venn.png" alt="A Venn Diagram of Astronomy Tools"></p>
 <h1 id="how-easy-is-it-to-make-something-like-that">
   <a href="#how-easy-is-it-to-make-something-like-that">#</a>
   How easy is it to make something like that?
-</h1><p>Lets lessen the scope for a moment, to&hellip; lets say moon phases. Which I couldn&rsquo;t find a straightforward way to
-get info about without revving up an awk interpreter to strip out text from other things,
-using inaccurate approximations, or curling information from the internet.</p>
+</h1><p>Lets lessen the scope for a moment, to&hellip; lets say moon phases. Which I couldn&rsquo;t find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.</p>
 <p>A year ago, I was looking at <a href="https://github.com/chubin/pyphoon">pyphoon</a>,
-and found the <a href="https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py">astronomy code</a> from it
-was a rewrite of C code written almost <a href="https://www.fourmilab.ch/moontoolw/">40 years ago</a>.</p>
+and found the <a href="https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py">astronomy code</a> from it was a rewrite of C code written almost <a href="https://www.fourmilab.ch/moontoolw/">40 years ago</a>.</p>
 <p>Instead of dividing the current date by twenty-some days and working off the value that returns, this code
 could give accurate information about the phase of the moon centuries into the future and past. Along with
 information such as angular diameter and distance. And it could do that parsimoniously in around 400 lines
@@ -164,7 +156,7 @@ for a range of a few thousand years.</p>
 <p>Not all these effects are worth accounting for to the level of picoarcseconds. Many are not worth accounting for at all in a
 parsimonious info generator. Some only matter for historical dates or dates far in the future. At the same time,
 there is a noticeable difference caused by parallax, refraction, and pertubation.</p>
-<p>Correcting for precession, pertubation, refraction, and parallax gives results that are &ldquo;good enough&rdquo; for telescope pointing,
+<p>Correcting for precession, perturbation, refraction, and parallax gives results that are &ldquo;good enough&rdquo; for telescope pointing,
 observation scheduling, and most real-world uses.</p>
 <h1 id="alogrithms-and-plumbing">
   <a href="#alogrithms-and-plumbing">#</a>
@@ -199,10 +191,8 @@ Doing this entirely inside the command line with conventional tools is normally 
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&hellip;).</p>
 <p><img src="/graph/SMVm.png" alt="Inner Solar System Distance Graph"></p>
-<p>It is easy to see why mercury is the <a href="https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/">&ldquo;mostest closest&rdquo;</a> with
-this graph. You can also see the slight eccentricity of earths, and Mercury&rsquo;s orbit as wobble in the line of the sun, and a
-more substantial difference in the wave of Mercury&rsquo;s orbit.</p>
-<p>As for the complexity of this tool, it only took 1500 lines of rust (astronomical algorithms included), with 0-dependencies aside from std.
+<p>It is easy to see why Mercury is the <a href="https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/">&ldquo;mostest closest&rdquo;</a> with this graph. You can also see the slight eccentricity of Earth&rsquo;s, and Mercury&rsquo;s orbit as wobble in the line of the sun, and a more substantial difference in the wave of Mercury&rsquo;s orbit.</p>
+<p>This tool only has 1500 lines of rust (astronomical algorithms included), with 0-dependencies aside from std.
 And the algorithms are universal enough to be rewritten to anything with trig functions and floating point math.</p>
 <p>The ephemeris generator that came from this research: <a href="https://github.com/oliverkwebb/deskephem">deskephem</a></p>
 <div class="footnotes" role="doc-endnotes">

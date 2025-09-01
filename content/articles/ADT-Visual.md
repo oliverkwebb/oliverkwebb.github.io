@@ -36,7 +36,7 @@ struct response {
 
 Unions are usually annotated with a tag of which alias is in use.
 Doing this in C requires explicit thought and attention, even though
-this behavior is needed in most contexts.
+this behaviour is needed in most contexts.
 
 In this spirit, enumerations are interchangeable with integers.
 
@@ -49,7 +49,7 @@ y == D; // True
 All of this allows for transparent memory management. The price paid is that it's a lot harder to cleanly
 represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.
 
-Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.
+Instead of modelling data based purely on its representation in memory. We can model data types more abstractly and mathematically.
 
 ## Algebraic Description of Types (ADT)
 

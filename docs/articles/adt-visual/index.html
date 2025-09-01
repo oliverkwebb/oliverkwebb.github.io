@@ -37,14 +37,14 @@ of the same type (arrays), or a list of aliases to a singular place in memory (<
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p>Unions are usually annotated with a tag of which alias is in use.
 Doing this in C requires explicit thought and attention, even though
-this behavior is needed in most contexts.</p>
+this behaviour is needed in most contexts.</p>
 <p>In this spirit, enumerations are interchangeable with integers.</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">enum</span> {A, B, C} x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">630</span>;
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">enum</span> {D, E, F} y <span style="color:#ff7b72;font-weight:bold">=</span> A;
 </span></span><span style="display:flex;"><span>y <span style="color:#ff7b72;font-weight:bold">==</span> D; <span style="color:#8b949e;font-style:italic">// True
 </span></span></span></code></pre></div><p>All of this allows for transparent memory management. The price paid is that it&rsquo;s a lot harder to cleanly
 represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.</p>
-<p>Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.</p>
+<p>Instead of modelling data based purely on its representation in memory. We can model data types more abstractly and mathematically.</p>
 <h2 id="algebraic-description-of-types-adt">
   <a href="#algebraic-description-of-types-adt">#</a>
   Algebraic Description of Types (ADT)

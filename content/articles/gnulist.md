@@ -81,7 +81,7 @@ code (i.e. `int main(){}`), GNU true is [80 lines](https://github.com/coreutils/
 
 - Many GNU libraries such as [glibc](https://stackoverflow.com/questions/57476533/why-is-statically-linking-glibc-discouraged) and [glib](https://bugzilla.gnome.org/show_bug.cgi?id=768215#c16) do not support static linking for no good reason
 
-I could point out more examples, but the message is conveyed that where a programmer might need 10 lines of code to do a job, a GNU programmer would need 100. I have yet to find someone who favors the GNU syntax style. And GNU code is filled with ifdefs, unneeded indirection and complexity, etc (read some yourself, pick a GNU project, any GNU project).
+I could point out more examples, but the message is conveyed that where a programmer might need 10 lines of code to do a job, a GNU programmer would need 100. I have yet to find someone who favours the GNU syntax style. And GNU code is filled with ifdefs, unneeded indirection and complexity, etc (read some yourself, pick a GNU project, any GNU project).
 
 ## 6. GNUs obsession with portability adds copius amounts of complexity and helps no one
 
@@ -90,7 +90,7 @@ contain support for thousands of different terminals and terminal emulators no o
 out now, set `TERM=vt100` and run some ncurses programs). Terminal escape protocols have been more or less
 standardized since ANSI escape codes.
 
-- The `reset` command waits one second to support [physical terminals](https://unix.stackexchange.com/questions/335648/why-does-the-reset-command-include-a-delay) that fell out of favor for emulated ones in the early 90's. It does not contain a check for whether or not the terminal is emulated, and will sleep regardless.
+- The `reset` command waits one second to support [physical terminals](https://unix.stackexchange.com/questions/335648/why-does-the-reset-command-include-a-delay) that fell out of favour for emulated ones in the early 90's. It does not contain a check for whether or not the terminal is emulated, and will sleep regardless.
 
 - Portability concerns for "old versions of csh on System V" are [still included in the bash manual](https://www.gnu.org/software/bash/manual/bash.html#Installing-Bash), and the autotools still check for portability concerns from the '80s and '90s
 
@@ -122,7 +122,7 @@ conceptually supposed to prevent. The days of codesharing between open-source co
 A benefit of open source over proprietary software is [code-sharing between projects](https://www.catb.org/~esr/writings/taoup/html/ch16s01.html). And this isn't as effective when there are multiple incompatible open
 source licenses that can't legally share code.
 
-## 8. GNU pushes incecently for texinfo, a format no one likes or uses.
+## 8. GNU pushes incessantly for texinfo, a format no one likes or uses.
 
 GNU info was designed to solve a problem nobody had, and in their push for it they made man pages [worse](https://www.youtube.com/watch?v=rGSZFmQuQrU), which did create a problem, and when people who didn't wanna use GNU info, they created their [own solutions](https://cheat.sh).
 

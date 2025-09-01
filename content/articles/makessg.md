@@ -115,7 +115,7 @@ function to get all items and put them in a list. Functions are specified in
 variable definitions and arguments are separated by commas. So that evaluating
 `$(addprefix 123, a b c)` will return "123a 123b 123c".
 
-Since the problem of turning markdown files into html files is similar to the
+Since the problem of turning markdown files into HTML files is similar to the
 problem of turning source files into object files, we can create a simple rule
 that does 99% of our work.
 

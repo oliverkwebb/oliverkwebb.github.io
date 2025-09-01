@@ -89,9 +89,9 @@ And NTP correction are out of scope. This leaves:</p>
 </ul>
 <p><code>time_t</code> and <code>struct timespec</code> are used almost exclusively in kernel-level functions. Whilst <code>struct tm</code> is used
 almost exclusively with conversion of time to and from strings.</p>
-<h2 id="nanoseconds-floating-point-percision-and-the-y2262-problem">
-  <a href="#nanoseconds-floating-point-percision-and-the-y2262-problem">#</a>
-  Nanoseconds, Floating Point Percision, and the Y2262 problem
+<h2 id="nanoseconds-floating-point-precision-and-the-y2262-problem">
+  <a href="#nanoseconds-floating-point-precision-and-the-y2262-problem">#</a>
+  Nanoseconds, Floating Point Precision, and the Y2262 problem
 </h2><p>It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
 It&rsquo;d give <code>strftime</code> and <code>strptime</code> the ability to print milli/micro/nanoseconds. And it&rsquo;d remove the need for
 the <code>timespec</code> struct used in a lot of system-level time functions.</p>
@@ -159,16 +159,15 @@ that 10<sup>-9</sup> is actually around 2<sup>-29.8</sup>)).</p>
 
 
 <p>Looking at this chart alone, 64 bit integers don&rsquo;t seem much worse than long doubles, but keep in mind that
-Integers support <em>One percision</em>, and there&rsquo;s a trade off between resolution and the bounds of your epoch,
-Floating point values support <em>all percisions</em>, there is no such trade off.</p>
+Integers support <em>One precision</em>, and there&rsquo;s a trade off between resolution and the bounds of your epoch,
+Floating point values support <em>all precision&rsquo;s</em>, there is no such trade off.</p>
 <p>For this reason, <code>date_t</code> is a long double floating point value of seconds since the epoch.</p>
 <h2 id="broken-down-time">
   <a href="#broken-down-time">#</a>
   &ldquo;Broken Down Time&rdquo;
 </h2><p>Now that we have a base time type, there needs to be some way to convert between
 human friendly to machine friendly values. I.e. getting the year, month and day.
-In the spirit of &ldquo;100 functions for 10 datastructures vs. 10 functions for 1 datastructure&rdquo;,
-Unless a functions <em>job</em> is to handle human-friendly time values, it will use <code>date_t</code>.</p>
+In the spirit of &ldquo;100 functions for 10 data structures vs. 10 functions for 1 data structure&rdquo;, Unless a functions <em>job</em> is to handle human-friendly time values, it will use <code>date_t</code>.</p>
 <p>The way this is done in C is with <code>struct tm</code> , which has many problems.</p>
 <ul>
 <li>almost always handled in statically allocated pointers that get overwritten (<code>gmtime()</code>)</li>

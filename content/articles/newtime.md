@@ -87,7 +87,7 @@ The main types of the C time API (that matter to us) are:
 `time_t` and `struct timespec` are used almost exclusively in kernel-level functions. Whilst `struct tm` is used
 almost exclusively with conversion of time to and from strings.
 
-## Nanoseconds, Floating Point Percision, and the Y2262 problem
+## Nanoseconds, Floating Point Precision, and the Y2262 problem
 
 It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
 It'd give `strftime` and `strptime` the ability to print milli/micro/nanoseconds. And it'd remove the need for
@@ -126,8 +126,8 @@ Type/Resolution, float (23), int (31), double (52), long/x87 long double (63)
 {{< /csvtbl >}}
 
 Looking at this chart alone, 64 bit integers don't seem much worse than long doubles, but keep in mind that
-Integers support *One percision*, and there's a trade off between resolution and the bounds of your epoch,
-Floating point values support *all percisions*, there is no such trade off.
+Integers support *One precision*, and there's a trade off between resolution and the bounds of your epoch,
+Floating point values support *all precision's*, there is no such trade off.
 
 For this reason, `date_t` is a long double floating point value of seconds since the epoch.
 
@@ -135,8 +135,7 @@ For this reason, `date_t` is a long double floating point value of seconds since
 
 Now that we have a base time type, there needs to be some way to convert between
 human friendly to machine friendly values. I.e. getting the year, month and day.
-In the spirit of "100 functions for 10 datastructures vs. 10 functions for 1 datastructure",
-Unless a functions _job_ is to handle human-friendly time values, it will use `date_t`.
+In the spirit of "100 functions for 10 data structures vs. 10 functions for 1 data structure", Unless a functions _job_ is to handle human-friendly time values, it will use `date_t`.
 
 The way this is done in C is with `struct tm` , which has many problems.
 

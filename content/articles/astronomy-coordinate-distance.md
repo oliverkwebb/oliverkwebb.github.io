@@ -8,7 +8,7 @@ or talked about digging a b-line through the earth to some far off land jokingly
 by digging through the earth instead of traveling along the surface?
 
 Since coordinates on a sphere are 2 dimensional, lets think of a simpler problem. On a unit circle where both locations
-positions can be represented by one angle, what's the difference between going through the circle versus traveling
+positions can be represented by one angle, what's the difference between going through the circle versus travelling
 along its circumference?
 
 Well, we need to get the difference between these two angles, which is just another angle that you can get by subtraction,

@@ -146,9 +146,9 @@ the opposite of how its represented today.&lt;/p&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;These pixels would be transmitted continuously to send a 200x200 image.&lt;/p&gt;
-&lt;h1 id=&#34;digitializing-this-format&#34;&gt;
-  &lt;a href=&#34;#digitializing-this-format&#34;&gt;#&lt;/a&gt;
-  Digitializing this format
+&lt;h1 id=&#34;digitising-this-format&#34;&gt;
+  &lt;a href=&#34;#digitising-this-format&#34;&gt;#&lt;/a&gt;
+  Digitising this format
 &lt;/h1&gt;&lt;p&gt;From here, these pixels would be recorded as dots on a tape, this tape would
 be scanned to imprint the image onto film, and finer restoration work would
 be done to perfect the picture. This is an example of an early dot-matrix
@@ -182,7 +182,7 @@ antenna of a 1960&amp;rsquo;s space probe.&lt;/p&gt;
 or talked about digging a b-line through the earth to some far off land jokingly. But how much distance would you actually save
 by digging through the earth instead of traveling along the surface?&lt;/p&gt;
 &lt;p&gt;Since coordinates on a sphere are 2 dimensional, lets think of a simpler problem. On a unit circle where both locations
-positions can be represented by one angle, what&amp;rsquo;s the difference between going through the circle versus traveling
+positions can be represented by one angle, what&amp;rsquo;s the difference between going through the circle versus travelling
 along its circumference?&lt;/p&gt;
 &lt;p&gt;Well, we need to get the difference between these two angles, which is just another angle that you can get by subtraction,
 from here &lt;code&gt;crd&lt;/code&gt; (&lt;code&gt;2*sin(0.5*x)&lt;/code&gt;) can do the work trivially.&lt;/p&gt;
@@ -219,9 +219,7 @@ to get the phase angle from coordinates and distance alone.&lt;/p&gt;
 	<item><title>Practical Astronomy with Your Command Line</title>
 	<link>https://oliverkwebb.github.io/articles/pracstro/</link>
 	<pubDate>Fri, 23 May 2025 17:02:40 -0500</pubDate>
-	<description>&lt;p&gt;About a year and a half ago, I was trying to put the current moon phase in my status bar,
-Simultaneously I was trying to make other projects that would show the sunrise and sunset time.
-There are many open-source tools that can generate astronomical info on linux:&lt;/p&gt;
+	<description>&lt;p&gt;About a year and a half ago, I was trying to put the current moon phase in my status bar, Simultaneously I was trying to make other projects that would show the sunrise and sunset time. There are many open-source tools that can generate astronomical info on Linux:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://stellarium.org/&#34;&gt;Stellarium&lt;/a&gt; is easily the most extensive astronomy tool out there, acting as a full planetarium and astronomer toolkit.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://stellarium-web.org/&#34;&gt;Stellarium Web&lt;/a&gt; - a slightly clunkier version of stellarium for browsers (To picture the level of degradation, think old desktop Google Earth (&lt;a href=&#34;https://www.tomsguide.com/how-to/google-earth-has-a-hidden-flight-simulator-heres-how-to-find-it&#34;&gt;flight sim included&lt;/a&gt;) vs the web version).&lt;/li&gt;
@@ -236,20 +234,14 @@ There are many open-source tools that can generate astronomical info on linux:&l
 &lt;li&gt;&lt;a href=&#34;https://github.com/risacher/sunwait&#34;&gt;sunwait&lt;/a&gt; - sunrise/sunset calculator.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://9fans.github.io/plan9port/man/man1/astro.html&#34;&gt;plan9 astro(1)&lt;/a&gt; - astronomical info generator, largely exclusive to plan9.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&amp;rsquo;t fill.
-To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info
-in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but
-most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
+&lt;p&gt;As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&amp;rsquo;t fill. To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;
   &lt;a href=&#34;#how-easy-is-it-to-make-something-like-that&#34;&gt;#&lt;/a&gt;
   How easy is it to make something like that?
-&lt;/h1&gt;&lt;p&gt;Lets lessen the scope for a moment, to&amp;hellip; lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to
-get info about without revving up an awk interpreter to strip out text from other things,
-using inaccurate approximations, or curling information from the internet.&lt;/p&gt;
+&lt;/h1&gt;&lt;p&gt;Lets lessen the scope for a moment, to&amp;hellip; lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.&lt;/p&gt;
 &lt;p&gt;A year ago, I was looking at &lt;a href=&#34;https://github.com/chubin/pyphoon&#34;&gt;pyphoon&lt;/a&gt;,
-and found the &lt;a href=&#34;https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py&#34;&gt;astronomy code&lt;/a&gt; from it
-was a rewrite of C code written almost &lt;a href=&#34;https://www.fourmilab.ch/moontoolw/&#34;&gt;40 years ago&lt;/a&gt;.&lt;/p&gt;
+and found the &lt;a href=&#34;https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py&#34;&gt;astronomy code&lt;/a&gt; from it was a rewrite of C code written almost &lt;a href=&#34;https://www.fourmilab.ch/moontoolw/&#34;&gt;40 years ago&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Instead of dividing the current date by twenty-some days and working off the value that returns, this code
 could give accurate information about the phase of the moon centuries into the future and past. Along with
 information such as angular diameter and distance. And it could do that parsimoniously in around 400 lines
@@ -366,7 +358,7 @@ for a range of a few thousand years.&lt;/p&gt;
 &lt;p&gt;Not all these effects are worth accounting for to the level of picoarcseconds. Many are not worth accounting for at all in a
 parsimonious info generator. Some only matter for historical dates or dates far in the future. At the same time,
 there is a noticeable difference caused by parallax, refraction, and pertubation.&lt;/p&gt;
-&lt;p&gt;Correcting for precession, pertubation, refraction, and parallax gives results that are &amp;ldquo;good enough&amp;rdquo; for telescope pointing,
+&lt;p&gt;Correcting for precession, perturbation, refraction, and parallax gives results that are &amp;ldquo;good enough&amp;rdquo; for telescope pointing,
 observation scheduling, and most real-world uses.&lt;/p&gt;
 &lt;h1 id=&#34;alogrithms-and-plumbing&#34;&gt;
   &lt;a href=&#34;#alogrithms-and-plumbing&#34;&gt;#&lt;/a&gt;
@@ -401,10 +393,8 @@ Doing this entirely inside the command line with conventional tools is normally 
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&amp;hellip;).&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/SMVm.png&#34; alt=&#34;Inner Solar System Distance Graph&#34;&gt;&lt;/p&gt;
-&lt;p&gt;It is easy to see why mercury is the &lt;a href=&#34;https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/&#34;&gt;&amp;ldquo;mostest closest&amp;rdquo;&lt;/a&gt; with
-this graph. You can also see the slight eccentricity of earths, and Mercury&amp;rsquo;s orbit as wobble in the line of the sun, and a
-more substantial difference in the wave of Mercury&amp;rsquo;s orbit.&lt;/p&gt;
-&lt;p&gt;As for the complexity of this tool, it only took 1500 lines of rust (astronomical algorithms included), with 0-dependencies aside from std.
+&lt;p&gt;It is easy to see why Mercury is the &lt;a href=&#34;https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/&#34;&gt;&amp;ldquo;mostest closest&amp;rdquo;&lt;/a&gt; with this graph. You can also see the slight eccentricity of Earth&amp;rsquo;s, and Mercury&amp;rsquo;s orbit as wobble in the line of the sun, and a more substantial difference in the wave of Mercury&amp;rsquo;s orbit.&lt;/p&gt;
+&lt;p&gt;This tool only has 1500 lines of rust (astronomical algorithms included), with 0-dependencies aside from std.
 And the algorithms are universal enough to be rewritten to anything with trig functions and floating point math.&lt;/p&gt;
 &lt;p&gt;The ephemeris generator that came from this research: &lt;a href=&#34;https://github.com/oliverkwebb/deskephem&#34;&gt;deskephem&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
@@ -497,14 +487,14 @@ of the same type (arrays), or a list of aliases to a singular place in memory (&
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Unions are usually annotated with a tag of which alias is in use.
 Doing this in C requires explicit thought and attention, even though
-this behavior is needed in most contexts.&lt;/p&gt;
+this behaviour is needed in most contexts.&lt;/p&gt;
 &lt;p&gt;In this spirit, enumerations are interchangeable with integers.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {A, B, C} x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;630&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {D, E, F} y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; A;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;==&lt;/span&gt; D; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// True
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All of this allows for transparent memory management. The price paid is that it&amp;rsquo;s a lot harder to cleanly
 represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.&lt;/p&gt;
-&lt;p&gt;Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.&lt;/p&gt;
+&lt;p&gt;Instead of modelling data based purely on its representation in memory. We can model data types more abstractly and mathematically.&lt;/p&gt;
 &lt;h2 id=&#34;algebraic-description-of-types-adt&#34;&gt;
   &lt;a href=&#34;#algebraic-description-of-types-adt&#34;&gt;#&lt;/a&gt;
   Algebraic Description of Types (ADT)
@@ -631,9 +621,9 @@ And NTP correction are out of scope. This leaves:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;code&gt;time_t&lt;/code&gt; and &lt;code&gt;struct timespec&lt;/code&gt; are used almost exclusively in kernel-level functions. Whilst &lt;code&gt;struct tm&lt;/code&gt; is used
 almost exclusively with conversion of time to and from strings.&lt;/p&gt;
-&lt;h2 id=&#34;nanoseconds-floating-point-percision-and-the-y2262-problem&#34;&gt;
-  &lt;a href=&#34;#nanoseconds-floating-point-percision-and-the-y2262-problem&#34;&gt;#&lt;/a&gt;
-  Nanoseconds, Floating Point Percision, and the Y2262 problem
+&lt;h2 id=&#34;nanoseconds-floating-point-precision-and-the-y2262-problem&#34;&gt;
+  &lt;a href=&#34;#nanoseconds-floating-point-precision-and-the-y2262-problem&#34;&gt;#&lt;/a&gt;
+  Nanoseconds, Floating Point Precision, and the Y2262 problem
 &lt;/h2&gt;&lt;p&gt;It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
 It&amp;rsquo;d give &lt;code&gt;strftime&lt;/code&gt; and &lt;code&gt;strptime&lt;/code&gt; the ability to print milli/micro/nanoseconds. And it&amp;rsquo;d remove the need for
 the &lt;code&gt;timespec&lt;/code&gt; struct used in a lot of system-level time functions.&lt;/p&gt;
@@ -701,16 +691,15 @@ that 10&lt;sup&gt;-9&lt;/sup&gt; is actually around 2&lt;sup&gt;-29.8&lt;/sup&gt
 
 
 &lt;p&gt;Looking at this chart alone, 64 bit integers don&amp;rsquo;t seem much worse than long doubles, but keep in mind that
-Integers support &lt;em&gt;One percision&lt;/em&gt;, and there&amp;rsquo;s a trade off between resolution and the bounds of your epoch,
-Floating point values support &lt;em&gt;all percisions&lt;/em&gt;, there is no such trade off.&lt;/p&gt;
+Integers support &lt;em&gt;One precision&lt;/em&gt;, and there&amp;rsquo;s a trade off between resolution and the bounds of your epoch,
+Floating point values support &lt;em&gt;all precision&amp;rsquo;s&lt;/em&gt;, there is no such trade off.&lt;/p&gt;
 &lt;p&gt;For this reason, &lt;code&gt;date_t&lt;/code&gt; is a long double floating point value of seconds since the epoch.&lt;/p&gt;
 &lt;h2 id=&#34;broken-down-time&#34;&gt;
   &lt;a href=&#34;#broken-down-time&#34;&gt;#&lt;/a&gt;
   &amp;ldquo;Broken Down Time&amp;rdquo;
 &lt;/h2&gt;&lt;p&gt;Now that we have a base time type, there needs to be some way to convert between
 human friendly to machine friendly values. I.e. getting the year, month and day.
-In the spirit of &amp;ldquo;100 functions for 10 datastructures vs. 10 functions for 1 datastructure&amp;rdquo;,
-Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time values, it will use &lt;code&gt;date_t&lt;/code&gt;.&lt;/p&gt;
+In the spirit of &amp;ldquo;100 functions for 10 data structures vs. 10 functions for 1 data structure&amp;rdquo;, Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time values, it will use &lt;code&gt;date_t&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The way this is done in C is with &lt;code&gt;struct tm&lt;/code&gt; , which has many problems.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;almost always handled in statically allocated pointers that get overwritten (&lt;code&gt;gmtime()&lt;/code&gt;)&lt;/li&gt;
@@ -1174,7 +1163,7 @@ code (i.e. &lt;code&gt;int main(){}&lt;/code&gt;), GNU true is &lt;a href=&#34;h
 &lt;p&gt;Many GNU libraries such as &lt;a href=&#34;https://stackoverflow.com/questions/57476533/why-is-statically-linking-glibc-discouraged&#34;&gt;glibc&lt;/a&gt; and &lt;a href=&#34;https://bugzilla.gnome.org/show_bug.cgi?id=768215#c16&#34;&gt;glib&lt;/a&gt; do not support static linking for no good reason&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I could point out more examples, but the message is conveyed that where a programmer might need 10 lines of code to do a job, a GNU programmer would need 100. I have yet to find someone who favors the GNU syntax style. And GNU code is filled with ifdefs, unneeded indirection and complexity, etc (read some yourself, pick a GNU project, any GNU project).&lt;/p&gt;
+&lt;p&gt;I could point out more examples, but the message is conveyed that where a programmer might need 10 lines of code to do a job, a GNU programmer would need 100. I have yet to find someone who favours the GNU syntax style. And GNU code is filled with ifdefs, unneeded indirection and complexity, etc (read some yourself, pick a GNU project, any GNU project).&lt;/p&gt;
 &lt;h2 id=&#34;6-gnus-obsession-with-portability-adds-copius-amounts-of-complexity-and-helps-no-one&#34;&gt;
   &lt;a href=&#34;#6-gnus-obsession-with-portability-adds-copius-amounts-of-complexity-and-helps-no-one&#34;&gt;#&lt;/a&gt;
   6. GNUs obsession with portability adds copius amounts of complexity and helps no one
@@ -1186,7 +1175,7 @@ out now, set &lt;code&gt;TERM=vt100&lt;/code&gt; and run some ncurses programs).
 standardized since ANSI escape codes.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;The &lt;code&gt;reset&lt;/code&gt; command waits one second to support &lt;a href=&#34;https://unix.stackexchange.com/questions/335648/why-does-the-reset-command-include-a-delay&#34;&gt;physical terminals&lt;/a&gt; that fell out of favor for emulated ones in the early 90&amp;rsquo;s. It does not contain a check for whether or not the terminal is emulated, and will sleep regardless.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;reset&lt;/code&gt; command waits one second to support &lt;a href=&#34;https://unix.stackexchange.com/questions/335648/why-does-the-reset-command-include-a-delay&#34;&gt;physical terminals&lt;/a&gt; that fell out of favour for emulated ones in the early 90&amp;rsquo;s. It does not contain a check for whether or not the terminal is emulated, and will sleep regardless.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Portability concerns for &amp;ldquo;old versions of csh on System V&amp;rdquo; are &lt;a href=&#34;https://www.gnu.org/software/bash/manual/bash.html#Installing-Bash&#34;&gt;still included in the bash manual&lt;/a&gt;, and the autotools still check for portability concerns from the &amp;rsquo;80s and &amp;rsquo;90s&lt;/p&gt;
@@ -1218,9 +1207,9 @@ spread proprietary software in the same way that MINIX became the infrastructure
 conceptually supposed to prevent. The days of codesharing between open-source code without checking the license to make sure it isn&amp;rsquo;t illegal to do so are gone.&lt;/p&gt;
 &lt;p&gt;A benefit of open source over proprietary software is &lt;a href=&#34;https://www.catb.org/~esr/writings/taoup/html/ch16s01.html&#34;&gt;code-sharing between projects&lt;/a&gt;. And this isn&amp;rsquo;t as effective when there are multiple incompatible open
 source licenses that can&amp;rsquo;t legally share code.&lt;/p&gt;
-&lt;h2 id=&#34;8-gnu-pushes-incecently-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;
-  &lt;a href=&#34;#8-gnu-pushes-incecently-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;#&lt;/a&gt;
-  8. GNU pushes incecently for texinfo, a format no one likes or uses.
+&lt;h2 id=&#34;8-gnu-pushes-incessantly-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;
+  &lt;a href=&#34;#8-gnu-pushes-incessantly-for-texinfo-a-format-no-one-likes-or-uses&#34;&gt;#&lt;/a&gt;
+  8. GNU pushes incessantly for texinfo, a format no one likes or uses.
 &lt;/h2&gt;&lt;p&gt;GNU info was designed to solve a problem nobody had, and in their push for it they made man pages &lt;a href=&#34;https://www.youtube.com/watch?v=rGSZFmQuQrU&#34;&gt;worse&lt;/a&gt;, which did create a problem, and when people who didn&amp;rsquo;t wanna use GNU info, they created their &lt;a href=&#34;https://cheat.sh&#34;&gt;own solutions&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;GNU info is not portable to other operating systems like man pages, nor well used even by most GNU projects,
 nor is the browser you need to get a benefit out of its format pleasant to use. Nor is it liked even within the GNU project.
@@ -1437,7 +1426,7 @@ prefix to all items in a list with the addprefix function, or the wildcard
 function to get all items and put them in a list. Functions are specified in
 variable definitions and arguments are separated by commas. So that evaluating
 &lt;code&gt;$(addprefix 123, a b c)&lt;/code&gt; will return &amp;ldquo;123a 123b 123c&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;Since the problem of turning markdown files into html files is similar to the
+&lt;p&gt;Since the problem of turning markdown files into HTML files is similar to the
 problem of turning source files into object files, we can create a simple rule
 that does 99% of our work.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
