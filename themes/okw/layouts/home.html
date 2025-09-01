@@ -7,8 +7,8 @@
 	<div class="info">
 	<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02 2006" }}</time> &ndash; {{ .FuzzyWordCount }} Words
 	</div>
-	{{ if .Params.isgraphic }}
-   	<img class="image" src="{{ .Params.imagesource }}" width="40%">
+	{{ if .Params.coverart }}
+   	<img class="image" src="{{ .Params.coverart }}" width="40%">
    	{{ end }}
 </li>
 {{- end }}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Implementing an Efficient Malloc in 50 Lines of C | Oliver Webb</title>
+	<link rel="canonical" href="https://oliverkwebb.github.io/">
+	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+<nav>
+	<a href="/">Oliver Webb</a>
+</nav>
+<main>
+<header><h1 id="tag_Implementing an efficient malloc in 50 lines of C">Implementing an efficient malloc in 50 lines of C</h1></header>
+<article>
+
+<p><img src="/graph/mallocdia.png" alt="A graph explaining the structure of a malloc implementation"></p>
+<p>The smallest C libraries will <a href="https://github.com/torvalds/linux/blob/master/tools/include/nolibc/stdlib.h#L127">just mmap each allocation, storing the length immediately before</a> and <a href="https://github.com/torvalds/linux/blob/master/tools/include/nolibc/stdlib.h#L92">assume any value passed to free is valid</a>. But this leaves plenty of room for optimization and correctness.</p>
+<p>The way libc&rsquo;s typically keep track of allocations is with a linked list or other data structure, keeping multiple small allocations on the same page.</p>
+<p>This brings the question:</p>
+<blockquote>
+<p>In linux on x86_64, how can you implement a correct (standards compliant) <code>malloc()</code> and <code>free()</code> in as little code as possible, whilst still optimizing to some extent?</p></blockquote>
+
+
+</article>
+</main>
+<hr/>
+<footer>
+  <div id="nextprev">
+		<a href="/articles/generalizedprintf/" class="prev">← Generalizing printf in C</a>
+	</div>
+	<br/>
+<p id="taglist">
+	Tags:
+	
+    <a href="/tags/programming">Programming</a>
+  
+	</p>
+<p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
+  <p>The text of <a href="https://oliverkwebb.github.io/">this site</a> by &#xa9; 2025 Oliver Webb is licensed under
+  <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+
+</body>
+</html>

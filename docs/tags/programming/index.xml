@@ -3,6 +3,17 @@
 <link>https://oliverkwebb.github.io/tags/programming/</link>
 <language>en-us</language>
 
+	<item><title>Implementing an efficient malloc in 50 lines of C</title>
+	<link>https://oliverkwebb.github.io/articles/mymalloc/</link>
+	<pubDate>Sun, 31 Aug 2025 00:00:00 &#43;0000</pubDate>
+	<description>&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/mallocdia.png&#34; alt=&#34;A graph explaining the structure of a malloc implementation&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The smallest C libraries will &lt;a href=&#34;https://github.com/torvalds/linux/blob/master/tools/include/nolibc/stdlib.h#L127&#34;&gt;just mmap each allocation, storing the length immediately before&lt;/a&gt; and &lt;a href=&#34;https://github.com/torvalds/linux/blob/master/tools/include/nolibc/stdlib.h#L92&#34;&gt;assume any value passed to free is valid&lt;/a&gt;. But this leaves plenty of room for optimization and correctness.&lt;/p&gt;
+&lt;p&gt;The way libc&amp;rsquo;s typically keep track of allocations is with a linked list or other data structure, keeping multiple small allocations on the same page.&lt;/p&gt;
+&lt;p&gt;This brings the question:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In linux on x86_64, how can you implement a correct (standards compliant) &lt;code&gt;malloc()&lt;/code&gt; and &lt;code&gt;free()&lt;/code&gt; in as little code as possible, whilst still optimizing to some extent?&lt;/p&gt;&lt;/blockquote&gt;
+</description></item>
+
 	<item><title>Generalizing printf in C</title>
 	<link>https://oliverkwebb.github.io/articles/generalizedprintf/</link>
 	<pubDate>Wed, 20 Aug 2025 10:25:12 -0500</pubDate>
