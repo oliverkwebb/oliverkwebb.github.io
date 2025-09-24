@@ -15,6 +15,10 @@ Computer Scientist | 16 y/o | Any/All
 
 [chmodcalc<br> 🕵️](https://webb.is-a.dev/chmodcalc/)
 
+[moonphase<br>🌖](https://webb.is-a.dev/moonphase/)
+
+[spinnyglobe<br>🌍](https://webb.is-a.dev/spinnyglobe/)
+
 </div>
 
 (Other various trinkets and technical diagrams can be found interspersed in my articles.)
