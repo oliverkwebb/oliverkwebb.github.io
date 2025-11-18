@@ -1,6 +1,0 @@
-digraph tzset {
- bgcolor="#00000000"
- "$TZ" -> tzset [label="Timezone"];
- tzset -> localtime [label="Good info"];
- tzset -> "tzname, timezone, daylight" [label="Bad (constant) info"];
-}

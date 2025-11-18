@@ -11,7 +11,8 @@
 &lt;p&gt;The way libc&amp;rsquo;s typically keep track of allocations is with a linked list or other data structure, keeping multiple small allocations on the same page.&lt;/p&gt;
 &lt;p&gt;This brings the question:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;In linux on x86_64, how can you implement a correct (standards compliant) &lt;code&gt;malloc()&lt;/code&gt; and &lt;code&gt;free()&lt;/code&gt; in as little code as possible, whilst still optimizing to some extent?&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;In linux on x86_64, how can you implement a correct (standards compliant) &lt;code&gt;malloc()&lt;/code&gt; and &lt;code&gt;free()&lt;/code&gt; in as little code as possible, whilst still optimizing to some extent?&lt;/p&gt;
+&lt;/blockquote&gt;
 </description></item>
 
 	<item><title>Generalizing printf in C</title>
@@ -188,7 +189,7 @@ along its circumference?&lt;/p&gt;
 from here &lt;code&gt;crd&lt;/code&gt; (&lt;code&gt;2*sin(0.5*x)&lt;/code&gt;) can do the work trivially.&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;circle-sec&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/circle-sec.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/circle-sec.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Extending this problem into 2d, what can we do?&lt;/p&gt;
 &lt;p&gt;Well, any two points on a sphere form a great circle. This immediately reduces the problem back into the first 2d one.
@@ -198,7 +199,7 @@ We can get the angle between the two points on the great circle using:&lt;/p&gt;
 through the earth between any two coordinates.&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;sphere-sec&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/sphere-sec.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/sphere-sec.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;h1 id=&#34;how-does-this-relate-to-astronomy&#34;&gt;
   &lt;a href=&#34;#how-does-this-relate-to-astronomy&#34;&gt;#&lt;/a&gt;
@@ -416,7 +417,7 @@ And the algorithms are universal enough to be rewritten to anything with trig fu
 	<description>&lt;p&gt;The time of day as an idea needs no introduction.&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;current-time&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;But what does it &lt;em&gt;represent&lt;/em&gt;, really? Well, it represents a fraction of a rotation (the Earth&amp;rsquo;s), which makes it an Angle.&lt;/p&gt;
 &lt;p&gt;In many astronomical calculations, angles are represented as time to make certain conversions easier. For example,
@@ -431,7 +432,7 @@ how much the celestial sphere has rotated in comparison to the prime meridian.&l
   The 360 hour clock, the 2π hour clock, and the 1 hour clock&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
 &lt;/h1&gt;&lt;div style=&#34;width: 100%&#34; id=&#34;current-time-angle&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time-angle.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time-angle.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;In 4 minutes, the earth rotates 1 degree around its axis, and in about 4 hours, it rotates one radian.
 This is useful since it can give a vague idea of how much objects will move in the sky. The sun takes
@@ -449,7 +450,7 @@ results that are interesting, but don&amp;rsquo;t deserve much cometary.&lt;/p&g
 &lt;/h1&gt;&lt;p&gt;Why radians? To take trig functions, of course!&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;tangent-of-time&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/tangent-of-time.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/tangent-of-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Whilst taking trig functions on your coordinates can yield interesting results
 (the cosine of your latitude is how long your line of latitude is, compared to the equator).
@@ -1092,17 +1093,20 @@ because:&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;From &lt;a href=&#34;https://www.gnu.org/gnu/linux-and-gnu.html&#34;&gt;https://www.gnu.org/gnu/linux-and-gnu.html&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
-What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;&lt;/blockquote&gt;
+What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;In Linus&amp;rsquo;s book &lt;em&gt;&lt;a href=&#34;https://books.google.com/books/about/Just_for_Fun.html?id=Q3aIPwAACAAJ&#34;&gt;Just For Fun&lt;/a&gt;&lt;/em&gt;, the GNU project plays little to no role in the creation of Linux.
 Linux grew out of comp.os.minix, not anything related to the FSF or GNU project. Additionally, The FSF was
 still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
 &lt;p&gt;From &lt;em&gt;&lt;a href=&#34;https://web.archive.org/web/19980126191050/http://www.gnu.org/software/hurd/hurd-and-linux.html&#34;&gt;The Hurd and Linux (1997)&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;The FSF&amp;rsquo;s push for hurd died out sometime in the early 2000&amp;rsquo;s, when Linux was commonplace and Hurd was completely abandoned.&lt;/p&gt;
 &lt;p&gt;From &lt;a href=&#34;https://karmak.org/archive/2003/01/12-14-99.epl.html&#34;&gt;A interview with RMS in 99&amp;rsquo;&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;
   &lt;a href=&#34;#2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;#&lt;/a&gt;
   2. For years, the GNU project was not directly maintaining most of their popular projects
@@ -1128,7 +1132,8 @@ intentionally kept it back from being so.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Anything that makes it easier to use GCC back ends without GCC front
 ends&amp;ndash;or simply brings GCC a big step closer to a form that would make
 such usage easy&amp;ndash;would endanger our leverage for causing new front
-ends to be free.&lt;/p&gt;&lt;/blockquote&gt;
+ends to be free.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;The FSF is a political movement that engages in intentional obfuscation to spread itself.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;
   &lt;a href=&#34;#4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;#&lt;/a&gt;

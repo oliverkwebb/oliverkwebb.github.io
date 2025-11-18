@@ -54,10 +54,8 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 <div class="userboxes">
 
-[![cpli's Userbox](/88x31/cpli.gif)](https://cpli.dev/)
 [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 [![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
-[![Bunbun's Userbox](https://bunbun.dev/assets/88x31s/bunbun.dev.gif)](https://bunbun.dev/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
 [![Natalieee's Userbox](https://natalieee.net/assets/88x31/natalieee.net.png)](https://natalieee.net/)
 <a href="https://creativecommons.org/licenses/by/4.0/">
