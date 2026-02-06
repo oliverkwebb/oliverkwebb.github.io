@@ -1,32 +1,26 @@
 ---
 Title: Making A static site generator with `make`
-tags: ['Programming']
+tags: ["Programming"]
 Date: 2024-04-13
 ---
-When making my website, generating static webpages for
-my blogs and articles was a big concern. I want to be able
-to manipulate templates and sytlesheets easily and have that
-translate to my articles and content. HTML, to put it simply,
-sucks for this work.
 
-The solution is static site generation, which is analogous to
-ahead of time compilation. There are a variety of tools that
-can be used for this. [Jekyll][1] is the one GitHub endorses,
-the problem I have with that is that it is written in Ruby,
-which means that I'd have to pull in megabytes of extra
-dependencies and slow the building process down for something
-that ultimately takes away control from me.
+There are a variety of tools that can be used for static site generation,
+which is analogous to ahead of time compilation. [Jekyll][1] is
+the one GitHub endorses, the problem I have with that is that
+it is written in Ruby, which means that I'd have to pull in
+megabytes of extra dependencies and slow the building process
+down for something that ultimately takes away control from me.
 
 What I need is something that is efficient, customizable, and
 fast. And above all, simplistic. This is where `make` comes into
 the picture.
 
-`make` takes a "makefile" with a list of rules. Each rule has a
-list of commands to run. And you can do `make rule` to run the
-commands in that rule. If you specify a list of rules, it will
-run all those rules, if you specify no rules, it will run the
-first rule specified in the makefile (commonly, this rule is
-called "all")
+`make` reads a "makefile" that contains a list of rules. Each rule has a
+list of commands to run. On the command line, you can run `make rule`
+to execute the commands in that rule. If you specify multiple rules for
+make to run in the command line, it will run all of those rules, if you
+specify no rules, it will run the first rule defined in the makefile
+(commonly, this rule is called "all")
 
 ```text
 $ cat Makefile
@@ -41,9 +35,9 @@ echo foo
 foo
 ```
 
-Make will list the commands it runs as it runs them, and will
+Make will print the commands it runs as it executes them, and will
 abort if a command returns non-zero. Printing the command it
-runs can be disabled by placing `@` at the start of the command.
+executes can be disabled by placing `@` at the start of the command.
 And aborting on failure of a command can be disabled by placing `-`
 at the start of the command
 
@@ -61,27 +55,28 @@ $ make baz foo BAR=abc
 abc 123
 ```
 
-This allows for macros and the quick running of commands without manually typing
-in the build commands. But this is not where the true magic of make is.
+This allows for macros and quickly running commands without manually typing
+in the build commands. But this is not the main reason why make is useful.
 
 A rule is not just a name for a macro that you type in on the command line,
 it is a pattern. And more importantly, it is a filename unless said otherwise.
-You can also specify prerequisites for running a rule. So you can say `a: b c`,
-which means that rule b and c have to run before a. You can specify that a
-rule is not a filename by putting a line that says `.PHONY: [rule1] [rule2]`.
-This means that `rule1` and `rule2` will always run when called.
+You can specify prerequisites for running a rule. So in your makefile you can
+write `a: b c`, which means that rule b and c have to run before a. You can
+define that a rule is not a filename by defining a "phony" rule,
+`.PHONY: [rule1] [rule2] ...`. means that `rule1` and `rule2` will
+always run when called.
 
 Finally, if a rule:
 
-1. Is an existing file
-3. Has prerequisite rules that are all files
-4. All prerequisite files "last changed" date are older than the main file's
+1. Is the name of an existing file
+2. Has prerequisite rules that are all files
+3. All prerequisite files "last changed" date are older than the main file's
 
-The rule is considered completed, and any commands from it are not ran.
+The rule is considered completed, and no commands from it are ran.
 
-This makes AOT compilation with object files much faster. Since you can
-change one file, and it will detect that all the other "object files" are newer
-then their respective source files *except* the one you have changed. And it
+This makes ahead of time compilation with object files much faster. Since you can
+change one file, and it will detect that the other "object files" are newer
+then their respective source files _except_ the one you have changed. And it
 will automatically build only that changed file.
 
 But having a rule for each source file seems excessive, right? This is why rules
@@ -99,14 +94,16 @@ the pattern.
     $(CC) $(CFLAGS) $< -o $@
 ```
 
-If you run `make main.o`, it will detect that "main.o" matches the pattern
-rule "%.o", next it will check if the file "main.c" is there. If it is not and
-there is no rule that matches "main.c", it will not know what to do and fail.
-Otherwise, if the file "main.c" is older than the file "main.o", it will assume
-no changes have been made and there is therefore nothing to be done. Then, it
-will run the build command, refereeing to the variable CC (By default "c99"),
-passing in the flags CFLAGS, and running this on the prerequisite files name
-"main.c" outputting to our rule name, the file "main.o".
+If you run `make main.o`, make will:
+
+- Detect that "main.o" matches the pattern rule "%.o"
+- Check if the file "main.c" is there.
+  - If it is not and there is no rule that matches "main.c", it will not know what to do and will fail.
+- Check the modification dates of the files "main.c" and "main.o"
+  - If the file "main.c" is older than the file "main.o", it will assume no changes have been made and there is therefore nothing to be done.
+- Execute the build command, referring to the variable CC (By default "c99"),
+  passing in the flags CFLAGS, and running this on the prerequisite files name
+  "main.c" outputting to our rule name, the file "main.o".
 
 This is the essence of `make`'s functionality, and is the useful stuff POSIX
 specifies. But there are other things in GNU make, like the ability to add a
@@ -162,14 +159,13 @@ $(DIST)/%.html: pages/%.md
     cat $(TEMPLATES)/end.html >> $@
 ```
 
-If you want to add a conditional generation step for the index, you
-can put a `if [ $@ = $(DIST)/index.html ]; then ./gen >> $@; fi` rule in
-your main rule. You can add almost infinite customization to this with
-conditionals or extra rules.
+From here, as much customization as is desired can be added through conditionals,
+rules, variables, and shell scripts.
 
 Additional Resources:
-* [GNU make manual](https://www.gnu.org/software/make/manual/make.pdf)
-* [blogit, another makefile based SSG](https://pedantic.software/git/blogit)
+
+- [GNU make manual](https://www.gnu.org/software/make/manual/make.pdf)
+- [blogit, another makefile based SSG](https://pedantic.software/git/blogit)
 
 [1]: https://jekyllrb.com/
 [2]: https://man7.org/linux/man-pages/man7/environ.7.html

@@ -70,7 +70,6 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 [soph.systems](https://soph.systems/) |
 [okash.it](https://okash.it/) |
 [leahneukirchen.org](https://leahneukirchen.org/) |
-[zougloub.eu](https://zougloub.eu/) |
-[flisk.xyz](https://flisk.xyz/)
+[zougloub.eu](https://zougloub.eu/)
 
 <div>

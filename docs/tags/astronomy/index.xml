@@ -3,6 +3,25 @@
 <link>https://oliverkwebb.github.io/tags/astronomy/</link>
 <language>en-us</language>
 
+	<item><title>The lack of information-density is crazy</title>
+	<link>https://oliverkwebb.github.io/articles/info_dense/</link>
+	<pubDate>Thu, 05 Feb 2026 16:54:29 -0600</pubDate>
+	<description>&lt;p&gt;The following is from the CachyOS homepage:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CachyOS is designed to deliver lightning-fast speeds and stability, ensuring a smooth and enjoyable computing experience every time you use it. Whether you&amp;rsquo;re a seasoned Linux user or just starting out, CachyOS is the ideal choice for those looking for a powerful, customizable and blazingly fast operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This block of text tells me nothing. No information can be extracted from this. I know exactly as much about CachyOS after reading this than I did before. The litmus test for this is seeing if another, different project would deny any claim made by the offending text.&lt;/p&gt;
+&lt;p&gt;Here is the pitch for the Operating System CachyOS contrasts itself with:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;NotCachyOS&lt;/em&gt; is designed to deliver crawling-slow lag and instability, ensuring a rough and miserable computing experience every time you use it. Whether you&amp;rsquo;re a seasoned Linux user or just starting out, &lt;em&gt;NotCachyOS&lt;/em&gt; is the ideal choice for those looking for a heavily restricted and extremely slow operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;CachyOS does have legitimate benefits and selling points, kernel-level fine tuning for speed being the main one, and it does describe them later on in the page, which makes the lack of information in their introduction even more confusing to me. This introduction could be written in a way that tells me what makes it different:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CachyOS is designed for speed by optimizing its core packages with BORE scheduling and LTO that drastically increase performance. Harnessing the full power of modern machines. Its GUI live-images will make using CachyOS enjoyable for all types of linux users, beginner or experienced, looking for a preformant and customizable operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is still marketing-copy, using description as a mechanism for advertisement, but it is geared towards people who would actually want to use CachyOS, it tells someone why they would want to use the operating system by showing how it is different from other ones.&lt;/p&gt;
+</description></item>
+
 	<item><title>Implementing an efficient malloc in 50 lines of C</title>
 	<link>https://oliverkwebb.github.io/articles/mymalloc/</link>
 	<pubDate>Sun, 31 Aug 2025 00:00:00 &#43;0000</pubDate>
@@ -503,7 +522,7 @@ represent data with C. The programmer has to be constantly paranoid about invali
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Boolean&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;True,&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;False,&lt;span style=&#34;color:#6e7681&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The mathematical notation for type theory often works with the number of terms in the type. For example, the boolean type is commonly
 called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
 &lt;p&gt;We can combine types into larger types using product and sum types.&lt;/p&gt;
@@ -512,13 +531,13 @@ called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Person&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Name(String),&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Age(&lt;span style=&#34;color:#ff7b72&#34;&gt;u32&lt;/span&gt;),&lt;span style=&#34;color:#6e7681&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The number of terms in a product type is equal to the &lt;strong&gt;product&lt;/strong&gt; of the number of terms in the two combining types.&lt;/p&gt;
 &lt;p&gt;A sum type is analogous to a tagged union, representing &lt;em&gt;either&lt;/em&gt; one value or another.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Response&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Succ(&lt;span style=&#34;color:#ff7b72&#34;&gt;u32&lt;/span&gt;),&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Error,&lt;span style=&#34;color:#6e7681&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The number of terms in a sum type is equal to the sum of the terms in the combining types.&lt;/p&gt;
 &lt;p&gt;Types that represent functions with one argument are also possible, reducing down to the exponentiation.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/functype.png&#34; alt=&#34;The Function Type&#34;&gt;&lt;/p&gt;
@@ -557,7 +576,7 @@ decades.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;time.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; buf[&lt;span style=&#34;color:#a5d6ff&#34;&gt;40&lt;/span&gt;];
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ff7b72&#34;&gt;time_t&lt;/span&gt; now &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;time&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;);
@@ -712,13 +731,13 @@ In the spirit of &amp;ldquo;100 functions for 10 data structures vs. 10 function
 &lt;p&gt;Creating our own calendar structure to fix these problems:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint32_t&lt;/span&gt; nsec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..1E9
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   sec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..60
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   min; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..59
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;  hour; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..23
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   day; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..30
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt; month; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..11
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;   year; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Since Epoch
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   sec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..60
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   min; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..59
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;  hour; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..23
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   day; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..30
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt; month; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..11
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;   year; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Since Epoch
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With 4 functions to handle them:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tocal&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;wdayof&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
@@ -761,11 +780,11 @@ therefore it must be the users job to free it)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Creating three base functions and two convenience functions to work with:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tzoffat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Seconds east of UTC
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt;   &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tznameat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt;   &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tznameat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;mytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;intz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// d+tzoffat(d, tz)
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;inmytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);           &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// intz(d, mytz())
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;inmytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);           &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// intz(d, mytz())
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;why-weekdays-in-the-time-structure-are-bad&#34;&gt;
   &lt;a href=&#34;#why-weekdays-in-the-time-structure-are-bad&#34;&gt;#&lt;/a&gt;
   Why weekdays in the time structure are bad
@@ -1342,27 +1361,21 @@ versatile.&lt;/p&gt;
 	<item><title>Making A static site generator with `make`</title>
 	<link>https://oliverkwebb.github.io/articles/makessg/</link>
 	<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
-	<description>&lt;p&gt;When making my website, generating static webpages for
-my blogs and articles was a big concern. I want to be able
-to manipulate templates and sytlesheets easily and have that
-translate to my articles and content. HTML, to put it simply,
-sucks for this work.&lt;/p&gt;
-&lt;p&gt;The solution is static site generation, which is analogous to
-ahead of time compilation. There are a variety of tools that
-can be used for this. &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; is the one GitHub endorses,
-the problem I have with that is that it is written in Ruby,
-which means that I&amp;rsquo;d have to pull in megabytes of extra
-dependencies and slow the building process down for something
-that ultimately takes away control from me.&lt;/p&gt;
+	<description>&lt;p&gt;There are a variety of tools that can be used for static site generation,
+which is analogous to ahead of time compilation. &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; is
+the one GitHub endorses, the problem I have with that is that
+it is written in Ruby, which means that I&amp;rsquo;d have to pull in
+megabytes of extra dependencies and slow the building process
+down for something that ultimately takes away control from me.&lt;/p&gt;
 &lt;p&gt;What I need is something that is efficient, customizable, and
 fast. And above all, simplistic. This is where &lt;code&gt;make&lt;/code&gt; comes into
 the picture.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;make&lt;/code&gt; takes a &amp;ldquo;makefile&amp;rdquo; with a list of rules. Each rule has a
-list of commands to run. And you can do &lt;code&gt;make rule&lt;/code&gt; to run the
-commands in that rule. If you specify a list of rules, it will
-run all those rules, if you specify no rules, it will run the
-first rule specified in the makefile (commonly, this rule is
-called &amp;ldquo;all&amp;rdquo;)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;make&lt;/code&gt; reads a &amp;ldquo;makefile&amp;rdquo; that contains a list of rules. Each rule has a
+list of commands to run. On the command line, you can run &lt;code&gt;make rule&lt;/code&gt;
+to execute the commands in that rule. If you specify multiple rules for
+make to run in the command line, it will run all of those rules, if you
+specify no rules, it will run the first rule defined in the makefile
+(commonly, this rule is called &amp;ldquo;all&amp;rdquo;)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo bar
@@ -1373,9 +1386,9 @@ called &amp;ldquo;all&amp;rdquo;)&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bar
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo foo
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Make will list the commands it runs as it runs them, and will
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Make will print the commands it runs as it executes them, and will
 abort if a command returns non-zero. Printing the command it
-runs can be disabled by placing &lt;code&gt;@&lt;/code&gt; at the start of the command.
+executes can be disabled by placing &lt;code&gt;@&lt;/code&gt; at the start of the command.
 And aborting on failure of a command can be disabled by placing &lt;code&gt;-&lt;/code&gt;
 at the start of the command&lt;/p&gt;
 &lt;p&gt;Additionally, you can refer to &lt;a href=&#34;https://man7.org/linux/man-pages/man7/environ.7.html&#34;&gt;environment variables&lt;/a&gt; in your makefile,
@@ -1388,23 +1401,24 @@ and assign them on the command line or in your makefile.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -false
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ make baz foo BAR=abc
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;abc 123
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This allows for macros and the quick running of commands without manually typing
-in the build commands. But this is not where the true magic of make is.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This allows for macros and quickly running commands without manually typing
+in the build commands. But this is not the main reason why make is useful.&lt;/p&gt;
 &lt;p&gt;A rule is not just a name for a macro that you type in on the command line,
 it is a pattern. And more importantly, it is a filename unless said otherwise.
-You can also specify prerequisites for running a rule. So you can say &lt;code&gt;a: b c&lt;/code&gt;,
-which means that rule b and c have to run before a. You can specify that a
-rule is not a filename by putting a line that says &lt;code&gt;.PHONY: [rule1] [rule2]&lt;/code&gt;.
-This means that &lt;code&gt;rule1&lt;/code&gt; and &lt;code&gt;rule2&lt;/code&gt; will always run when called.&lt;/p&gt;
+You can specify prerequisites for running a rule. So in your makefile you can
+write &lt;code&gt;a: b c&lt;/code&gt;, which means that rule b and c have to run before a. You can
+define that a rule is not a filename by defining a &amp;ldquo;phony&amp;rdquo; rule,
+&lt;code&gt;.PHONY: [rule1] [rule2] ...&lt;/code&gt;. means that &lt;code&gt;rule1&lt;/code&gt; and &lt;code&gt;rule2&lt;/code&gt; will
+always run when called.&lt;/p&gt;
 &lt;p&gt;Finally, if a rule:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Is an existing file&lt;/li&gt;
+&lt;li&gt;Is the name of an existing file&lt;/li&gt;
 &lt;li&gt;Has prerequisite rules that are all files&lt;/li&gt;
 &lt;li&gt;All prerequisite files &amp;ldquo;last changed&amp;rdquo; date are older than the main file&amp;rsquo;s&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The rule is considered completed, and any commands from it are not ran.&lt;/p&gt;
-&lt;p&gt;This makes AOT compilation with object files much faster. Since you can
-change one file, and it will detect that all the other &amp;ldquo;object files&amp;rdquo; are newer
+&lt;p&gt;The rule is considered completed, and no commands from it are ran.&lt;/p&gt;
+&lt;p&gt;This makes ahead of time compilation with object files much faster. Since you can
+change one file, and it will detect that the other &amp;ldquo;object files&amp;rdquo; are newer
 then their respective source files &lt;em&gt;except&lt;/em&gt; the one you have changed. And it
 will automatically build only that changed file.&lt;/p&gt;
 &lt;p&gt;But having a rule for each source file seems excessive, right? This is why rules
@@ -1417,14 +1431,23 @@ not the pattern that the specified rule matched, it is the rule that matched
 the pattern.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.o&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.c
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;CFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; -o &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you run &lt;code&gt;make main.o&lt;/code&gt;, it will detect that &amp;ldquo;main.o&amp;rdquo; matches the pattern
-rule &amp;ldquo;%.o&amp;rdquo;, next it will check if the file &amp;ldquo;main.c&amp;rdquo; is there. If it is not and
-there is no rule that matches &amp;ldquo;main.c&amp;rdquo;, it will not know what to do and fail.
-Otherwise, if the file &amp;ldquo;main.c&amp;rdquo; is older than the file &amp;ldquo;main.o&amp;rdquo;, it will assume
-no changes have been made and there is therefore nothing to be done. Then, it
-will run the build command, refereeing to the variable CC (By default &amp;ldquo;c99&amp;rdquo;),
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you run &lt;code&gt;make main.o&lt;/code&gt;, make will:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Detect that &amp;ldquo;main.o&amp;rdquo; matches the pattern rule &amp;ldquo;%.o&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Check if the file &amp;ldquo;main.c&amp;rdquo; is there.
+&lt;ul&gt;
+&lt;li&gt;If it is not and there is no rule that matches &amp;ldquo;main.c&amp;rdquo;, it will not know what to do and will fail.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check the modification dates of the files &amp;ldquo;main.c&amp;rdquo; and &amp;ldquo;main.o&amp;rdquo;
+&lt;ul&gt;
+&lt;li&gt;If the file &amp;ldquo;main.c&amp;rdquo; is older than the file &amp;ldquo;main.o&amp;rdquo;, it will assume no changes have been made and there is therefore nothing to be done.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Execute the build command, referring to the variable CC (By default &amp;ldquo;c99&amp;rdquo;),
 passing in the flags CFLAGS, and running this on the prerequisite files name
-&amp;ldquo;main.c&amp;rdquo; outputting to our rule name, the file &amp;ldquo;main.o&amp;rdquo;.&lt;/p&gt;
+&amp;ldquo;main.c&amp;rdquo; outputting to our rule name, the file &amp;ldquo;main.o&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;This is the essence of &lt;code&gt;make&lt;/code&gt;&amp;rsquo;s functionality, and is the useful stuff POSIX
 specifies. But there are other things in GNU make, like the ability to add a
 prefix to all items in a list with the addprefix function, or the wildcard
@@ -1459,16 +1482,14 @@ with .html ones, and adding the prefix &lt;code&gt;$(DIST)&lt;/code&gt;&lt;/p&gt
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;PDEST&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;addprefix &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;DIST&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/, &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;patsubst %.md, %.html, &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;PAGES&lt;span style=&#34;color:#ff7b72&#34;&gt;)))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ${VAR} breaks down VAR into a list of rules
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;all&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; ${PDEST}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;all&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; ${PDEST}
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;$(DIST)/%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; pages/%.md
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/begin.html &amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MARKDOWN&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MDFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/end.html &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you want to add a conditional generation step for the index, you
-can put a &lt;code&gt;if [ $@ = $(DIST)/index.html ]; then ./gen &amp;gt;&amp;gt; $@; fi&lt;/code&gt; rule in
-your main rule. You can add almost infinite customization to this with
-conditionals or extra rules.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;From here, as much customization as is desired can be added through conditionals,
+rules, variables, and shell scripts.&lt;/p&gt;
 &lt;p&gt;Additional Resources:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.gnu.org/software/make/manual/make.pdf&#34;&gt;GNU make manual&lt;/a&gt;&lt;/li&gt;
