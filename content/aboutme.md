@@ -12,7 +12,7 @@ Pronouns
 Userbox (88x31)
 : [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 
-I am at the time of writing (June 2025) 16 and a high school student.
+I am at the time of writing 17, a high school student, and starting to transition.
 And have been programming and learning about how computers work for a
 several years. I know how to work a variety of languages, tools, and systems
 extensively. Mainly C, Rust, Lua, Bash, and Linux.
@@ -56,6 +56,7 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 [![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
 [![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
+[![AnPLi's Userbox](https://anpli.de/88x31.gif)](https://anpli.de/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
 [![Natalieee's Userbox](https://natalieee.net/assets/88x31/natalieee.net.png)](https://natalieee.net/)
 <a href="https://creativecommons.org/licenses/by/4.0/">

@@ -1,5 +1,5 @@
 <p style="text-align: center">
-Computer Scientist | 16 y/o | Any/All
+Computer Scientist | 17 y/o | Any/All
 </p>
 
 {{< linkbox "https://www.github.com/oliverkwebb" "GitHub" >}}
@@ -9,7 +9,6 @@ Computer Scientist | 16 y/o | Any/All
 ## Trinkets
 
 <div class="trinkets">
-
 
 [calfact<br> 📆](https://webb.is-a.dev/calfact/)
 

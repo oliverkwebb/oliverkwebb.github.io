@@ -1,5 +1,5 @@
 <rss version="2.0"><channel>
-<title>Oliver Webb</title>
+<title>Iris Webb</title>
 <link>https://oliverkwebb.github.io/tags/programming/</link>
 <language>en-us</language>
 
@@ -136,7 +136,8 @@
 	<item><title>A Visual Tour of IAU SOFA</title>
 	<link>https://oliverkwebb.github.io/articles/iausofa/</link>
 	<pubDate>Wed, 16 Jul 2025 00:28:55 -0500</pubDate>
-	<description>&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/SOFASummary.png&#34; alt=&#34;A Graph of IAU SOFA&#34;&gt;&lt;/p&gt;
+	<description>&lt;p&gt;&lt;a href=&#34;https://oliverkwebb.github.io/graph/SOFASummary.png&#34;&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/SOFASummary.png&#34; alt=&#34;A Graph of IAU SOFA&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;(Click on the image to make it fullscreen)&lt;/p&gt;
 </description></item>
 
 	<item><title>Bitmap Images in 1965 - Mariner 4</title>
@@ -438,9 +439,9 @@ And the algorithms are universal enough to be rewritten to anything with trig fu
 &lt;/div&gt;
 &lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
-&lt;p&gt;But what does it &lt;em&gt;represent&lt;/em&gt;, really? Well, it represents a fraction of a rotation (the Earth&amp;rsquo;s), which makes it an Angle.&lt;/p&gt;
-&lt;p&gt;In many astronomical calculations, angles are represented as time to make certain conversions easier. For example,
-the horizontal coordinate of &lt;a href=&#34;https://en.wikipedia.org/wiki/Algol&#34;&gt;Algol&lt;/a&gt; is 03:08:10.13 (Usually written 03h08m10.13s).&lt;/p&gt;
+&lt;p&gt;But what does it &lt;em&gt;represent&lt;/em&gt;, really? Well, it represents a fraction of a rotation (the Earth&amp;rsquo;s), which makes it an angle.&lt;/p&gt;
+&lt;p&gt;In many astronomical calculations, angles in coordinates are represented as a time to make certain conversions easier.
+For example, the horizontal coordinate of &lt;a href=&#34;https://en.wikipedia.org/wiki/Algol&#34;&gt;Algol&lt;/a&gt; is 03:08:10.13 (Usually written 03h08m10.13s).&lt;/p&gt;
 &lt;p&gt;If you disregard the fact that this is a coordinate and treat it as a time of day,
 you can convert this time to your &lt;a href=&#34;https://en.wikipedia.org/wiki/Sidereal_time&#34;&gt;local mean siderial time&lt;/a&gt;, and get
 the hour angle (also written as a time), which its location on the celestial equator relative to you, or rather,
@@ -454,25 +455,25 @@ how much the celestial sphere has rotated in comparison to the prime meridian.&l
 &lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time-angle.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;In 4 minutes, the earth rotates 1 degree around its axis, and in about 4 hours, it rotates one radian.
-This is useful since it can give a vague idea of how much objects will move in the sky. The sun takes
+This can provide a vague idea of how much objects will move in the sky. The sun takes
 up about half a degree of view in the sky, so a sunset will take a minimum of two minutes.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/AngleTime.png&#34; alt=&#34;Conversion between angle units and time units&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Venus takes up about 1/60th of a degree of view. So it could only take 4 seconds to move its own
-diameter in the sky, which is good to know for telescope readjustment (&amp;ldquo;If I leave my telescope alone,
+diameter in the sky, which is good to know for telescope adjustment (&amp;ldquo;If I leave my telescope alone,
 I&amp;rsquo;ll be able to see X for at least Y amount of time&amp;rdquo;).&lt;/p&gt;
 &lt;p&gt;Using degrees in place of hours on a clock, or using &amp;ldquo;turns&amp;rdquo; (the fraction of the day) gives
-results that are interesting, but don&amp;rsquo;t deserve much cometary.&lt;/p&gt;
+results that are interesting, but don&amp;rsquo;t deserve much commentary.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/places100deg.png&#34; alt=&#34;Places on Earth where it can be 100 degrees in the morning&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;the-tangent-of-time&#34;&gt;
   &lt;a href=&#34;#the-tangent-of-time&#34;&gt;#&lt;/a&gt;
   The Tangent of Time
-&lt;/h1&gt;&lt;p&gt;Why radians? To take trig functions, of course!&lt;/p&gt;
+&lt;/h1&gt;&lt;p&gt;Why radians? For trig functions, of course!&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;tangent-of-time&#34;&gt;
 &lt;/div&gt;
 &lt;script src=&#34;https://oliverkwebb.github.io/trinkets/tangent-of-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Whilst taking trig functions on your coordinates can yield interesting results
-(the cosine of your latitude is how long your line of latitude is, compared to the equator).
+(the cosine of your latitude is how long your line of latitude is compared to the equator).
 These don&amp;rsquo;t seem to map to anything interesting and non-obvious.&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
