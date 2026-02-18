@@ -54,10 +54,13 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 <div class="userboxes">
 
-[![My Userbox](/8831.png)](https://oliverkwebb.github.io/)
-[![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
+[![My Userbox](/8831.png)](https://webb.is-a.dev/)
 [![AnPLi's Userbox](https://anpli.de/88x31.gif)](https://anpli.de/)
+[![Buffet's Userbox](/88x31/buffet.png)](https://buffet.sh/)
+[![cpli's Userbox](/88x31/cpli.gif)](https://cpli.dev/)
+[![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
+[![LilaHexe's Userbox](https://cdn.lilahexe.top/LilaHexe-88x31.png)](https://lilahexe.top/)
 [![Natalieee's Userbox](https://natalieee.net/assets/88x31/natalieee.net.png)](https://natalieee.net/)
 <a href="https://creativecommons.org/licenses/by/4.0/">
 <img width="88" height="31" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png" alt="Creative Commons BY">
@@ -70,6 +73,8 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 [yemou.pink](https://yemou.pink/) |
 [soph.systems](https://soph.systems/) |
 [okash.it](https://okash.it/) |
+[alicemvv.wordpress.com](https://alicemvv.wordpress.com/) |
+[operz.coralcmd.net](https://operz.coralcmd.net/) |
 [leahneukirchen.org](https://leahneukirchen.org/) |
 [zougloub.eu](https://zougloub.eu/)
 

@@ -32,7 +32,7 @@ to execute the commands in that rule. If you specify multiple rules for
 make to run in the command line, it will run all of those rules, if you
 specify no rules, it will run the first rule defined in the makefile
 (commonly, this rule is called &ldquo;all&rdquo;)</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cat Makefile
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cat Makefile
 </span></span><span style="display:flex;"><span>foo:
 </span></span><span style="display:flex;"><span>    echo bar
 </span></span><span style="display:flex;"><span>baz:
@@ -49,7 +49,7 @@ And aborting on failure of a command can be disabled by placing <code>-</code>
 at the start of the command</p>
 <p>Additionally, you can refer to <a href="https://man7.org/linux/man-pages/man7/environ.7.html">environment variables</a> in your makefile,
 and assign them on the command line or in your makefile.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cat Makefile
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cat Makefile
 </span></span><span style="display:flex;"><span>BAZ=123
 </span></span><span style="display:flex;"><span>foo:
 </span></span><span style="display:flex;"><span>    @echo $(BAR) $(BAZ)
@@ -85,7 +85,7 @@ are special variables in make; You can use <code>$&lt;</code> to refer to your f
 the list of prerequisites, and <code>$@</code> to refer to your rule name. Note this is
 not the pattern that the specified rule matched, it is the rule that matched
 the pattern.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">%.o</span><span style="color:#ff7b72;font-weight:bold">:</span> %.c
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">%.o</span><span style="color:#ff7b72;font-weight:bold">:</span> %.c
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">$(</span>CC<span style="color:#ff7b72">)</span> <span style="color:#ff7b72">$(</span>CFLAGS<span style="color:#ff7b72">)</span> $&lt; -o <span style="color:#79c0ff">$@</span>
 </span></span></code></pre></div><p>If you run <code>make main.o</code>, make will:</p>
 <ul>
@@ -113,13 +113,13 @@ variable definitions and arguments are separated by commas. So that evaluating
 <p>Since the problem of turning markdown files into HTML files is similar to the
 problem of turning source files into object files, we can create a simple rule
 that does 99% of our work.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">%.html</span><span style="color:#ff7b72;font-weight:bold">:</span> %.md
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">%.html</span><span style="color:#ff7b72;font-weight:bold">:</span> %.md
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">$(</span>MARKDOWN<span style="color:#ff7b72">)</span> <span style="color:#ff7b72">$(</span>MDFLAGS<span style="color:#ff7b72">)</span> $&lt; &gt;&gt; <span style="color:#79c0ff">$@</span>
 </span></span></code></pre></div><p>But markdown compilers don&rsquo;t usually generate HTML boilerplate, and we might
 want to import a stylesheet, and maybe save to a &ldquo;dist&rdquo; directory. So that
 if we have a &ldquo;index.md&rdquo; file, it will compile to <code>$(DIST)/index.html</code>, this
 is no issue for us.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">$(DIST)/%.html</span><span style="color:#ff7b72;font-weight:bold">:</span> %.md
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">$(DIST)/%.html</span><span style="color:#ff7b72;font-weight:bold">:</span> %.md
 </span></span><span style="display:flex;"><span>    cat <span style="color:#ff7b72">$(</span>TEMPLATES<span style="color:#ff7b72">)</span>/begin.html &gt; <span style="color:#79c0ff">$@</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">$(</span>MARKDOWN<span style="color:#ff7b72">)</span> <span style="color:#ff7b72">$(</span>MDFLAGS<span style="color:#ff7b72">)</span> $&lt; &gt;&gt; <span style="color:#79c0ff">$@</span>
 </span></span><span style="display:flex;"><span>    cat <span style="color:#ff7b72">$(</span>TEMPLATES<span style="color:#ff7b72">)</span>/end.html &gt;&gt; <span style="color:#79c0ff">$@</span>
@@ -130,7 +130,7 @@ we can specify variables for our markdown compiler (in this example, I used
 <code>lowdown</code>), and scan for files in a source directory using
 the wildcard command. Making them valid rule names by substituting .md prefixes
 with .html ones, and adding the prefix <code>$(DIST)</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#79c0ff">DIST</span><span style="color:#ff7b72;font-weight:bold">=</span>dist
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#79c0ff">DIST</span><span style="color:#ff7b72;font-weight:bold">=</span>dist
 </span></span><span style="display:flex;"><span><span style="color:#79c0ff">TEMPLATES</span><span style="color:#ff7b72;font-weight:bold">=</span>templ
 </span></span><span style="display:flex;"><span><span style="color:#79c0ff">MARKDOWN</span><span style="color:#ff7b72;font-weight:bold">=</span>lowdown
 </span></span><span style="display:flex;"><span>

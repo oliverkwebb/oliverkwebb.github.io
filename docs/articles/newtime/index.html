@@ -21,7 +21,7 @@
 To the point almost every regularly used element of it has some design decision that&rsquo;s been obsolete for
 decades.</p>
 <p>As a example, here is some code I use to print the current time for my status bar:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;time.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;unistd.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">main</span>(<span style="color:#ff7b72">void</span>)
@@ -44,7 +44,7 @@ decades.</p>
 </ul>
 <p>This is possibly the simplest real-world use of the C time API. And even then the legacy cruft and bad design makes this code significantly less organic.</p>
 <p>For comparison, here is the corresponding Lua code</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#ff7b72">while</span> <span style="color:#79c0ff">true</span> <span style="color:#ff7b72">do</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#ff7b72">while</span> <span style="color:#79c0ff">true</span> <span style="color:#ff7b72">do</span>
 </span></span><span style="display:flex;"><span>	print(os.date(<span style="color:#a5d6ff">&#34;%a %b %d %T&#34;</span>))
 </span></span><span style="display:flex;"><span>	io.stdout:flush();
 </span></span><span style="display:flex;"><span>	<span style="color:#ff7b72">if</span> <span style="color:#ff7b72;font-weight:bold">not</span> os.execute(<span style="color:#a5d6ff">&#34;sleep 1&#34;</span>) <span style="color:#ff7b72">then</span> <span style="color:#ff7b72">return</span> <span style="color:#a5d6ff">1</span>; <span style="color:#ff7b72">end</span>
@@ -99,7 +99,7 @@ the <code>timespec</code> struct used in a lot of system-level time functions.</
 point precision loss is surprisingly easy. For a number n; Any number below 2<sup>n</sup> will have at least 2<sup>n-mantissa_length</sup> precision.</p>
 <p>As an example, Lets consider a long double that represents seconds.
 We lose nanosecond level precision when 2<sup>n-63</sup> is 10<sup>-9</sup>. Which means we lose precision at around ~2<sup>33</sup> seconds.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ date -d &#34;@$((2**33))&#34;
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ date -d &#34;@$((2**33))&#34;
 </span></span><span style="display:flex;"><span>Wed Mar 16 07:56:32 AM CDT 2242
 </span></span></code></pre></div><p>If this long double were to represent nanoseconds, we&rsquo;d lose precision at
 2<sup>63</sup> nanoseconds (Around 2262 (The 20 year difference is due to the fact
@@ -177,7 +177,7 @@ In the spirit of &ldquo;100 functions for 10 data structures vs. 10 functions fo
 <li>mktime(), being the main way to convert back into <code>time_t</code>, changes the struct that is passed in.</li>
 </ul>
 <p>Creating our own calendar structure to fix these problems:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">struct</span> cal {
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">struct</span> cal {
 </span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">uint32_t</span> nsec; <span style="color:#8b949e;font-style:italic">// 0..1E9
 </span></span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">uint8_t</span>   sec; <span style="color:#8b949e;font-style:italic">// 0..60
 </span></span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">uint8_t</span>   min; <span style="color:#8b949e;font-style:italic">// 0..59
@@ -187,7 +187,7 @@ In the spirit of &ldquo;100 functions for 10 data structures vs. 10 functions fo
 </span></span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">date_t</span>   year; <span style="color:#8b949e;font-style:italic">// Since Epoch
 </span></span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p>With 4 functions to handle them:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">struct</span> cal <span style="color:#d2a8ff;font-weight:bold">tocal</span>(<span style="color:#ff7b72">date_t</span> d);
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">struct</span> cal <span style="color:#d2a8ff;font-weight:bold">tocal</span>(<span style="color:#ff7b72">date_t</span> d);
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">wdayof</span>(<span style="color:#ff7b72">date_t</span> d);
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">ydayof</span>(<span style="color:#ff7b72">date_t</span> d);
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">extern</span> <span style="color:#ff7b72">date_t</span>   <span style="color:#d2a8ff;font-weight:bold">fromcal</span>(<span style="color:#ff7b72">struct</span> cal cal);
@@ -227,7 +227,7 @@ therefore it must be the users job to free it)</li>
 <li>Set <code>TZ</code> back to whatever it was</li>
 </ul>
 <p>Creating three base functions and two convenience functions to work with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">int</span>      <span style="color:#d2a8ff;font-weight:bold">tzoffat</span>(<span style="color:#ff7b72">date_t</span> d, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>tz); <span style="color:#8b949e;font-style:italic">// Seconds east of UTC
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">int</span>      <span style="color:#d2a8ff;font-weight:bold">tzoffat</span>(<span style="color:#ff7b72">date_t</span> d, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>tz); <span style="color:#8b949e;font-style:italic">// Seconds east of UTC
 </span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">char</span>   <span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#d2a8ff;font-weight:bold">tznameat</span>(<span style="color:#ff7b72">date_t</span> d, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>tz);
 </span></span><span style="display:flex;"><span><span style="color:#ff7b72">const</span> <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#d2a8ff;font-weight:bold">mytz</span>(<span style="color:#ff7b72">void</span>);
 </span></span><span style="display:flex;"><span>
