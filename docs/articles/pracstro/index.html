@@ -46,7 +46,7 @@ information such as angular diameter and distance. And it could do that parsimon
 of C (before refactoring).</p>
 <p>Stripping out all the GUI code (which would not compile on X since it uses SunOS specific libraries (think
 1987 when color monitors running X are the hot new thing)), that code could easily be refactored into <a href="https://github.com/oliverkwebb/moontool">a CLI tool</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mprintf -h
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mprintf -h
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># mprintf [-h] [-t TIME] [FORMAT]</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># -f formats:</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># %a Moon Age      %J Julian Day</span>
@@ -171,7 +171,7 @@ explanation on why they work.</li>
 <p>As for the plumbing, we can generally break down any calculation into the form <code>get [PROPERTY] from [OBJECT] assuming [TIME/LATLONG]</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.
 Creating a table of properties of an object over time is called <a href="https://en.wikipedia.org/wiki/Ephemeris">ephemeris</a>.
 Using this model, we can make a simple interface to these algorithms for a command line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>deskephem -l 45s,0 moon phase
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>deskephem -l 45s,0 moon phase
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 🌘 Waning Crescent (8.0%)</span>
 </span></span><span style="display:flex;"><span>deskephem -E now,5d,+3w saturn distance
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># ===================================================</span>

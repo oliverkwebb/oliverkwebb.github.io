@@ -32,7 +32,7 @@ from here <code>crd</code> (<code>2*sin(0.5*x)</code>) can do the work trivially
 <p>Extending this problem into 2d, what can we do?</p>
 <p>Well, any two points on a sphere form a great circle. This immediately reduces the problem back into the first 2d one.
 We can get the angle between the two points on the great circle using:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>arccos(sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(lat1 - lat2))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>arccos(sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(lat1 - lat2))
 </span></span></code></pre></div><p>Multiplying the resulting chord by the earths radius, we can approximately get a distance calculation for digging
 through the earth between any two coordinates.</p>
 <div style="width: 100%" id="sphere-sec">
