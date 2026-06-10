@@ -2,7 +2,7 @@
 Computer Scientist | 17 y/o | Any/All
 </p>
 
-{{< linkbox "https://www.github.com/oliverkwebb" "GitHub" >}}
+{{< linkbox "https://www.github.com/iriswebb" "GitHub" >}}
 {{< linkbox "mailto:oliverwebb8192@gmail.com" "Email" >}}
 {{< linkbox "/aboutme" "About and Contact" >}}
 

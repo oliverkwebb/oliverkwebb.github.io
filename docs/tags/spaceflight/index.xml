@@ -1,37 +1,41 @@
 <rss version="2.0"><channel>
 <title>Iris Webb</title>
-<link>https://oliverkwebb.github.io/tags/spaceflight/</link>
+<link>https://iriswebb.github.io/tags/spaceflight/</link>
 <language>en-us</language>
 
 	<item><title>The lack of information-density is crazy</title>
-	<link>https://oliverkwebb.github.io/articles/info_dense/</link>
+	<link>https://iriswebb.github.io/articles/info_dense/</link>
 	<pubDate>Thu, 05 Feb 2026 16:54:29 -0600</pubDate>
 	<description>&lt;p&gt;The following is from the CachyOS homepage:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;CachyOS is designed to deliver lightning-fast speeds and stability, ensuring a smooth and enjoyable computing experience every time you use it. Whether you&amp;rsquo;re a seasoned Linux user or just starting out, CachyOS is the ideal choice for those looking for a powerful, customizable and blazingly fast operating system.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;CachyOS is designed to deliver lightning-fast speeds and stability, ensuring a smooth and enjoyable computing experience every time you use it. Whether you&amp;rsquo;re a seasoned Linux user or just starting out, CachyOS is the ideal choice for those looking for a powerful, customizable and blazingly fast operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;This block of text tells me nothing. No information can be extracted from this. I know exactly as much about CachyOS after reading this than I did before. The litmus test for this is seeing if another, different project would deny any claim made by the offending text.&lt;/p&gt;
 &lt;p&gt;Here is the pitch for the Operating System CachyOS contrasts itself with:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;NotCachyOS&lt;/em&gt; is designed to deliver crawling-slow lag and instability, ensuring a rough and miserable computing experience every time you use it. Whether you&amp;rsquo;re a seasoned Linux user or just starting out, &lt;em&gt;NotCachyOS&lt;/em&gt; is the ideal choice for those looking for a heavily restricted and extremely slow operating system.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;NotCachyOS&lt;/em&gt; is designed to deliver crawling-slow lag and instability, ensuring a rough and miserable computing experience every time you use it. Whether you&amp;rsquo;re a seasoned Linux user or just starting out, &lt;em&gt;NotCachyOS&lt;/em&gt; is the ideal choice for those looking for a heavily restricted and extremely slow operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;CachyOS does have legitimate benefits and selling points, kernel-level fine tuning for speed being the main one, and it does describe them later on in the page, which makes the lack of information in their introduction even more confusing to me. This introduction could be written in a way that tells me what makes it different:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;CachyOS is designed for speed by optimizing its core packages with BORE scheduling and LTO that drastically increase performance. Harnessing the full power of modern machines. Its GUI live-images will make using CachyOS enjoyable for all types of linux users, beginner or experienced, looking for a preformant and customizable operating system.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;CachyOS is designed for speed by optimizing its core packages with BORE scheduling and LTO that drastically increase performance. Harnessing the full power of modern machines. Its GUI live-images will make using CachyOS enjoyable for all types of linux users, beginner or experienced, looking for a preformant and customizable operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;This is still marketing-copy, using description as a mechanism for advertisement, but it is geared towards people who would actually want to use CachyOS, it tells someone why they would want to use the operating system by showing how it is different from other ones.&lt;/p&gt;
 </description></item>
 
 	<item><title>Implementing an efficient malloc in 50 lines of C</title>
-	<link>https://oliverkwebb.github.io/articles/mymalloc/</link>
+	<link>https://iriswebb.github.io/articles/mymalloc/</link>
 	<pubDate>Sun, 31 Aug 2025 00:00:00 &#43;0000</pubDate>
-	<description>&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/mallocdia.png&#34; alt=&#34;A graph explaining the structure of a malloc implementation&#34;&gt;&lt;/p&gt;
+	<description>&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/mallocdia.png&#34; alt=&#34;A graph explaining the structure of a malloc implementation&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The smallest C libraries will &lt;a href=&#34;https://github.com/torvalds/linux/blob/master/tools/include/nolibc/stdlib.h#L127&#34;&gt;just mmap each allocation, storing the length immediately before&lt;/a&gt; and &lt;a href=&#34;https://github.com/torvalds/linux/blob/master/tools/include/nolibc/stdlib.h#L92&#34;&gt;assume any value passed to free is valid&lt;/a&gt;. But this leaves plenty of room for optimization and correctness.&lt;/p&gt;
 &lt;p&gt;The way libc&amp;rsquo;s typically keep track of allocations is with a linked list or other data structure, keeping multiple small allocations on the same page.&lt;/p&gt;
 &lt;p&gt;This brings the question:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;In linux on x86_64, how can you implement a correct (standards compliant) &lt;code&gt;malloc()&lt;/code&gt; and &lt;code&gt;free()&lt;/code&gt; in as little code as possible, whilst still optimizing to some extent?&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;In linux on x86_64, how can you implement a correct (standards compliant) &lt;code&gt;malloc()&lt;/code&gt; and &lt;code&gt;free()&lt;/code&gt; in as little code as possible, whilst still optimizing to some extent?&lt;/p&gt;
+&lt;/blockquote&gt;
 </description></item>
 
 	<item><title>Generalizing printf in C</title>
-	<link>https://oliverkwebb.github.io/articles/generalizedprintf/</link>
+	<link>https://iriswebb.github.io/articles/generalizedprintf/</link>
 	<pubDate>Wed, 20 Aug 2025 10:25:12 -0500</pubDate>
 	<description>&lt;p&gt;In ANSI C89, there are 6 printf functions:&lt;/p&gt;
 &lt;ul&gt;
@@ -66,7 +70,7 @@
   &lt;a href=&#34;#the-art-of-transmutation-and-opaqueness&#34;&gt;#&lt;/a&gt;
   The art of transmutation and opaqueness
 &lt;/h2&gt;&lt;p&gt;C89&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; defines &lt;code&gt;qsort&lt;/code&gt; as:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;qsort&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;base, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; nmemb, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; size, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;compar)(&lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;));
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;qsort&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;base, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; nmemb, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; size, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;compar)(&lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;));
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first 3 arguments are the parameters for an array, with the last being a function to pass the elements to (often a wrapper around &lt;code&gt;strcmp&lt;/code&gt;, the comparison operator, or similar).&lt;/p&gt;
 &lt;p&gt;What is notable about this function is the use of function pointers to modularize code, and the fact that it has no information about the array it is given besides its size and element size. Because of this:&lt;/p&gt;
 &lt;ul&gt;
@@ -74,26 +78,26 @@
 &lt;li&gt;Which makes use of the function much more volatile since it is harder to check if the types being given or interpreted are valid&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Consider the two arrays:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;long long a[] = {0, 0, 0, 0, 0};
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;long long a[] = {0, 0, 0, 0, 0};
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;char *b[] = {&amp;#34;b&amp;#34;, &amp;#34;a&amp;#34;, &amp;#34;c&amp;#34;, &amp;#34;d&amp;#34;, &amp;#34;e&amp;#34;}; 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Both contain 5 8-byte elements&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;. But they both cast to a void pointer when passed into &lt;code&gt;qsort&lt;/code&gt;. And the information about the type is lost until it is recast presuming it&amp;rsquo;s the desired type. The compiler won&amp;rsquo;t throw a warning if you sort the first array with a wrapper around &lt;code&gt;strcmp&lt;/code&gt;. Nor will it warn you if you give a wrong number of elements or element size.&lt;/p&gt;
 &lt;p&gt;In our printf implementation, we can pass in both a file &lt;strong&gt;and&lt;/strong&gt; a buffer to write to, along with a output function and the needed format string and list of arguments:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;_vfsprintf&lt;/span&gt;(FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;stream, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;buffer, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; size, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;submit)(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;), &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;format, va_list va);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;_vfsprintf&lt;/span&gt;(FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;stream, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;buffer, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; size, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;submit)(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;), &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;format, va_list va);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Since the &lt;code&gt;FILE&lt;/code&gt; stream, the &lt;code&gt;buffer&lt;/code&gt;, and the &lt;code&gt;size&lt;/code&gt; are only used inside the &lt;code&gt;submit&lt;/code&gt; function, they can be set to null and ignored in the output handlers.&lt;/p&gt;
 &lt;p&gt;If you could write a static/dynamic buffer in multiple distributed steps using a function pointer and a pointer to the start of the buffer alone, this and a few wrapper functions would be the end of it. Unfortunately, doing this in C requires state.&lt;/p&gt;
 &lt;h2 id=&#34;oop-in-c&#34;&gt;
   &lt;a href=&#34;#oop-in-c&#34;&gt;#&lt;/a&gt;
   OOP in C
 &lt;/h2&gt;&lt;p&gt;Writing a buffer in multiple steps with a function requires you to continue from where you left off. Keeping track of where you left off is trivial:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; bufinfo {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; bufinfo {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; idx;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; len;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;buffer;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This needs to be carried with you the entire time you&amp;rsquo;re writing to the buffer. Which can be done by passing in a void pointer in containing the state that the output function needs:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;__submit_vfprintf&lt;/span&gt;(FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;stream, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;str, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;submit)(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;), &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;format, va_list va, &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;initstate)
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;__submit_vfprintf&lt;/span&gt;(FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;stream, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;str, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;submit)(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;), &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;format, va_list va, &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;initstate)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The pointer &lt;code&gt;initstate&lt;/code&gt; is passed to the output function, which uses it to write to the buffer then modifies the information inside it for the next time the function is called. This is a way of keeping state that is neither local nor global.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;vfp_strapp_submit&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;str, FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;ignored, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;ignoredalso, &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;bufferinfo) {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;vfp_strapp_submit&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;str, FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;ignored, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;ignoredalso, &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;bufferinfo) {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; bufinfo &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;bi &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; bufferinfo;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; len &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;strlen&lt;/span&gt;(str);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; left &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; bi&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;len &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;-&lt;/span&gt; bi&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;-&amp;gt;&lt;/span&gt;idx;
@@ -106,7 +110,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;return&lt;/span&gt; len;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Thus, an implementation of &lt;code&gt;vsnprintf&lt;/code&gt; (and by extension &lt;code&gt;sprintf&lt;/code&gt; and &lt;code&gt;snprintf&lt;/code&gt;) can be made with a few lines of boilerplate code:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;vsnprintf&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;s, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; n, &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;format, va_list arg) {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;vsnprintf&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;s, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; n, &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;format, va_list arg) {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; bufinfo bufinfo;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	bufinfo.buffer &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; s;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	bufinfo.len &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; n;
@@ -130,24 +134,24 @@
 </description></item>
 
 	<item><title>A Visual Tour of IAU SOFA</title>
-	<link>https://oliverkwebb.github.io/articles/iausofa/</link>
+	<link>https://iriswebb.github.io/articles/iausofa/</link>
 	<pubDate>Wed, 16 Jul 2025 00:28:55 -0500</pubDate>
-	<description>&lt;p&gt;&lt;a href=&#34;https://oliverkwebb.github.io/graph/SOFASummary.png&#34;&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/SOFASummary.png&#34; alt=&#34;A Graph of IAU SOFA&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+	<description>&lt;p&gt;&lt;a href=&#34;https://iriswebb.github.io/graph/SOFASummary.png&#34;&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/SOFASummary.png&#34; alt=&#34;A Graph of IAU SOFA&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;(Click on the image to make it fullscreen)&lt;/p&gt;
 </description></item>
 
 	<item><title>Bitmap Images in 1965 - Mariner 4</title>
-	<link>https://oliverkwebb.github.io/articles/bmp-1965/</link>
+	<link>https://iriswebb.github.io/articles/bmp-1965/</link>
 	<pubDate>Sun, 25 May 2025 11:56:07 -0500</pubDate>
 	<description>&lt;p&gt;On July 14th, 1965, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Mariner_4&#34;&gt;Mariner 4&lt;/a&gt; spacecraft flew by Mars, the first
 to ever reach the planet successfully. In the scientific data it recorded, it took 21 pictures, similar space
 probes built for the moon or earth would usually transmit image data back in a analog format of continuous
 scan-lines (similar to a TV broadcast). But for clarity across interplanetary distances, This probe had
 to record and transmit its data back in a digital format.&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/m4-mars-craters.jpg&#34;
-    alt=&#34;The clearest image from Mariner 4, with pixels visible&#34;&gt;&lt;figcaption&gt;
-      &lt;p&gt;The clearest image from Mariner 4, with pixels visible&lt;/p&gt;
-    &lt;/figcaption&gt;
+&lt;figure&gt;&lt;img src=&#34;https://iriswebb.github.io/mar4/m4-mars-craters.jpg&#34;
+			alt=&#34;The clearest image from Mariner 4, with pixels visible&#34;&gt;&lt;figcaption&gt;
+			&lt;p&gt;The clearest image from Mariner 4, with pixels visible&lt;/p&gt;
+		&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h1 id=&#34;bmp-1965&#34;&gt;
@@ -156,10 +160,10 @@ to record and transmit its data back in a digital format.&lt;/p&gt;
 &lt;/h1&gt;&lt;p&gt;Image data from this was transmitted back as a series of bits, with a 6 bit number per pixel.
 Weirdly enough, the highest number (63, 0b111111) represented black whilst 0 represented white,
 the opposite of how its represented today.&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/m4-mars-first.jpg&#34;
-    alt=&#34;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&#34;&gt;&lt;figcaption&gt;
-      &lt;p&gt;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&lt;/p&gt;
-    &lt;/figcaption&gt;
+&lt;figure&gt;&lt;img src=&#34;https://iriswebb.github.io/mar4/m4-mars-first.jpg&#34;
+			alt=&#34;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&#34;&gt;&lt;figcaption&gt;
+			&lt;p&gt;The first image from Mariner 4, white parts showing gaps in transmission and highlighting pixel boundaries.&lt;/p&gt;
+		&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;These pixels would be transmitted continuously to send a 200x200 image.&lt;/p&gt;
@@ -180,20 +184,20 @@ you have to work with chunks of 4 pixels (3 bytes) at a time.&lt;/p&gt;
 &lt;p&gt;Doing bit the manipulation needed to pack the image data efficiently,
 any 200x200 image can be converted and viewed as if it came from the
 antenna of a 1960&amp;rsquo;s space probe.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/mar4/original-mar4.png&#34; alt=&#34;original&#34;&gt;
-&lt;img src=&#34;https://oliverkwebb.github.io/mar4/1pass.png&#34; alt=&#34;converted&#34;&gt;
-&lt;img src=&#34;https://oliverkwebb.github.io/mar4/2pass.png&#34; alt=&#34;2 passes&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/mar4/original-mar4.png&#34; alt=&#34;original&#34;&gt;
+&lt;img src=&#34;https://iriswebb.github.io/mar4/1pass.png&#34; alt=&#34;converted&#34;&gt;
+&lt;img src=&#34;https://iriswebb.github.io/mar4/2pass.png&#34; alt=&#34;2 passes&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;see-also&#34;&gt;
   &lt;a href=&#34;#see-also&#34;&gt;#&lt;/a&gt;
   See Also
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://openlibrary.org/books/OL5614703M/Appointment_on_the_Moon&#34;&gt;&lt;em&gt;Appointment on the Moon&lt;/em&gt;&lt;/a&gt; by Richard S. Lewis - Information in the chapter &amp;ldquo;No Hiding Place&amp;rdquo; was the inspiration for this article.&lt;/li&gt;
-&lt;li&gt;My converter for this format: &lt;a href=&#34;https://github.com/oliverkwebb/mar4-ff&#34;&gt;mar4-ff&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My converter for this format: &lt;a href=&#34;https://github.com/iriswebb/mar4-ff&#34;&gt;mar4-ff&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description></item>
 
 	<item><title>Astronomy and Earth: Coordinate Distances</title>
-	<link>https://oliverkwebb.github.io/articles/astronomy-coordinate-distance/</link>
+	<link>https://iriswebb.github.io/articles/astronomy-coordinate-distance/</link>
 	<pubDate>Sat, 24 May 2025 19:07:58 -0500</pubDate>
 	<description>&lt;p&gt;You might of heard the phrase &lt;a href=&#34;https://www.mentalfloss.com/article/27585/could-you-really-dig-hole-china&#34;&gt;&amp;ldquo;dig to china&amp;rdquo;&lt;/a&gt; before,
 or talked about digging a b-line through the earth to some far off land jokingly. But how much distance would you actually save
@@ -205,17 +209,17 @@ along its circumference?&lt;/p&gt;
 from here &lt;code&gt;crd&lt;/code&gt; (&lt;code&gt;2*sin(0.5*x)&lt;/code&gt;) can do the work trivially.&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;circle-sec&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/circle-sec.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://iriswebb.github.io/trinkets/circle-sec.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Extending this problem into 2d, what can we do?&lt;/p&gt;
 &lt;p&gt;Well, any two points on a sphere form a great circle. This immediately reduces the problem back into the first 2d one.
 We can get the angle between the two points on the great circle using:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;arccos(sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(lat1 - lat2))
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;arccos(sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(lat1 - lat2))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Multiplying the resulting chord by the earths radius, we can approximately get a distance calculation for digging
 through the earth between any two coordinates.&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;sphere-sec&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/sphere-sec.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://iriswebb.github.io/trinkets/sphere-sec.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;h1 id=&#34;how-does-this-relate-to-astronomy&#34;&gt;
   &lt;a href=&#34;#how-does-this-relate-to-astronomy&#34;&gt;#&lt;/a&gt;
@@ -234,7 +238,7 @@ to get the phase angle from coordinates and distance alone.&lt;/p&gt;
 </description></item>
 
 	<item><title>Practical Astronomy with Your Command Line</title>
-	<link>https://oliverkwebb.github.io/articles/pracstro/</link>
+	<link>https://iriswebb.github.io/articles/pracstro/</link>
 	<pubDate>Fri, 23 May 2025 17:02:40 -0500</pubDate>
 	<description>&lt;p&gt;About a year and a half ago, I was trying to put the current moon phase in my status bar, Simultaneously I was trying to make other projects that would show the sunrise and sunset time. There are many open-source tools that can generate astronomical info on Linux:&lt;/p&gt;
 &lt;ul&gt;
@@ -252,7 +256,7 @@ to get the phase angle from coordinates and distance alone.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://9fans.github.io/plan9port/man/man1/astro.html&#34;&gt;plan9 astro(1)&lt;/a&gt; - astronomical info generator, largely exclusive to plan9.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&amp;rsquo;t fill. To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;
   &lt;a href=&#34;#how-easy-is-it-to-make-something-like-that&#34;&gt;#&lt;/a&gt;
   How easy is it to make something like that?
@@ -264,8 +268,8 @@ could give accurate information about the phase of the moon centuries into the f
 information such as angular diameter and distance. And it could do that parsimoniously in around 400 lines
 of C (before refactoring).&lt;/p&gt;
 &lt;p&gt;Stripping out all the GUI code (which would not compile on X since it uses SunOS specific libraries (think
-1987 when color monitors running X are the hot new thing)), that code could easily be refactored into &lt;a href=&#34;https://github.com/oliverkwebb/moontool&#34;&gt;a CLI tool&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mprintf -h
+1987 when color monitors running X are the hot new thing)), that code could easily be refactored into &lt;a href=&#34;https://github.com/iriswebb/moontool&#34;&gt;a CLI tool&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mprintf -h
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# mprintf [-h] [-t TIME] [FORMAT]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# -f formats:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# %a Moon Age      %J Julian Day&lt;/span&gt;
@@ -275,8 +279,8 @@ of C (before refactoring).&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mprintf &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%e %P %p&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# 🌘 13.3 Waning Crescent&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I later transpiled this to &lt;a href=&#34;https://github.com/oliverkwebb/moontool/tree/main/lua&#34;&gt;lua&lt;/a&gt; and
-&lt;a href=&#34;https://github.com/oliverkwebb/moontool-rs&#34;&gt;rust&lt;/a&gt;. But&amp;hellip; &lt;em&gt;how did the original code get the moon phase&lt;/em&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I later transpiled this to &lt;a href=&#34;https://github.com/iriswebb/moontool/tree/main/lua&#34;&gt;lua&lt;/a&gt; and
+&lt;a href=&#34;https://github.com/iriswebb/moontool-rs&#34;&gt;rust&lt;/a&gt;. But&amp;hellip; &lt;em&gt;how did the original code get the moon phase&lt;/em&gt;,
 and how did they come up with the algorithm?&lt;/p&gt;
 &lt;p&gt;In the header of that code, the book &lt;em&gt;Practical Astronomy with Your Calculator&lt;/em&gt; by Peter Duffett-Smith is mentioned.
 Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
@@ -301,76 +305,76 @@ for a range of a few thousand years.&lt;/p&gt;
 &lt;li&gt;The Gaia telescope can pinpoint star locations down to 7 microarcseconds&lt;/li&gt;
 &lt;/ul&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;Effect&lt;/th&gt;
-          &lt;th&gt;Predictable&lt;/th&gt;
-          &lt;th&gt;Caused By&lt;/th&gt;
-          &lt;th&gt;Max Change in Accuracy&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Precession&lt;/td&gt;
-          &lt;td&gt;Yes&lt;/td&gt;
-          &lt;td&gt;Wobble&lt;/td&gt;
-          &lt;td&gt;~1°/century&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Parallax&lt;/td&gt;
-          &lt;td&gt;Yes&lt;/td&gt;
-          &lt;td&gt;Distance Changes&lt;/td&gt;
-          &lt;td&gt;1 degree (lunar), less than 1 arcsec (everything else)&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Refraction&lt;/td&gt;
-          &lt;td&gt;Yes&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
-          &lt;td&gt;The Atmosphere&lt;/td&gt;
-          &lt;td&gt;Up to 30 arcmin (near the horizon)&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Pertubation&lt;/td&gt;
-          &lt;td&gt;Yes&lt;/td&gt;
-          &lt;td&gt;Newtonion Gravity&lt;/td&gt;
-          &lt;td&gt;Up to 1.5 degrees&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Proper Motion&lt;/td&gt;
-          &lt;td&gt;Yes&lt;/td&gt;
-          &lt;td&gt;Star Movement&lt;/td&gt;
-          &lt;td&gt;Less than 5 arcsec per year&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Nutation&lt;/td&gt;
-          &lt;td&gt;Yes&lt;/td&gt;
-          &lt;td&gt;Wobble&lt;/td&gt;
-          &lt;td&gt;~10 arcsec/20y&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Polar Motion&lt;/td&gt;
-          &lt;td&gt;No&lt;/td&gt;
-          &lt;td&gt;???&lt;/td&gt;
-          &lt;td&gt;~0.1 arcsec/year&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Extinction&lt;/td&gt;
-          &lt;td&gt;No&lt;/td&gt;
-          &lt;td&gt;The Atmosphere&lt;/td&gt;
-          &lt;td&gt;Varies (effecting visual magnitude)&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Abberation&lt;/td&gt;
-          &lt;td&gt;Yes&lt;/td&gt;
-          &lt;td&gt;The Earths Orbit&lt;/td&gt;
-          &lt;td&gt;Up to 20 arcsec&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Apsidal Precession&lt;/td&gt;
-          &lt;td&gt;Yes&lt;/td&gt;
-          &lt;td&gt;General Relativity&lt;/td&gt;
-          &lt;td&gt;Less than 1 arcsec per century&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Effect&lt;/th&gt;
+					&lt;th&gt;Predictable&lt;/th&gt;
+					&lt;th&gt;Caused By&lt;/th&gt;
+					&lt;th&gt;Max Change in Accuracy&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Precession&lt;/td&gt;
+					&lt;td&gt;Yes&lt;/td&gt;
+					&lt;td&gt;Wobble&lt;/td&gt;
+					&lt;td&gt;~1°/century&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Parallax&lt;/td&gt;
+					&lt;td&gt;Yes&lt;/td&gt;
+					&lt;td&gt;Distance Changes&lt;/td&gt;
+					&lt;td&gt;1 degree (lunar), less than 1 arcsec (everything else)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Refraction&lt;/td&gt;
+					&lt;td&gt;Yes&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/td&gt;
+					&lt;td&gt;The Atmosphere&lt;/td&gt;
+					&lt;td&gt;Up to 30 arcmin (near the horizon)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Pertubation&lt;/td&gt;
+					&lt;td&gt;Yes&lt;/td&gt;
+					&lt;td&gt;Newtonion Gravity&lt;/td&gt;
+					&lt;td&gt;Up to 1.5 degrees&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Proper Motion&lt;/td&gt;
+					&lt;td&gt;Yes&lt;/td&gt;
+					&lt;td&gt;Star Movement&lt;/td&gt;
+					&lt;td&gt;Less than 5 arcsec per year&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Nutation&lt;/td&gt;
+					&lt;td&gt;Yes&lt;/td&gt;
+					&lt;td&gt;Wobble&lt;/td&gt;
+					&lt;td&gt;~10 arcsec/20y&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Polar Motion&lt;/td&gt;
+					&lt;td&gt;No&lt;/td&gt;
+					&lt;td&gt;???&lt;/td&gt;
+					&lt;td&gt;~0.1 arcsec/year&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Extinction&lt;/td&gt;
+					&lt;td&gt;No&lt;/td&gt;
+					&lt;td&gt;The Atmosphere&lt;/td&gt;
+					&lt;td&gt;Varies (effecting visual magnitude)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Abberation&lt;/td&gt;
+					&lt;td&gt;Yes&lt;/td&gt;
+					&lt;td&gt;The Earths Orbit&lt;/td&gt;
+					&lt;td&gt;Up to 20 arcsec&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Apsidal Precession&lt;/td&gt;
+					&lt;td&gt;Yes&lt;/td&gt;
+					&lt;td&gt;General Relativity&lt;/td&gt;
+					&lt;td&gt;Less than 1 arcsec per century&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Not all these effects are worth accounting for to the level of picoarcseconds. Many are not worth accounting for at all in a
 parsimonious info generator. Some only matter for historical dates or dates far in the future. At the same time,
@@ -390,17 +394,17 @@ explanation on why they work.&lt;/li&gt;
 &lt;p&gt;As for the plumbing, we can generally break down any calculation into the form &lt;code&gt;get [PROPERTY] from [OBJECT] assuming [TIME/LATLONG]&lt;/code&gt;&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;.
 Creating a table of properties of an object over time is called &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeris&#34;&gt;ephemeris&lt;/a&gt;.
 Using this model, we can make a simple interface to these algorithms for a command line:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;deskephem -l 45s,0 moon phase
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;deskephem -l 45s,0 moon phase
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# 🌘 Waning Crescent (8.0%)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;deskephem -E now,5d,+3w saturn distance
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ===================================================&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#          Date                   Distance           &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#          Date                   Distance&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ===================================================&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-05-24T13:45:27  10.00 AU                     &lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-05-29T13:45:27  9.92 AU                      &lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-03T13:45:27  9.84 AU                      &lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-08T13:45:27  9.76 AU                      &lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-13T13:45:27  9.68 AU   &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-05-24T13:45:27  10.00 AU&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-05-29T13:45:27  9.92 AU&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-03T13:45:27  9.84 AU&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-08T13:45:27  9.76 AU&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#  2025-06-13T13:45:27  9.68 AU&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Additionally, output can be added for JSON and CSV, to make parsing data with tools much easier.&lt;/p&gt;
 &lt;h1 id=&#34;the-result&#34;&gt;
   &lt;a href=&#34;#the-result&#34;&gt;#&lt;/a&gt;
@@ -409,11 +413,11 @@ Using this model, we can make a simple interface to these algorithms for a comma
 Doing this entirely inside the command line with conventional tools is normally a painful process, but using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&amp;hellip;).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/SMVm.png&#34; alt=&#34;Inner Solar System Distance Graph&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/SMVm.png&#34; alt=&#34;Inner Solar System Distance Graph&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It is easy to see why Mercury is the &lt;a href=&#34;https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/&#34;&gt;&amp;ldquo;mostest closest&amp;rdquo;&lt;/a&gt; with this graph. You can also see the slight eccentricity of Earth&amp;rsquo;s, and Mercury&amp;rsquo;s orbit as wobble in the line of the sun, and a more substantial difference in the wave of Mercury&amp;rsquo;s orbit.&lt;/p&gt;
 &lt;p&gt;This tool only has 1500 lines of rust (astronomical algorithms included), with 0-dependencies aside from std.
 And the algorithms are universal enough to be rewritten to anything with trig functions and floating point math.&lt;/p&gt;
-&lt;p&gt;The ephemeris generator that came from this research: &lt;a href=&#34;https://github.com/oliverkwebb/deskephem&#34;&gt;deskephem&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The ephemeris generator that came from this research: &lt;a href=&#34;https://github.com/iriswebb/deskephem&#34;&gt;deskephem&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
 &lt;ol&gt;
@@ -428,12 +432,12 @@ And the algorithms are universal enough to be rewritten to anything with trig fu
 </description></item>
 
 	<item><title>Astronomy: Time is an Angle</title>
-	<link>https://oliverkwebb.github.io/articles/astronomy-angles/</link>
+	<link>https://iriswebb.github.io/articles/astronomy-angles/</link>
 	<pubDate>Tue, 20 May 2025 16:08:15 -0500</pubDate>
 	<description>&lt;p&gt;The time of day as an idea needs no introduction.&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;current-time&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://iriswebb.github.io/trinkets/current-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;But what does it &lt;em&gt;represent&lt;/em&gt;, really? Well, it represents a fraction of a rotation (the Earth&amp;rsquo;s), which makes it an angle.&lt;/p&gt;
 &lt;p&gt;In many astronomical calculations, angles in coordinates are represented as a time to make certain conversions easier.
@@ -448,25 +452,25 @@ how much the celestial sphere has rotated in comparison to the prime meridian.&l
   The 360 hour clock, the 2π hour clock, and the 1 hour clock&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
 &lt;/h1&gt;&lt;div style=&#34;width: 100%&#34; id=&#34;current-time-angle&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/current-time-angle.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://iriswebb.github.io/trinkets/current-time-angle.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;In 4 minutes, the earth rotates 1 degree around its axis, and in about 4 hours, it rotates one radian.
 This can provide a vague idea of how much objects will move in the sky. The sun takes
 up about half a degree of view in the sky, so a sunset will take a minimum of two minutes.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/AngleTime.png&#34; alt=&#34;Conversion between angle units and time units&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/AngleTime.png&#34; alt=&#34;Conversion between angle units and time units&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Venus takes up about 1/60th of a degree of view. So it could only take 4 seconds to move its own
 diameter in the sky, which is good to know for telescope adjustment (&amp;ldquo;If I leave my telescope alone,
 I&amp;rsquo;ll be able to see X for at least Y amount of time&amp;rdquo;).&lt;/p&gt;
 &lt;p&gt;Using degrees in place of hours on a clock, or using &amp;ldquo;turns&amp;rdquo; (the fraction of the day) gives
 results that are interesting, but don&amp;rsquo;t deserve much commentary.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/places100deg.png&#34; alt=&#34;Places on Earth where it can be 100 degrees in the morning&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/places100deg.png&#34; alt=&#34;Places on Earth where it can be 100 degrees in the morning&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;the-tangent-of-time&#34;&gt;
   &lt;a href=&#34;#the-tangent-of-time&#34;&gt;#&lt;/a&gt;
   The Tangent of Time
 &lt;/h1&gt;&lt;p&gt;Why radians? For trig functions, of course!&lt;/p&gt;
 &lt;div style=&#34;width: 100%&#34; id=&#34;tangent-of-time&#34;&gt;
 &lt;/div&gt;
-&lt;script src=&#34;https://oliverkwebb.github.io/trinkets/tangent-of-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://iriswebb.github.io/trinkets/tangent-of-time.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Whilst taking trig functions on your coordinates can yield interesting results
 (the cosine of your latitude is how long your line of latitude is compared to the equator).
@@ -482,19 +486,19 @@ These don&amp;rsquo;t seem to map to anything interesting and non-obvious.&lt;/p
 </description></item>
 
 	<item><title>Mathematical data representation (ADT) explained</title>
-	<link>https://oliverkwebb.github.io/articles/adt-visual/</link>
+	<link>https://iriswebb.github.io/articles/adt-visual/</link>
 	<pubDate>Thu, 27 Feb 2025 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;In C, primitive types are just numbers.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%d, %u, %f, %x&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f85149&#34;&gt;&amp;#39;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f85149&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f85149&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;A&lt;span style=&#34;color:#f85149&#34;&gt;&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;35&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;0.5&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;string&amp;#34;&lt;/span&gt;);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%d, %u, %f, %x&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f85149&#34;&gt;&amp;#39;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f85149&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f85149&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;A&lt;span style=&#34;color:#f85149&#34;&gt;&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;35&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;0.5&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;string&amp;#34;&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 65, 4294967261, 0.500000, ce1c2008
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Some are signed, unsigned, floating point, or pointers. But all of them are
 numbers of a certain width. Floats and pointers support a subset of the operations
 integers do, but all primitive types in C support some level of arithmetic.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%d, %x, %ld&amp;#34;&lt;/span&gt;, true &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;6&lt;/span&gt;, argv[&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;0.6&lt;/span&gt;);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%d, %x, %ld&amp;#34;&lt;/span&gt;, true &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;6&lt;/span&gt;, argv[&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#a5d6ff&#34;&gt;0.6&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 6, 4303b661, 99179430350296
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Compound types are either a collection of terms of different types (&lt;code&gt;struct&lt;/code&gt;),
 of the same type (arrays), or a list of aliases to a singular place in memory (&lt;code&gt;union&lt;/code&gt;).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; response {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; response {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; abbr[&lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;];
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {SUCC, ERR} tag;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;union&lt;/span&gt; {
@@ -506,7 +510,7 @@ of the same type (arrays), or a list of aliases to a singular place in memory (&
 Doing this in C requires explicit thought and attention, even though
 this behaviour is needed in most contexts.&lt;/p&gt;
 &lt;p&gt;In this spirit, enumerations are interchangeable with integers.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {A, B, C} x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;630&lt;/span&gt;;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {A, B, C} x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;630&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {D, E, F} y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; A;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;==&lt;/span&gt; D; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// True
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All of this allows for transparent memory management. The price paid is that it&amp;rsquo;s a lot harder to cleanly
@@ -516,30 +520,30 @@ represent data with C. The programmer has to be constantly paranoid about invali
   &lt;a href=&#34;#algebraic-description-of-types-adt&#34;&gt;#&lt;/a&gt;
   Algebraic Description of Types (ADT)
 &lt;/h2&gt;&lt;p&gt;Using ADT, a type is just a set of terms. Values outside of these terms are &lt;strong&gt;unconstructable&lt;/strong&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Boolean&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Boolean&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;True,&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;False,&lt;span style=&#34;color:#6e7681&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The mathematical notation for type theory often works with the number of terms in the type. For example, the boolean type is commonly
 called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
 &lt;p&gt;We can combine types into larger types using product and sum types.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/Product_Sum_Diagram.png&#34; alt=&#34;The Product and Sum Type&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/Product_Sum_Diagram.png&#34; alt=&#34;The Product and Sum Type&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A product type combines types in a similar fashion as a &lt;code&gt;struct&lt;/code&gt; in C.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Person&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Person&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Name(String),&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Age(&lt;span style=&#34;color:#ff7b72&#34;&gt;u32&lt;/span&gt;),&lt;span style=&#34;color:#6e7681&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The number of terms in a product type is equal to the &lt;strong&gt;product&lt;/strong&gt; of the number of terms in the two combining types.&lt;/p&gt;
 &lt;p&gt;A sum type is analogous to a tagged union, representing &lt;em&gt;either&lt;/em&gt; one value or another.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Response&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#f0883e;font-weight:bold&#34;&gt;Response&lt;/span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Succ(&lt;span style=&#34;color:#ff7b72&#34;&gt;u32&lt;/span&gt;),&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;    &lt;/span&gt;Error,&lt;span style=&#34;color:#6e7681&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6e7681&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;span style=&#34;color:#6e7681&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The number of terms in a sum type is equal to the sum of the terms in the combining types.&lt;/p&gt;
 &lt;p&gt;Types that represent functions with one argument are also possible, reducing down to the exponentiation.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/graph/functype.png&#34; alt=&#34;The Function Type&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/functype.png&#34; alt=&#34;The Function Type&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A function with multiple arguments is possible via currying, returning a function with one less argument.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;2&lt;/span&gt;)
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;2&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt; x &lt;span style=&#34;color:#a5d6ff&#34;&gt;3&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;5&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;now-prove-that-numbers-exist&#34;&gt;
@@ -564,16 +568,16 @@ to express statements in a type and prove they are true if the type is inhabited
 </description></item>
 
 	<item><title>Rethinking The C Time API</title>
-	<link>https://oliverkwebb.github.io/articles/newtime/</link>
+	<link>https://iriswebb.github.io/articles/newtime/</link>
 	<pubDate>Wed, 05 Feb 2025 10:25:12 -0500</pubDate>
 	<description>&lt;p&gt;Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
 To the point almost every regularly used element of it has some design decision that&amp;rsquo;s been obsolete for
 decades.&lt;/p&gt;
 &lt;p&gt;As a example, here is some code I use to print the current time for my status bar:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;time.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; buf[&lt;span style=&#34;color:#a5d6ff&#34;&gt;40&lt;/span&gt;];
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ff7b72&#34;&gt;time_t&lt;/span&gt; now &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;time&lt;/span&gt;(&lt;span style=&#34;color:#a5d6ff&#34;&gt;0&lt;/span&gt;);
@@ -588,12 +592,12 @@ decades.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;time()&lt;/code&gt; unnecessarily takes a pointer argument to write to&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;strftime()&lt;/code&gt; has to write to a string of a &lt;em&gt;fixed length&lt;/em&gt; it &lt;em&gt;can not dynamically allocate&lt;/em&gt; (This is less legacy than it is bad design)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;localtime()&lt;/code&gt; needs the pointer to a time_t value &lt;em&gt;even though it does not change it&lt;/em&gt; because of register size concerns on PDP-11&amp;rsquo;s&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;localtime()&lt;/code&gt; needs the pointer to a time&lt;em&gt;t value _even though it does not change it&lt;/em&gt; because of register size concerns on PDP-11&amp;rsquo;s&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sleep()&lt;/code&gt; cannot sleep for sub-second amounts of time, &lt;code&gt;usleep()&lt;/code&gt; is deprecated and it&amp;rsquo;s alternative &lt;code&gt;nanosleep()&lt;/code&gt; requires you to define variables&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This is possibly the simplest real-world use of the C time API. And even then the legacy cruft and bad design makes this code significantly less organic.&lt;/p&gt;
 &lt;p&gt;For comparison, here is the corresponding Lua code&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;while&lt;/span&gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;true&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;do&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;while&lt;/span&gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;true&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;do&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	print(os.date(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%a %b %d %T&amp;#34;&lt;/span&gt;))
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	io.stdout:flush();
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;not&lt;/span&gt; os.execute(&lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;sleep 1&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#ff7b72&#34;&gt;then&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#ff7b72&#34;&gt;end&lt;/span&gt;
@@ -648,12 +652,12 @@ the &lt;code&gt;timespec&lt;/code&gt; struct used in a lot of system-level time 
 point precision loss is surprisingly easy. For a number n; Any number below 2&lt;sup&gt;n&lt;/sup&gt; will have at least 2&lt;sup&gt;n-mantissa_length&lt;/sup&gt; precision.&lt;/p&gt;
 &lt;p&gt;As an example, Lets consider a long double that represents seconds.
 We lose nanosecond level precision when 2&lt;sup&gt;n-63&lt;/sup&gt; is 10&lt;sup&gt;-9&lt;/sup&gt;. Which means we lose precision at around ~2&lt;sup&gt;33&lt;/sup&gt; seconds.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ date -d &amp;#34;@$((2**33))&amp;#34;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ date -d &amp;#34;@$((2**33))&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Wed Mar 16 07:56:32 AM CDT 2242
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If this long double were to represent nanoseconds, we&amp;rsquo;d lose precision at
 2&lt;sup&gt;63&lt;/sup&gt; nanoseconds (Around 2262 (The 20 year difference is due to the fact
 that 10&lt;sup&gt;-9&lt;/sup&gt; is actually around 2&lt;sup&gt;-29.8&lt;/sup&gt;)).&lt;/p&gt;
-&lt;p&gt;Using &lt;a href=&#34;https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4&#34;&gt;some go code&lt;/a&gt; I was able to generate the following table:&lt;/p&gt;
+&lt;p&gt;Using &lt;a href=&#34;https://gist.github.com/iriswebb/086e841fe8cb0ad4d3eebc99c38b91a4&#34;&gt;some go code&lt;/a&gt; I was able to generate the following table:&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -726,17 +730,17 @@ In the spirit of &amp;ldquo;100 functions for 10 data structures vs. 10 function
 &lt;li&gt;mktime(), being the main way to convert back into &lt;code&gt;time_t&lt;/code&gt;, changes the struct that is passed in.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Creating our own calendar structure to fix these problems:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint32_t&lt;/span&gt; nsec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..1E9
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   sec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..60
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   min; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..59
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;  hour; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..23
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   day; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..30
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt; month; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..11
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;   year; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Since Epoch
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   sec; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..60
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   min; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..59
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;  hour; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..23
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt;   day; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..30
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;uint8_t&lt;/span&gt; month; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// 0..11
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;   year; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Since Epoch
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With 4 functions to handle them:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tocal&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tocal&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;wdayof&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;ydayof&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;extern&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;   &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;fromcal&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;struct&lt;/span&gt; cal cal);
@@ -758,7 +762,7 @@ In the spirit of &amp;ldquo;100 functions for 10 data structures vs. 10 function
 &lt;/h2&gt;&lt;p&gt;The timezone handling code in libc isn&amp;rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 &lt;code&gt;tzset()&lt;/code&gt; and &lt;code&gt;localtime()&lt;/code&gt; are the &lt;em&gt;only&lt;/em&gt; ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://oliverkwebb.github.io/svg/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/svg/tzset.svg&#34; alt=&#34;tzset, environ, and localtime relationship&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A timezone in use is essentially a number of seconds to adjust with, and a name which can be printed (note that this is different from the
 name you would use to load the timezone. I.e. &lt;code&gt;America/New_York&lt;/code&gt; vs. &lt;code&gt;EST&lt;/code&gt;). &lt;strong&gt;Neither of these things are constant&lt;/strong&gt;, with daylight savings
 time and other various adjustment, it does not make sense to give a constant number of seconds or a name for a timezone. (Even with DST
@@ -776,12 +780,12 @@ therefore it must be the users job to free it)&lt;/li&gt;
 &lt;li&gt;Set &lt;code&gt;TZ&lt;/code&gt; back to whatever it was&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Creating three base functions and two convenience functions to work with:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tzoffat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Seconds east of UTC
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt;   &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tznameat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tzoffat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// Seconds east of UTC
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt;   &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;tznameat&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;mytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;      &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;intz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;tz); &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// d+tzoffat(d, tz)
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;inmytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);           &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// intz(d, mytz())
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;inmytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);           &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// intz(d, mytz())
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;why-weekdays-in-the-time-structure-are-bad&#34;&gt;
   &lt;a href=&#34;#why-weekdays-in-the-time-structure-are-bad&#34;&gt;#&lt;/a&gt;
   Why weekdays in the time structure are bad
@@ -888,94 +892,94 @@ apart. Many more were designed without the idea of internationalization in mind.
 that is &amp;ldquo;complete&amp;rdquo;, but not pleasant or elegant to use, and which leaves many pitfalls for bugs.&lt;/p&gt;
 &lt;p&gt;And as other languages try to improve &lt;a href=&#34;https://pkg.go.dev/time&#34;&gt;their own time libraries&lt;/a&gt;, looking at the mistakes of C,
 It is interesting to think of ways C itself could&amp;rsquo;ve improved its own time library looking at these same mistakes.&lt;/p&gt;
-&lt;p&gt;The GitHub project for this time library (Partial WIP): &lt;a href=&#34;https://github.com/oliverkwebb/newtime/&#34;&gt;https://github.com/oliverkwebb/newtime/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The GitHub project for this time library (Partial WIP): &lt;a href=&#34;https://github.com/iriswebb/newtime/&#34;&gt;https://github.com/iriswebb/newtime/&lt;/a&gt;&lt;/p&gt;
 </description></item>
 
 	<item><title>List of classic UNIX utils re-designed in rust</title>
-	<link>https://oliverkwebb.github.io/articles/rustunixnew/</link>
+	<link>https://iriswebb.github.io/articles/rustunixnew/</link>
 	<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>
 	<description>&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;Name&lt;/th&gt;
-          &lt;th&gt;Influenced from&amp;hellip;&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;strong&gt;Text Processing and Scripting&lt;/strong&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/bat&#34;&gt;bat&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;cat&lt;/code&gt;,      &lt;code&gt;less&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://printfn.github.io/fend/documentation/&#34;&gt;fend&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;bc&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/dandavison/delta&#34;&gt;delta&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;diff&lt;/code&gt;, &lt;code&gt;git diff&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/sstadick/hck&#34;&gt;hck&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;cut&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/BurntSushi/ripgrep&#34;&gt;ripgrep&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/chmln/sd&#34;&gt;sd&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;sed&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;strong&gt;Process Management&lt;/strong&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/ClementTsang/bottom&#34;&gt;bottom&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;top&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/orf/gping&#34;&gt;gping&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;ping&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/dalance/procs&#34;&gt;procs&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;ps&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/polyverse/rmesg/&#34;&gt;rmesg&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;dmesg&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;strong&gt;File Management&lt;/strong&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/bootandy/dust&#34;&gt;dust&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;du&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/eza-community/eza&#34;&gt;eza&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/fd&#34;&gt;fd&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;find&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;a href=&#34;https://github.com/ajeetdsouza/zoxide&#34;&gt;zoxide&lt;/a&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;cd&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Name&lt;/th&gt;
+					&lt;th&gt;Influenced from&amp;hellip;&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Text Processing and Scripting&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/bat&#34;&gt;bat&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;cat&lt;/code&gt;,      &lt;code&gt;less&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://printfn.github.io/fend/documentation/&#34;&gt;fend&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;bc&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/dandavison/delta&#34;&gt;delta&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;diff&lt;/code&gt;, &lt;code&gt;git diff&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/sstadick/hck&#34;&gt;hck&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;cut&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/BurntSushi/ripgrep&#34;&gt;ripgrep&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/chmln/sd&#34;&gt;sd&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;sed&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;Process Management&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/ClementTsang/bottom&#34;&gt;bottom&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;top&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/orf/gping&#34;&gt;gping&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;ping&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/dalance/procs&#34;&gt;procs&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;ps&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/polyverse/rmesg/&#34;&gt;rmesg&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;dmesg&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;strong&gt;File Management&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/bootandy/dust&#34;&gt;dust&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;du&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/eza-community/eza&#34;&gt;eza&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/fd&#34;&gt;fd&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;find&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;a href=&#34;https://github.com/ajeetdsouza/zoxide&#34;&gt;zoxide&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;cd&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 </description></item>
 
 	<item><title>The Oldest Binary on a Mint System</title>
-	<link>https://oliverkwebb.github.io/articles/oldbin/</link>
+	<link>https://iriswebb.github.io/articles/oldbin/</link>
 	<pubDate>Thu, 19 Sep 2024 21:59:45 -0500</pubDate>
 	<description>&lt;p&gt;Simple question with a simple answer: What is the oldest binary on a Linux mint ISO (modification time)? I was playing around with the stat command more than a year ago when I asked this to myself.
 Running a quick shell pipeline &lt;code&gt;stat -c &amp;quot;%Z %z %n&amp;quot; /bin/* | sort -rn&lt;/code&gt;. The oldest 5 binaries you get are all older than 2011, these are (from oldest -&amp;gt; newest):&lt;/p&gt;
@@ -1011,7 +1015,7 @@ tools to create my own bootstrapped for those distros, then I could modify it to
 </description></item>
 
 	<item><title>Migrating to Hugo</title>
-	<link>https://oliverkwebb.github.io/articles/hugo/</link>
+	<link>https://iriswebb.github.io/articles/hugo/</link>
 	<pubDate>Sun, 18 Aug 2024 12:00:34 -0500</pubDate>
 	<description>&lt;p&gt;This website now runs on &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. I migrated the infrastructure off the old static
 site generator that was written in Makefile.&lt;/p&gt;
@@ -1077,11 +1081,11 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;p&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Checkboxes&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;f&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;) {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;f&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt;) {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ff7b72&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34; display highlighted code&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;1&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;View github gists:
-&lt;script src=&#34;https://gist.github.com/oliverkwebb/8b05751e685a01c6a2c71c2a8de69052.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;script src=&#34;https://gist.github.com/iriswebb/8b05751e685a01c6a2c71c2a8de69052.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://gohugo.io/about/features/&#34;&gt;And many more&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
@@ -1094,7 +1098,7 @@ site generator that was written in Makefile.&lt;/p&gt;
 </description></item>
 
 	<item><title>Why I don&#39;t like GNU</title>
-	<link>https://oliverkwebb.github.io/articles/gnulist/</link>
+	<link>https://iriswebb.github.io/articles/gnulist/</link>
 	<pubDate>Sat, 17 Aug 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;This list does not mention the [Richard Stallman controversy]&amp;lt;Link to Drew DeVault article here&amp;gt;.
 Nor his squabbles related to &lt;a href=&#34;https://sourceware.org/legacy-ml/libc-hacker/2000-06/msg00233.html&#34;&gt;glibc&lt;/a&gt;
@@ -1109,17 +1113,20 @@ because:&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;From &lt;a href=&#34;https://www.gnu.org/gnu/linux-and-gnu.html&#34;&gt;https://www.gnu.org/gnu/linux-and-gnu.html&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
-What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;&lt;/blockquote&gt;
+What they found was no accident—it was the not-quite-complete GNU system.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;In Linus&amp;rsquo;s book &lt;em&gt;&lt;a href=&#34;https://books.google.com/books/about/Just_for_Fun.html?id=Q3aIPwAACAAJ&#34;&gt;Just For Fun&lt;/a&gt;&lt;/em&gt;, the GNU project plays little to no role in the creation of Linux.
 Linux grew out of comp.os.minix, not anything related to the FSF or GNU project. Additionally, The FSF was
 still advocating for Hurd until well after Linux was popular.&lt;/p&gt;
 &lt;p&gt;From &lt;em&gt;&lt;a href=&#34;https://web.archive.org/web/19980126191050/http://www.gnu.org/software/hurd/hurd-and-linux.html&#34;&gt;The Hurd and Linux (1997)&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;The FSF&amp;rsquo;s push for hurd died out sometime in the early 2000&amp;rsquo;s, when Linux was commonplace and Hurd was completely abandoned.&lt;/p&gt;
 &lt;p&gt;From &lt;a href=&#34;https://karmak.org/archive/2003/01/12-14-99.epl.html&#34;&gt;A interview with RMS in 99&amp;rsquo;&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Yes. Unfortunately, progress right now is very slow. We don&amp;rsquo;t have anybody working on it full time, and I wish we did.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;
   &lt;a href=&#34;#2-for-years-the-gnu-project-was-not-directly-maintaining-most-of-their-popular-projects&#34;&gt;#&lt;/a&gt;
   2. For years, the GNU project was not directly maintaining most of their popular projects
@@ -1145,7 +1152,8 @@ intentionally kept it back from being so.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Anything that makes it easier to use GCC back ends without GCC front
 ends&amp;ndash;or simply brings GCC a big step closer to a form that would make
 such usage easy&amp;ndash;would endanger our leverage for causing new front
-ends to be free.&lt;/p&gt;&lt;/blockquote&gt;
+ends to be free.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;The FSF is a political movement that engages in intentional obfuscation to spread itself.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;
   &lt;a href=&#34;#4-glibcs-feature-test-macros-are-designed-so-that-people-would-mark-their-code-with-the-gnu-projects-name&#34;&gt;#&lt;/a&gt;
@@ -1237,7 +1245,7 @@ everyone.&lt;/p&gt;
 </description></item>
 
 	<item><title>Writing a UTF-8 safe AWK</title>
-	<link>https://oliverkwebb.github.io/articles/utfawk/</link>
+	<link>https://iriswebb.github.io/articles/utfawk/</link>
 	<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for it&amp;rsquo;s
 applications. This has kept things like &lt;a href=&#34;http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html&#34;&gt;the fully GNU compatible tr&lt;/a&gt;
@@ -1304,7 +1312,7 @@ is figuring out &lt;em&gt;what&lt;/em&gt; needs unicode handling.&lt;/p&gt;
 </description></item>
 
 	<item><title>Replacing Neovim with vis</title>
-	<link>https://oliverkwebb.github.io/articles/vis/</link>
+	<link>https://iriswebb.github.io/articles/vis/</link>
 	<pubDate>Wed, 17 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;Lately, I&amp;rsquo;ve been unhappy with neovim and it&amp;rsquo;s bloat. vi is a simple and beautiful tool by
 itself, but it&amp;rsquo;s most popular deviation vim has been bloated to the point of being unmanageable
@@ -1352,7 +1360,7 @@ versatile.&lt;/p&gt;
 </description></item>
 
 	<item><title>Making A static site generator with `make`</title>
-	<link>https://oliverkwebb.github.io/articles/makessg/</link>
+	<link>https://iriswebb.github.io/articles/makessg/</link>
 	<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;There are a variety of tools that can be used for static site generation,
 which is analogous to ahead of time compilation. &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; is
@@ -1369,7 +1377,7 @@ to execute the commands in that rule. If you specify multiple rules for
 make to run in the command line, it will run all of those rules, if you
 specify no rules, it will run the first rule defined in the makefile
 (commonly, this rule is called &amp;ldquo;all&amp;rdquo;)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo bar
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;baz:
@@ -1386,7 +1394,7 @@ And aborting on failure of a command can be disabled by placing &lt;code&gt;-&lt
 at the start of the command&lt;/p&gt;
 &lt;p&gt;Additionally, you can refer to &lt;a href=&#34;https://man7.org/linux/man-pages/man7/environ.7.html&#34;&gt;environment variables&lt;/a&gt; in your makefile,
 and assign them on the command line or in your makefile.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;BAZ=123
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    @echo $(BAR) $(BAZ)
@@ -1422,7 +1430,7 @@ are special variables in make; You can use &lt;code&gt;$&amp;lt;&lt;/code&gt; to
 the list of prerequisites, and &lt;code&gt;$@&lt;/code&gt; to refer to your rule name. Note this is
 not the pattern that the specified rule matched, it is the rule that matched
 the pattern.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.o&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.c
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.o&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.c
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;CC&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;CFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; -o &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you run &lt;code&gt;make main.o&lt;/code&gt;, make will:&lt;/p&gt;
 &lt;ul&gt;
@@ -1450,13 +1458,13 @@ variable definitions and arguments are separated by commas. So that evaluating
 &lt;p&gt;Since the problem of turning markdown files into HTML files is similar to the
 problem of turning source files into object files, we can create a simple rule
 that does 99% of our work.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MARKDOWN&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MDFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But markdown compilers don&amp;rsquo;t usually generate HTML boilerplate, and we might
 want to import a stylesheet, and maybe save to a &amp;ldquo;dist&amp;rdquo; directory. So that
 if we have a &amp;ldquo;index.md&amp;rdquo; file, it will compile to &lt;code&gt;$(DIST)/index.html&lt;/code&gt;, this
 is no issue for us.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;$(DIST)/%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;$(DIST)/%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; %.md
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/begin.html &amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MARKDOWN&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;MDFLAGS&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt; $&amp;lt; &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/end.html &amp;gt;&amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;
@@ -1467,7 +1475,7 @@ we can specify variables for our markdown compiler (in this example, I used
 &lt;code&gt;lowdown&lt;/code&gt;), and scan for files in a source directory using
 the wildcard command. Making them valid rule names by substituting .md prefixes
 with .html ones, and adding the prefix &lt;code&gt;$(DIST)&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;DIST&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;dist
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;DIST&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;dist
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;TEMPLATES&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;templ
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;MARKDOWN&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;lowdown
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
@@ -1475,7 +1483,7 @@ with .html ones, and adding the prefix &lt;code&gt;$(DIST)&lt;/code&gt;&lt;/p&gt
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#79c0ff&#34;&gt;PDEST&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;addprefix &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;DIST&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/, &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;patsubst %.md, %.html, &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;PAGES&lt;span style=&#34;color:#ff7b72&#34;&gt;)))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ${VAR} breaks down VAR into a list of rules
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;all&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; ${PDEST}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;all&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; ${PDEST}
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;$(DIST)/%.html&lt;/span&gt;&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;:&lt;/span&gt; pages/%.md
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cat &lt;span style=&#34;color:#ff7b72&#34;&gt;$(&lt;/span&gt;TEMPLATES&lt;span style=&#34;color:#ff7b72&#34;&gt;)&lt;/span&gt;/begin.html &amp;gt; &lt;span style=&#34;color:#79c0ff&#34;&gt;$@&lt;/span&gt;

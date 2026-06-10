@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<title>Practical Astronomy With Your Command Line | Iris Webb</title>
-	<link rel="canonical" href="https://oliverkwebb.github.io/">
+	<link rel="canonical" href="https://iriswebb.github.io/">
 	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
 	<link rel='stylesheet' type='text/css' href='/style.css'>
 	<link rel="icon" href="/favicon.png">
@@ -45,8 +45,8 @@ could give accurate information about the phase of the moon centuries into the f
 information such as angular diameter and distance. And it could do that parsimoniously in around 400 lines
 of C (before refactoring).</p>
 <p>Stripping out all the GUI code (which would not compile on X since it uses SunOS specific libraries (think
-1987 when color monitors running X are the hot new thing)), that code could easily be refactored into <a href="https://github.com/oliverkwebb/moontool">a CLI tool</a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mprintf -h
+1987 when color monitors running X are the hot new thing)), that code could easily be refactored into <a href="https://github.com/iriswebb/moontool">a CLI tool</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mprintf -h
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># mprintf [-h] [-t TIME] [FORMAT]</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># -f formats:</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># %a Moon Age      %J Julian Day</span>
@@ -56,8 +56,8 @@ of C (before refactoring).</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>mprintf <span style="color:#a5d6ff">&#34;%e %P %p&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 🌘 13.3 Waning Crescent</span>
-</span></span></code></pre></div><p>I later transpiled this to <a href="https://github.com/oliverkwebb/moontool/tree/main/lua">lua</a> and
-<a href="https://github.com/oliverkwebb/moontool-rs">rust</a>. But&hellip; <em>how did the original code get the moon phase</em>,
+</span></span></code></pre></div><p>I later transpiled this to <a href="https://github.com/iriswebb/moontool/tree/main/lua">lua</a> and
+<a href="https://github.com/iriswebb/moontool-rs">rust</a>. But&hellip; <em>how did the original code get the moon phase</em>,
 and how did they come up with the algorithm?</p>
 <p>In the header of that code, the book <em>Practical Astronomy with Your Calculator</em> by Peter Duffett-Smith is mentioned.
 Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
@@ -82,76 +82,76 @@ for a range of a few thousand years.</p>
 <li>The Gaia telescope can pinpoint star locations down to 7 microarcseconds</li>
 </ul>
 <table>
-  <thead>
-      <tr>
-          <th>Effect</th>
-          <th>Predictable</th>
-          <th>Caused By</th>
-          <th>Max Change in Accuracy</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Precession</td>
-          <td>Yes</td>
-          <td>Wobble</td>
-          <td>~1°/century</td>
-      </tr>
-      <tr>
-          <td>Parallax</td>
-          <td>Yes</td>
-          <td>Distance Changes</td>
-          <td>1 degree (lunar), less than 1 arcsec (everything else)</td>
-      </tr>
-      <tr>
-          <td>Refraction</td>
-          <td>Yes<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></td>
-          <td>The Atmosphere</td>
-          <td>Up to 30 arcmin (near the horizon)</td>
-      </tr>
-      <tr>
-          <td>Pertubation</td>
-          <td>Yes</td>
-          <td>Newtonion Gravity</td>
-          <td>Up to 1.5 degrees</td>
-      </tr>
-      <tr>
-          <td>Proper Motion</td>
-          <td>Yes</td>
-          <td>Star Movement</td>
-          <td>Less than 5 arcsec per year</td>
-      </tr>
-      <tr>
-          <td>Nutation</td>
-          <td>Yes</td>
-          <td>Wobble</td>
-          <td>~10 arcsec/20y</td>
-      </tr>
-      <tr>
-          <td>Polar Motion</td>
-          <td>No</td>
-          <td>???</td>
-          <td>~0.1 arcsec/year</td>
-      </tr>
-      <tr>
-          <td>Extinction</td>
-          <td>No</td>
-          <td>The Atmosphere</td>
-          <td>Varies (effecting visual magnitude)</td>
-      </tr>
-      <tr>
-          <td>Abberation</td>
-          <td>Yes</td>
-          <td>The Earths Orbit</td>
-          <td>Up to 20 arcsec</td>
-      </tr>
-      <tr>
-          <td>Apsidal Precession</td>
-          <td>Yes</td>
-          <td>General Relativity</td>
-          <td>Less than 1 arcsec per century</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Effect</th>
+					<th>Predictable</th>
+					<th>Caused By</th>
+					<th>Max Change in Accuracy</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Precession</td>
+					<td>Yes</td>
+					<td>Wobble</td>
+					<td>~1°/century</td>
+			</tr>
+			<tr>
+					<td>Parallax</td>
+					<td>Yes</td>
+					<td>Distance Changes</td>
+					<td>1 degree (lunar), less than 1 arcsec (everything else)</td>
+			</tr>
+			<tr>
+					<td>Refraction</td>
+					<td>Yes<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></td>
+					<td>The Atmosphere</td>
+					<td>Up to 30 arcmin (near the horizon)</td>
+			</tr>
+			<tr>
+					<td>Pertubation</td>
+					<td>Yes</td>
+					<td>Newtonion Gravity</td>
+					<td>Up to 1.5 degrees</td>
+			</tr>
+			<tr>
+					<td>Proper Motion</td>
+					<td>Yes</td>
+					<td>Star Movement</td>
+					<td>Less than 5 arcsec per year</td>
+			</tr>
+			<tr>
+					<td>Nutation</td>
+					<td>Yes</td>
+					<td>Wobble</td>
+					<td>~10 arcsec/20y</td>
+			</tr>
+			<tr>
+					<td>Polar Motion</td>
+					<td>No</td>
+					<td>???</td>
+					<td>~0.1 arcsec/year</td>
+			</tr>
+			<tr>
+					<td>Extinction</td>
+					<td>No</td>
+					<td>The Atmosphere</td>
+					<td>Varies (effecting visual magnitude)</td>
+			</tr>
+			<tr>
+					<td>Abberation</td>
+					<td>Yes</td>
+					<td>The Earths Orbit</td>
+					<td>Up to 20 arcsec</td>
+			</tr>
+			<tr>
+					<td>Apsidal Precession</td>
+					<td>Yes</td>
+					<td>General Relativity</td>
+					<td>Less than 1 arcsec per century</td>
+			</tr>
+	</tbody>
 </table>
 <p>Not all these effects are worth accounting for to the level of picoarcseconds. Many are not worth accounting for at all in a
 parsimonious info generator. Some only matter for historical dates or dates far in the future. At the same time,
@@ -171,17 +171,17 @@ explanation on why they work.</li>
 <p>As for the plumbing, we can generally break down any calculation into the form <code>get [PROPERTY] from [OBJECT] assuming [TIME/LATLONG]</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.
 Creating a table of properties of an object over time is called <a href="https://en.wikipedia.org/wiki/Ephemeris">ephemeris</a>.
 Using this model, we can make a simple interface to these algorithms for a command line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>deskephem -l 45s,0 moon phase
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>deskephem -l 45s,0 moon phase
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 🌘 Waning Crescent (8.0%)</span>
 </span></span><span style="display:flex;"><span>deskephem -E now,5d,+3w saturn distance
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># ===================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#          Date                   Distance           </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#          Date                   Distance</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># ===================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-05-24T13:45:27  10.00 AU                     </span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-05-29T13:45:27  9.92 AU                      </span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-03T13:45:27  9.84 AU                      </span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-08T13:45:27  9.76 AU                      </span>
-</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-13T13:45:27  9.68 AU   </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-05-24T13:45:27  10.00 AU</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-05-29T13:45:27  9.92 AU</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-03T13:45:27  9.84 AU</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-08T13:45:27  9.76 AU</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  2025-06-13T13:45:27  9.68 AU</span>
 </span></span></code></pre></div><p>Additionally, output can be added for JSON and CSV, to make parsing data with tools much easier.</p>
 <h1 id="the-result">
   <a href="#the-result">#</a>
@@ -194,7 +194,7 @@ into your data analysis tool of choice (gnuplot, python, etc&hellip;).</p>
 <p>It is easy to see why Mercury is the <a href="https://laughingsquid.com/mercury-is-mostest-closest-planet-to-earth/">&ldquo;mostest closest&rdquo;</a> with this graph. You can also see the slight eccentricity of Earth&rsquo;s, and Mercury&rsquo;s orbit as wobble in the line of the sun, and a more substantial difference in the wave of Mercury&rsquo;s orbit.</p>
 <p>This tool only has 1500 lines of rust (astronomical algorithms included), with 0-dependencies aside from std.
 And the algorithms are universal enough to be rewritten to anything with trig functions and floating point math.</p>
-<p>The ephemeris generator that came from this research: <a href="https://github.com/oliverkwebb/deskephem">deskephem</a></p>
+<p>The ephemeris generator that came from this research: <a href="https://github.com/iriswebb/deskephem">deskephem</a></p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -227,7 +227,7 @@ And the algorithms are universal enough to be rewritten to anything with trig fu
 	</p>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
     <p>
-        The text of <a href="https://oliverkwebb.github.io/">this site</a> by &#xa9; 2026
+        The text of <a href="https://iriswebb.github.io/">this site</a> by &#xa9; 2026
         Iris Webb is licensed under
         <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
     </p>

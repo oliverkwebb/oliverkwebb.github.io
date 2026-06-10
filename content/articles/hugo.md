@@ -1,6 +1,6 @@
 ---
 title: "Migrating to Hugo"
-tags: ['Miscellaneous']
+tags: ["Miscellaneous"]
 date: 2024-08-18T12:00:34-05:00
 ---
 
@@ -30,7 +30,7 @@ site generator that was written in Makefile.
 `partial`
 : Template that isn't a whole webpage
 
-_default
+\_default
 : Base templates
 
 ## Markdown extensions
@@ -45,8 +45,7 @@ Insert emojis: :wave:
 
 - [ ] Checkboxes
 
-- [X] Checkboxes
-
+- [x] Checkboxes
 
 ```c
 static char *f(void) {
@@ -55,7 +54,7 @@ static char *f(void) {
 ```
 
 View github gists:
-{{< gist oliverkwebb 8b05751e685a01c6a2c71c2a8de69052 >}}
+{{< gist iriswebb 8b05751e685a01c6a2c71c2a8de69052 >}}
 
 [And many more](https://gohugo.io/about/features/)
 

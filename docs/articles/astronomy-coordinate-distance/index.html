@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<title>Astronomy and Earth: Coordinate Distances | Iris Webb</title>
-	<link rel="canonical" href="https://oliverkwebb.github.io/">
+	<link rel="canonical" href="https://iriswebb.github.io/">
 	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
 	<link rel='stylesheet' type='text/css' href='/style.css'>
 	<link rel="icon" href="/favicon.png">
@@ -32,7 +32,7 @@ from here <code>crd</code> (<code>2*sin(0.5*x)</code>) can do the work trivially
 <p>Extending this problem into 2d, what can we do?</p>
 <p>Well, any two points on a sphere form a great circle. This immediately reduces the problem back into the first 2d one.
 We can get the angle between the two points on the great circle using:</p>
-<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>arccos(sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(lat1 - lat2))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>arccos(sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(lat1 - lat2))
 </span></span></code></pre></div><p>Multiplying the resulting chord by the earths radius, we can approximately get a distance calculation for digging
 through the earth between any two coordinates.</p>
 <div style="width: 100%" id="sphere-sec">
@@ -74,7 +74,7 @@ to get the phase angle from coordinates and distance alone.</p>
 	</p>
 <p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
     <p>
-        The text of <a href="https://oliverkwebb.github.io/">this site</a> by &#xa9; 2026
+        The text of <a href="https://iriswebb.github.io/">this site</a> by &#xa9; 2026
         Iris Webb is licensed under
         <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
     </p>

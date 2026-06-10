@@ -1,99 +1,100 @@
+
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://oliverkwebb.github.io/</loc>
+    <loc>https://iriswebb.github.io/</loc>
     <lastmod>2026-02-05T16:54:29-06:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/</loc>
+    <loc>https://iriswebb.github.io/articles/</loc>
     <lastmod>2026-02-05T16:54:29-06:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/opinion/</loc>
+    <loc>https://iriswebb.github.io/tags/opinion/</loc>
     <lastmod>2026-02-05T16:54:29-06:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/</loc>
+    <loc>https://iriswebb.github.io/tags/</loc>
     <lastmod>2026-02-05T16:54:29-06:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/info_dense/</loc>
+    <loc>https://iriswebb.github.io/articles/info_dense/</loc>
     <lastmod>2026-02-05T16:54:29-06:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/mymalloc/</loc>
+    <loc>https://iriswebb.github.io/articles/mymalloc/</loc>
     <lastmod>2025-08-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/programming/</loc>
+    <loc>https://iriswebb.github.io/tags/programming/</loc>
     <lastmod>2025-08-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/generalizedprintf/</loc>
+    <loc>https://iriswebb.github.io/articles/generalizedprintf/</loc>
     <lastmod>2025-08-20T10:25:12-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/iausofa/</loc>
+    <loc>https://iriswebb.github.io/articles/iausofa/</loc>
     <lastmod>2025-07-16T00:28:55-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/astronomy/</loc>
+    <loc>https://iriswebb.github.io/tags/astronomy/</loc>
     <lastmod>2025-07-16T00:28:55-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/bmp-1965/</loc>
+    <loc>https://iriswebb.github.io/articles/bmp-1965/</loc>
     <lastmod>2025-05-25T11:56:07-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/history/</loc>
+    <loc>https://iriswebb.github.io/tags/history/</loc>
     <lastmod>2025-05-25T11:56:07-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/spaceflight/</loc>
+    <loc>https://iriswebb.github.io/tags/spaceflight/</loc>
     <lastmod>2025-05-25T11:56:07-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/astronomy-coordinate-distance/</loc>
+    <loc>https://iriswebb.github.io/articles/astronomy-coordinate-distance/</loc>
     <lastmod>2025-05-24T19:07:58-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/math/</loc>
+    <loc>https://iriswebb.github.io/tags/math/</loc>
     <lastmod>2025-05-24T19:07:58-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/pracstro/</loc>
+    <loc>https://iriswebb.github.io/articles/pracstro/</loc>
     <lastmod>2025-05-23T17:02:40-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/astronomy-angles/</loc>
+    <loc>https://iriswebb.github.io/articles/astronomy-angles/</loc>
     <lastmod>2025-05-20T16:08:15-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/adt-visual/</loc>
+    <loc>https://iriswebb.github.io/articles/adt-visual/</loc>
     <lastmod>2025-02-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/rust/</loc>
+    <loc>https://iriswebb.github.io/tags/rust/</loc>
     <lastmod>2025-02-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/newtime/</loc>
+    <loc>https://iriswebb.github.io/articles/newtime/</loc>
     <lastmod>2025-02-05T10:25:12-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/rustunixnew/</loc>
+    <loc>https://iriswebb.github.io/articles/rustunixnew/</loc>
     <lastmod>2024-12-14T09:12:08-06:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/oldbin/</loc>
+    <loc>https://iriswebb.github.io/articles/oldbin/</loc>
     <lastmod>2024-09-19T21:59:45-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/rocks/</loc>
+    <loc>https://iriswebb.github.io/rocks/</loc>
     <lastmod>2024-09-14T11:13:15-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/hugo/</loc>
+    <loc>https://iriswebb.github.io/articles/hugo/</loc>
     <lastmod>2024-08-18T12:00:34-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/miscellaneous/</loc>
+    <loc>https://iriswebb.github.io/tags/miscellaneous/</loc>
     <lastmod>2024-08-18T12:00:34-05:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/gnulist/</loc>
+    <loc>https://iriswebb.github.io/articles/gnulist/</loc>
     <lastmod>2024-08-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/tags/theory/</loc>
+    <loc>https://iriswebb.github.io/tags/theory/</loc>
     <lastmod>2024-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/utfawk/</loc>
+    <loc>https://iriswebb.github.io/articles/utfawk/</loc>
     <lastmod>2024-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/vis/</loc>
+    <loc>https://iriswebb.github.io/articles/vis/</loc>
     <lastmod>2024-04-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/articles/makessg/</loc>
+    <loc>https://iriswebb.github.io/articles/makessg/</loc>
     <lastmod>2024-04-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://oliverkwebb.github.io/aboutme/</loc>
+    <loc>https://iriswebb.github.io/aboutme/</loc>
   </url><url>
-    <loc>https://oliverkwebb.github.io/categories/</loc>
+    <loc>https://iriswebb.github.io/categories/</loc>
   </url>
 </urlset>

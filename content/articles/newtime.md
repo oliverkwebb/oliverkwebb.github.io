@@ -1,6 +1,6 @@
 ---
 title: "Rethinking The C Time API"
-tags: ['Programming']
+tags: ["Programming"]
 date: 2025-02-05T10:25:12-05:00
 ---
 
@@ -29,8 +29,8 @@ int main(void)
 ```
 
 - `time()` unnecessarily takes a pointer argument to write to
-- `strftime()` has to write to a string of a *fixed length* it *can not dynamically allocate* (This is less legacy than it is bad design)
-- `localtime()` needs the pointer to a time_t value *even though it does not change it* because of register size concerns on PDP-11's
+- `strftime()` has to write to a string of a _fixed length_ it _can not dynamically allocate_ (This is less legacy than it is bad design)
+- `localtime()` needs the pointer to a time*t value \_even though it does not change it* because of register size concerns on PDP-11's
 - `sleep()` cannot sleep for sub-second amounts of time, `usleep()` is deprecated and it's alternative `nanosleep()` requires you to define variables
 
 This is possibly the simplest real-world use of the C time API. And even then the legacy cruft and bad design makes this code significantly less organic.
@@ -49,7 +49,7 @@ The library I describe in this article was not made because I expect it to have 
 
 ## Scope
 
-I will be using the functions described in Eric S. Raymond's *[Time, Clock, and Calendar Programming In C][Time Programming Guide]*
+I will be using the functions described in Eric S. Raymond's _[Time, Clock, and Calendar Programming In C][Time Programming Guide]_
 as a boundary for the C time API. These forty-something functions can be classified as:
 
 - Alarm/Timer (`alarm()`, `ualarm()`, the `timer_` group)
@@ -96,7 +96,6 @@ the `timespec` struct used in a lot of system-level time functions.
 A floating point number is able to store values up to 2^mantissa_length^ with integral precision. Actually, calculating floating
 point precision loss is surprisingly easy. For a number n; Any number below 2^n^ will have at least 2^n-mantissa_length^ precision.
 
-
 As an example, Lets consider a long double that represents seconds.
 We lose nanosecond level precision when 2^n-63^ is 10^-9^. Which means we lose precision at around ~2^33^ seconds.
 
@@ -126,8 +125,8 @@ Type/Resolution, float (23), int (31), double (52), long/x87 long double (63)
 {{< /csvtbl >}}
 
 Looking at this chart alone, 64 bit integers don't seem much worse than long doubles, but keep in mind that
-Integers support *One precision*, and there's a trade off between resolution and the bounds of your epoch,
-Floating point values support *all precision's*, there is no such trade off.
+Integers support _One precision_, and there's a trade off between resolution and the bounds of your epoch,
+Floating point values support _all precision's_, there is no such trade off.
 
 For this reason, `date_t` is a long double floating point value of seconds since the epoch.
 
@@ -139,11 +138,11 @@ In the spirit of "100 functions for 10 data structures vs. 10 functions for 1 da
 
 The way this is done in C is with `struct tm` , which has many problems.
 
-* almost always handled in statically allocated pointers that get overwritten (`gmtime()`)
-* No way to represent sub-second time.
-* tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.
-* tm_wday and tm_yday make it harder to construct completely valid structs
-* mktime(), being the main way to convert back into `time_t`, changes the struct that is passed in.
+- almost always handled in statically allocated pointers that get overwritten (`gmtime()`)
+- No way to represent sub-second time.
+- tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.
+- tm_wday and tm_yday make it harder to construct completely valid structs
+- mktime(), being the main way to convert back into `time_t`, changes the struct that is passed in.
 
 Creating our own calendar structure to fix these problems:
 
@@ -160,6 +159,7 @@ struct cal {
 ```
 
 With 4 functions to handle them:
+
 ```c
 extern struct cal tocal(date_t d);
 extern int wdayof(date_t d);
@@ -169,11 +169,11 @@ extern date_t   fromcal(struct cal cal);
 
 This fixes several problems with the existing `struct tm`:
 
-* Fractional Time
-* Day of month starts with 0 instead of 1
-* Years over INT_MAX possible
-* Smaller than the `struct tm`
-* Any value where the fields are within range corresponds to a unique valid time.
+- Fractional Time
+- Day of month starts with 0 instead of 1
+- Years over INT_MAX possible
+- Smaller than the `struct tm`
+- Any value where the fields are within range corresponds to a unique valid time.
 
 **"Why no timezones in the struct?"**
 : The date passed into `tocal()` is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with `date_t`, not calendars on matter of principle and practicality.
@@ -181,7 +181,7 @@ This fixes several problems with the existing `struct tm`:
 ## The tragedy of tzset()
 
 The timezone handling code in libc isn't outdated, that would imply it was once sufficient for timezone handling.
-`tzset()` and `localtime()` are the *only* ways to handle timezones in libc, and both of them have a insane relationship
+`tzset()` and `localtime()` are the _only_ ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:
 
 ![tzset, environ, and localtime relationship](/svg/tzset.svg)
@@ -196,12 +196,13 @@ variants)
 handle timezones without parsing tzdb files).
 
 Thus, get a proper timezone offset and name, we have to:
-* Set `TZ` to the timezone name
-* Call `tzset()` (which secretly provides good data to `localtime`)
-* Give the `time_t` form of the time to `localtime_r` (so the global variable localtime keeps doesn't get overwritten)
-* Get `tm_gmtoff` and `tm_zone` (On musl, tm_zone is overwritten whenever a new timezone is loaded, which means the string has to be duplicated and
-therefore it must be the users job to free it)
-* Set `TZ` back to whatever it was
+
+- Set `TZ` to the timezone name
+- Call `tzset()` (which secretly provides good data to `localtime`)
+- Give the `time_t` form of the time to `localtime_r` (so the global variable localtime keeps doesn't get overwritten)
+- Get `tm_gmtoff` and `tm_zone` (On musl, tm_zone is overwritten whenever a new timezone is loaded, which means the string has to be duplicated and
+  therefore it must be the users job to free it)
+- Set `TZ` back to whatever it was
 
 Creating three base functions and two convenience functions to work with:
 
@@ -232,7 +233,6 @@ Thursday February 1978, No, Thur. 2/??/78
 Monday February 30, No, Mon. 2/30/??
 {{< /csvtbl >}}
 
-
 This is not a problem if the weekday is inferred from other information
 
 ## Formatted Time
@@ -246,26 +246,37 @@ However, the mnemonics for strftime are poor and do not allow for easy extension
 
 We can free up space for more formatters by using multiple letters in the variations of other formatters.
 
-* s - seconds
- - Us - microseconds
- - Ns - nanoseconds
-* m - minutes
-* h - hours
- - ch - clock hours (12-hour time)
- - ih - indicator for hours (AM/PM)
-* d - Month day
-* w - Full weekday
- - aw - Abbreviated weekday
- - nw - Number of weekday
-* M - month name
- - aM - Abbreviated month
- - nM - Number of month
-* y - year
- - Dy - day of year
- - Cy - Century
-* z - zone name
- - oz - zone offset
- - nz - index name of zone (i.e. `America/New_York`)
+- s - seconds
+
+* Us - microseconds
+* Ns - nanoseconds
+
+- m - minutes
+- h - hours
+
+* ch - clock hours (12-hour time)
+* ih - indicator for hours (AM/PM)
+
+- d - Month day
+- w - Full weekday
+
+* aw - Abbreviated weekday
+* nw - Number of weekday
+
+- M - month name
+
+* aM - Abbreviated month
+* nM - Number of month
+
+- y - year
+
+* Dy - day of year
+* Cy - Century
+
+- z - zone name
+
+* oz - zone offset
+* nz - index name of zone (i.e. `America/New_York`)
 
 ## In defense of libc...
 
@@ -277,7 +288,7 @@ that is "complete", but not pleasant or elegant to use, and which leaves many pi
 And as other languages try to improve [their own time libraries](https://pkg.go.dev/time), looking at the mistakes of C,
 It is interesting to think of ways C itself could've improved its own time library looking at these same mistakes.
 
-The GitHub project for this time library (Partial WIP): https://github.com/oliverkwebb/newtime/
+The GitHub project for this time library (Partial WIP): https://github.com/iriswebb/newtime/
 
 [Time Programming Guide]: https://www.catb.org/~esr/time-programming/index.asc
-[some go code]: https://gist.github.com/oliverkwebb/086e841fe8cb0ad4d3eebc99c38b91a4
+[some go code]: https://gist.github.com/iriswebb/086e841fe8cb0ad4d3eebc99c38b91a4
