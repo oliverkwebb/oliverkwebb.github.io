@@ -3,9 +3,10 @@ title: "The C Model: Symbols and Macros"
 date: 2025-04-28T22:07:12-05:00
 draft: true
 ---
+
 C is an extremely hands off language in what it allows you to do, and its model and syntax allow
 for a lot of "weird" or unconventional practice. One of the more common examples of this is [Duff's Device](https://en.wikipedia.org/wiki/Duff%27s_device), which shows that a switch statement is syntactically
-the same as a mult-destination goto:
+the same as a multi-destination goto:
 
 ```c
 send(short to, short from, int count)
@@ -28,6 +29,7 @@ send(short to, short from, int count)
 This flexibility allows for you to
 
 # C is not a portable assembly
+
 More often than not in an argument for C, I see the phrase "portable assembly" get thrown around.
 And whilst C maps nicely to a subset of most assembly languages[^1]. And the way C was originally
 designed was probably a nice abstraction over PDP-11 assembly. The similarities end there, assembly

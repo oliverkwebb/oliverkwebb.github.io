@@ -14,10 +14,10 @@
 	<a href="/">Iris Webb</a>
 </nav>
 <main>
-<header><h1 id="tag_Writing a UTF-8 safe AWK">Writing a UTF-8 safe AWK</h1></header>
+<header><h1 id="tag_Writing a UTF-8 Safe AWK">Writing a UTF-8 Safe AWK</h1></header>
 <article>
 
-<p>One of the things the toybox project prioritizes is unicode handling for it&rsquo;s
+<p>One of the things the toybox project prioritizes is unicode handling for its
 applications. This has kept things like <a href="http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html">the fully GNU compatible tr</a>
 from being promoted from the pending/ directory for years because they
 wish to break compatibility by making tr unicode safe. Toybox&rsquo;s plans for awk
@@ -27,9 +27,9 @@ attempting to get into toybox; Awk works with strings, while tr works with
 characters. Awk does not regularly index into the strings it works with, and
 when it does it only happens in a few functions. This means that if we want
 to handle UTF-8, we can divide and conquer.</p>
-<h3 id="what-a-utf-8-safe-awk-needs">
-  <a href="#what-a-utf-8-safe-awk-needs">#</a>
-  What a UTF-8 Safe awk needs
+<h3 id="what-a-utf-8-safe-awk-beeds">
+  <a href="#what-a-utf-8-safe-awk-beeds">#</a>
+  What a UTF-8 Safe awk Beeds
 </h3><p>The <a href="https://man7.org/linux/man-pages/man1/gawk.1.html">gawk(1) man page</a> says
 these 4 functions work on &ldquo;characters, not bytes&rdquo;:</p>
 <ul>
@@ -49,7 +49,7 @@ these 4 functions work on &ldquo;characters, not bytes&rdquo;:</p>
 <li>toupper()</li>
 <li>tolower()</li>
 </ul>
-<p>That&rsquo;s &ldquo;divide&rdquo; out of the way, now lets conquer.</p>
+<p>That&rsquo;s &ldquo;divide&rdquo; out of the way, now let&rsquo;s conquer.</p>
 <h3 id="implementing-a-utf-8-awk">
   <a href="#implementing-a-utf-8-awk">#</a>
   Implementing a UTF-8 Awk
@@ -86,8 +86,8 @@ is figuring out <em>what</em> needs unicode handling.</p>
 <hr />
 <footer>
     <div id="nextprev">
-		<a href="/articles/vis/" class="prev">← Replacing Neovim with vis</a>
-	<a href="/articles/gnulist/" class="next">Why I don&#39;t like GNU →</a>
+		<a href="/articles/vis/" class="prev">← Replacing Neovim With Vis</a>
+	<a href="/articles/gnulist/" class="next">Why I Don&#39;t Like GNU →</a>
 	</div>
 	<br/>
 <p id="taglist">

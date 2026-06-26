@@ -19,7 +19,7 @@ site generator that was written in Makefile.
 
 1. Isn't generalized enough
 
-2. Mystified language to make it's features sound cooler
+2. Mystified language to make its features sound cooler
 
 `archetype`
 : `hugo new content` template

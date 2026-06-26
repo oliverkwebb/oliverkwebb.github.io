@@ -15,11 +15,11 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;NotCachyOS&lt;/em&gt; is designed to deliver crawling-slow lag and instability, ensuring a rough and miserable computing experience every time you use it. Whether you&amp;rsquo;re a seasoned Linux user or just starting out, &lt;em&gt;NotCachyOS&lt;/em&gt; is the ideal choice for those looking for a heavily restricted and extremely slow operating system.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;CachyOS does have legitimate benefits and selling points, kernel-level fine tuning for speed being the main one, and it does describe them later on in the page, which makes the lack of information in their introduction even more confusing to me. This introduction could be written in a way that tells me what makes it different:&lt;/p&gt;
+&lt;p&gt;CachyOS does have legitimate benefits and selling points. Kernel-level fine tuning for speed being the main one, and it does describe them later on in the page, which makes the lack of information in their introduction even more confusing to me. This introduction could be written in a way that tells me what makes it different:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;CachyOS is designed for speed by optimizing its core packages with BORE scheduling and LTO that drastically increase performance. Harnessing the full power of modern machines. Its GUI live-images will make using CachyOS enjoyable for all types of linux users, beginner or experienced, looking for a preformant and customizable operating system.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This is still marketing-copy, using description as a mechanism for advertisement, but it is geared towards people who would actually want to use CachyOS, it tells someone why they would want to use the operating system by showing how it is different from other ones.&lt;/p&gt;
+&lt;p&gt;This is still marketing-copy, using description as a mechanism for advertisement. But it is geared towards people who would actually want to use CachyOS, it tells someone why they would want to use the operating system by showing how it is different from other ones.&lt;/p&gt;
 </description></item>
 
 	<item><title>Implementing an efficient malloc in 50 lines of C</title>
@@ -55,36 +55,36 @@
 &lt;li&gt;&lt;code&gt;vsnprintf&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;vasprintf&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The sole difference between these functions is the format of input and the source of output. It would make sense to generalize this class of functions in a implementation of printf. Ideally down into one function that constructs and outputs the formatted string which the 12 functions can wrap around or be based upon.&lt;/p&gt;
-&lt;p&gt;Some simple optimizations can be made already, all printf functions wrap around their varaidic forms, which cuts the list in half. &lt;code&gt;printf&lt;/code&gt; and &lt;code&gt;dprintf&lt;/code&gt; can both be thought of as wrappers, which reduces the now 6 functions needed into 4:&lt;/p&gt;
+&lt;p&gt;The sole difference between these functions is the format of input and the source of output. It would make sense to generalize this class of functions in an implementation of printf. Ideally down into one function that constructs and outputs the formatted string which the 12 functions can wrap around or be based upon.&lt;/p&gt;
+&lt;p&gt;Some simple optimizations can be made already, all printf functions wrap around their variadic forms, which cuts the list in half. &lt;code&gt;printf&lt;/code&gt; and &lt;code&gt;dprintf&lt;/code&gt; can both be thought of as wrappers, which reduces the now 6 functions needed into 4:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;vsprintf&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;vfprintf&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;vsnprintf&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;vasprintf&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;sprintf&lt;/code&gt; was a bad idea for the same reason &lt;code&gt;gets&lt;/code&gt; was (in fact, GCC will throw a warning if it detects the use of either of those in almost every case). &lt;code&gt;snprintf&lt;/code&gt; is theoretically different because it needs an output limit, but the behaviour of &lt;code&gt;sprintf&lt;/code&gt; can be replicated by setting that limit to &lt;code&gt;SIZE_MAX&lt;/code&gt; or similar.&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;The 3 functions left are &lt;code&gt;vfprintf&lt;/code&gt;, &lt;code&gt;vasprintf&lt;/code&gt;, and &lt;code&gt;vsnprintf&lt;/code&gt;. There is a straightforward way to reduce these down into one function, to &lt;code&gt;vasprintf&lt;/code&gt; a dynamically allocated string, output it  with &lt;code&gt;memcpy&lt;/code&gt; or &lt;code&gt;fputs&lt;/code&gt;, then &lt;code&gt;free&lt;/code&gt; it.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sprintf&lt;/code&gt; was a bad idea for the same reason &lt;code&gt;gets&lt;/code&gt; was (in fact, GCC will throw a warning if it detects the use of either of those in almost every case). &lt;code&gt;snprintf&lt;/code&gt; is theoretically different because it needs an output limit, but the behavior of &lt;code&gt;sprintf&lt;/code&gt; can be replicated by setting that limit to &lt;code&gt;SIZE_MAX&lt;/code&gt; or similar.&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;The 3 functions left are &lt;code&gt;vfprintf&lt;/code&gt;, &lt;code&gt;vasprintf&lt;/code&gt;, and &lt;code&gt;vsnprintf&lt;/code&gt;. There is a straightforward way to reduce these down into one function, to &lt;code&gt;vasprintf&lt;/code&gt; a dynamically allocated string, output it with &lt;code&gt;memcpy&lt;/code&gt; or &lt;code&gt;fputs&lt;/code&gt;, then &lt;code&gt;free&lt;/code&gt; it.&lt;/p&gt;
 &lt;p&gt;The problem with this approach is that it is inefficient. Even if using a vector that doubles in size when expanding to be O(log n), there are redundant allocations. If the formatted result is especially large, it will take up a large amount of memory. Trying to generalize printf functions that outputs the string as its constructed is a harder and more interesting problem.&lt;/p&gt;
-&lt;h2 id=&#34;the-art-of-transmutation-and-opaqueness&#34;&gt;
-  &lt;a href=&#34;#the-art-of-transmutation-and-opaqueness&#34;&gt;#&lt;/a&gt;
-  The art of transmutation and opaqueness
+&lt;h2 id=&#34;transmutation-and-opaqueness&#34;&gt;
+  &lt;a href=&#34;#transmutation-and-opaqueness&#34;&gt;#&lt;/a&gt;
+  Transmutation and Opaqueness
 &lt;/h2&gt;&lt;p&gt;C89&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; defines &lt;code&gt;qsort&lt;/code&gt; as:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;qsort&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;base, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; nmemb, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; size, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;compar)(&lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;));
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first 3 arguments are the parameters for an array, with the last being a function to pass the elements to (often a wrapper around &lt;code&gt;strcmp&lt;/code&gt;, the comparison operator, or similar).&lt;/p&gt;
-&lt;p&gt;What is notable about this function is the use of function pointers to modularize code, and the fact that it has no information about the array it is given besides its size and element size. Because of this:&lt;/p&gt;
+&lt;p&gt;This function employs function pointers to modularize code, and the fact that it has no information about the array it is given besides its size and element size. Because of this:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Transmutation is required to use it&lt;/li&gt;
 &lt;li&gt;Which makes use of the function much more volatile since it is harder to check if the types being given or interpreted are valid&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Consider the two arrays:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;long long a[] = {0, 0, 0, 0, 0};
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;char *b[] = {&amp;#34;b&amp;#34;, &amp;#34;a&amp;#34;, &amp;#34;c&amp;#34;, &amp;#34;d&amp;#34;, &amp;#34;e&amp;#34;}; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;char *b[] = {&amp;#34;b&amp;#34;, &amp;#34;a&amp;#34;, &amp;#34;c&amp;#34;, &amp;#34;d&amp;#34;, &amp;#34;e&amp;#34;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Both contain 5 8-byte elements&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;. But they both cast to a void pointer when passed into &lt;code&gt;qsort&lt;/code&gt;. And the information about the type is lost until it is recast presuming it&amp;rsquo;s the desired type. The compiler won&amp;rsquo;t throw a warning if you sort the first array with a wrapper around &lt;code&gt;strcmp&lt;/code&gt;. Nor will it warn you if you give a wrong number of elements or element size.&lt;/p&gt;
-&lt;p&gt;In our printf implementation, we can pass in both a file &lt;strong&gt;and&lt;/strong&gt; a buffer to write to, along with a output function and the needed format string and list of arguments:&lt;/p&gt;
+&lt;p&gt;In our printf implementation, we can pass in both a file &lt;strong&gt;and&lt;/strong&gt; a buffer to write to, along with an output function and the needed format string and list of arguments:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;_vfsprintf&lt;/span&gt;(FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;stream, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;buffer, &lt;span style=&#34;color:#ff7b72&#34;&gt;size_t&lt;/span&gt; size, &lt;span style=&#34;color:#ff7b72&#34;&gt;int&lt;/span&gt; (&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;submit)(&lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;, FILE &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;), &lt;span style=&#34;color:#ff7b72&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;*&lt;/span&gt;format, va_list va);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Since the &lt;code&gt;FILE&lt;/code&gt; stream, the &lt;code&gt;buffer&lt;/code&gt;, and the &lt;code&gt;size&lt;/code&gt; are only used inside the &lt;code&gt;submit&lt;/code&gt; function, they can be set to null and ignored in the output handlers.&lt;/p&gt;
-&lt;p&gt;If you could write a static/dynamic buffer in multiple distributed steps using a function pointer and a pointer to the start of the buffer alone, this and a few wrapper functions would be the end of it. Unfortunately, doing this in C requires state.&lt;/p&gt;
+&lt;p&gt;If you could write a static or dynamic buffer in multiple distributed steps using a function pointer and a pointer to the start of the buffer alone, this and a few wrapper functions would be the end of it. Unfortunately, doing this in C requires state.&lt;/p&gt;
 &lt;h2 id=&#34;oop-in-c&#34;&gt;
   &lt;a href=&#34;#oop-in-c&#34;&gt;#&lt;/a&gt;
   OOP in C
@@ -145,7 +145,7 @@
 	<pubDate>Sun, 25 May 2025 11:56:07 -0500</pubDate>
 	<description>&lt;p&gt;On July 14th, 1965, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Mariner_4&#34;&gt;Mariner 4&lt;/a&gt; spacecraft flew by Mars, the first
 to ever reach the planet successfully. In the scientific data it recorded, it took 21 pictures, similar space
-probes built for the moon or earth would usually transmit image data back in a analog format of continuous
+probes built for the moon or earth would usually transmit image data back in an analog format of continuous
 scan-lines (similar to a TV broadcast). But for clarity across interplanetary distances, This probe had
 to record and transmit its data back in a digital format.&lt;/p&gt;
 &lt;figure&gt;&lt;img src=&#34;https://iriswebb.github.io/mar4/m4-mars-craters.jpg&#34;
@@ -167,15 +167,15 @@ the opposite of how its represented today.&lt;/p&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;These pixels would be transmitted continuously to send a 200x200 image.&lt;/p&gt;
-&lt;h1 id=&#34;digitising-this-format&#34;&gt;
-  &lt;a href=&#34;#digitising-this-format&#34;&gt;#&lt;/a&gt;
-  Digitising this format
+&lt;h1 id=&#34;digitizing-this-format&#34;&gt;
+  &lt;a href=&#34;#digitizing-this-format&#34;&gt;#&lt;/a&gt;
+  Digitizing This Format
 &lt;/h1&gt;&lt;p&gt;From here, these pixels would be recorded as dots on a tape, this tape would
 be scanned to imprint the image onto film, and finer restoration work would
 be done to perfect the picture. This is an example of an early dot-matrix
 image printer.&lt;/p&gt;
-&lt;p&gt;Now, with modern computers and image formats, this data format does not
-have to be imprinted onto tape to be viewed, converting this to raw
+&lt;p&gt;With modern computers and image formats, this data format does not
+have to be imprinted onto tape to be viewed. Converting this to raw
 RGB data is fairly easy, and from there, you can convert that to
 png/jpg/etc using tools like XPM or &lt;a href=&#34;https://tools.suckless.org/farbfeld/&#34;&gt;farbfeld&lt;/a&gt;
 (which is just 16-bit ARGB). The only hard part of this process is
@@ -199,11 +199,11 @@ antenna of a 1960&amp;rsquo;s space probe.&lt;/p&gt;
 	<item><title>Astronomy and Earth: Coordinate Distances</title>
 	<link>https://iriswebb.github.io/articles/astronomy-coordinate-distance/</link>
 	<pubDate>Sat, 24 May 2025 19:07:58 -0500</pubDate>
-	<description>&lt;p&gt;You might of heard the phrase &lt;a href=&#34;https://www.mentalfloss.com/article/27585/could-you-really-dig-hole-china&#34;&gt;&amp;ldquo;dig to china&amp;rdquo;&lt;/a&gt; before,
+	<description>&lt;p&gt;You might have heard the phrase &lt;a href=&#34;https://www.mentalfloss.com/article/27585/could-you-really-dig-hole-china&#34;&gt;&amp;ldquo;dig to china&amp;rdquo;&lt;/a&gt; before,
 or talked about digging a b-line through the earth to some far off land jokingly. But how much distance would you actually save
 by digging through the earth instead of traveling along the surface?&lt;/p&gt;
 &lt;p&gt;Since coordinates on a sphere are 2 dimensional, lets think of a simpler problem. On a unit circle where both locations
-positions can be represented by one angle, what&amp;rsquo;s the difference between going through the circle versus travelling
+positions can be represented by one angle, what&amp;rsquo;s the difference between going through the circle versus traveling
 along its circumference?&lt;/p&gt;
 &lt;p&gt;Well, we need to get the difference between these two angles, which is just another angle that you can get by subtraction,
 from here &lt;code&gt;crd&lt;/code&gt; (&lt;code&gt;2*sin(0.5*x)&lt;/code&gt;) can do the work trivially.&lt;/p&gt;
@@ -223,17 +223,18 @@ through the earth between any two coordinates.&lt;/p&gt;
 
 &lt;h1 id=&#34;how-does-this-relate-to-astronomy&#34;&gt;
   &lt;a href=&#34;#how-does-this-relate-to-astronomy&#34;&gt;#&lt;/a&gt;
-  How does this relate to astronomy?
+  How Does This Relate to Astronomy?
 &lt;/h1&gt;&lt;p&gt;When calculating the phase (illuminated fraction and bright limb position) of planets, you
 work with a &amp;ldquo;phase angle&amp;rdquo; that is the angle between the Earth, that planet, and the sun.
 With (&lt;code&gt;(1-cos(x))/2&lt;/code&gt;), you can turn this number into an illuminated fraction.&lt;/p&gt;
-&lt;p&gt;How do you calculate this angle? Imagine a triangle between the sun, earth, and planet,
-we have the length of the Earth-Sun line (1AU within a rounding error for these calculations),
-and the length of the Earth-Planet line (if your ephemeris generator doesn&amp;rsquo;t give distances,
-find something different).&lt;/p&gt;
-&lt;p&gt;We need the sun-earth-planet angle to have enough info
-to law-of-cosines the desired result. And if we have the coordinates of the sun and planet (which should be trivial to find
-at this stage), we can take the angle between these two coordinates on the celestial sphere. And have enough info
+&lt;p&gt;How is this angle calculated? Imagine a triangle between the sun, earth, and planet.
+The length of the Earth-Sun line is trivial (1AU within a rounding error for these calculations).
+And the length of the Earth-Planet line can be calculated easily.&lt;/p&gt;
+&lt;p&gt;You need the sun-earth-planet angle to have enough info
+to use the law-of-cosines for the desired result.
+And if you have the coordinates of the sun and planet (which should be trivial to find
+at this stage), you can take the angle between these two coordinates on the
+celestial sphere. And finally have enough info
 to get the phase angle from coordinates and distance alone.&lt;/p&gt;
 </description></item>
 
@@ -255,12 +256,12 @@ to get the phase angle from coordinates and distance alone.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/risacher/sunwait&#34;&gt;sunwait&lt;/a&gt; - sunrise/sunset calculator.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://9fans.github.io/plan9port/man/man1/astro.html&#34;&gt;plan9 astro(1)&lt;/a&gt; - astronomical info generator, largely exclusive to plan9.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&amp;rsquo;t fill. To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
+&lt;p&gt;As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&amp;rsquo;t fill. To properly script/embed these tools in the spirit of classic UNIX. There should be a clear way to render the info in plaintext, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren&amp;rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;
   &lt;a href=&#34;#how-easy-is-it-to-make-something-like-that&#34;&gt;#&lt;/a&gt;
   How easy is it to make something like that?
-&lt;/h1&gt;&lt;p&gt;Lets lessen the scope for a moment, to&amp;hellip; lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.&lt;/p&gt;
+&lt;/h1&gt;&lt;p&gt;Let&amp;rsquo;s lessen the scope for a moment, to… lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.&lt;/p&gt;
 &lt;p&gt;A year ago, I was looking at &lt;a href=&#34;https://github.com/chubin/pyphoon&#34;&gt;pyphoon&lt;/a&gt;,
 and found the &lt;a href=&#34;https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py&#34;&gt;astronomy code&lt;/a&gt; from it was a rewrite of C code written almost &lt;a href=&#34;https://www.fourmilab.ch/moontoolw/&#34;&gt;40 years ago&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Instead of dividing the current date by twenty-some days and working off the value that returns, this code
@@ -280,17 +281,17 @@ of C (before refactoring).&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mprintf &lt;span style=&#34;color:#a5d6ff&#34;&gt;&amp;#34;%e %P %p&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# 🌘 13.3 Waning Crescent&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I later transpiled this to &lt;a href=&#34;https://github.com/iriswebb/moontool/tree/main/lua&#34;&gt;lua&lt;/a&gt; and
-&lt;a href=&#34;https://github.com/iriswebb/moontool-rs&#34;&gt;rust&lt;/a&gt;. But&amp;hellip; &lt;em&gt;how did the original code get the moon phase&lt;/em&gt;,
+&lt;a href=&#34;https://github.com/iriswebb/moontool-rs&#34;&gt;rust&lt;/a&gt;. But… &lt;em&gt;how did the original code get the moon phase&lt;/em&gt;,
 and how did they come up with the algorithm?&lt;/p&gt;
 &lt;p&gt;In the header of that code, the book &lt;em&gt;Practical Astronomy with Your Calculator&lt;/em&gt; by Peter Duffett-Smith is mentioned.
 Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
 This book is actually simpler to transcribe code from than similar books for BASIC/FORTRAN/Forth/C/PASCAL,
-since their algorithms are usually restricted to arithmetic, exponentiation, and trig functions.&lt;/p&gt;
+since the books algorithms are usually just arithmetic, exponentiation, and trig functions.&lt;/p&gt;
 &lt;h1 id=&#34;how-accurate-can-we-be&#34;&gt;
   &lt;a href=&#34;#how-accurate-can-we-be&#34;&gt;#&lt;/a&gt;
-  How accurate can we be?
+  How Accurate Can We Be?
 &lt;/h1&gt;&lt;p&gt;TL;DR: Accurate Enough.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Hyper-Accurate&lt;/strong&gt; Astronomy is&amp;hellip; &lt;a href=&#34;https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html&#34;&gt;hard&lt;/a&gt;.
+&lt;p&gt;&lt;strong&gt;Hyper-Accurate&lt;/strong&gt; Astronomy is… &lt;a href=&#34;https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html&#34;&gt;hard&lt;/a&gt;.
 Often times it is &lt;a href=&#34;https://en.wikipedia.org/wiki/Extinction_(astronomy)&#34;&gt;impossible&lt;/a&gt; without &lt;a href=&#34;https://en.wikipedia.org/wiki/Polar_motion&#34;&gt;information&lt;/a&gt;
 that can&amp;rsquo;t be &lt;a href=&#34;https://www.news18.com/news/buzz/want-to-see-two-sunsets-in-the-same-evening-burj-khalifa-is-the-place-to-be-4132970.html&#34;&gt;queried&lt;/a&gt;
 from the user reasonably.&lt;/p&gt;
@@ -333,7 +334,7 @@ for a range of a few thousand years.&lt;/p&gt;
 					&lt;td&gt;Up to 30 arcmin (near the horizon)&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
-					&lt;td&gt;Pertubation&lt;/td&gt;
+					&lt;td&gt;Perturbation&lt;/td&gt;
 					&lt;td&gt;Yes&lt;/td&gt;
 					&lt;td&gt;Newtonion Gravity&lt;/td&gt;
 					&lt;td&gt;Up to 1.5 degrees&lt;/td&gt;
@@ -363,7 +364,7 @@ for a range of a few thousand years.&lt;/p&gt;
 					&lt;td&gt;Varies (effecting visual magnitude)&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
-					&lt;td&gt;Abberation&lt;/td&gt;
+					&lt;td&gt;Aberration&lt;/td&gt;
 					&lt;td&gt;Yes&lt;/td&gt;
 					&lt;td&gt;The Earths Orbit&lt;/td&gt;
 					&lt;td&gt;Up to 20 arcsec&lt;/td&gt;
@@ -409,8 +410,8 @@ Using this model, we can make a simple interface to these algorithms for a comma
 &lt;h1 id=&#34;the-result&#34;&gt;
   &lt;a href=&#34;#the-result&#34;&gt;#&lt;/a&gt;
   The result?
-&lt;/h1&gt;&lt;p&gt;Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
-Doing this entirely inside the command line with conventional tools is normally a painful process, but using
+&lt;/h1&gt;&lt;p&gt;Let&amp;rsquo;s say you want to graph the distance between the Earth and the other planets in the inner solar system.
+Doing this entirely inside the command line with conventional tools is normally a painful process. But using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&amp;hellip;).&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/SMVm.png&#34; alt=&#34;Inner Solar System Distance Graph&#34;&gt;&lt;/p&gt;
@@ -443,13 +444,13 @@ And the algorithms are universal enough to be rewritten to anything with trig fu
 &lt;p&gt;In many astronomical calculations, angles in coordinates are represented as a time to make certain conversions easier.
 For example, the horizontal coordinate of &lt;a href=&#34;https://en.wikipedia.org/wiki/Algol&#34;&gt;Algol&lt;/a&gt; is 03:08:10.13 (Usually written 03h08m10.13s).&lt;/p&gt;
 &lt;p&gt;If you disregard the fact that this is a coordinate and treat it as a time of day,
-you can convert this time to your &lt;a href=&#34;https://en.wikipedia.org/wiki/Sidereal_time&#34;&gt;local mean siderial time&lt;/a&gt;, and get
-the hour angle (also written as a time), which its location on the celestial equator relative to you, or rather,
+it can be converted to &lt;a href=&#34;https://en.wikipedia.org/wiki/Sidereal_time&#34;&gt;local mean sidereal time&lt;/a&gt;. Which contains
+the hour angle (also written as a time), the location on the celestial equator relative to the observer. Or rather,
 how much the celestial sphere has rotated in comparison to the prime meridian.&lt;/p&gt;
 &lt;p&gt;Since in astronomy, angles are sometimes represented as time, why not represent time as an angle?&lt;/p&gt;
 &lt;h1 id=&#34;the-360-hour-clock-the-2π-hour-clock-and-the-1-hour-clock&#34;&gt;
   &lt;a href=&#34;#the-360-hour-clock-the-2%cf%80-hour-clock-and-the-1-hour-clock&#34;&gt;#&lt;/a&gt;
-  The 360 hour clock, the 2π hour clock, and the 1 hour clock&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
+  The 360 Hour Clock, the 2π Hour Clock, and the 1 Hour Clock&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
 &lt;/h1&gt;&lt;div style=&#34;width: 100%&#34; id=&#34;current-time-angle&#34;&gt;
 &lt;/div&gt;
 &lt;script src=&#34;https://iriswebb.github.io/trinkets/current-time-angle.js&#34; type=&#34;module&#34;&gt;&lt;/script&gt;
@@ -459,7 +460,7 @@ This can provide a vague idea of how much objects will move in the sky. The sun 
 up about half a degree of view in the sky, so a sunset will take a minimum of two minutes.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/AngleTime.png&#34; alt=&#34;Conversion between angle units and time units&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Venus takes up about 1/60th of a degree of view. So it could only take 4 seconds to move its own
-diameter in the sky, which is good to know for telescope adjustment (&amp;ldquo;If I leave my telescope alone,
+diameter in the sky… Good to know for telescope adjustment (&amp;ldquo;If I leave my telescope alone,
 I&amp;rsquo;ll be able to see X for at least Y amount of time&amp;rdquo;).&lt;/p&gt;
 &lt;p&gt;Using degrees in place of hours on a clock, or using &amp;ldquo;turns&amp;rdquo; (the fraction of the day) gives
 results that are interesting, but don&amp;rsquo;t deserve much commentary.&lt;/p&gt;
@@ -479,13 +480,13 @@ These don&amp;rsquo;t seem to map to anything interesting and non-obvious.&lt;/p
 &lt;hr&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;The term &amp;ldquo;12-hour clock&amp;rdquo; is valid even though it describes a 24 hour day&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This makes sense because the term &amp;ldquo;12-hour clock&amp;rdquo; is valid even though it describes a 24 hour day&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description></item>
 
-	<item><title>Mathematical data representation (ADT) explained</title>
+	<item><title>Mathematical Data Representation (ADT) Explained</title>
 	<link>https://iriswebb.github.io/articles/adt-visual/</link>
 	<pubDate>Thu, 27 Feb 2025 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;In C, primitive types are just numbers.&lt;/p&gt;
@@ -508,14 +509,14 @@ of the same type (arrays), or a list of aliases to a singular place in memory (&
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Unions are usually annotated with a tag of which alias is in use.
 Doing this in C requires explicit thought and attention, even though
-this behaviour is needed in most contexts.&lt;/p&gt;
+this behavior is needed in most contexts.&lt;/p&gt;
 &lt;p&gt;In this spirit, enumerations are interchangeable with integers.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {A, B, C} x &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a5d6ff&#34;&gt;630&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;enum&lt;/span&gt; {D, E, F} y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; A;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;y &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;==&lt;/span&gt; D; &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// True
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All of this allows for transparent memory management. The price paid is that it&amp;rsquo;s a lot harder to cleanly
 represent data with C. The programmer has to be constantly paranoid about invalid states whenever handling data.&lt;/p&gt;
-&lt;p&gt;Instead of modelling data based purely on its representation in memory. We can model data types more abstractly and mathematically.&lt;/p&gt;
+&lt;p&gt;Instead of modeling data based purely on its representation in memory. We can model data types more abstractly and mathematically.&lt;/p&gt;
 &lt;h2 id=&#34;algebraic-description-of-types-adt&#34;&gt;
   &lt;a href=&#34;#algebraic-description-of-types-adt&#34;&gt;#&lt;/a&gt;
   Algebraic Description of Types (ADT)
@@ -548,16 +549,16 @@ called &lt;code&gt;2&lt;/code&gt; in mathematical contexts.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a5d6ff&#34;&gt;5&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;now-prove-that-numbers-exist&#34;&gt;
   &lt;a href=&#34;#now-prove-that-numbers-exist&#34;&gt;#&lt;/a&gt;
-  Now, Prove that numbers exist.
+  Now, Prove That Numbers Exist.
 &lt;/h2&gt;&lt;p&gt;No, seriously. Do it. Or less ambiguously, name a valid number.&lt;/p&gt;
 &lt;p&gt;5, TREE(3), perhaps 3,735,928,559? Congratulations, you have proved that numbers exist!&lt;/p&gt;
 &lt;p&gt;Now, prove that the type returned by rusts &lt;a href=&#34;https://doc.rust-lang.org/std/process/fn.exit.html&#34;&gt;exit function&lt;/a&gt; exists. Or less ambiguously, name a valid term the exit function returns.&lt;/p&gt;
-&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;…&lt;/p&gt;
 &lt;p&gt;No answer? That is because the type exit returns (in rust) has no valid term. And therefore this function cannot return since it isn&amp;rsquo;t capable of
 returning a valid value.&lt;/p&gt;
 &lt;p&gt;The obvious consequence of this is that the &lt;code&gt;noreturn&lt;/code&gt; &amp;ldquo;type&amp;rdquo; in C can be replaced by a null type. But this has a deeper implication of being able
 to express statements in a type and prove they are true if the type is inhabited.&lt;/p&gt;
-&lt;p&gt;Similarly, proving that &lt;code&gt;Result&amp;lt;A,B&amp;gt;&lt;/code&gt; exists proves that A &lt;em&gt;or&lt;/em&gt; B exists (aka. A + B != 0). And &lt;code&gt;(A, B)&lt;/code&gt; proves that A and B exists (aka. A * B != 0)&lt;/p&gt;
+&lt;p&gt;Similarly, proving that &lt;code&gt;Result&amp;lt;A,B&amp;gt;&lt;/code&gt; exists proves that A &lt;em&gt;or&lt;/em&gt; B exists (aka. A + B != 0). And &lt;code&gt;(A, B)&lt;/code&gt; proves that A and B exists (aka. A * B != 0).&lt;/p&gt;
 &lt;h2 id=&#34;see-also&#34;&gt;
   &lt;a href=&#34;#see-also&#34;&gt;#&lt;/a&gt;
   See Also:
@@ -567,13 +568,13 @@ to express statements in a type and prove they are true if the type is inhabited
 &lt;/ul&gt;
 </description></item>
 
-	<item><title>Rethinking The C Time API</title>
+	<item><title>Rethinking the C Time API</title>
 	<link>https://iriswebb.github.io/articles/newtime/</link>
 	<pubDate>Wed, 05 Feb 2025 10:25:12 -0500</pubDate>
 	<description>&lt;p&gt;Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
 To the point almost every regularly used element of it has some design decision that&amp;rsquo;s been obsolete for
 decades.&lt;/p&gt;
-&lt;p&gt;As a example, here is some code I use to print the current time for my status bar:&lt;/p&gt;
+&lt;p&gt;As an example, here is some code I use to print the current time for my status bar:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;time.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#8b949e;font-weight:bold;font-style:italic&#34;&gt;
@@ -644,8 +645,8 @@ And NTP correction are out of scope. This leaves:&lt;/p&gt;
 almost exclusively with conversion of time to and from strings.&lt;/p&gt;
 &lt;h2 id=&#34;nanoseconds-floating-point-precision-and-the-y2262-problem&#34;&gt;
   &lt;a href=&#34;#nanoseconds-floating-point-precision-and-the-y2262-problem&#34;&gt;#&lt;/a&gt;
-  Nanoseconds, Floating Point Precision, and the Y2262 problem
-&lt;/h2&gt;&lt;p&gt;It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
+  Nanoseconds, Floating Point Precision, and the Y2262 Problem
+&lt;/h2&gt;&lt;p&gt;It would be awfully convenient to represent time in nanosecond form everywhere all the time.
 It&amp;rsquo;d give &lt;code&gt;strftime&lt;/code&gt; and &lt;code&gt;strptime&lt;/code&gt; the ability to print milli/micro/nanoseconds. And it&amp;rsquo;d remove the need for
 the &lt;code&gt;timespec&lt;/code&gt; struct used in a lot of system-level time functions.&lt;/p&gt;
 &lt;p&gt;A floating point number is able to store values up to 2&lt;sup&gt;mantissa_length&lt;/sup&gt; with integral precision. Actually, calculating floating
@@ -711,19 +712,19 @@ that 10&lt;sup&gt;-9&lt;/sup&gt; is actually around 2&lt;sup&gt;-29.8&lt;/sup&gt
 &lt;/table&gt;
 
 
-&lt;p&gt;Looking at this chart alone, 64 bit integers don&amp;rsquo;t seem much worse than long doubles, but keep in mind that
-Integers support &lt;em&gt;One precision&lt;/em&gt;, and there&amp;rsquo;s a trade off between resolution and the bounds of your epoch,
+&lt;p&gt;Looking at this chart alone… 64 bit integers don&amp;rsquo;t seem much worse than long doubles. But keep in mind that
+integers support &lt;em&gt;One precision&lt;/em&gt;, and there&amp;rsquo;s a trade off between resolution and the bounds of your epoch.
 Floating point values support &lt;em&gt;all precision&amp;rsquo;s&lt;/em&gt;, there is no such trade off.&lt;/p&gt;
 &lt;p&gt;For this reason, &lt;code&gt;date_t&lt;/code&gt; is a long double floating point value of seconds since the epoch.&lt;/p&gt;
 &lt;h2 id=&#34;broken-down-time&#34;&gt;
   &lt;a href=&#34;#broken-down-time&#34;&gt;#&lt;/a&gt;
   &amp;ldquo;Broken Down Time&amp;rdquo;
-&lt;/h2&gt;&lt;p&gt;Now that we have a base time type, there needs to be some way to convert between
-human friendly to machine friendly values. I.e. getting the year, month and day.
+&lt;/h2&gt;&lt;p&gt;Now that we have a base time type, there should be some way to convert between
+human friendly to machine friendly values. I.e. getting the year, month, and day.
 In the spirit of &amp;ldquo;100 functions for 10 data structures vs. 10 functions for 1 data structure&amp;rdquo;, Unless a functions &lt;em&gt;job&lt;/em&gt; is to handle human-friendly time values, it will use &lt;code&gt;date_t&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The way this is done in C is with &lt;code&gt;struct tm&lt;/code&gt; , which has many problems.&lt;/p&gt;
+&lt;p&gt;The way this is done in C is with &lt;code&gt;struct tm&lt;/code&gt; , which contains many problems.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;almost always handled in statically allocated pointers that get overwritten (&lt;code&gt;gmtime()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Almost always handled in statically allocated pointers that get overwritten (&lt;code&gt;gmtime()&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;No way to represent sub-second time.&lt;/li&gt;
 &lt;li&gt;tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.&lt;/li&gt;
 &lt;li&gt;tm_wday and tm_yday make it harder to construct completely valid structs&lt;/li&gt;
@@ -758,7 +759,7 @@ In the spirit of &amp;ldquo;100 functions for 10 data structures vs. 10 function
 &lt;/dl&gt;
 &lt;h2 id=&#34;the-tragedy-of-tzset&#34;&gt;
   &lt;a href=&#34;#the-tragedy-of-tzset&#34;&gt;#&lt;/a&gt;
-  The tragedy of tzset()
+  The Tragedy of tzset()
 &lt;/h2&gt;&lt;p&gt;The timezone handling code in libc isn&amp;rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 &lt;code&gt;tzset()&lt;/code&gt; and &lt;code&gt;localtime()&lt;/code&gt; are the &lt;em&gt;only&lt;/em&gt; ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:&lt;/p&gt;
@@ -788,7 +789,7 @@ therefore it must be the users job to free it)&lt;/li&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt;    &lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;inmytz&lt;/span&gt;(&lt;span style=&#34;color:#ff7b72&#34;&gt;date_t&lt;/span&gt; d);           &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;// intz(d, mytz())
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;why-weekdays-in-the-time-structure-are-bad&#34;&gt;
   &lt;a href=&#34;#why-weekdays-in-the-time-structure-are-bad&#34;&gt;#&lt;/a&gt;
-  Why weekdays in the time structure are bad
+  Why Weekdays in the Time Structure are Bad
 &lt;/h2&gt;&lt;p&gt;&lt;code&gt;strptime()&lt;/code&gt; is special because it uses uncertainty as a tool. It wont touch anything in the calendar
 structure that isn&amp;rsquo;t directly correlated with a formatting specification. This is as much of a
 asset as it is a liability, it&amp;rsquo;s useful because you can read time with a set of presumptions
@@ -885,7 +886,7 @@ However, the mnemonics for strftime are poor and do not allow for easy extension
 &lt;/ul&gt;
 &lt;h2 id=&#34;in-defense-of-libc&#34;&gt;
   &lt;a href=&#34;#in-defense-of-libc&#34;&gt;#&lt;/a&gt;
-  In defense of libc&amp;hellip;
+  In Defense of libc&amp;hellip;
 &lt;/h2&gt;&lt;p&gt;The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
 and has constantly resisted improvement by standardization. Many components in the library were developed decades
 apart. Many more were designed without the idea of internationalization in mind. The result of this is something
@@ -895,7 +896,7 @@ It is interesting to think of ways C itself could&amp;rsquo;ve improved its own 
 &lt;p&gt;The GitHub project for this time library (Partial WIP): &lt;a href=&#34;https://github.com/iriswebb/newtime/&#34;&gt;https://github.com/iriswebb/newtime/&lt;/a&gt;&lt;/p&gt;
 </description></item>
 
-	<item><title>List of classic UNIX utils re-designed in rust</title>
+	<item><title>List of Classic UNIX Utils Re-designed in Rust</title>
 	<link>https://iriswebb.github.io/articles/rustunixnew/</link>
 	<pubDate>Sat, 14 Dec 2024 09:12:08 -0600</pubDate>
 	<description>&lt;table&gt;
@@ -912,7 +913,7 @@ It is interesting to think of ways C itself could&amp;rsquo;ve improved its own 
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;a href=&#34;https://github.com/sharkdp/bat&#34;&gt;bat&lt;/a&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;code&gt;cat&lt;/code&gt;,      &lt;code&gt;less&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;cat&lt;/code&gt;, &lt;code&gt;less&lt;/code&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;a href=&#34;https://printfn.github.io/fend/documentation/&#34;&gt;fend&lt;/a&gt;&lt;/td&gt;
@@ -1041,7 +1042,7 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;p&gt;Isn&amp;rsquo;t generalized enough&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Mystified language to make it&amp;rsquo;s features sound cooler&lt;/p&gt;
+&lt;p&gt;Mystified language to make its features sound cooler&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;dl&gt;
@@ -1097,7 +1098,7 @@ site generator that was written in Makefile.&lt;/p&gt;
 &lt;/div&gt;
 </description></item>
 
-	<item><title>Why I don&#39;t like GNU</title>
+	<item><title>Why I Don&#39;t Like GNU</title>
 	<link>https://iriswebb.github.io/articles/gnulist/</link>
 	<pubDate>Sat, 17 Aug 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;This list does not mention the [Richard Stallman controversy]&amp;lt;Link to Drew DeVault article here&amp;gt;.
@@ -1105,11 +1106,11 @@ Nor his squabbles related to &lt;a href=&#34;https://sourceware.org/legacy-ml/li
 because:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Most-everybody knows about it&lt;/li&gt;
-&lt;li&gt;These are related to RMS &lt;em&gt;specificly&lt;/em&gt;, not his broader actions to influence the GNU project.&lt;/li&gt;
+&lt;li&gt;These are related to RMS &lt;em&gt;specifically&lt;/em&gt;, not his broader actions to influence the GNU project.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;1-the-linux-was-developed-for-the-gnu-tools-narritive-propogated-by-the-fsf-is-false&#34;&gt;
-  &lt;a href=&#34;#1-the-linux-was-developed-for-the-gnu-tools-narritive-propogated-by-the-fsf-is-false&#34;&gt;#&lt;/a&gt;
-  1. The &amp;ldquo;Linux was developed for the GNU tools&amp;rdquo; narritive propogated by the FSF is false
+&lt;h2 id=&#34;1-linux-was-developed-for-the-gnu-tools-is-false&#34;&gt;
+  &lt;a href=&#34;#1-linux-was-developed-for-the-gnu-tools-is-false&#34;&gt;#&lt;/a&gt;
+  1. &amp;ldquo;Linux was developed for the GNU tools&amp;rdquo; is False
 &lt;/h2&gt;&lt;p&gt;From &lt;a href=&#34;https://www.gnu.org/gnu/linux-and-gnu.html&#34;&gt;https://www.gnu.org/gnu/linux-and-gnu.html&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
@@ -1238,16 +1239,16 @@ source licenses that can&amp;rsquo;t legally share code.&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;GNU info was designed to solve a problem nobody had, and in their push for it they made man pages &lt;a href=&#34;https://www.youtube.com/watch?v=rGSZFmQuQrU&#34;&gt;worse&lt;/a&gt;, which did create a problem, and when people who didn&amp;rsquo;t wanna use GNU info, they created their &lt;a href=&#34;https://cheat.sh&#34;&gt;own solutions&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;GNU info is not portable to other operating systems like man pages, nor well used even by most GNU projects,
 nor is the browser you need to get a benefit out of its format pleasant to use. Nor is it liked even within the GNU project.
-This does not change the fact GNU help2man by default refers to info pages in it&amp;rsquo;s output.&lt;/p&gt;
+This does not change the fact GNU help2man by default refers to info pages in its output.&lt;/p&gt;
 &lt;p&gt;The reason why most man pages don&amp;rsquo;t contain examples is because the GNU project insisted on putting them only in
 texinfo pages and not converting them to man pages. And the normalization of this makes man pages worse for
 everyone.&lt;/p&gt;
 </description></item>
 
-	<item><title>Writing a UTF-8 safe AWK</title>
+	<item><title>Writing a UTF-8 Safe AWK</title>
 	<link>https://iriswebb.github.io/articles/utfawk/</link>
 	<pubDate>Fri, 26 Apr 2024 00:00:00 &#43;0000</pubDate>
-	<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for it&amp;rsquo;s
+	<description>&lt;p&gt;One of the things the toybox project prioritizes is unicode handling for its
 applications. This has kept things like &lt;a href=&#34;http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html&#34;&gt;the fully GNU compatible tr&lt;/a&gt;
 from being promoted from the pending/ directory for years because they
 wish to break compatibility by making tr unicode safe. Toybox&amp;rsquo;s plans for awk
@@ -1257,9 +1258,9 @@ attempting to get into toybox; Awk works with strings, while tr works with
 characters. Awk does not regularly index into the strings it works with, and
 when it does it only happens in a few functions. This means that if we want
 to handle UTF-8, we can divide and conquer.&lt;/p&gt;
-&lt;h3 id=&#34;what-a-utf-8-safe-awk-needs&#34;&gt;
-  &lt;a href=&#34;#what-a-utf-8-safe-awk-needs&#34;&gt;#&lt;/a&gt;
-  What a UTF-8 Safe awk needs
+&lt;h3 id=&#34;what-a-utf-8-safe-awk-beeds&#34;&gt;
+  &lt;a href=&#34;#what-a-utf-8-safe-awk-beeds&#34;&gt;#&lt;/a&gt;
+  What a UTF-8 Safe awk Beeds
 &lt;/h3&gt;&lt;p&gt;The &lt;a href=&#34;https://man7.org/linux/man-pages/man1/gawk.1.html&#34;&gt;gawk(1) man page&lt;/a&gt; says
 these 4 functions work on &amp;ldquo;characters, not bytes&amp;rdquo;:&lt;/p&gt;
 &lt;ul&gt;
@@ -1279,7 +1280,7 @@ these 4 functions work on &amp;ldquo;characters, not bytes&amp;rdquo;:&lt;/p&gt;
 &lt;li&gt;toupper()&lt;/li&gt;
 &lt;li&gt;tolower()&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;That&amp;rsquo;s &amp;ldquo;divide&amp;rdquo; out of the way, now lets conquer.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s &amp;ldquo;divide&amp;rdquo; out of the way, now let&amp;rsquo;s conquer.&lt;/p&gt;
 &lt;h3 id=&#34;implementing-a-utf-8-awk&#34;&gt;
   &lt;a href=&#34;#implementing-a-utf-8-awk&#34;&gt;#&lt;/a&gt;
   Implementing a UTF-8 Awk
@@ -1311,7 +1312,7 @@ wak needed less than 100 lines to make itself UTF-8 safe. Most of the hard part
 is figuring out &lt;em&gt;what&lt;/em&gt; needs unicode handling.&lt;/p&gt;
 </description></item>
 
-	<item><title>Replacing Neovim with vis</title>
+	<item><title>Replacing Neovim With Vis</title>
 	<link>https://iriswebb.github.io/articles/vis/</link>
 	<pubDate>Wed, 17 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;Lately, I&amp;rsquo;ve been unhappy with neovim and it&amp;rsquo;s bloat. vi is a simple and beautiful tool by
@@ -1323,7 +1324,7 @@ builds.&lt;/p&gt;
 &lt;p&gt;And the worst part of this, some of the bloat is actually useful. Bloated software has the
 problem of &amp;ldquo;Everyone only uses 20%, but it&amp;rsquo;s always a different 20%&amp;rdquo;. This makes the minimal
 vi implementations hard to use. I &lt;em&gt;want&lt;/em&gt; syntax highlighting and colorization, I &lt;em&gt;want&lt;/em&gt; the
-ability to batch process data with ex commands.  I &lt;em&gt;want&lt;/em&gt; the ability to select things with
+ability to batch process data with ex commands. I &lt;em&gt;want&lt;/em&gt; the ability to select things with
 visual mode. This disqualifies implementations like nextvi, nvi, and busybox vi.&lt;/p&gt;
 &lt;p&gt;What does this leave? There is apparently one editor called &lt;a href=&#34;https://github.com/martanne/vis&#34;&gt;vis&lt;/a&gt;
 that&amp;rsquo;s minimal, has a large amount of vim-isms, and is written in pure C with configuration able to
@@ -1359,13 +1360,13 @@ vim provides useful, Vis includes many but not all vim-isms while still being el
 versatile.&lt;/p&gt;
 </description></item>
 
-	<item><title>Making A static site generator with `make`</title>
+	<item><title>Making a Static Site Generator with `make`</title>
 	<link>https://iriswebb.github.io/articles/makessg/</link>
 	<pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
 	<description>&lt;p&gt;There are a variety of tools that can be used for static site generation,
 which is analogous to ahead of time compilation. &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; is
-the one GitHub endorses, the problem I have with that is that
-it is written in Ruby, which means that I&amp;rsquo;d have to pull in
+the one GitHub endorses,
+it is also written in Ruby, which means that I&amp;rsquo;d have to pull in
 megabytes of extra dependencies and slow the building process
 down for something that ultimately takes away control from me.&lt;/p&gt;
 &lt;p&gt;What I need is something that is efficient, customizable, and
@@ -1374,7 +1375,7 @@ the picture.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;make&lt;/code&gt; reads a &amp;ldquo;makefile&amp;rdquo; that contains a list of rules. Each rule has a
 list of commands to run. On the command line, you can run &lt;code&gt;make rule&lt;/code&gt;
 to execute the commands in that rule. If you specify multiple rules for
-make to run in the command line, it will run all of those rules, if you
+make to run in the command line, it will run all of those rules. If you
 specify no rules, it will run the first rule defined in the makefile
 (commonly, this rule is called &amp;ldquo;all&amp;rdquo;)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cat Makefile
@@ -1388,7 +1389,7 @@ specify no rules, it will run the first rule defined in the makefile
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo foo
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;foo
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Make will print the commands it runs as it executes them, and will
-abort if a command returns non-zero. Printing the command it
+abort if a command returns nonzero. Printing the command it
 executes can be disabled by placing &lt;code&gt;@&lt;/code&gt; at the start of the command.
 And aborting on failure of a command can be disabled by placing &lt;code&gt;-&lt;/code&gt;
 at the start of the command&lt;/p&gt;
@@ -1409,7 +1410,7 @@ it is a pattern. And more importantly, it is a filename unless said otherwise.
 You can specify prerequisites for running a rule. So in your makefile you can
 write &lt;code&gt;a: b c&lt;/code&gt;, which means that rule b and c have to run before a. You can
 define that a rule is not a filename by defining a &amp;ldquo;phony&amp;rdquo; rule,
-&lt;code&gt;.PHONY: [rule1] [rule2] ...&lt;/code&gt;. means that &lt;code&gt;rule1&lt;/code&gt; and &lt;code&gt;rule2&lt;/code&gt; will
+&lt;code&gt;.PHONY: [rule1] [rule2] ...&lt;/code&gt;. Means that &lt;code&gt;rule1&lt;/code&gt; and &lt;code&gt;rule2&lt;/code&gt; will
 always run when called.&lt;/p&gt;
 &lt;p&gt;Finally, if a rule:&lt;/p&gt;
 &lt;ol&gt;

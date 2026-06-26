@@ -1,8 +1,9 @@
 ---
-Title: Replacing Neovim with vis
-tags: ['Programming']
+Title: Replacing Neovim With Vis
+tags: ["Programming"]
 Date: 2024-04-17
 ---
+
 Lately, I've been unhappy with neovim and it's bloat. vi is a simple and beautiful tool by
 itself, but it's most popular deviation vim has been bloated to the point of being unmanageable
 the same way perl took the design of awk or C++ took the design of C and destroyed it.
@@ -14,7 +15,7 @@ builds.
 And the worst part of this, some of the bloat is actually useful. Bloated software has the
 problem of "Everyone only uses 20%, but it's always a different 20%". This makes the minimal
 vi implementations hard to use. I _want_ syntax highlighting and colorization, I _want_ the
-ability to batch process data with ex commands.  I _want_ the ability to select things with
+ability to batch process data with ex commands. I _want_ the ability to select things with
 visual mode. This disqualifies implementations like nextvi, nvi, and busybox vi.
 
 What does this leave? There is apparently one editor called [vis](https://github.com/martanne/vis)
@@ -36,6 +37,7 @@ Here are some features that aren't in vis _by default_:
 Let's look at these individually and see what vis can achieve.
 
 There are [a lot of plugins](https://github.com/martanne/vis/wiki/Plugins) to do these things:
+
 - [vis-goto-file](https://repo.or.cz/vis-goto-file.git): for the "gf" motion,
 - [vis-highlight](https://github.com/erf/vis-highlight): for leading white-space detection.
 - [vis-spellcheck](https://gitlab.com/muhq/vis-spellcheck): for spellchecking.

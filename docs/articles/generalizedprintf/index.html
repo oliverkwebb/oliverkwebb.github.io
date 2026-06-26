@@ -35,36 +35,36 @@
 <li><code>vsnprintf</code></li>
 <li><code>vasprintf</code></li>
 </ul>
-<p>The sole difference between these functions is the format of input and the source of output. It would make sense to generalize this class of functions in a implementation of printf. Ideally down into one function that constructs and outputs the formatted string which the 12 functions can wrap around or be based upon.</p>
-<p>Some simple optimizations can be made already, all printf functions wrap around their varaidic forms, which cuts the list in half. <code>printf</code> and <code>dprintf</code> can both be thought of as wrappers, which reduces the now 6 functions needed into 4:</p>
+<p>The sole difference between these functions is the format of input and the source of output. It would make sense to generalize this class of functions in an implementation of printf. Ideally down into one function that constructs and outputs the formatted string which the 12 functions can wrap around or be based upon.</p>
+<p>Some simple optimizations can be made already, all printf functions wrap around their variadic forms, which cuts the list in half. <code>printf</code> and <code>dprintf</code> can both be thought of as wrappers, which reduces the now 6 functions needed into 4:</p>
 <ul>
 <li><code>vsprintf</code></li>
 <li><code>vfprintf</code></li>
 <li><code>vsnprintf</code></li>
 <li><code>vasprintf</code></li>
 </ul>
-<p><code>sprintf</code> was a bad idea for the same reason <code>gets</code> was (in fact, GCC will throw a warning if it detects the use of either of those in almost every case). <code>snprintf</code> is theoretically different because it needs an output limit, but the behaviour of <code>sprintf</code> can be replicated by setting that limit to <code>SIZE_MAX</code> or similar.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<p>The 3 functions left are <code>vfprintf</code>, <code>vasprintf</code>, and <code>vsnprintf</code>. There is a straightforward way to reduce these down into one function, to <code>vasprintf</code> a dynamically allocated string, output it  with <code>memcpy</code> or <code>fputs</code>, then <code>free</code> it.</p>
+<p><code>sprintf</code> was a bad idea for the same reason <code>gets</code> was (in fact, GCC will throw a warning if it detects the use of either of those in almost every case). <code>snprintf</code> is theoretically different because it needs an output limit, but the behavior of <code>sprintf</code> can be replicated by setting that limit to <code>SIZE_MAX</code> or similar.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>The 3 functions left are <code>vfprintf</code>, <code>vasprintf</code>, and <code>vsnprintf</code>. There is a straightforward way to reduce these down into one function, to <code>vasprintf</code> a dynamically allocated string, output it with <code>memcpy</code> or <code>fputs</code>, then <code>free</code> it.</p>
 <p>The problem with this approach is that it is inefficient. Even if using a vector that doubles in size when expanding to be O(log n), there are redundant allocations. If the formatted result is especially large, it will take up a large amount of memory. Trying to generalize printf functions that outputs the string as its constructed is a harder and more interesting problem.</p>
-<h2 id="the-art-of-transmutation-and-opaqueness">
-  <a href="#the-art-of-transmutation-and-opaqueness">#</a>
-  The art of transmutation and opaqueness
+<h2 id="transmutation-and-opaqueness">
+  <a href="#transmutation-and-opaqueness">#</a>
+  Transmutation and Opaqueness
 </h2><p>C89<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> defines <code>qsort</code> as:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">void</span> <span style="color:#d2a8ff;font-weight:bold">qsort</span>(<span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>base, <span style="color:#ff7b72">size_t</span> nmemb, <span style="color:#ff7b72">size_t</span> size, <span style="color:#ff7b72">int</span> (<span style="color:#ff7b72;font-weight:bold">*</span>compar)(<span style="color:#ff7b72">const</span> <span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>, <span style="color:#ff7b72">const</span> <span style="color:#ff7b72">void</span> <span style="color:#ff7b72;font-weight:bold">*</span>));
 </span></span></code></pre></div><p>The first 3 arguments are the parameters for an array, with the last being a function to pass the elements to (often a wrapper around <code>strcmp</code>, the comparison operator, or similar).</p>
-<p>What is notable about this function is the use of function pointers to modularize code, and the fact that it has no information about the array it is given besides its size and element size. Because of this:</p>
+<p>This function employs function pointers to modularize code, and the fact that it has no information about the array it is given besides its size and element size. Because of this:</p>
 <ul>
 <li>Transmutation is required to use it</li>
 <li>Which makes use of the function much more volatile since it is harder to check if the types being given or interpreted are valid</li>
 </ul>
 <p>Consider the two arrays:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>long long a[] = {0, 0, 0, 0, 0};
-</span></span><span style="display:flex;"><span>char *b[] = {&#34;b&#34;, &#34;a&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;}; 
+</span></span><span style="display:flex;"><span>char *b[] = {&#34;b&#34;, &#34;a&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;};
 </span></span></code></pre></div><p>Both contain 5 8-byte elements<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. But they both cast to a void pointer when passed into <code>qsort</code>. And the information about the type is lost until it is recast presuming it&rsquo;s the desired type. The compiler won&rsquo;t throw a warning if you sort the first array with a wrapper around <code>strcmp</code>. Nor will it warn you if you give a wrong number of elements or element size.</p>
-<p>In our printf implementation, we can pass in both a file <strong>and</strong> a buffer to write to, along with a output function and the needed format string and list of arguments:</p>
+<p>In our printf implementation, we can pass in both a file <strong>and</strong> a buffer to write to, along with an output function and the needed format string and list of arguments:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff7b72">static</span> <span style="color:#ff7b72">int</span> <span style="color:#d2a8ff;font-weight:bold">_vfsprintf</span>(FILE <span style="color:#ff7b72;font-weight:bold">*</span>stream, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>buffer, <span style="color:#ff7b72">size_t</span> size, <span style="color:#ff7b72">int</span> (<span style="color:#ff7b72;font-weight:bold">*</span>submit)(<span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>, <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>, FILE <span style="color:#ff7b72;font-weight:bold">*</span>), <span style="color:#ff7b72">const</span> <span style="color:#ff7b72">char</span> <span style="color:#ff7b72;font-weight:bold">*</span>format, va_list va);
 </span></span></code></pre></div><p>Since the <code>FILE</code> stream, the <code>buffer</code>, and the <code>size</code> are only used inside the <code>submit</code> function, they can be set to null and ignored in the output handlers.</p>
-<p>If you could write a static/dynamic buffer in multiple distributed steps using a function pointer and a pointer to the start of the buffer alone, this and a few wrapper functions would be the end of it. Unfortunately, doing this in C requires state.</p>
+<p>If you could write a static or dynamic buffer in multiple distributed steps using a function pointer and a pointer to the start of the buffer alone, this and a few wrapper functions would be the end of it. Unfortunately, doing this in C requires state.</p>
 <h2 id="oop-in-c">
   <a href="#oop-in-c">#</a>
   OOP in C

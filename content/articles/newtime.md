@@ -1,5 +1,5 @@
 ---
-title: "Rethinking The C Time API"
+title: "Rethinking the C Time API"
 tags: ["Programming"]
 date: 2025-02-05T10:25:12-05:00
 ---
@@ -8,7 +8,7 @@ Out of all the components of C, its time API is probably the one most plagued wi
 To the point almost every regularly used element of it has some design decision that's been obsolete for
 decades.
 
-As a example, here is some code I use to print the current time for my status bar:
+As an example, here is some code I use to print the current time for my status bar:
 
 ```
 #include <stdio.h>
@@ -87,9 +87,9 @@ The main types of the C time API (that matter to us) are:
 `time_t` and `struct timespec` are used almost exclusively in kernel-level functions. Whilst `struct tm` is used
 almost exclusively with conversion of time to and from strings.
 
-## Nanoseconds, Floating Point Precision, and the Y2262 problem
+## Nanoseconds, Floating Point Precision, and the Y2262 Problem
 
-It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
+It would be awfully convenient to represent time in nanosecond form everywhere all the time.
 It'd give `strftime` and `strptime` the ability to print milli/micro/nanoseconds. And it'd remove the need for
 the `timespec` struct used in a lot of system-level time functions.
 
@@ -124,21 +124,21 @@ Type/Resolution, float (23), int (31), double (52), long/x87 long double (63)
 -1 s, 1969-09-25T21:49, 1901-12-13T20:45, -142711421-01-25T20:11, 292277026596-12-04T15:30
 {{< /csvtbl >}}
 
-Looking at this chart alone, 64 bit integers don't seem much worse than long doubles, but keep in mind that
-Integers support _One precision_, and there's a trade off between resolution and the bounds of your epoch,
+Looking at this chart alone… 64 bit integers don't seem much worse than long doubles. But keep in mind that
+integers support _One precision_, and there's a trade off between resolution and the bounds of your epoch.
 Floating point values support _all precision's_, there is no such trade off.
 
 For this reason, `date_t` is a long double floating point value of seconds since the epoch.
 
 ## "Broken Down Time"
 
-Now that we have a base time type, there needs to be some way to convert between
-human friendly to machine friendly values. I.e. getting the year, month and day.
+Now that we have a base time type, there should be some way to convert between
+human friendly to machine friendly values. I.e. getting the year, month, and day.
 In the spirit of "100 functions for 10 data structures vs. 10 functions for 1 data structure", Unless a functions _job_ is to handle human-friendly time values, it will use `date_t`.
 
-The way this is done in C is with `struct tm` , which has many problems.
+The way this is done in C is with `struct tm` , which contains many problems.
 
-- almost always handled in statically allocated pointers that get overwritten (`gmtime()`)
+- Almost always handled in statically allocated pointers that get overwritten (`gmtime()`)
 - No way to represent sub-second time.
 - tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.
 - tm_wday and tm_yday make it harder to construct completely valid structs
@@ -178,7 +178,7 @@ This fixes several problems with the existing `struct tm`:
 **"Why no timezones in the struct?"**
 : The date passed into `tocal()` is ideally already adjusted to a certain timezone with the api later described in this article. The timezone api deals with `date_t`, not calendars on matter of principle and practicality.
 
-## The tragedy of tzset()
+## The Tragedy of tzset()
 
 The timezone handling code in libc isn't outdated, that would imply it was once sufficient for timezone handling.
 `tzset()` and `localtime()` are the _only_ ways to handle timezones in libc, and both of them have a insane relationship
@@ -215,7 +215,7 @@ date_t      intz(date_t d, char *tz); // d+tzoffat(d, tz)
 date_t    inmytz(date_t d);           // intz(d, mytz())
 ```
 
-## Why weekdays in the time structure are bad
+## Why Weekdays in the Time Structure are Bad
 
 `strptime()` is special because it uses uncertainty as a tool. It wont touch anything in the calendar
 structure that isn't directly correlated with a formatting specification. This is as much of a
@@ -278,7 +278,7 @@ We can free up space for more formatters by using multiple letters in the variat
 * oz - zone offset
 * nz - index name of zone (i.e. `America/New_York`)
 
-## In defense of libc...
+## In Defense of libc...
 
 The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
 and has constantly resisted improvement by standardization. Many components in the library were developed decades

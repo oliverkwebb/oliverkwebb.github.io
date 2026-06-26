@@ -1,13 +1,13 @@
 ---
-Title: Making A static site generator with `make`
+Title: Making a Static Site Generator with `make`
 tags: ["Programming"]
 Date: 2024-04-13
 ---
 
 There are a variety of tools that can be used for static site generation,
 which is analogous to ahead of time compilation. [Jekyll][1] is
-the one GitHub endorses, the problem I have with that is that
-it is written in Ruby, which means that I'd have to pull in
+the one GitHub endorses,
+it is also written in Ruby, which means that I'd have to pull in
 megabytes of extra dependencies and slow the building process
 down for something that ultimately takes away control from me.
 
@@ -18,7 +18,7 @@ the picture.
 `make` reads a "makefile" that contains a list of rules. Each rule has a
 list of commands to run. On the command line, you can run `make rule`
 to execute the commands in that rule. If you specify multiple rules for
-make to run in the command line, it will run all of those rules, if you
+make to run in the command line, it will run all of those rules. If you
 specify no rules, it will run the first rule defined in the makefile
 (commonly, this rule is called "all")
 
@@ -36,7 +36,7 @@ foo
 ```
 
 Make will print the commands it runs as it executes them, and will
-abort if a command returns non-zero. Printing the command it
+abort if a command returns nonzero. Printing the command it
 executes can be disabled by placing `@` at the start of the command.
 And aborting on failure of a command can be disabled by placing `-`
 at the start of the command
@@ -63,7 +63,7 @@ it is a pattern. And more importantly, it is a filename unless said otherwise.
 You can specify prerequisites for running a rule. So in your makefile you can
 write `a: b c`, which means that rule b and c have to run before a. You can
 define that a rule is not a filename by defining a "phony" rule,
-`.PHONY: [rule1] [rule2] ...`. means that `rule1` and `rule2` will
+`.PHONY: [rule1] [rule2] ...`. Means that `rule1` and `rule2` will
 always run when called.
 
 Finally, if a rule:

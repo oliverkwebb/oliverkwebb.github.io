@@ -17,11 +17,11 @@
 <header><h1 id="tag_Astronomy and Earth: Coordinate Distances">Astronomy and Earth: Coordinate Distances</h1></header>
 <article>
 
-<p>You might of heard the phrase <a href="https://www.mentalfloss.com/article/27585/could-you-really-dig-hole-china">&ldquo;dig to china&rdquo;</a> before,
+<p>You might have heard the phrase <a href="https://www.mentalfloss.com/article/27585/could-you-really-dig-hole-china">&ldquo;dig to china&rdquo;</a> before,
 or talked about digging a b-line through the earth to some far off land jokingly. But how much distance would you actually save
 by digging through the earth instead of traveling along the surface?</p>
 <p>Since coordinates on a sphere are 2 dimensional, lets think of a simpler problem. On a unit circle where both locations
-positions can be represented by one angle, what&rsquo;s the difference between going through the circle versus travelling
+positions can be represented by one angle, what&rsquo;s the difference between going through the circle versus traveling
 along its circumference?</p>
 <p>Well, we need to get the difference between these two angles, which is just another angle that you can get by subtraction,
 from here <code>crd</code> (<code>2*sin(0.5*x)</code>) can do the work trivially.</p>
@@ -41,17 +41,18 @@ through the earth between any two coordinates.</p>
 
 <h1 id="how-does-this-relate-to-astronomy">
   <a href="#how-does-this-relate-to-astronomy">#</a>
-  How does this relate to astronomy?
+  How Does This Relate to Astronomy?
 </h1><p>When calculating the phase (illuminated fraction and bright limb position) of planets, you
 work with a &ldquo;phase angle&rdquo; that is the angle between the Earth, that planet, and the sun.
 With (<code>(1-cos(x))/2</code>), you can turn this number into an illuminated fraction.</p>
-<p>How do you calculate this angle? Imagine a triangle between the sun, earth, and planet,
-we have the length of the Earth-Sun line (1AU within a rounding error for these calculations),
-and the length of the Earth-Planet line (if your ephemeris generator doesn&rsquo;t give distances,
-find something different).</p>
-<p>We need the sun-earth-planet angle to have enough info
-to law-of-cosines the desired result. And if we have the coordinates of the sun and planet (which should be trivial to find
-at this stage), we can take the angle between these two coordinates on the celestial sphere. And have enough info
+<p>How is this angle calculated? Imagine a triangle between the sun, earth, and planet.
+The length of the Earth-Sun line is trivial (1AU within a rounding error for these calculations).
+And the length of the Earth-Planet line can be calculated easily.</p>
+<p>You need the sun-earth-planet angle to have enough info
+to use the law-of-cosines for the desired result.
+And if you have the coordinates of the sun and planet (which should be trivial to find
+at this stage), you can take the angle between these two coordinates on the
+celestial sphere. And finally have enough info
 to get the phase angle from coordinates and distance alone.</p>
 
 

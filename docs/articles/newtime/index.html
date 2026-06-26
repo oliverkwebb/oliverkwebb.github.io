@@ -14,13 +14,13 @@
 	<a href="/">Iris Webb</a>
 </nav>
 <main>
-<header><h1 id="tag_Rethinking The C Time API">Rethinking The C Time API</h1></header>
+<header><h1 id="tag_Rethinking the C Time API">Rethinking the C Time API</h1></header>
 <article>
 
 <p>Out of all the components of C, its time API is probably the one most plagued with legacy cruft.
 To the point almost every regularly used element of it has some design decision that&rsquo;s been obsolete for
 decades.</p>
-<p>As a example, here is some code I use to print the current time for my status bar:</p>
+<p>As an example, here is some code I use to print the current time for my status bar:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;time.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
 </span></span></span><span style="display:flex;"><span><span style="color:#8b949e;font-weight:bold;font-style:italic">#include</span> <span style="color:#8b949e;font-weight:bold;font-style:italic">&lt;unistd.h&gt;</span><span style="color:#8b949e;font-weight:bold;font-style:italic">
@@ -91,8 +91,8 @@ And NTP correction are out of scope. This leaves:</p>
 almost exclusively with conversion of time to and from strings.</p>
 <h2 id="nanoseconds-floating-point-precision-and-the-y2262-problem">
   <a href="#nanoseconds-floating-point-precision-and-the-y2262-problem">#</a>
-  Nanoseconds, Floating Point Precision, and the Y2262 problem
-</h2><p>It would be awfully convenient to represent time in nanosecond form everywhere all of the time.
+  Nanoseconds, Floating Point Precision, and the Y2262 Problem
+</h2><p>It would be awfully convenient to represent time in nanosecond form everywhere all the time.
 It&rsquo;d give <code>strftime</code> and <code>strptime</code> the ability to print milli/micro/nanoseconds. And it&rsquo;d remove the need for
 the <code>timespec</code> struct used in a lot of system-level time functions.</p>
 <p>A floating point number is able to store values up to 2<sup>mantissa_length</sup> with integral precision. Actually, calculating floating
@@ -158,19 +158,19 @@ that 10<sup>-9</sup> is actually around 2<sup>-29.8</sup>)).</p>
 </table>
 
 
-<p>Looking at this chart alone, 64 bit integers don&rsquo;t seem much worse than long doubles, but keep in mind that
-Integers support <em>One precision</em>, and there&rsquo;s a trade off between resolution and the bounds of your epoch,
+<p>Looking at this chart alone… 64 bit integers don&rsquo;t seem much worse than long doubles. But keep in mind that
+integers support <em>One precision</em>, and there&rsquo;s a trade off between resolution and the bounds of your epoch.
 Floating point values support <em>all precision&rsquo;s</em>, there is no such trade off.</p>
 <p>For this reason, <code>date_t</code> is a long double floating point value of seconds since the epoch.</p>
 <h2 id="broken-down-time">
   <a href="#broken-down-time">#</a>
   &ldquo;Broken Down Time&rdquo;
-</h2><p>Now that we have a base time type, there needs to be some way to convert between
-human friendly to machine friendly values. I.e. getting the year, month and day.
+</h2><p>Now that we have a base time type, there should be some way to convert between
+human friendly to machine friendly values. I.e. getting the year, month, and day.
 In the spirit of &ldquo;100 functions for 10 data structures vs. 10 functions for 1 data structure&rdquo;, Unless a functions <em>job</em> is to handle human-friendly time values, it will use <code>date_t</code>.</p>
-<p>The way this is done in C is with <code>struct tm</code> , which has many problems.</p>
+<p>The way this is done in C is with <code>struct tm</code> , which contains many problems.</p>
 <ul>
-<li>almost always handled in statically allocated pointers that get overwritten (<code>gmtime()</code>)</li>
+<li>Almost always handled in statically allocated pointers that get overwritten (<code>gmtime()</code>)</li>
 <li>No way to represent sub-second time.</li>
 <li>tm_mday starts at one instead of zero (as the rest of the struct values do) for no reason.</li>
 <li>tm_wday and tm_yday make it harder to construct completely valid structs</li>
@@ -205,7 +205,7 @@ In the spirit of &ldquo;100 functions for 10 data structures vs. 10 functions fo
 </dl>
 <h2 id="the-tragedy-of-tzset">
   <a href="#the-tragedy-of-tzset">#</a>
-  The tragedy of tzset()
+  The Tragedy of tzset()
 </h2><p>The timezone handling code in libc isn&rsquo;t outdated, that would imply it was once sufficient for timezone handling.
 <code>tzset()</code> and <code>localtime()</code> are the <em>only</em> ways to handle timezones in libc, and both of them have a insane relationship
 with each other and the process environment:</p>
@@ -235,7 +235,7 @@ therefore it must be the users job to free it)</li>
 </span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">date_t</span>    <span style="color:#d2a8ff;font-weight:bold">inmytz</span>(<span style="color:#ff7b72">date_t</span> d);           <span style="color:#8b949e;font-style:italic">// intz(d, mytz())
 </span></span></span></code></pre></div><h2 id="why-weekdays-in-the-time-structure-are-bad">
   <a href="#why-weekdays-in-the-time-structure-are-bad">#</a>
-  Why weekdays in the time structure are bad
+  Why Weekdays in the Time Structure are Bad
 </h2><p><code>strptime()</code> is special because it uses uncertainty as a tool. It wont touch anything in the calendar
 structure that isn&rsquo;t directly correlated with a formatting specification. This is as much of a
 asset as it is a liability, it&rsquo;s useful because you can read time with a set of presumptions
@@ -332,7 +332,7 @@ However, the mnemonics for strftime are poor and do not allow for easy extension
 </ul>
 <h2 id="in-defense-of-libc">
   <a href="#in-defense-of-libc">#</a>
-  In defense of libc&hellip;
+  In Defense of libc&hellip;
 </h2><p>The time library in C is largely terrible because it is made entirely out of non-tessellating ideas and hacks,
 and has constantly resisted improvement by standardization. Many components in the library were developed decades
 apart. Many more were designed without the idea of internationalization in mind. The result of this is something
@@ -347,8 +347,8 @@ It is interesting to think of ways C itself could&rsquo;ve improved its own time
 <hr />
 <footer>
     <div id="nextprev">
-		<a href="/articles/rustunixnew/" class="prev">← List of classic UNIX utils re-designed in rust</a>
-	<a href="/articles/adt-visual/" class="next">Mathematical data representation (ADT) explained →</a>
+		<a href="/articles/rustunixnew/" class="prev">← List of Classic UNIX Utils Re-designed in Rust</a>
+	<a href="/articles/adt-visual/" class="next">Mathematical Data Representation (ADT) Explained →</a>
 	</div>
 	<br/>
 <p id="taglist">

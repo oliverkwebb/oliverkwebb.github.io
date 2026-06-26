@@ -19,13 +19,13 @@ Looking to more specific purpose tools:
 - [sunwait](https://github.com/risacher/sunwait) - sunrise/sunset calculator.
 - [plan9 astro(1)](https://9fans.github.io/plan9port/man/man1/astro.html) - astronomical info generator, largely exclusive to plan9.
 
-As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn't fill. To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren't general purpose enough to generate things like moon phases/sunset times/planet positions all at once.
+As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn't fill. To properly script/embed these tools in the spirit of classic UNIX. There should be a clear way to render the info in plaintext, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren't general purpose enough to generate things like moon phases/sunset times/planet positions all at once.
 
 ![A Venn Diagram of Astronomy Tools](/graph/astro-tools-venn.png)
 
 # How easy is it to make something like that?
 
-Lets lessen the scope for a moment, to... lets say moon phases. Which I couldn't find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.
+Let's lessen the scope for a moment, to… lets say moon phases. Which I couldn't find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.
 
 A year ago, I was looking at [pyphoon](https://github.com/chubin/pyphoon),
 and found the [astronomy code](https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py) from it was a rewrite of C code written almost [40 years ago](https://www.fourmilab.ch/moontoolw/).
@@ -52,19 +52,19 @@ mprintf "%e %P %p"
 ```
 
 I later transpiled this to [lua](https://github.com/iriswebb/moontool/tree/main/lua) and
-[rust](https://github.com/iriswebb/moontool-rs). But... _how did the original code get the moon phase_,
+[rust](https://github.com/iriswebb/moontool-rs). But… _how did the original code get the moon phase_,
 and how did they come up with the algorithm?
 
 In the header of that code, the book _Practical Astronomy with Your Calculator_ by Peter Duffett-Smith is mentioned.
 Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
 This book is actually simpler to transcribe code from than similar books for BASIC/FORTRAN/Forth/C/PASCAL,
-since their algorithms are usually restricted to arithmetic, exponentiation, and trig functions.
+since the books algorithms are usually just arithmetic, exponentiation, and trig functions.
 
-# How accurate can we be?
+# How Accurate Can We Be?
 
 TL;DR: Accurate Enough.
 
-**Hyper-Accurate** Astronomy is... [hard](https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html).
+**Hyper-Accurate** Astronomy is… [hard](https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html).
 Often times it is [impossible](<https://en.wikipedia.org/wiki/Extinction_(astronomy)>) without [information](https://en.wikipedia.org/wiki/Polar_motion)
 that can't be [queried](https://www.news18.com/news/buzz/want-to-see-two-sunsets-in-the-same-evening-burj-khalifa-is-the-place-to-be-4132970.html)
 from the user reasonably.
@@ -85,12 +85,12 @@ Generally, most "constants" wobble by some small amount over a large period of t
 | Precession         | Yes         | Wobble             | ~1°/century                                            |
 | Parallax           | Yes         | Distance Changes   | 1 degree (lunar), less than 1 arcsec (everything else) |
 | Refraction         | Yes[^1]     | The Atmosphere     | Up to 30 arcmin (near the horizon)                     |
-| Pertubation        | Yes         | Newtonion Gravity  | Up to 1.5 degrees                                      |
+| Perturbation       | Yes         | Newtonion Gravity  | Up to 1.5 degrees                                      |
 | Proper Motion      | Yes         | Star Movement      | Less than 5 arcsec per year                            |
 | Nutation           | Yes         | Wobble             | ~10 arcsec/20y                                         |
 | Polar Motion       | No          | ???                | ~0.1 arcsec/year                                       |
 | Extinction         | No          | The Atmosphere     | Varies (effecting visual magnitude)                    |
-| Abberation         | Yes         | The Earths Orbit   | Up to 20 arcsec                                        |
+| Aberration         | Yes         | The Earths Orbit   | Up to 20 arcsec                                        |
 | Apsidal Precession | Yes         | General Relativity | Less than 1 arcsec per century                         |
 
 Not all these effects are worth accounting for to the level of picoarcseconds. Many are not worth accounting for at all in a
@@ -133,8 +133,8 @@ Additionally, output can be added for JSON and CSV, to make parsing data with to
 
 # The result?
 
-Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
-Doing this entirely inside the command line with conventional tools is normally a painful process, but using
+Let's say you want to graph the distance between the Earth and the other planets in the inner solar system.
+Doing this entirely inside the command line with conventional tools is normally a painful process. But using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc...).
 

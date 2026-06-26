@@ -32,12 +32,12 @@
 <li><a href="https://github.com/risacher/sunwait">sunwait</a> - sunrise/sunset calculator.</li>
 <li><a href="https://9fans.github.io/plan9port/man/man1/astro.html">plan9 astro(1)</a> - astronomical info generator, largely exclusive to plan9.</li>
 </ul>
-<p>As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&rsquo;t fill. To properly script/embed these tools in the spirit of classic UNIX, there needs to be a clear way to render the info in plain text, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren&rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.</p>
+<p>As cool as all these tools are, there still exists a specific niche in shell scripting that I still couldn&rsquo;t fill. To properly script/embed these tools in the spirit of classic UNIX. There should be a clear way to render the info in plaintext, ideally without sending HTTP requests or using a GUI. There are a lot of things which can do that, but most of them aren&rsquo;t general purpose enough to generate things like moon phases/sunset times/planet positions all at once.</p>
 <p><img src="/graph/astro-tools-venn.png" alt="A Venn Diagram of Astronomy Tools"></p>
 <h1 id="how-easy-is-it-to-make-something-like-that">
   <a href="#how-easy-is-it-to-make-something-like-that">#</a>
   How easy is it to make something like that?
-</h1><p>Lets lessen the scope for a moment, to&hellip; lets say moon phases. Which I couldn&rsquo;t find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.</p>
+</h1><p>Let&rsquo;s lessen the scope for a moment, to… lets say moon phases. Which I couldn&rsquo;t find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.</p>
 <p>A year ago, I was looking at <a href="https://github.com/chubin/pyphoon">pyphoon</a>,
 and found the <a href="https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py">astronomy code</a> from it was a rewrite of C code written almost <a href="https://www.fourmilab.ch/moontoolw/">40 years ago</a>.</p>
 <p>Instead of dividing the current date by twenty-some days and working off the value that returns, this code
@@ -57,17 +57,17 @@ of C (before refactoring).</p>
 </span></span><span style="display:flex;"><span>mprintf <span style="color:#a5d6ff">&#34;%e %P %p&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 🌘 13.3 Waning Crescent</span>
 </span></span></code></pre></div><p>I later transpiled this to <a href="https://github.com/iriswebb/moontool/tree/main/lua">lua</a> and
-<a href="https://github.com/iriswebb/moontool-rs">rust</a>. But&hellip; <em>how did the original code get the moon phase</em>,
+<a href="https://github.com/iriswebb/moontool-rs">rust</a>. But… <em>how did the original code get the moon phase</em>,
 and how did they come up with the algorithm?</p>
 <p>In the header of that code, the book <em>Practical Astronomy with Your Calculator</em> by Peter Duffett-Smith is mentioned.
 Which explains not just the algorithms behind astronomical calculation, but many aspects of astronomy itself, very well.
 This book is actually simpler to transcribe code from than similar books for BASIC/FORTRAN/Forth/C/PASCAL,
-since their algorithms are usually restricted to arithmetic, exponentiation, and trig functions.</p>
+since the books algorithms are usually just arithmetic, exponentiation, and trig functions.</p>
 <h1 id="how-accurate-can-we-be">
   <a href="#how-accurate-can-we-be">#</a>
-  How accurate can we be?
+  How Accurate Can We Be?
 </h1><p>TL;DR: Accurate Enough.</p>
-<p><strong>Hyper-Accurate</strong> Astronomy is&hellip; <a href="https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html">hard</a>.
+<p><strong>Hyper-Accurate</strong> Astronomy is… <a href="https://www.celestialprogramming.com/snippets/nutation2000a/nutation2000a.html">hard</a>.
 Often times it is <a href="https://en.wikipedia.org/wiki/Extinction_(astronomy)">impossible</a> without <a href="https://en.wikipedia.org/wiki/Polar_motion">information</a>
 that can&rsquo;t be <a href="https://www.news18.com/news/buzz/want-to-see-two-sunsets-in-the-same-evening-burj-khalifa-is-the-place-to-be-4132970.html">queried</a>
 from the user reasonably.</p>
@@ -110,7 +110,7 @@ for a range of a few thousand years.</p>
 					<td>Up to 30 arcmin (near the horizon)</td>
 			</tr>
 			<tr>
-					<td>Pertubation</td>
+					<td>Perturbation</td>
 					<td>Yes</td>
 					<td>Newtonion Gravity</td>
 					<td>Up to 1.5 degrees</td>
@@ -140,7 +140,7 @@ for a range of a few thousand years.</p>
 					<td>Varies (effecting visual magnitude)</td>
 			</tr>
 			<tr>
-					<td>Abberation</td>
+					<td>Aberration</td>
 					<td>Yes</td>
 					<td>The Earths Orbit</td>
 					<td>Up to 20 arcsec</td>
@@ -186,8 +186,8 @@ Using this model, we can make a simple interface to these algorithms for a comma
 <h1 id="the-result">
   <a href="#the-result">#</a>
   The result?
-</h1><p>Lets say you want to graph the distance between the Earth and the other planets in the inner solar system.
-Doing this entirely inside the command line with conventional tools is normally a painful process, but using
+</h1><p>Let&rsquo;s say you want to graph the distance between the Earth and the other planets in the inner solar system.
+Doing this entirely inside the command line with conventional tools is normally a painful process. But using
 CSV output, you can generate ephemeris for the 3 other planets (and the sun), and put the distance columns
 into your data analysis tool of choice (gnuplot, python, etc&hellip;).</p>
 <p><img src="/graph/SMVm.png" alt="Inner Solar System Distance Graph"></p>

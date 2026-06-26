@@ -1,9 +1,10 @@
 ---
-Title: Writing a UTF-8 safe AWK
-Tags: ['Programming', 'Theory']
+Title: Writing a UTF-8 Safe AWK
+Tags: ["Programming", "Theory"]
 Date: 2024-04-26
 ---
-One of the things the toybox project prioritizes is unicode handling for it's
+
+One of the things the toybox project prioritizes is unicode handling for its
 applications. This has kept things like [the fully GNU compatible tr](http://lists.landley.net/pipermail/toybox-landley.net/2023-October/029845.html)
 from being promoted from the pending/ directory for years because they
 wish to break compatibility by making tr unicode safe. Toybox's plans for awk
@@ -15,7 +16,7 @@ characters. Awk does not regularly index into the strings it works with, and
 when it does it only happens in a few functions. This means that if we want
 to handle UTF-8, we can divide and conquer.
 
-### What a UTF-8 Safe awk needs
+### What a UTF-8 Safe awk Beeds
 
 The [gawk(1) man page](https://man7.org/linux/man-pages/man1/gawk.1.html) says
 these 4 functions work on "characters, not bytes":
@@ -36,7 +37,7 @@ And finally, these work internally by indexing the string:
 - toupper()
 - tolower()
 
-That's "divide" out of the way, now lets conquer.
+That's "divide" out of the way, now let's conquer.
 
 ### Implementing a UTF-8 Awk
 

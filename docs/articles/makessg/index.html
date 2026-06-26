@@ -14,13 +14,13 @@
 	<a href="/">Iris Webb</a>
 </nav>
 <main>
-<header><h1 id="tag_Making A static site generator with `make`">Making A static site generator with `make`</h1></header>
+<header><h1 id="tag_Making a Static Site Generator with `make`">Making a Static Site Generator with `make`</h1></header>
 <article>
 
 <p>There are a variety of tools that can be used for static site generation,
 which is analogous to ahead of time compilation. <a href="https://jekyllrb.com/">Jekyll</a> is
-the one GitHub endorses, the problem I have with that is that
-it is written in Ruby, which means that I&rsquo;d have to pull in
+the one GitHub endorses,
+it is also written in Ruby, which means that I&rsquo;d have to pull in
 megabytes of extra dependencies and slow the building process
 down for something that ultimately takes away control from me.</p>
 <p>What I need is something that is efficient, customizable, and
@@ -29,7 +29,7 @@ the picture.</p>
 <p><code>make</code> reads a &ldquo;makefile&rdquo; that contains a list of rules. Each rule has a
 list of commands to run. On the command line, you can run <code>make rule</code>
 to execute the commands in that rule. If you specify multiple rules for
-make to run in the command line, it will run all of those rules, if you
+make to run in the command line, it will run all of those rules. If you
 specify no rules, it will run the first rule defined in the makefile
 (commonly, this rule is called &ldquo;all&rdquo;)</p>
 <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ cat Makefile
@@ -43,7 +43,7 @@ specify no rules, it will run the first rule defined in the makefile
 </span></span><span style="display:flex;"><span>echo foo
 </span></span><span style="display:flex;"><span>foo
 </span></span></code></pre></div><p>Make will print the commands it runs as it executes them, and will
-abort if a command returns non-zero. Printing the command it
+abort if a command returns nonzero. Printing the command it
 executes can be disabled by placing <code>@</code> at the start of the command.
 And aborting on failure of a command can be disabled by placing <code>-</code>
 at the start of the command</p>
@@ -64,7 +64,7 @@ it is a pattern. And more importantly, it is a filename unless said otherwise.
 You can specify prerequisites for running a rule. So in your makefile you can
 write <code>a: b c</code>, which means that rule b and c have to run before a. You can
 define that a rule is not a filename by defining a &ldquo;phony&rdquo; rule,
-<code>.PHONY: [rule1] [rule2] ...</code>. means that <code>rule1</code> and <code>rule2</code> will
+<code>.PHONY: [rule1] [rule2] ...</code>. Means that <code>rule1</code> and <code>rule2</code> will
 always run when called.</p>
 <p>Finally, if a rule:</p>
 <ol>
@@ -157,7 +157,7 @@ rules, variables, and shell scripts.</p>
 </main>
 <hr />
 <footer>
-    <div id="nextprev"><a href="/articles/vis/" class="next">Replacing Neovim with vis →</a>
+    <div id="nextprev"><a href="/articles/vis/" class="next">Replacing Neovim With Vis →</a>
 	</div>
 	<br/>
 <p id="taglist">

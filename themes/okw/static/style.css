@@ -68,7 +68,7 @@ nav {
 
 .linkbox a {
     display: block;
-    width: 80%;
+    width: 60%;
     margin: 15px auto 15px auto;
     padding: 10px 0 10px 0;
     color: black;
@@ -96,6 +96,8 @@ a {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: auto auto;
+    width: 60%;
+    margin: auto;
 }
 
 .trinkets p {
@@ -103,6 +105,7 @@ a {
     border: 2px solid black;
     background-color: white;
     text-align: center;
+    filter: drop-shadow(2px 2px 3px);
 }
 .trinkets p a {
     display: inline-block;
@@ -128,22 +131,22 @@ a {
 .articleitem .title {
     display: flex;
     align-items: flex-end;
-    justify-content: center;
-    text-align: justify;
-    text-align-last: center;
+    justify-content: left;
     padding-left: 10px;
     padding-right: 10px;
     grid-area: title;
 }
 .articleitem .info {
-    text-align: center;
     grid-area: info;
+    padding-left: 10px;
 }
 .articleitem .image {
     grid-area: image;
 }
 .articleitem img {
     min-width: 200px;
+    margin: 5px;
+    filter: drop-shadow(3px 3px 3px);
 }
 
 h1,

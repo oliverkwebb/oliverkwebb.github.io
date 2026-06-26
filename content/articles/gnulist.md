@@ -1,31 +1,35 @@
 ---
-title: "Why I don't like GNU"
-tags: ['History', 'Opinion', 'Programming']
+title: "Why I Don't Like GNU"
+tags: ["History", "Opinion", "Programming"]
 date: 2024-08-17
 ---
+
 This list does not mention the \[Richard Stallman controversy\]\<Link to Drew DeVault article here\>.
 Nor his squabbles related to [glibc](https://sourceware.org/legacy-ml/libc-hacker/2000-06/msg00233.html)
 because:
 
 - Most-everybody knows about it
-- These are related to RMS _specificly_, not his broader actions to influence the GNU project.
+- These are related to RMS _specifically_, not his broader actions to influence the GNU project.
 
-## 1. The "Linux was developed for the GNU tools" narritive propogated by the FSF is false
+## 1. "Linux was developed for the GNU tools" is False
 
 From https://www.gnu.org/gnu/linux-and-gnu.html:
->its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
-What they found was no accident—it was the not-quite-complete GNU system.
 
-In Linus's book *[Just For Fun]*, the GNU project plays little to no role in the creation of Linux.
+> its users looked around for other free software to go with it, and found that (for no particular reason) most everything necessary to make a Unix-like system was already available.
+> What they found was no accident—it was the not-quite-complete GNU system.
+
+In Linus's book _[Just For Fun]_, the GNU project plays little to no role in the creation of Linux.
 Linux grew out of comp.os.minix, not anything related to the FSF or GNU project. Additionally, The FSF was
 still advocating for Hurd until well after Linux was popular.
 
-From *[The Hurd and Linux (1997)]*:
->But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.
+From _[The Hurd and Linux (1997)]_:
+
+> But we did start the Hurd, back then, and now we have made it work. We hope its superior architecture will make free operating systems more powerful.
 
 The FSF's push for hurd died out sometime in the early 2000's, when Linux was commonplace and Hurd was completely abandoned.
 
 From [A interview with RMS in 99'][RMS tech interview]:
+
 > Yes. Unfortunately, progress right now is very slow. We don't have anybody working on it full time, and I wish we did.
 
 ## 2. For years, the GNU project was not directly maintaining most of their popular projects
@@ -44,10 +48,11 @@ The reason why GCC didn't become a platform for compiler development like LLVM o
 intentionally kept it back from being so.**
 
 From https://gcc.gnu.org/legacy-ml/gcc/2000-01/msg00572.html:
+
 > Anything that makes it easier to use GCC back ends without GCC front
-ends--or simply brings GCC a big step closer to a form that would make
-such usage easy--would endanger our leverage for causing new front
-ends to be free.
+> ends--or simply brings GCC a big step closer to a form that would make
+> such usage easy--would endanger our leverage for causing new front
+> ends to be free.
 
 **The FSF is a political movement that engages in intentional obfuscation to spread itself.**
 
@@ -61,21 +66,21 @@ But If you wanna include something like `strptime()` you need to `#define _XOPEN
 (which is [against POSIX]), except if you do that it **turns the default ones off.**
 
 However, if `#define _GNU_SOURCE`, all feature test macros are implicitly defined.
-So *the most convenient way to deal with this opt-out "feature"* is to mark your code with the
+So _the most convenient way to deal with this opt-out "feature"_ is to mark your code with the
 GNU projects name.
 
 The `dup3()` system call is neither written by GNU or even in the "GNU Operating System's"
 Hurd kernel. And even though this is not GNU you still have to `#define _GNU_SOURCE` to get it.
 
-## 5. GNU code *sucks*
+## 5. GNU code _sucks_
 
 - The `true` command (which is only supposed to return 0) in most other utility implementations is 1 line of
-code (i.e. `int main(){}`), GNU true is [80 lines](https://github.com/coreutils/coreutils/blob/master/src/true.c)
+  code (i.e. `int main(){}`), GNU true is [80 lines](https://github.com/coreutils/coreutils/blob/master/src/true.c)
 
 (Note: the --help text support is actually a bug and possible security issue, because `/bin/true --help > /dev/full` returns 1 instead of 0)
 
 - GNU cat is [813 lines of code](https://github.com/coreutils/coreutils/blob/master/src/cat.c), Busybox cat is
-[217 lines](https://git.busybox.net/busybox/tree/coreutils/cat.c).
+  [217 lines](https://git.busybox.net/busybox/tree/coreutils/cat.c).
 
 - glibc can take up to [3 days (See end of pg. 34)](https://linuxfromscratch.org/lfs/downloads/11.0/LFS-BOOK-11.0.pdf) to build on low-end hardware
 
@@ -86,9 +91,9 @@ I could point out more examples, but the message is conveyed that where a progra
 ## 6. GNUs obsession with portability adds copius amounts of complexity and helps no one
 
 - The [terminfo/termcap](https://invisible-island.net/ncurses/ncurses.faq.html#which_terminfo) databases
-contain support for thousands of different terminals and terminal emulators no one uses (You can try this
-out now, set `TERM=vt100` and run some ncurses programs). Terminal escape protocols have been more or less
-standardized since ANSI escape codes.
+  contain support for thousands of different terminals and terminal emulators no one uses (You can try this
+  out now, set `TERM=vt100` and run some ncurses programs). Terminal escape protocols have been more or less
+  standardized since ANSI escape codes.
 
 - The `reset` command waits one second to support [physical terminals](https://unix.stackexchange.com/questions/335648/why-does-the-reset-command-include-a-delay) that fell out of favour for emulated ones in the early 90's. It does not contain a check for whether or not the terminal is emulated, and will sleep regardless.
 
@@ -98,7 +103,7 @@ For more examples of this, lets look at the configure scripts for some of the GN
 
 - The 23,000 line bash configure script contains portability checks for a bash version released in 1997 within [the first 100 lines.](https://github.com/bminor/bash/blob/master/configure#L67C29-L67C38), further down it has checks for a [version of System V released in 1988](https://github.com/bminor/bash/blob/master/configure#L596C29-L596C35), and ["pre-3.0 UWIN ksh"](https://github.com/bminor/bash/blob/master/configure#L22254) which from my searching became outdated in 2002.
 
--  The 13,000 line gawk configure script (Along with containing about half the portability checks from bash) contains checks for Solaris 7 (released in 1997) [in the first 50 lines](https://github.com/forkmirror/gawk/blob/master/configure), [Someone running a 386/AT Machine apparently had a issue](https://github.com/forkmirror/gawk/blob/master/configure#L39C34-L39C43). Oh no! [IRIX 5.2 (1993) doesn't support -lsocket](https://github.com/forkmirror/gawk/blob/master/configure#L11088). [This entire comment block](https://github.com/forkmirror/gawk/blob/master/configure#L2651) needs no introduction.
+- The 13,000 line gawk configure script (Along with containing about half the portability checks from bash) contains checks for Solaris 7 (released in 1997) [in the first 50 lines](https://github.com/forkmirror/gawk/blob/master/configure), [Someone running a 386/AT Machine apparently had a issue](https://github.com/forkmirror/gawk/blob/master/configure#L39C34-L39C43). Oh no! [IRIX 5.2 (1993) doesn't support -lsocket](https://github.com/forkmirror/gawk/blob/master/configure#L11088). [This entire comment block](https://github.com/forkmirror/gawk/blob/master/configure#L2651) needs no introduction.
 
 This matters in the modern world of software how?
 
@@ -128,7 +133,7 @@ GNU info was designed to solve a problem nobody had, and in their push for it th
 
 GNU info is not portable to other operating systems like man pages, nor well used even by most GNU projects,
 nor is the browser you need to get a benefit out of its format pleasant to use. Nor is it liked even within the GNU project.
-This does not change the fact GNU help2man by default refers to info pages in it's output.
+This does not change the fact GNU help2man by default refers to info pages in its output.
 
 The reason why most man pages don't contain examples is because the GNU project insisted on putting them only in
 texinfo pages and not converting them to man pages. And the normalization of this makes man pages worse for
