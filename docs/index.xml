@@ -260,7 +260,7 @@ to get the phase angle from coordinates and distance alone.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://iriswebb.github.io/graph/astro-tools-venn.png&#34; alt=&#34;A Venn Diagram of Astronomy Tools&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;how-easy-is-it-to-make-something-like-that&#34;&gt;
   &lt;a href=&#34;#how-easy-is-it-to-make-something-like-that&#34;&gt;#&lt;/a&gt;
-  How easy is it to make something like that?
+  How Easy Is It to Make Something like That?
 &lt;/h1&gt;&lt;p&gt;Let&amp;rsquo;s lessen the scope for a moment, to… lets say moon phases. Which I couldn&amp;rsquo;t find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.&lt;/p&gt;
 &lt;p&gt;A year ago, I was looking at &lt;a href=&#34;https://github.com/chubin/pyphoon&#34;&gt;pyphoon&lt;/a&gt;,
 and found the &lt;a href=&#34;https://github.com/chubin/pyphoon/blob/master/pyphoon/lib/astro.py&#34;&gt;astronomy code&lt;/a&gt; from it was a rewrite of C code written almost &lt;a href=&#34;https://www.fourmilab.ch/moontoolw/&#34;&gt;40 years ago&lt;/a&gt;.&lt;/p&gt;
@@ -382,9 +382,9 @@ parsimonious info generator. Some only matter for historical dates or dates far 
 there is a noticeable difference caused by parallax, refraction, and pertubation.&lt;/p&gt;
 &lt;p&gt;Correcting for precession, perturbation, refraction, and parallax gives results that are &amp;ldquo;good enough&amp;rdquo; for telescope pointing,
 observation scheduling, and most real-world uses.&lt;/p&gt;
-&lt;h1 id=&#34;alogrithms-and-plumbing&#34;&gt;
-  &lt;a href=&#34;#alogrithms-and-plumbing&#34;&gt;#&lt;/a&gt;
-  Alogrithms and Plumbing
+&lt;h1 id=&#34;algorithms-and-plumbing&#34;&gt;
+  &lt;a href=&#34;#algorithms-and-plumbing&#34;&gt;#&lt;/a&gt;
+  Algorithms and Plumbing
 &lt;/h1&gt;&lt;p&gt;&lt;em&gt;Practical Astronomy with Your Calculator&lt;/em&gt; is a very useful source of information, but there are other
 collections of algorithms that are just as useful:&lt;/p&gt;
 &lt;ul&gt;

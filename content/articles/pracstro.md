@@ -23,7 +23,7 @@ As cool as all these tools are, there still exists a specific niche in shell scr
 
 ![A Venn Diagram of Astronomy Tools](/graph/astro-tools-venn.png)
 
-# How easy is it to make something like that?
+# How Easy Is It to Make Something like That?
 
 Let's lessen the scope for a moment, to… lets say moon phases. Which I couldn't find a straightforward way to get info about without revving up an awk interpreter to strip out text from other things, using inaccurate approximations, or curling information from the internet.
 
@@ -102,7 +102,7 @@ observation scheduling, and most real-world uses.
 
 [^1]: Truly Accurate Predictions require temperature, pressure, and altitude measurements, but even without these refraction can be approximated.
 
-# Alogrithms and Plumbing
+# Algorithms and Plumbing
 
 _Practical Astronomy with Your Calculator_ is a very useful source of information, but there are other
 collections of algorithms that are just as useful:

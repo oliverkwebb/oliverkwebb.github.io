@@ -58,6 +58,7 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 [![cpli's Userbox](/88x31/cpli.gif)](https://cpli.dev/)
 [![Nicole4Fox's Userbox](https://socials.nicole4fox.de/88x31.gif)](https://blog.nicole4fox.de/nicole4fox)
 [![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
+[![LilaHexe's Userbox](https://cdn.lilahexe.top/LilaHexe-88x31.png)](https://lilahexe.top/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
 [![Natalieee's Userbox](https://natalieee.net/assets/88x31/natalieee.net.png)](https://natalieee.net/)
 <a href="https://creativecommons.org/licenses/by/4.0/">
