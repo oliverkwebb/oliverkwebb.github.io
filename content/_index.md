@@ -1,5 +1,5 @@
 <p style="text-align: center">
-Computer Scientist | 17 y/o | Any/All
+Computer Scientist | 17 y/o | She/They
 </p>
 
 {{< linkbox "https://www.github.com/iriswebb" "GitHub" >}}

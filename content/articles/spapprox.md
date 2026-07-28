@@ -65,9 +65,9 @@ The closest approach to a planet could last days, part of a larger observation p
 But these periods are separated from each other by years, where the probe is too far away from anything to take pictures or collect useful data,
 it hibernates and nothing happens.
 
-The force gravity imparts on an object grows quadratically, inverse to distance. A space probe passing 1,000km from a planet will be effected by it 4 times more than it would at 2,000 km.
-This also means that a space probe 0.1 AU away from an object will be effected ~22,000x less than it would at 100,000km. Outside of gravity assists, a space probes trajectory _is_ effected
-by other objects, but this effect is far, far smaller compared to being slingshot around a planet.
+The force gravity imparts on an object grows quadratically, inverse to distance. A space probe passing 1,000km from a planet will be affected by it 4 times more than it would at 2,000 km.
+This also means that a space probe 0.1 AU away from an object will be affected ~22,000x less than it would at 100,000km. Outside of gravity assists, a space probes trajectory _is_ affected
+by other objects, but this affect is far, far smaller compared to being slingshot around a planet.
 
 JPL Horizons confirms this:
 
