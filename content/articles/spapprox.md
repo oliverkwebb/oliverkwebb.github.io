@@ -86,7 +86,7 @@ We have as rules:
 
 1. The more external influence there is on an object, the less accurate Keplerian Motion can model it.
 2. Since space probes encounter extreme external influence, their full trajectory is not modelable using Keplerian Motion.
-3. Space probes encounter external influence in extremely short bursts, between by long, inertial sections of waiting without much external influence.
+3. Space probes encounter external influence in extremely short bursts, between long, inertial sections of waiting without much external influence.
 4. Any section of a space probes trajectory subject to little external influence can be accurately modeled by Keplerian Motion.
 
 ## Segmenting Sections

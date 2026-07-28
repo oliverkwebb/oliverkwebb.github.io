@@ -136,7 +136,7 @@ with Venus.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;The more external influence there is on an object, the less accurate Keplerian Motion can model it.&lt;/li&gt;
 &lt;li&gt;Since space probes encounter extreme external influence, their full trajectory is not modelable using Keplerian Motion.&lt;/li&gt;
-&lt;li&gt;Space probes encounter external influence in extremely short bursts, between by long, inertial sections of waiting without much external influence.&lt;/li&gt;
+&lt;li&gt;Space probes encounter external influence in extremely short bursts, between long, inertial sections of waiting without much external influence.&lt;/li&gt;
 &lt;li&gt;Any section of a space probes trajectory subject to little external influence can be accurately modeled by Keplerian Motion.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;segmenting-sections&#34;&gt;
