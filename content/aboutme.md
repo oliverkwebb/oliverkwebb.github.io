@@ -1,13 +1,13 @@
 ## About Me
 
-Email
-: oliverwebb8192@gmail.com
-
 GitHub
 : [iriswebb](https://www.github.com/iriswebb)
 
 Pronouns
-: Any/All
+: She/They
+
+Email
+: oliverwebb8192@gmail.com
 
 Userbox (88x31)
 : [![My Userbox](/8831.png)](https://webb.is-a.dev)
@@ -17,13 +17,14 @@ And have been programming and learning about how computers work for a
 several years. I know how to work a variety of languages, tools, and systems
 extensively. Mainly C, Rust, Lua, Bash, and Linux.
 
-I have a page describing the software I use [here](/rocks)
+I do not use AI, and never will, I work as if it doesn't exist.
 
 ## Projects
 
+- [femtofont](https://crates.io/crates/femtofont): A fork of `fontdue`, providing several improvements that make it possible to render TTF fonts in embedded rust.
+- [pracstro](https://crates.io/crates/pracstro): A compact, accurate ephemeris generating library for celestial objects.
 - [moonphase](https://github.com/iriswebb/moonphase): A collection of implementations to get the current moon phase in a variety of languages.
 - [deskephem](https://github.com/iriswebb/deskephem): A general purpose CLI astronomy calculator
-- [pracstro](https://crates.io/crates/pracstro): A compact, accurate ephemeris generating library for celestial objects.
 - [cheat](https://github.com/iriswebb/cheat): An offline analog for [cheat.sh](https://cheat.sh)
 - [moontool](https://github.com/iriswebb/moontool): A collection of C programs that work with moon phases
 - [ytmpv](https://github.com/iriswebb/ytmpv): A shell script that provides quick access to proxies to counter anti-ad-block

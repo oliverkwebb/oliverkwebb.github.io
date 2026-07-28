@@ -3,15 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://iriswebb.github.io/</loc>
-    <lastmod>2026-02-05T16:54:29-06:00</lastmod>
+    <lastmod>2026-07-27T03:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://iriswebb.github.io/articles/spapprox/</loc>
+    <lastmod>2026-07-27T03:00:00-05:00</lastmod>
   </url><url>
     <loc>https://iriswebb.github.io/articles/</loc>
-    <lastmod>2026-02-05T16:54:29-06:00</lastmod>
+    <lastmod>2026-07-27T03:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://iriswebb.github.io/tags/opinion/</loc>
-    <lastmod>2026-02-05T16:54:29-06:00</lastmod>
+    <loc>https://iriswebb.github.io/tags/astronomy/</loc>
+    <lastmod>2026-07-27T03:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://iriswebb.github.io/tags/programming/</loc>
+    <lastmod>2026-07-27T03:00:00-05:00</lastmod>
   </url><url>
     <loc>https://iriswebb.github.io/tags/</loc>
+    <lastmod>2026-07-27T03:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://iriswebb.github.io/tags/opinion/</loc>
     <lastmod>2026-02-05T16:54:29-06:00</lastmod>
   </url><url>
     <loc>https://iriswebb.github.io/articles/info_dense/</loc>
@@ -20,16 +29,10 @@
     <loc>https://iriswebb.github.io/articles/mymalloc/</loc>
     <lastmod>2025-08-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://iriswebb.github.io/tags/programming/</loc>
-    <lastmod>2025-08-31T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://iriswebb.github.io/articles/generalizedprintf/</loc>
     <lastmod>2025-08-20T10:25:12-05:00</lastmod>
   </url><url>
     <loc>https://iriswebb.github.io/articles/iausofa/</loc>
-    <lastmod>2025-07-16T00:28:55-05:00</lastmod>
-  </url><url>
-    <loc>https://iriswebb.github.io/tags/astronomy/</loc>
     <lastmod>2025-07-16T00:28:55-05:00</lastmod>
   </url><url>
     <loc>https://iriswebb.github.io/articles/bmp-1965/</loc>

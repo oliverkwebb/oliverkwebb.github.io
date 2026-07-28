@@ -2,6 +2,8 @@
 title: "Practical Astronomy with Your Command Line"
 tags: ["Astronomy", "Programming"]
 date: 2025-05-23T17:02:40-05:00
+params:
+  coverart: /graph/astro-tools-venn.png
 ---
 
 About a year and a half ago, I was trying to put the current moon phase in my status bar, Simultaneously I was trying to make other projects that would show the sunrise and sunset time. There are many open-source tools that can generate astronomical info on Linux:

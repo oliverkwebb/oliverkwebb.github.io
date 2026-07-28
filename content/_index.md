@@ -12,6 +12,10 @@ Computer Scientist | 17 y/o | Any/All
 
 [calfact<br> 📆](https://webb.is-a.dev/calfact/)
 
+[do-not-resize<br> 🪟](https://webb.is-a.dev/do-not-resize/)
+
+[hacker test (1989)<br> 💾](https://webb.is-a.dev/purity-rs/web/hacker/)
+
 [chmodcalc<br> 🕵️](https://webb.is-a.dev/chmodcalc/)
 
 [moonphase<br>🌖](https://webb.is-a.dev/moonphase/)
