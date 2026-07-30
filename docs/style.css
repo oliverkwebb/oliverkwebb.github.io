@@ -208,6 +208,15 @@ img {
     max-width: 100%;
 }
 
+nav a {
+    filter:
+        drop-shadow(2px 1px 0px #F5A9B8)
+        drop-shadow(2px 1px 0px #fff)
+        drop-shadow(2px 1px 0px #F5A9B8)
+        drop-shadow(2px 1px 0px #5BCEFA)
+        ;
+}
+
 .userboxes {
     display: flex;
     justify-content: center;

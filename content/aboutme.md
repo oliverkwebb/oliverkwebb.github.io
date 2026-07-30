@@ -7,7 +7,7 @@ Pronouns
 : She/They
 
 Email
-: oliverwebb8192@gmail.com
+: iriswebb8192@gmail.com
 
 Userbox (88x31)
 : [![My Userbox](/8831.png)](https://webb.is-a.dev)
@@ -57,13 +57,13 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 [![My Userbox](/8831.png)](https://webb.is-a.dev/)
 [![cpli's Userbox](/88x31/cpli.gif)](https://cpli.dev/)
-[![Nicole4Fox's Userbox](https://socials.nicole4fox.de/88x31.gif)](https://blog.nicole4fox.de/nicole4fox)
-[![Nea's Userbox](/88x31/mx+b.png)](https://nea.moe/)
 [![Amy's Userbox](/88x31/amyrip.png)](https://amy.rip/)
+[![Darkuss's Userbox](/88x31/darkuss.png)](https://donotsta.re/darkuss)
 [![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
-[![LilaHexe's Userbox](https://cdn.lilahexe.top/LilaHexe-88x31.png)](https://lilahexe.top/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
-[![Natalieee's Userbox](https://natalieee.net/assets/88x31/natalieee.net.png)](https://natalieee.net/)
+[![LilaHexe's Userbox](https://cdn.lilahexe.top/LilaHexe-88x31.png)](https://lilahexe.top/)
+[![Nea's Userbox](/88x31/mx+b.png)](https://nea.moe/)
+[![Nicole4Fox's Userbox](https://socials.nicole4fox.de/88x31.gif)](https://blog.nicole4fox.de/nicole4fox)
 <a href="https://creativecommons.org/licenses/by/4.0/">
 <img width="88" height="31" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png" alt="Creative Commons BY">
 </a>
@@ -74,10 +74,9 @@ I've added boolean operator functions (e.g. `and()`, `or()`, `xor()`, `lshift()`
 
 [yemou.pink](https://yemou.pink/) |
 [soph.systems](https://soph.systems/) |
-[okash.it](https://okash.it/) |
 [alicemvv.wordpress.com](https://alicemvv.wordpress.com/) |
 [operz.coralcmd.net](https://operz.coralcmd.net/) |
-[leahneukirchen.org](https://leahneukirchen.org/) |
-[zougloub.eu](https://zougloub.eu/)
+[zougloub.eu](https://zougloub.eu/) |
+[bandithedoge.com](https://bandithedoge.com/)
 
 <div>

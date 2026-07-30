@@ -3,7 +3,7 @@ Computer Scientist | 17 y/o | She/They
 </p>
 
 {{< linkbox "https://www.github.com/iriswebb" "GitHub" >}}
-{{< linkbox "mailto:oliverwebb8192@gmail.com" "Email" >}}
+{{< linkbox "mailto:iriswebb8192@gmail.com" "Email" >}}
 {{< linkbox "/aboutme" "About and Contact" >}}
 
 ## Trinkets
