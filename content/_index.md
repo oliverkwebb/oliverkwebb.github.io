@@ -33,6 +33,7 @@ Computer Scientist | 17 y/o | She/They
 [![My Userbox](/8831.png)](https://webb.is-a.dev/)
 [![cpli's Userbox](/88x31/cpli.gif)](https://cpli.dev/)
 [![Amy's Userbox](/88x31/amyrip.png)](https://amy.rip/)
+[![Bandi's Userbox](https://bandithedoge.com/88x31.gif)](https://bandithedoge.com/)
 [![Darkuss's Userbox](/88x31/darkuss.png)](https://donotsta.re/darkuss)
 [![Javacafe's Userbox](https://javacafe.sdf.org/8831.png)](https://javacafe.sdf.org/)
 [![Jesse's Userbox](https://cpluspatch.com/images/icons/88x31.png)](https://cpluspatch.com/)
@@ -53,7 +54,6 @@ Computer Scientist | 17 y/o | She/They
 [operz.coralcmd.net](https://operz.coralcmd.net/) |
 [zimward.moe](https://zimward.moe/) |
 [zougloub.eu](https://zougloub.eu/) |
-[bandithedoge.com](https://bandithedoge.com/)
 
 </div>
 
