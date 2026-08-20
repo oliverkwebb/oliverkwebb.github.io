@@ -45,6 +45,7 @@ Computer Scientist | 17 y/o | She/They
 <a href="https://myrdin.cx" target="_blank"><img src="https://myrdin.cx/media/webring/myrdin/button.gif"></a>
 [![Nea's Userbox](/88x31/mx+b.png)](https://nea.moe/)
 [![Nicole4Fox's Userbox](https://socials.nicole4fox.de/88x31.gif)](https://blog.nicole4fox.de/nicole4fox)
+[![Sammy's Userbox](https://sammyette.party/buttons/sammyette.png)](https://sammyette.party/)
 <a href="https://creativecommons.org/licenses/by/4.0/">
 <img width="88" height="31" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png" alt="Creative Commons BY">
 </a>

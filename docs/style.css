@@ -208,6 +208,10 @@ img {
     max-width: 100%;
 }
 
+figure {
+    text-align: center;
+}
+
 nav a {
     filter:
         drop-shadow(2px 1px 0px #F5A9B8)

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TTF Font Rendering on Rust ESP32&#39;s for EPaper | Iris Webb</title>
+	<link rel="canonical" href="https://iriswebb.github.io/">
+	<link rel='stylesheet' type='text/css' href='/uchu_color_expanded.css'>
+	<link rel='stylesheet' type='text/css' href='/style.css'>
+	<link rel="icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+</head>
+<body>
+<nav>
+	<a href="/">Iris Webb</a>
+</nav>
+<main>
+<header><h1 id="tag_TTF Font Rendering on Rust ESP32&#39;s for EPaper">TTF Font Rendering on Rust ESP32&#39;s for EPaper</h1></header>
+<article>
+
+<p>Most embedded graphics libraries can&rsquo;t directly render TTF fonts, instead, they convert bitmap fonts (usually bdf fonts) to a binary format.
+Since there is no consensus on what this format is, what it allows, and what generates it. The tooling for embedded fonts in any language, much less TTF ones in Rust,
+is shaky and at times dysfunctional.</p>
+<figure><img src="/graph/font-dep-graph.png"
+			alt="The pipeline between common font formats and rusts embedded_graphics text renderer" width="300"><figcaption>
+			<p>The pipeline between common font formats and rusts <code>embedded_graphics</code> text renderer</p>
+		</figcaption>
+</figure>
+
+<p>There are many things a font can be, all with special performance optimizations.</p>
+<figure><img src="/graph/fonttypes.png">
+</figure>
+
+<ul>
+<li>Monospace bitmap fonts require the least overhead, usually just being a large array.</li>
+<li>Proportional bitmap fonts require storing metrics for each glyph.</li>
+<li>Scalable fonts require a TTF parser and a rasterizer.</li>
+</ul>
+<p>For small, embedded displays, stylized fonts aren&rsquo;t much use in a small display size, and computation time is expensive. So it makes sense to only support fonts in the first or second category.
+However, for large, low refresh rate displays (epaper), there is much more time to compute between refreshes, and much more space for stylized text.</p>
+<p>Memory is the limiting factor of whether or not we can render ttf fonts on an embedded device. The size of the libraries (and data) in the flash memory, and data structures on the stack/heap.</p>
+<p>From here, we can take any rasterizer from the many that exist, and attempt to use it in conjunction with <code>embedded_graphics</code>. I chose <a href="https://github.com/mooman219/fontdue"><code>fontdue</code></a> as the starting point.
+Mainly because it has a predefined way of positioning glyphs (which is needed for <code>embedded_graphics</code>)</p>
+<h2 id="optimizing-non-embedded-libraries-for-embedded">
+  <a href="#optimizing-non-embedded-libraries-for-embedded">#</a>
+  Optimizing Non-Embedded Libraries for Embedded?
+</h2><p>Since computation cost is almost free for low-refresh rate devices, memory is the only thing that matters.
+I am working with an ESP32S3, with the following memory budget:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Stage</th>
+					<th>Flash</th>
+					<th>Stack</th>
+					<th>Heap</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Budget (ESP32S3)</td>
+					<td>12000KB</td>
+					<td>32KB</td>
+					<td>220KB</td>
+			</tr>
+	</tbody>
+</table>
+<p>This will vary wildly even on the same chip since these settings can be changed. I am representing all numbers in KB to show that
+flash memory space is essentially free compared to stack and heap. What matters is that if sum of all the stages of processing get
+close to or above the memory budget, the program panics and fails.</p>
+<p>Fontdue, what we are basing this test off of, has a 3 stage pipeline between TTF font data in storage and glyphs being drawn to a display.
+Parsing with <code>ttf_parser</code> before laying out and rasterizing glyphs using its own internal code.</p>
+<p>Using a custom allocator to monitor heap usage, and <code>mem::size_of</code> for data structure size/stack usage, running fontdue on a 100KB Latin font, we get the following:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Stage</th>
+					<th>Flash</th>
+					<th>Stack</th>
+					<th>Heap</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TTF Font Data</td>
+					<td>100KB</td>
+					<td>0</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td>Library Data</td>
+					<td>~50KB(?)</td>
+					<td>0</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td><code>ttf_parser::Face</code></td>
+					<td>0</td>
+					<td>1.5KB</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td><code>fontdue::Font</code></td>
+					<td>0</td>
+					<td>~0</td>
+					<td>3100KB</td>
+			</tr>
+			<tr>
+					<td><code>fontdue::layout</code></td>
+					<td>0</td>
+					<td>~0.5KB(?)</td>
+					<td>~1KB(?)</td>
+			</tr>
+			<tr>
+					<td><strong>Cost</strong></td>
+					<td>~150KB</td>
+					<td>2KB</td>
+					<td>3100KB</td>
+			</tr>
+			<tr>
+					<td><strong>Budget</strong> (ESP32S3)</td>
+					<td>12000KB</td>
+					<td>32KB</td>
+					<td>220KB</td>
+			</tr>
+	</tbody>
+</table>
+<p>Unideal.</p>
+<h2 id="optimizing-heap-usage-by-at-least-15x-or-150x">
+  <a href="#optimizing-heap-usage-by-at-least-15x-or-150x">#</a>
+  Optimizing Heap Usage by at Least 15x (or 150x)
+</h2><p>2KB of stack usage<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> is also unideal for more constrained chips, but that can be turned into heap usage with <code>Arc</code>.
+The more interesting problem is that it&rsquo;s allocating 30 times the ttf data size on the heap&hellip; why?</p>
+<p>Looking at the <a href="https://docs.rs/fontdue/latest/src/fontdue/font.rs.html#189">source code</a>, there are four culprits:</p>
+<ul>
+<li><code>glyphs</code>: A vector of all glyph geometry.</li>
+<li><code>char_to_glyph</code>: A hashmap from unicode characters to glyph index numbers<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</li>
+<li><code>horizontal_kern</code>: A hashmap of kerning values.</li>
+</ul>
+<p>The last, and biggest culprit, is the fact that there isn&rsquo;t a <code>ttf_parser::Face</code> structure in the <code>fontdue::Font</code> structure, which means
+all the data from the font is being stored in the <code>fontdue::Font</code> structure.</p>
+<p>Including the <code>ttf_parser::Face</code> structure, which we have already wrapped in <code>Arc</code> to prevent stack overflows,
+makes the font much more flexible (allowing for variable fonts, for instance) and gives us a more memory efficient way of accessing data.
+It makes every method of generating data used during <a href="https://docs.rs/fontdue/latest/src/fontdue/font.rs.html#242">struct initialization</a>
+available on the fly, more particularly <a href="https://docs.rs/fontdue/latest/src/fontdue/font.rs.html#289">this 20 line lambda function</a>.</p>
+<p>By moving that lambda out of the function, <a href="https://github.com/iriswebb/femtofont/commit/fcde37be2bc05cec70770e2d368fc285de1525a6">changing vertical bars to parenthesis, and replacing references into the <code>glyphs</code> vector with it</a>,
+we can run our tests again to get the following table:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Stage</th>
+					<th>Flash</th>
+					<th>Stack</th>
+					<th>Heap</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TTF Font Data</td>
+					<td>100KB</td>
+					<td>0</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td>Library Data</td>
+					<td>~50KB(?)</td>
+					<td>0</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td><code>ttf_parser::Face</code></td>
+					<td>0</td>
+					<td>1.5KB</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td><code>fontdue::Font</code></td>
+					<td>0</td>
+					<td>~0</td>
+					<td>19KB</td>
+			</tr>
+			<tr>
+					<td><code>fontdue::layout</code></td>
+					<td>0</td>
+					<td>~0.5KB(?)</td>
+					<td>~1KB(?)</td>
+			</tr>
+			<tr>
+					<td><strong>Cost</strong></td>
+					<td>~150KB</td>
+					<td>2KB</td>
+					<td>20KB</td>
+			</tr>
+			<tr>
+					<td><strong>Budget</strong> (ESP32S3)</td>
+					<td>12000KB</td>
+					<td>32KB</td>
+					<td>220KB</td>
+			</tr>
+	</tbody>
+</table>
+<p>Ideal!</p>
+<h2 id="even-better">
+  <a href="#even-better">#</a>
+  Even Better?
+</h2><p>For what it&rsquo;s worth, there is more to do from here, <code>core_float_math</code> and <code>portable_simd</code> can make the renderer noticeably faster compared to its <a href="https://docs.rs/fontdue/latest/src/fontdue/platform/simd_x86.rs.html">x86-only optimizations</a>. And less caching can get 20KB down to 0, so that instead of caching all the time, there&rsquo;s an <a href="https://github.com/iriswebb/femtofont/blob/master/src/font.rs#L177">optional cache</a> which can be used when memory is less important and speed is slightly more important.</p>
+<p>The biggest thing this is missing, when compared to full-featured font stacks, is shaping. And the first-class way to do shaping with rust is&hellip; with a <a href="https://docs.rs/read-fonts">different font stack</a>? That&rsquo;s maintained while <code>ttf_parser</code> isn&rsquo;t?<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> Even enough tooling uses the old one that <a href="https://docs.rs/cosmic-text/">cosmic_text</a> has both in its dependency tree?</p>
+<p>In the future, I&rsquo;ll look at <a href="https://docs.rs/parley/latest/parley/">parley&rsquo;s</a> memory budget. But since I have gotten TTF text rendering to work natively on an ESP32, I will look at it another day.</p>
+<figure><img src="/femtofont-showcase.png"
+			alt="femtofont, running on an epaper display" width="300"><figcaption>
+			<p><a href="https://github.com/iriswebb/femtofont">femtofont</a>, running on an epaper display</p>
+		</figcaption>
+</figure>
+
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>This is because ttf-parser keeps a large amount of table data in a similarly large data structure after initial parsing.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>For many reasons, ttf fonts store their glyphs in a large table with a <code>cmap</code> look up table translating unicode codepoint numbers to indexes in that table.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Ughhhhhhh.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+</article>
+</main>
+<hr />
+<footer>
+    <div id="nextprev">
+		<a href="/articles/spapprox/" class="prev">← Approximating the Position of Space Probes with Minimal Code</a>
+	</div>
+	<br/>
+<p>You can subscribe via <a href="/index.xml">RSS</a> to get updates.</p>
+    <p>
+        The text of <a href="https://iriswebb.github.io/">this site</a> by &#xa9; 2026
+        Iris Webb is licensed under
+        <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+    </p>
+</footer>
+
+</body>
+</html>
